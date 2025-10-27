@@ -83,7 +83,14 @@ class Game:
             time.sleep(0.5)
         
         if scene.ascii_art:
-            self.renderer.display_ascii_art(scene.ascii_art)
+            # Handle both Animation objects and plain strings/Text
+            if hasattr(scene.ascii_art, 'frames'):
+                # It's an Animation object - display all frames
+                for frame in scene.ascii_art.frames:
+                    self.renderer.display_ascii_art(frame)
+            else:
+                # It's a plain string or Text object
+                self.renderer.display_ascii_art(scene.ascii_art)
             time.sleep(1)
         
         if scene.description:
