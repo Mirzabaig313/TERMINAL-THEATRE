@@ -1,0 +1,12 @@
+include README.md
+include PLAYER.md
+include DEVELOPER.md
+include LICENSE
+include requirements.txt
+include CONTRIBUTING.md
+recursive-include engine *.py
+recursive-include stories *.py
+recursive-include docs *.md
+recursive-exclude tests *
+recursive-exclude __pycache__ *
+recursive-exclude *.pyc *

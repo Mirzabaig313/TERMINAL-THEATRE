@@ -27,11 +27,27 @@ Play as Jack Malone, a private investigator framed for murder. Navigate corrupti
 
 ## 🚀 Quick Start
 
+### Installation from PyPI (Recommended)
+
 ```bash
+# Install the package
+pip install terminal-theatre
+
+# Run the game
+terminal-theatre
+```
+
+### Installation from Source
+
+```bash
+# Clone the repository
+git clone https://github.com/Mirzabaig313/TERMINAL-THEATRE.git
+cd TERMINAL-THEATRE
+
 # Install dependencies
 pip install -r requirements.txt
 
-# Play the game
+# Run the game
 python3 main.py
 ```
 

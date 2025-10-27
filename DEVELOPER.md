@@ -295,6 +295,19 @@ The architecture supports easy additions:
 5. Push and create pull request
 6. Include story description in PR
 
+## 📦 Package Publishing
+
+See [PUBLISHING.md](PUBLISHING.md) for complete guide on publishing to PyPI.
+
+**Quick overview:**
+```bash
+# Build the package
+python -m build
+
+# Upload to PyPI
+twine upload dist/*
+```
+
 ## 🎬 Example: Complete Mini-Story
 
 ```python

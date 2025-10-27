@@ -1,0 +1,38 @@
+[build-system]
+requires = ["setuptools>=45", "wheel", "setuptools_scm[toml]>=6.2"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "terminal-theatre"
+version = "1.0.0"
+description = "An interactive ASCII movie game with branching narratives"
+readme = "README.md"
+requires-python = ">=3.7"
+license = {text = "MIT"}
+authors = [
+    {name = "Terminal Theatre Development Team"}
+]
+keywords = ["game", "interactive", "fiction", "ascii", "terminal", "cli"]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Intended Audience :: End Users/Desktop",
+    "Topic :: Games/Entertainment",
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3",
+    "Operating System :: OS Independent",
+]
+
+dependencies = [
+    "rich>=10.0.0",
+]
+
+[project.urls]
+Homepage = "https://github.com/Mirzabaig313/TERMINAL-THEATRE"
+Repository = "https://github.com/Mirzabaig313/TERMINAL-THEATRE"
+Issues = "https://github.com/Mirzabaig313/TERMINAL-THEATRE/issues"
+
+[project.scripts]
+terminal-theatre = "main:main"
+
+[tool.setuptools]
+packages = ["engine", "stories"]
