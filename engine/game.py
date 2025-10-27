@@ -204,7 +204,7 @@ class Game:
                     if self.renderer.use_colors and self.renderer.color_renderer:
                         self.renderer.color_renderer.console.print(
                             f"\n✓ Game saved to slot {slot}!",
-                            style=ColorPalette.SUCCESS_GREEN
+                            style=ColorPalette.SAFE_GREEN
                         )
                     else:
                         print(f"\nGame saved to slot {slot}!")

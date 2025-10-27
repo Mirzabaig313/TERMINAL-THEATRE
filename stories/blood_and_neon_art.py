@@ -9,44 +9,52 @@ class BloodAndNeonArt:
     
     @staticmethod
     def rain_city():
-        """Noir cityscape with rain"""
+        """Noir cityscape with rain - Enhanced"""
         return Animation([r"""
     ╔════════════════════════════════════════════════════════════╗
     ║                  RAIN-SOAKED CITY                          ║
+    ║                  [Midnight, Downtown]                      ║
     ╚════════════════════════════════════════════════════════════╝
     
-            ║  ║  ║         ║  ║       ║  ║  ║
-         ║  ║  ║  ║  ║   ║  ║  ║    ║  ║  ║  ║  ║
-            ║  ║  ║      ║  ║  ║  ║    ║  ║  ║
+         ║  ║  ║      ║  ║      ║  ║  ║      ║  ║  ║
+            ║  ║  ║      ║  ║  ║      ║  ║  ║     ║
+         ║     ║  ║  ║      ║  ║  ║      ║  ║  ║
                           
-    ╔═══╗  ╔════╗  ╔═══╗  ╔════╗  ╔═══╗  ╔════╗
-    ║▓▓▓║  ║▓▓▓▓║  ║▓▓▓║  ║▓▓▓▓║  ║▓▓▓║  ║▓▓▓▓║
-    ║▓█▓║  ║▓██▓║  ║█▓█║  ║▓██▓║  ║▓█▓║  ║██▓▓║
-    ║███║  ║████║  ║███║  ║████║  ║███║  ║████║
-    ║███║  ║████║  ║███║  ║████║  ║███║  ║████║
-    ╚═══╝  ╚════╝  ╚═══╝  ╚════╝  ╚═══╝  ╚════╝
+    ╔═══╗  ╔════╗  ╔═══╗  ╔════╗  ╔═══╗  ╔════╗  ╔═══╗
+    ║▓▓▓║  ║▓▓▓▓║  ║▓▓▓║  ║▓▓▓▓║  ║▓▓▓║  ║▓▓▓▓║  ║▓▓▓║
+    ║▓█▓║  ║▓██▓║  ║█▓█║  ║▓██▓║  ║▓█▓║  ║██▓▓║  ║▓█▓║
+    ║▓█▓║  ║▓██▓║  ║█▓█║  ║▓██▓║  ║▓█▓║  ║██▓▓║  ║▓█▓║
+    ║███║  ║████║  ║███║  ║████║  ║███║  ║████║  ║███║
+    ║███║  ║████║  ║███║  ║████║  ║███║  ║████║  ║███║
+    ╚═══╝  ╚════╝  ╚═══╝  ╚════╝  ╚═══╝  ╚════╝  ╚═══╝
+    ≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈
+         [Wet streets reflect neon promises and broken dreams]
     """], frame_delay=0.0)
     
     @staticmethod
     def crime_scene():
-        """Crime scene with body outline"""
+        """Crime scene with body outline - Enhanced"""
         return Animation([r"""
     ╔════════════════════════════════════════════════════════════╗
-    ║              ⚠️  CRIME SCENE - DO NOT CROSS  ⚠️            ║
+    ║          ⚠️  POLICE LINE - DO NOT CROSS  ⚠️                ║
+    ║              [HOMICIDE INVESTIGATION]                      ║
     ╚════════════════════════════════════════════════════════════╝
     
     ▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓
     ▓░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░▓
     ▓░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░▓
-    ▓░░░░░░░░░░░░░░░░░  ╔═══╗  ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░▓
-    ▓░░░░░░░░░░░░░░░░░  ║   ║  ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░▓
-    ▓░░░░░░░░░░░░░  ═══╬═══╬═══  ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░▓
-    ▓░░░░░░░░░░░░░░░░░  ║   ║  ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░▓
-    ▓░░░░░░░░░░░░░░░░░ ╱     ╲ ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░▓
-    ▓░░░░░░░░░░░░░░░░╱         ╲░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░▓
-    ▓░░░░░░░░░░░░░░░░           ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░▓
-    ▓░░░░░░░░░░░░░░░░           ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░▓
+    ▓░░░  [3]  ░░░░░░░░░░░░╔═══╗░░░░░░░░░░░░░░░░░░░  [1]  ░░░▓
+    ▓░░░EVIDENCE░░░░░░░░░░░║   ║░░░░░░░░░░░░░░░░░░EVIDENCE░░░▓
+    ▓░░░MARKER░░░░░░  ═══╬═══╬═══  ░░░░░░░░░░░░░░░MARKER░░░░▓
+    ▓░░░░░░░░░░░░░░░░░░░  ║   ║  ░░░░░░░░░░░░░░░░░░░░░░░░░░░▓
+    ▓░░░░░░░░░░░░░░░░░░░ ╱     ╲ ░░░░░░░░░░░░░░░░░░░░░░░░░░░▓
+    ▓░░░░░░░░░░░░░░░░░╱           ╲░░░░░░░░░░░░░░░░░░░░░░░░░░▓
+    ▓░░░░░░░  [2]  ░░░             ░░░░░  [4]  ░░░░░░░░░░░░░░▓
+    ▓░░░░░EVIDENCE░░░░             ░░░EVIDENCE░░░░░░░░░░░░░░░▓
+    ▓░░░░░MARKER░░░░░░             ░░░░MARKER░░░░░░░░░░░░░░░░▓
     ▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓
+    
+         [Time of Death: 2:47 AM | Cause: Exsanguination]
     """], frame_delay=0.0)
     
     @staticmethod
@@ -488,6 +496,332 @@ class BloodAndNeonArt:
     
               [The pattern is emerging from chaos]
     """], frame_delay=0.0)
+    
+    @staticmethod
+    def tarot_queen_swords():
+        """Tarot card - Queen of Swords"""
+        return Animation([r"""
+    ╔════════════════════════════════════════════════════════════╗
+    ║                  THE QUEEN OF SWORDS                       ║
+    ╚════════════════════════════════════════════════════════════╝
+    
+                    ╔═══════════════════╗
+                    ║  ┌─────────────┐  ║
+                    ║  │    ___      │  ║
+                    ║  │   /▓▓▓\     │  ║
+                    ║  │  │ ◇ ◇ │    │  ║
+                    ║  │   \___/     │  ║
+                    ║  │   ═══╬═══   │  ║
+                    ║  │   ⚔ ║ ⚔    │  ║
+                    ║  │    ╱█╲      │  ║
+                    ║  │   ╱███╲     │  ║
+                    ║  │  ╱█████╲    │  ║
+                    ║  │   ╱█╲       │  ║
+                    ║  │  ╱   ╲      │  ║
+                    ║  │  QUEEN      │  ║
+                    ║  │ OF SWORDS   │  ║
+                    ║  └─────────────┘  ║
+                    ╚═══════════════════╝
+    
+            [Clarity through pain, truth through loss]
+    """], frame_delay=0.0)
+    
+    @staticmethod
+    def tarot_king_cups():
+        """Tarot card - King of Cups"""
+        return Animation([r"""
+    ╔════════════════════════════════════════════════════════════╗
+    ║                   THE KING OF CUPS                         ║
+    ╚════════════════════════════════════════════════════════════╝
+    
+                    ╔═══════════════════╗
+                    ║  ┌─────────────┐  ║
+                    ║  │    ♕         │  ║
+                    ║  │   ___        │  ║
+                    ║  │  /▓▓▓\       │  ║
+                    ║  │ │ ◆ ◆ │      │  ║
+                    ║  │  \___/       │  ║
+                    ║  │   ═╪═        │  ║
+                    ║  │  ╱███╲       │  ║
+                    ║  │ ╱█████╲      │  ║
+                    ║  │   ╱█╲        │  ║
+                    ║  │  ╱ ▓ ╲       │  ║
+                    ║  │    ◡         │  ║
+                    ║  │   KING       │  ║
+                    ║  │  OF CUPS     │  ║
+                    ║  └─────────────┘  ║
+                    ╚═══════════════════╝
+    
+            [Emotional mastery, hidden depths]
+    """], frame_delay=0.0)
+    
+    @staticmethod
+    def tarot_knight_wands():
+        """Tarot card - Knight of Wands"""
+        return Animation([r"""
+    ╔════════════════════════════════════════════════════════════╗
+    ║                 THE KNIGHT OF WANDS                        ║
+    ╚════════════════════════════════════════════════════════════╝
+    
+                    ╔═══════════════════╗
+                    ║  ┌─────────────┐  ║
+                    ║  │     ⚔       │  ║
+                    ║  │    ╱█╲      │  ║
+                    ║  │   ╱███╲     │  ║
+                    ║  │  │ ◈ ◈ │    │  ║
+                    ║  │   ═══════   │  ║
+                    ║  │    ║║║      │  ║
+                    ║  │   ══╬══     │  ║
+                    ║  │    ║║║      │  ║
+                    ║  │   ╱▓▓▓╲     │  ║
+                    ║  │  ╱▓▓▓▓▓╲    │  ║
+                    ║  │   ╱   ╲     │  ║
+                    ║  │  KNIGHT     │  ║
+                    ║  │ OF WANDS    │  ║
+                    ║  └─────────────┘  ║
+                    ╚═══════════════════╝
+    
+            [Action without thought, passion without control]
+    """], frame_delay=0.0)
+    
+    @staticmethod
+    def detective_silhouette():
+        """Silhouette of detective in doorway"""
+        return Animation([r"""
+    ╔════════════════════════════════════════════════════════════╗
+    ║                  DETECTIVE KANE ARRIVES                    ║
+    ╚════════════════════════════════════════════════════════════╝
+    
+    ████████████████████████████████████████████████████████████
+    ███                                                      ███
+    ███  ╔═══════════════════════════════════════════════╗  ███
+    ███  ║                                               ║  ███
+    ███  ║                                               ║  ███
+    ███  ║                    ▓▓▓                        ║  ███
+    ███  ║                   ▓▓▓▓▓                       ║  ███
+    ███  ║                  ▓▓▓▓▓▓▓                      ║  ███
+    ███  ║                 ▓▓▓▓▓▓▓▓▓                     ║  ███
+    ███  ║                ▓▓▓▓▓▓▓▓▓▓▓                    ║  ███
+    ███  ║                  ▓▓▓▓▓▓▓                      ║  ███
+    ███  ║                   ▓▓▓▓▓                       ║  ███
+    ███  ║                    ▓▓▓                        ║  ███
+    ███  ║                                               ║  ███
+    ███  ║                                               ║  ███
+    ███  ╚═══════════════════════════════════════════════╝  ███
+    ███                                                      ███
+    ████████████████████████████████████████████████████████████
+    
+              [A figure cuts through the darkness]
+    """], frame_delay=0.0)
+    
+    @staticmethod
+    def street_lamp():
+        """Lonely street lamp in the rain"""
+        return Animation([r"""
+    ╔════════════════════════════════════════════════════════════╗
+    ║                    STREET CORNER - 4 AM                    ║
+    ╚════════════════════════════════════════════════════════════╝
+    
+              ║  ║      ║  ║  ║      ║  ║      ║
+                 ║  ║      ║  ║  ║      ║  ║  ║
+    
+                         ╔═══════════╗
+                         ║  ░▒▒▒▒░  ║
+                         ║ ░▒▒▒▒▒░  ║
+                         ╚═══╦═══╦══╝
+                             ║   ║
+                             ║   ║
+                             ║   ║
+                             ║   ║
+                             ║   ║
+                             ║   ║
+                             ║   ║
+                             ║   ║
+                        ═════╩═══╩═════
+    
+    ≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈
+    
+            [The only witness stands silent and unmoved]
+    """], frame_delay=0.0)
+    
+    @staticmethod
+    def cassandra_portrait():
+        """Portrait of Cassandra Westmore"""
+        return Animation([r"""
+    ╔════════════════════════════════════════════════════════════╗
+    ║              DR. CASSANDRA WESTMORE - DECEASED             ║
+    ║              [Or so the records claim...]                  ║
+    ╚════════════════════════════════════════════════════════════╝
+    
+                        ╔═══════════════╗
+                        ║   ,,,,,,,,    ║
+                        ║  ▓▓▓▓▓▓▓▓▓▓   ║
+                        ║  ▓▓▓▓▓▓▓▓▓▓   ║
+                        ║  ▓▓▓▓▓▓▓▓▓▓   ║
+                        ║    ◈    ◈     ║
+                        ║       ▓        ║
+                        ║     ─────     ║
+                        ║               ║
+                        ║   ═══════════ ║
+                        ║   HEIGHT: 5'8"║
+                        ║   EYES: GREEN ║
+                        ║   HAIR: BLACK ║
+                        ║   STATUS: ??? ║
+                        ╚═══════════════╝
+    
+            [Beautiful. Brilliant. Believed dead.]
+    """], frame_delay=0.0)
+    
+    @staticmethod
+    def lab_equipment():
+        """Chemical laboratory setup"""
+        return Animation([r"""
+    ╔════════════════════════════════════════════════════════════╗
+    ║              PROMETHEUS INDUSTRIES - LAB 7                 ║
+    ║              [RESTRICTED ACCESS - LEVEL 5]                 ║
+    ╚════════════════════════════════════════════════════════════╝
+    
+         ╭───╮     ╭───╮     ╭───╮      ╔═══════════╗
+         │ ▓ │     │ ▒ │     │ ░ │      ║  DANGER   ║
+         │ ▓ │     │ ▒ │     │ ░ │      ║  BIOHAZARD║
+         │▓▓▓│     │▒▒▒│     │░░░│      ╚═══════════╝
+         ╰───╯     ╰───╯     ╰───╯
+           ║         ║         ║         ┌───────────┐
+    ═══════╬═════════╬═════════╬═════════│ NIGHTSHADE│
+           ║         ║         ║         │ SYNTHESIS │
+         ╭─┴─╮     ╭─┴─╮     ╭─┴─╮      │ PROTOCOL  │
+         │ ~ │     │ ~ │     │ ~ │      └───────────┘
+         │~~~│     │~~~│     │~~~│
+         ╰───╯     ╰───╯     ╰───╯       [CLASSIFIED]
+    
+    ▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓
+    
+       [Where science became sin, and truth became weapon]
+    """], frame_delay=0.0)
+    
+    @staticmethod
+    def yacht_explosion():
+        """Yacht explosion scene"""
+        return Animation([r"""
+    ╔════════════════════════════════════════════════════════════╗
+    ║              COAST GUARD REPORT #47B-2019                  ║
+    ║              VESSEL: "PROMETHEUS" - DESTROYED              ║
+    ╚════════════════════════════════════════════════════════════╝
+    
+    ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
+    ▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒
+    ▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓
+    
+                     ░▒▓█  ◢█◣  █▓▒░
+                    ░▒▓███ ◢███◣ ███▓▒░
+                   ░▒▓█████◢█████◣█████▓▒░
+                     ▒▓███  ◥█◤  ███▓▒
+                       ▓█    ║    █▓
+                        ▓    ║    ▓
+                             ║
+    ════════════════════════╩════════════════════════
+                      DEBRIS FIELD
+    ≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈
+    
+      [TIME: 2:47 AM | SURVIVORS: 0 | CASUALTIES: 1 (PRESUMED)]
+      [CAUSE: UNKNOWN | ACCELERANT DETECTED: MILITARY GRADE]
+    """], frame_delay=0.0)
+    
+    @staticmethod
+    def evidence_photos():
+        """Wall of evidence photos"""
+        return Animation([r"""
+    ╔════════════════════════════════════════════════════════════╗
+    ║                    EVIDENCE BOARD                          ║
+    ╚════════════════════════════════════════════════════════════╝
+    
+    ╔════════╗  ╔════════╗  ╔════════╗  ╔════════╗  ╔════════╗
+    ║ VICTIM ║  ║ VICTIM ║  ║ VICTIM ║  ║ SUSPECT║  ║ WEAPON ║
+    ║   #1   ║  ║   #2   ║  ║   #3   ║  ║  ???   ║  ║ SYRINGE║
+    ║ FOSTER ║  ║HARTLEY ║  ║ CROSS  ║  ║  ????  ║  ║NIGHTSHDE║
+    ║ ◢████◣ ║  ║ ◢████◣ ║  ║ ◢████◣ ║  ║ ◢████◣ ║  ║ ╱╲     ║
+    ║◢██████◣║  ║◢██████◣║  ║◢██████◣║  ║◢██████◣║  ║ ║║     ║
+    ║████████║  ║████████║  ║████████║  ║████████║  ║═╬╬═════║
+    ╚════════╝  ╚════════╝  ╚════════╝  ╚════════╝  ╚════════╝
+    
+    ╔════════╗  ╔════════╗  ╔════════╗  ╔════════╗  ╔════════╗
+    ║ SCENE  ║  ║ SCENE  ║  ║ SCENE  ║  ║LOCATION║  ║  CARD  ║
+    ║  ONE   ║  ║  TWO   ║  ║ THREE  ║  ║  CLUB  ║  ║ TAROT  ║
+    ║ ALLEY  ║  ║COURT   ║  ║ PIER19 ║  ║CRIMSON ║  ║ QUEEN  ║
+    ║████████║  ║████████║  ║████████║  ║████████║  ║ SWORDS ║
+    ║████████║  ║████████║  ║████████║  ║████████║  ║   ♔    ║
+    ╚════════╝  ╚════════╝  ╚════════╝  ╚════════╝  ╚════════╝
+    
+            [Every death tells a story. Every story has a price.]
+    """], frame_delay=0.0)
+    
+    @staticmethod
+    def interrogation_room():
+        """Police interrogation room"""
+        return Animation([r"""
+    ╔════════════════════════════════════════════════════════════╗
+    ║              INTERROGATION ROOM 3 - PRECINCT 9             ║
+    ╚════════════════════════════════════════════════════════════╝
+    
+    ▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓
+    ║                                                          ║
+    ║                    ╔══════════╗                         ║
+    ║                    ║   LIGHT  ║                         ║
+    ║                    ╚════╦═════╝                         ║
+    ║                         ║                               ║
+    ║                         ▼                               ║
+    ║                                                          ║
+    ║         ╔═══════════════════════════╗                   ║
+    ║         ║                           ║                   ║
+    ║         ║      TABLE (METAL)        ║                   ║
+    ║         ║                           ║                   ║
+    ║         ║   [RECORDER]  [FILES]    ║                   ║
+    ║         ╚═══════════════════════════╝                   ║
+    ║                                                          ║
+    ║    ╔═══════╗                      ╔═══════╗            ║
+    ║    ║ CHAIR ║                      ║ CHAIR ║            ║
+    ║    ║ (DET) ║                      ║(SUSPT)║            ║
+    ║    ╚═══════╝                      ╚═══════╝            ║
+    ║                                                          ║
+    ▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓
+    
+           [Two chairs. One truth. But which truth?]
+    """], frame_delay=0.0)
+    
+    @staticmethod
+    def city_map():
+        """Map of the city with crime locations marked"""
+        return Animation([r"""
+    ╔════════════════════════════════════════════════════════════╗
+    ║                 CITY MAP - CRIME LOCATIONS                 ║
+    ╚════════════════════════════════════════════════════════════╝
+    
+         NORTH DISTRICT        DOWNTOWN           PIER DISTRICT
+    ┌──────────────────┬──────────────────┬──────────────────┐
+    │                  │                  │                  │
+    │     ░░░░░░       │   ████CITY████   │     ≈≈≈≈≈≈      │
+    │     ░PARK░       │   ██HALL███      │    ≈WATER≈      │
+    │     ░░░░░░       │   ████████       │   ≈≈≈≈[3]≈≈≈    │
+    │                  │       [2]         │   ≈≈PIER≈≈≈     │
+    ├──────────────────┼──────────────────┼──────────────────┤
+    │  ARTS DISTRICT   │ FINANCIAL DIST   │  WAREHOUSE DIST  │
+    │                  │                  │                  │
+    │    ░THEATER░     │   ▓▓▓▓▓▓▓▓       │    ████████     │
+    │    ░░[4]░░░      │   ▓BANKS▓▓       │    █WHSE██      │
+    │    ░MUSEUM░      │   ▓▓▓▓▓▓▓▓       │    ██[5]███     │
+    │                  │                  │    ████████      │
+    ├──────────────────┼──────────────────┼──────────────────┤
+    │   WEST SIDE      │   MEAT PACKING   │   INDUSTRIAL     │
+    │                  │                  │                  │
+    │   ▒▒▒▒▒▒▒▒       │    ╔═══════╗    │    ▓▓▓▓▓▓▓      │
+    │   ▒RESID▒▒       │    ║CRIMSON║    │    ▓PLANT▓      │
+    │   ▒▒[1]▒▒▒       │    ║ HOUR  ║    │    ▓▓▓▓▓▓▓      │
+    │   ▒▒▒▒▒▒▒▒       │    ╚═══════╝    │                  │
+    └──────────────────┴──────────────────┴──────────────────┘
+    
+    LEGEND: [1] Mercy Alley  [2] Courthouse  [3] Pier 19
+            [4] Crimson Hour [5] Prometheus Labs
+    """], frame_delay=0.0)
 
 
 # Convenience function to get all art
@@ -498,6 +832,9 @@ def get_all_blood_and_neon_art():
         'crime_scene': BloodAndNeonArt.crime_scene(),
         'tarot_death': BloodAndNeonArt.tarot_card_death(),
         'tarot_fool': BloodAndNeonArt.tarot_card_fool(),
+        'tarot_queen_swords': BloodAndNeonArt.tarot_queen_swords(),
+        'tarot_king_cups': BloodAndNeonArt.tarot_king_cups(),
+        'tarot_knight_wands': BloodAndNeonArt.tarot_knight_wands(),
         'neon_sign': BloodAndNeonArt.neon_sign(),
         'detective_badge': BloodAndNeonArt.detective_badge(),
         'gun_and_badge': BloodAndNeonArt.gun_and_badge(),
@@ -515,4 +852,12 @@ def get_all_blood_and_neon_art():
         'syringe': BloodAndNeonArt.syringe(),
         'chess': BloodAndNeonArt.chess_pieces(),
         'conspiracy_board': BloodAndNeonArt.conspiracy_board(),
+        'detective_silhouette': BloodAndNeonArt.detective_silhouette(),
+        'street_lamp': BloodAndNeonArt.street_lamp(),
+        'cassandra_portrait': BloodAndNeonArt.cassandra_portrait(),
+        'lab_equipment': BloodAndNeonArt.lab_equipment(),
+        'yacht_explosion': BloodAndNeonArt.yacht_explosion(),
+        'evidence_photos': BloodAndNeonArt.evidence_photos(),
+        'interrogation_room': BloodAndNeonArt.interrogation_room(),
+        'city_map': BloodAndNeonArt.city_map(),
     }
