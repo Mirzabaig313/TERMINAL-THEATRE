@@ -3,6 +3,7 @@
 from engine.story import Story, Scene, Choice
 from engine.animation import Animation, AnimationLibrary
 from engine.colors import get_mood_palette
+from stories.blood_and_neon_art import BloodAndNeonArt
 
 
 class BloodAndNeonStory(Story):
@@ -83,7 +84,7 @@ class BloodAndNeonStory(Story):
                 "in a rational world.\n\n"
                 "But this city gave up on rationality years ago. Now it just bleeds."
             ),
-            ascii_art=AnimationLibrary.cityscape(),
+            ascii_art=BloodAndNeonArt.rain_window(),
             dialogue=[
                 ("MARCUS KANE", "Three nights. Three bodies. This isn't random anymore.\n                If it ever was."),
                 ("KANE (thinking)", "The first was a lawyer. Found in an alley, arranged like\n                he was praying. The second, a judge. Positioned as if\n                offering something. Now a third. The pattern tightens\n                like a noose."),
@@ -112,7 +113,7 @@ class BloodAndNeonStory(Story):
                 "Captain Reeves stands nearby, smoking despite the rain.\n"
                 "'Kane. Thank Christ. Look at her hands. There's something written there.'"
             ),
-            ascii_art=AnimationLibrary.warehouse(),
+            ascii_art=BloodAndNeonArt.pier_at_night(),
             dialogue=[
                 ("KANE", "Latin. 'Tertius ex septem.' Third of seven."),
                 ("REEVES", "Jesus. You're saying there are four more coming?"),
@@ -258,7 +259,7 @@ class BloodAndNeonStory(Story):
                 "'Detective Kane. We've been expecting you. Please. The proprietor\n"
                 "would like a word. Upstairs.'"
             ),
-            ascii_art=AnimationLibrary.velvet_room(),
+            ascii_art=BloodAndNeonArt.red_door(),
             dialogue=[
                 ("KANE", "You know my name."),
                 ("WOMAN", "We know many things. Names. Secrets. Desires. It's our business\n            to know. I'm Selene. And you're investigating deaths you don't\n            understand. Not yet."),
@@ -483,7 +484,7 @@ class BloodAndNeonStory(Story):
                 "the absinthe. Traditional preparation. It helps with... clarity.'\n\n"
                 "Elias closes his book with deliberate care."
             ),
-            ascii_art=AnimationLibrary.detective_office(),
+            ascii_art=BloodAndNeonArt.whiskey_glass(),
             dialogue=[
                 ("ELIAS", "You're investigating murders you don't understand. Three so far.\n           Four more to come. Seven in total. A complete cycle."),
                 ("KANE", "You seem to know a lot about it."),
@@ -709,7 +710,7 @@ class BloodAndNeonStory(Story):
                 "Walk away. Leave this city. Never come back. And I'll stop.\n"
                 "Or stay. Try to stop me. And become what you're hunting.'"
             ),
-            ascii_art=AnimationLibrary.warehouse(),
+            ascii_art=BloodAndNeonArt.tarot_card_fool(),
             dialogue=[
                 ("KANE", "Why me? Why am I different?"),
                 ("CASSANDRA", "Because you weren't part of it. You didn't destroy the evidence.\n               You didn't help bury the truth. You're just... collateral damage.\n               Like I was. Like Alexander was. And I find I can't kill someone\n               who doesn't deserve it. Not anymore. I've become too... refined."),
