@@ -191,7 +191,7 @@ class ShadowSlaveArt:
                  ▀█▄░░▀█████▀░░▄█▀
             """,
         ]
-        return Animation(frames=frames, delay=0.3)
+        return Animation(frames=frames, frame_delay=0.3)
 
     @staticmethod
     def ancient_temple():
