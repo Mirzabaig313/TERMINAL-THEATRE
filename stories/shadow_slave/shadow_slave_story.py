@@ -243,16 +243,27 @@ class ShadowSlaveStory(Story):
         self.scenes["first_awakening"] = Scene(
             id="first_awakening",
             description=(
-                "You open your eyes to madness.\n\n"
-                "The sky above is a roiling mass of crimson and black, like an infected wound.\n"
-                "You're lying on cold stone in what appears to be the ruins of an ancient city.\n"
-                "Broken pillars reach toward the bleeding sky like accusing fingers.\n\n"
-                "And in the distance... something moves. Something massive."
+                "⚠ REALITY SHIFTS ⚠\n\n"
+                "You open your eyes to madness incarnate.\n\n"
+                "Above you stretches an alien sky - a roiling mass of crimson and obsidian that "
+                "pulses like an infected wound. Clouds of coagulated darkness drift across it, "
+                "bleeding shadow-rain that evaporates before touching the ground.\n\n"
+                "You're lying on cold basalt stone, your body stiff and unfamiliar. As you struggle "
+                "to sit up, you realize you're in the ruins of what must have been a magnificent "
+                "city - thousands of years ago. Now it's nothing but shattered dreams made stone.\n\n"
+                "Broken pillars of obsidian and bone reach toward the bleeding sky like accusing "
+                "fingers. Strange symbols are carved into every surface, glowing faintly with an "
+                "inner light that hurts to look at directly.\n\n"
+                "The air tastes of copper and ozone. Every breath feels heavy, laden with the "
+                "weight of countless nightmares.\n\n"
+                "In the distance... something massive moves through the ruins. Shadow-shapes, "
+                "dozens of them, like a herd of impossible beasts."
             ),
-            ascii_art=ShadowSlaveArt.dark_city(),
+            ascii_art=ShadowSlaveArt.crimson_sky(),
             dialogue=[
-                ("YOUR THOUGHTS", "This is... the Dream Realm."),
-                ("YOUR THOUGHTS", "It's real. It's all real."),
+                ("YOUR THOUGHTS", "This is... the Dream Realm. The place between sleep and death."),
+                ("YOUR THOUGHTS", "It's real. It's all REAL. And I'm trapped here."),
+                ("YOUR THOUGHTS", "Focus. I need to survive. Find shelter. Find weapons. Find a way OUT."),
             ],
             choices=[
                 Choice(
@@ -359,15 +370,25 @@ class ShadowSlaveStory(Story):
         self.scenes["dark_archway"] = Scene(
             id="dark_archway",
             description=(
-                "You step through the archway into blessed darkness.\n\n"
-                "Your eyes slowly adjust. You're in what might have been a temple once. "
-                "Broken statues line the walls, their faces worn smooth by time.\n\n"
-                "And there, in the center... a pedestal. On it rests something that glows "
-                "with a soft, silver light."
+                "⛧ TEMPLE OF THE FORGOTTEN ⛧\n\n"
+                "You step through the archway into blessed darkness - a reprieve from the "
+                "bleeding sky. The temperature drops immediately. Your breath mists in the air.\n\n"
+                "Your eyes slowly adjust to the gloom. You're standing in what must have been "
+                "a temple to some forgotten god. The architecture is impossible - walls that "
+                "curve in ways that shouldn't exist in three-dimensional space. Broken statues "
+                "line the chamber, their faces worn smooth by eons of wind and shadow.\n\n"
+                "But what catches your attention is the center of the room.\n\n"
+                "There, upon an obsidian pedestal carved with spiraling runes, rests something "
+                "that glows with soft, silver light. It's beautiful - a crystallized memory, "
+                "frozen in time like a precious gem. Even from here, you can feel the power "
+                "radiating from it.\n\n"
+                "The statues seem to be watching you. Guarding it. Or perhaps... warning you."
             ),
-            ascii_art=ShadowSlaveArt.memory_fragment(),
+            ascii_art=ShadowSlaveArt.ancient_temple(),
             dialogue=[
-                ("YOUR THOUGHTS", "A Memory? The Spell mentioned these..."),
+                ("YOUR THOUGHTS", "A Memory... the Spell mentioned these. Fragments of power left behind "
+                "by those who came before."),
+                ("YOUR THOUGHTS", "But why is it just... sitting here? What's the catch?"),
             ],
             choices=[
                 Choice(
@@ -388,14 +409,27 @@ class ShadowSlaveStory(Story):
         self.scenes["mysterious_glow"] = Scene(
             id="mysterious_glow",
             description=(
-                "You approach the glow cautiously.\n\n"
-                "It's coming from a crack in the ground. As you peer closer, you see "
-                "something moving beneath - liquid light, flowing like water.\n\n"
-                "A voice echoes in your mind - not the Spell, but something else."
+                "≋ SHADOW ESSENCE ≋\n\n"
+                "You approach the glow with a mixture of fear and fascination.\n\n"
+                "It's coming from a crack in the basalt floor - a jagged fracture that looks "
+                "like a wound in reality itself. As you peer into the darkness, you see it: "
+                "liquid shadow, flowing like mercury but glowing with an inner light that "
+                "cycles through impossible colors.\n\n"
+                "Shadow Essence. The raw stuff of the Dream Realm, condensed into physical form.\n\n"
+                "It pulses hypnotically, each throb synchronized with your own heartbeat. "
+                "You can FEEL it calling to you, promising power beyond imagination. Strength. "
+                "Speed. The ability to command the very shadows themselves.\n\n"
+                "But there's something else too - a hunger lurking beneath the promise. A "
+                "darkness that goes deeper than any shadow. This power has a price.\n\n"
+                "A voice echoes in your mind - definitely not the Spell. Something older. "
+                "Something that's been waiting here for a very, very long time."
             ),
+            ascii_art=ShadowSlaveArt.shadow_essence(),
             dialogue=[
-                ("UNKNOWN VOICE", "Drink, Aspirant. Gain strength."),
-                ("YOUR THOUGHTS", "Can I trust this? Should I?"),
+                ("UNKNOWN VOICE", "Drink, young Aspirant. Become more than human."),
+                ("UNKNOWN VOICE", "The shadows will answer your call... if you have the will to command them."),
+                ("YOUR THOUGHTS", "This is dangerous. I can feel it. But the power... it could save my life."),
+                ("YOUR THOUGHTS", "Do I trust this voice? Can I afford NOT to?"),
             ],
             choices=[
                 Choice(
@@ -486,17 +520,29 @@ class ShadowSlaveStory(Story):
         self.scenes["find_weapon"] = Scene(
             id="find_weapon",
             description=(
-                "You ignore the whispers and continue searching.\n\n"
-                "Your persistence pays off. Beneath a pile of rubble, you find an old "
-                "blade. It's rusty and chipped, but it's a real weapon.\n\n"
-                "With this, you at least have a fighting chance."
+                "⚔ WEAPON DISCOVERED ⚔\n\n"
+                "You ignore the whispers and continue your methodical search through the ruins. "
+                "Every stone turned, every shadow investigated.\n\n"
+                "Your persistence pays off.\n\n"
+                "Beneath a collapsed pillar, half-buried in debris and centuries of dust, your "
+                "fingers close around something solid. Metal. You pull it free, sending a shower "
+                "of pebbles cascading down.\n\n"
+                "It's a blade - ancient, rusty, the edge chipped and notched from countless "
+                "battles. The grip is worn smooth by hands long dead. But when you heft it, "
+                "the balance is perfect. This was a warrior's weapon once. Carried through "
+                "nightmares and back.\n\n"
+                "It's not much. But in a realm of nightmares, even a rusty blade is better "
+                "than bare hands.\n\n"
+                "You give it a practice swing. The weapon feels right. Deadly."
             ),
+            ascii_art=ShadowSlaveArt.rusty_blade(),
             dialogue=[
-                ("YOUR THOUGHTS", "This will have to do."),
+                ("YOUR THOUGHTS", "This will have to do. At least I'm not defenseless anymore."),
+                ("YOUR THOUGHTS", "Whatever comes for me next... I'll be ready."),
             ],
             choices=[
                 Choice(
-                    text="Continue exploring",
+                    text="Continue exploring with your new weapon",
                     next_scene="trial_encounter"
                 ),
             ],
@@ -506,21 +552,34 @@ class ShadowSlaveStory(Story):
         self.scenes["first_memory"] = Scene(
             id="first_memory",
             description=(
-                "Your fingers brush the glowing object.\n\n"
-                "Reality shatters. You're falling through someone else's memories - "
-                "a warrior standing against impossible odds, a final stand, a sacrifice...\n\n"
-                "When you come back to yourself, the object is gone. But you feel different. "
-                "Stronger. Knowledge burns in your mind - how to fight, how to survive."
+                "≋ MEMORY ABSORBED ≋\n\n"
+                "Your fingers brush the crystallized memory.\n\n"
+                "Reality SHATTERS.\n\n"
+                "You're no longer in the temple. You're no longer yourself. You ARE someone else - "
+                "seeing through their eyes, feeling through their soul, living their final moments.\n\n"
+                "A warrior. Clad in battered armor, standing atop a mountain of corpses. Surrounded "
+                "by an endless horde of nightmare creatures that blot out the horizon. Alone. "
+                "Abandoned. But not defeated.\n\n"
+                "You feel their determination. Their refusal to yield. Their perfect form as they "
+                "raise their sword one final time...\n\n"
+                "'Not one step back,' they whisper. 'Not one inch of ground.'\n\n"
+                "And then they charge.\n\n"
+                "The memory fractures like glass. You're gasping, back in the temple, but changed. "
+                "The knowledge burns in your muscles, your bones, your very soul. You know how to "
+                "stand now. How to strike. How to survive against impossible odds.\n\n"
+                "The crystallized memory has dissolved into nothing. But it lives on... in you."
             ),
-            ascii_art=ShadowSlaveArt.memory_fragment(),
+            ascii_art=ShadowSlaveArt.warrior_memory_vision(),
             dialogue=[
-                ("THE SPELL", "You have acquired a Memory: [Warrior's Echo]"),
-                ("THE SPELL", "Attribute granted: Combat Proficiency (Dormant)"),
-                ("YOUR THOUGHTS", "I can... I can fight now. I know how."),
+                ("THE SPELL", "You have acquired a Memory: [Warrior's Echo - Rank: Dormant]"),
+                ("THE SPELL", "Type: Tool. Description: The final stand of an unnamed warrior."),
+                ("THE SPELL", "Attribute granted: [Combat Proficiency] (Dormant)"),
+                ("YOUR THOUGHTS", "I can... I can FIGHT now. I know how. It's like I've trained for years..."),
+                ("YOUR THOUGHTS", "Thank you, warrior. I'll make your sacrifice count."),
             ],
             choices=[
                 Choice(
-                    text="Leave the temple with your new power",
+                    text="Leave the temple with your newfound power",
                     next_scene="trial_encounter"
                 ),
             ],
@@ -657,21 +716,37 @@ class ShadowSlaveStory(Story):
         self.scenes["find_seal"] = Scene(
             id="find_seal",
             description=(
-                "You search the chamber and find it - an ancient seal carved into the floor.\n"
-                "Dark energy pulses from it, binding the ghosts to this place.\n\n"
-                "You could break it. But should you? What will happen if you do?"
+                "◈ THE BINDING SEAL ◈\n\n"
+                "You search the chamber methodically, following the pulse of dark energy that "
+                "permeates the air. The ghosts hover anxiously, their translucent forms flickering.\n\n"
+                "Then you find it.\n\n"
+                "Carved into the floor at the chamber's center is an intricate seal - a "
+                "mandala of death and binding. Ancient runes spiral outward from a central "
+                "skull symbol, each line pulsing with malevolent energy. The craftsmanship is "
+                "exquisite and terrible.\n\n"
+                "Dark power radiates from it in waves, like heat from a furnace. This is what "
+                "binds the spirits to this place. Chains forged from cruelty and written in "
+                "the language of nightmares.\n\n"
+                "You could break it. The seal is powerful, but you can sense its age. Centuries "
+                "of erosion have weakened it. A few well-placed strikes would shatter it.\n\n"
+                "But should you? These spirits have been here for eons. What if they're bound "
+                "for a reason? What if releasing them unleashes something worse?\n\n"
+                "The ghosts watch you, pleading silently. The choice is yours."
             ),
+            ascii_art=ShadowSlaveArt.ghost_seal(),
             dialogue=[
-                ("GHOST", "Please... free us..."),
-                ("YOUR THOUGHTS", "This feels like a test."),
+                ("GHOST", "Please... we beg you... free us from this torment..."),
+                ("GHOST", "We were innocent... trapped here by a tyrant long dead..."),
+                ("YOUR THOUGHTS", "This feels like a test. The Dream Realm testing my character."),
+                ("YOUR THOUGHTS", "Do I have the courage to show mercy... even when it might cost me?"),
             ],
             choices=[
                 Choice(
-                    text="Break the seal",
+                    text="Break the seal and free the spirits",
                     next_scene="break_seal"
                 ),
                 Choice(
-                    text="Leave the seal intact",
+                    text="Leave the seal intact and walk away",
                     next_scene="abandon_ghosts"
                 ),
             ]
@@ -721,18 +796,31 @@ class ShadowSlaveStory(Story):
         self.scenes["trial_encounter"] = Scene(
             id="trial_encounter",
             description=(
-                "You've explored. You've learned. You've survived this far.\n\n"
-                "But the Dream Realm has one final test for you.\n\n"
-                "The ground trembles. From the shadows emerges a creature unlike any you've "
-                "seen - a towering nightmare of shadow and bone, its eyes burning with "
-                "ancient malice.\n\n"
-                "This is your First Nightmare's Guardian. You must face it to survive."
+                "⚠ FINAL TRIAL BEGINS ⚠\n\n"
+                "You've explored the ruins. You've gained power. You've survived this far.\n\n"
+                "But the Dream Realm has one final test.\n\n"
+                "The ground trembles beneath your feet. Cracks spiderweb across the basalt stone. "
+                "The crimson sky darkens, clouds roiling like a storm-tossed sea. The air grows "
+                "thick with pressure, as if reality itself is holding its breath.\n\n"
+                "Then... it emerges.\n\n"
+                "From the deepest shadows of the ruined city comes a being that defies description. "
+                "A towering colossus of nightmare and bone, shadow and malice given physical form. "
+                "It stands three times your height, its body a patchwork of obsidian plates and "
+                "exposed bone that gleams like polished ivory.\n\n"
+                "Its eyes - burning with ancient hunger - lock onto you.\n\n"
+                "The Guardian. The final obstacle between you and freedom. Between you and death.\n\n"
+                "This is the moment everything has been building toward. Every choice you've made, "
+                "every power you've gained, every lesson you've learned - it all comes down to this.\n\n"
+                "The Guardian raises one massive arm. Reality screams."
             ),
-            ascii_art=ShadowSlaveArt.nightmare_creature_animation(),
+            ascii_art=ShadowSlaveArt.guardian_boss(),
             dialogue=[
                 ("THE SPELL", "Your First Nightmare reaches its climax."),
-                ("THE SPELL", "Defeat the Guardian, and you will be free."),
-                ("YOUR THOUGHTS", "This is it. Everything comes down to this."),
+                ("THE SPELL", "Before you stands the Guardian - Rank: Fallen Terror."),
+                ("THE SPELL", "Defeat it, and you will awaken as one of the Awakened."),
+                ("THE SPELL", "Fail... and you will never leave the Dream Realm."),
+                ("YOUR THOUGHTS", "This is it. Everything comes down to this single moment."),
+                ("YOUR THOUGHTS", "I will NOT die here. I will NOT fail. I WILL survive!"),
             ],
             choices=[
                 Choice(
@@ -878,17 +966,34 @@ class ShadowSlaveStory(Story):
         self.scenes["spirit_aid"] = Scene(
             id="spirit_aid",
             description=(
-                "As the Guardian advances, you call out to the spirits you freed.\n\n"
-                "They answer.\n\n"
-                "Ghostly warriors materialize around you, their weapons raised. Together, "
-                "you fight the Guardian. Together, you triumph.\n\n"
-                "Kindness, it turns out, has power in the Dream Realm."
+                "☆ THE SPIRITS ANSWER YOUR CALL ☆\n\n"
+                "The Guardian lunges toward you, massive fists ready to crush you into paste.\n\n"
+                "You cry out - not in fear, but in hope. Calling to the spirits you freed. "
+                "Praying that kindness means something in this nightmare realm.\n\n"
+                "For a heartbeat, nothing happens. The Guardian's fist descends.\n\n"
+                "Then...\n\n"
+                "Light erupts around you. Not the harsh light of the crimson sky, but soft, "
+                "silvery radiance. The ghosts appear - no longer formless wisps, but warriors "
+                "in spectral armor, weapons gleaming with ethereal fire.\n\n"
+                "'We owe you a debt, Aspirant of Mercy,' they speak as one. 'And we ALWAYS "
+                "repay our debts.'\n\n"
+                "The ghost warriors surge forward, three translucent figures moving with "
+                "the grace of master fighters. They intercept the Guardian's blow, their "
+                "spirit blades meeting nightmare flesh.\n\n"
+                "Together, you fight. You - flesh and blood and desperate courage. Them - "
+                "echoes of the dead, given purpose by your compassion.\n\n"
+                "The Guardian falls.\n\n"
+                "As it dissolves, the ghosts turn to you one final time. They smile - truly "
+                "smile - before fading into peace at last.\n\n"
+                "Kindness, it turns out, has terrible power in the Dream Realm."
             ),
-            ascii_art=ShadowSlaveArt.victory(),
+            ascii_art=ShadowSlaveArt.ghost_warriors(),
             dialogue=[
-                ("GHOST", "We repay our debt, brave one."),
+                ("GHOST CAPTAIN", "Thank you, child of mercy. We can finally rest."),
                 ("THE SPELL", "Your First Nightmare is complete."),
-                ("THE SPELL", "Additional Attribute granted: Spirit Companion (Dormant)"),
+                ("THE SPELL", "You have proven that compassion can exist even in the darkest places."),
+                ("THE SPELL", "Additional Attribute granted: [Spirit Companion] (Dormant)"),
+                ("THE SPELL", "The ghosts' blessing will remain with you... always."),
             ],
             choices=[],
             on_enter=lambda state: state.set_flag("spirit_victory")
@@ -897,17 +1002,35 @@ class ShadowSlaveStory(Story):
         self.scenes["shadow_victory"] = Scene(
             id="shadow_victory",
             description=(
-                "The shadows rise at your command.\n\n"
-                "They swarm the Guardian, overwhelming it with darkness. You've become "
-                "something the Dream Realm respects - something powerful.\n\n"
-                "The Guardian falls before your shadow army.\n\n"
-                "But as you stand victorious, you wonder: what price will this power exact?"
+                "◈◈◈ THE SHADOWS OBEY ◈◈◈\n\n"
+                "The Shadow Essence burns through your veins like liquid midnight. You can "
+                "FEEL them now - the shadows all around you, alive and hungry and waiting.\n\n"
+                "The Guardian charges. You raise your hand.\n\n"
+                "And the shadows... RISE.\n\n"
+                "They erupt from every corner of the ruins, from every crack in the stone, "
+                "from your own elongated silhouette. Dozens of shadow-forms, humanoid but "
+                "wrong, each one a fragment of darkness given terrible purpose.\n\n"
+                "'ATTACK,' you command, and your voice echoes with power that isn't entirely human.\n\n"
+                "The shadow army swarms the Guardian like locusts. It roars - the first sound "
+                "you've heard it make - as darkness consumes it from all sides. Its massive "
+                "fists crush shadow-soldiers by the handful, but for each one destroyed, two "
+                "more rise to take its place.\n\n"
+                "In minutes, it's over. The Guardian collapses, overwhelmed by sheer numbers.\n\n"
+                "As it dissolves, your shadow army turns to you, awaiting further orders. "
+                "Their eyeless faces seem almost... reverent.\n\n"
+                "You've become something the Dream Realm respects. Something powerful.\n"
+                "Something changed.\n\n"
+                "But as you stand there, master of shadows, you can't help but wonder:\n"
+                "What price will this power ultimately exact from your soul?"
             ),
-            ascii_art=ShadowSlaveArt.victory(),
+            ascii_art=ShadowSlaveArt.shadow_army(),
             dialogue=[
                 ("THE SPELL", "Your First Nightmare is complete."),
-                ("THE SPELL", "You have embraced the shadows. For better or worse."),
-                ("YOUR THOUGHTS", "I have power now. But at what cost?"),
+                ("THE SPELL", "You have consumed the Shadow Essence and claimed dominion over darkness itself."),
+                ("THE SPELL", "Title granted: [Shadow Aspirant]"),
+                ("THE SPELL", "Additional Attribute granted: [Shadow Legion] (Dormant)"),
+                ("YOUR THOUGHTS", "I have power now. Incredible power. But I can feel it... changing me."),
+                ("YOUR THOUGHTS", "Was it worth it? ...I hope so."),
             ],
             choices=[],
             on_enter=lambda state: state.set_flag("shadow_master")

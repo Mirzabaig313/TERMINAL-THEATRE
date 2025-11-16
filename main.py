@@ -48,12 +48,15 @@ def create_story_options():
         StoryOption(
             key="shadow_slave",
             title="Shadow Slave",
-            summary="A Dark Fantasy Adventure",
+            summary="An Epic Dark Fantasy Tale",
             blurb=(
-                "A dark fantasy tale of nightmares, shadows, and survival.\n"
-                "Enter the Spell and face the terrors that await in the Dream Realm.\n"
-                "Your choices will determine your fate in this nightmare world.\n\n"
-                "⏱️ Playtime: TBD | 🎭 Story Template | 🔀 Ready for Content"
+                "Infected by the Nightmare Spell, you're pulled into the Dream Realm -\n"
+                "a world of impossible horrors, ancient ruins, and twisted reality.\n\n"
+                "Survive your First Nightmare by gaining power from fallen warriors,\n"
+                "consuming shadow essence, or showing mercy to trapped spirits.\n"
+                "Face the Guardian and prove worthy of the title: Awakened.\n\n"
+                "⏱️ Playtime: 30-45 minutes | 🎭 Full Story | 🔀 Deep Branching\n"
+                "✨ 38 Scenes | ⚔ 5 Endings | 🎨 Rich ASCII Art | 💀 Nightmare Awaits"
             ),
             factory=lambda: ShadowSlaveStory()
         )
