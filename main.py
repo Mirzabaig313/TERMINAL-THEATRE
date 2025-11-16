@@ -12,6 +12,7 @@ from engine.opening import OpeningSequence, SimpleOpening, StoryOption, OpeningR
 from engine.settings import GameSettings
 from stories.noir_detective import NoirDetectiveStory
 from stories.blood_and_neon import BloodAndNeonStory
+from stories.shadow_slave import ShadowSlaveStory
 
 
 def create_story_options():
@@ -43,6 +44,18 @@ def create_story_options():
                 "⏱️ Playtime: 60-90 minutes | 🎭 Full Story | 🔀 Deep Branching | 8+ Endings"
             ),
             factory=lambda: BloodAndNeonStory()
+        ),
+        StoryOption(
+            key="shadow_slave",
+            title="Shadow Slave",
+            summary="A Dark Fantasy Adventure",
+            blurb=(
+                "A dark fantasy tale of nightmares, shadows, and survival.\n"
+                "Enter the Spell and face the terrors that await in the Dream Realm.\n"
+                "Your choices will determine your fate in this nightmare world.\n\n"
+                "⏱️ Playtime: TBD | 🎭 Story Template | 🔀 Ready for Content"
+            ),
+            factory=lambda: ShadowSlaveStory()
         )
     ]
 
