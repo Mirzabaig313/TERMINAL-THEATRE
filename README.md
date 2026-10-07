@@ -187,7 +187,8 @@ A broken story never crashes the game: it shows up on the menu with its error.
 | `app` | Switches between screens; monochrome mode |
 | `screens/opening`, `main_menu`, `cinematic` | Title sequence, main menu, pre-show |
 | `screens/menu` | Story select with animated covers |
-| `screens/play` | Intro, stage, portraits, dialogue, choices, pause menu, saving, endings |
+| `screens/play/` | Playing a story: `mod.rs` (state, keys, story flow), `stage.rs` (drawing the scene), `overlays.rs` (intro, pause menu, save dialog, history), `modes.rs` (auto, skip, quick save/load) |
+| `screens/backlog` | The history of everything read |
 | `screens/load`, `settings`, `credits` | The other menu screens |
 | `render/*` | Sprite drawing, effects, color themes, text helpers |
 
