@@ -1,0 +1,97 @@
+title = "THE LAST CASE"
+description = "The rain hasn't stopped for three days. Neither has the blood.\nYou're Jack Malone, a private eye with a dead client and a smoking gun.\nIn this city, everyone's guilty of something. Your job is to find out what."
+start = "opening"
+summary = "A Noir Detective Mystery (Demo)"
+blurb = """
+The rain hasn't stopped for three days. Neither has the blood.
+You're Jack Malone, a private eye with a dead client and a smoking gun.
+In this city, everyone's guilty of something. Your job is to find out what.
+
+Navigate corruption, mob bosses, and conspiracies to clear your name.
+⏱ Playtime: 30-45 minutes | 🎭 Demo Story"""
+# speaker whose portrait waits beside the choice menu
+player = "jack_malone"
+# character shown on the story-select screen
+cover = "jack_malone"
+cover_mood = "noir"
+
+[speakers.jack_malone]
+name = "JACK MALONE"
+color = "#00d4ff"
+sprite = "jack_malone"
+
+[speakers.tony_the_fist]
+name = "TONY 'THE FIST'"
+color = "#ff0000"
+sprite = "tony"
+
+[speakers.tony]
+name = "TONY"
+color = "#ff0000"
+sprite = "tony"
+
+[speakers.eddie]
+name = "EDDIE"
+color = "#00ffff"
+sprite = "eddie"
+
+[speakers.voice_from_darkness]
+name = "VOICE FROM DARKNESS"
+color = "#ffb000"
+
+[speakers.rodriguez]
+name = "RODRIGUEZ"
+color = "#00ff00"
+sprite = "rodriguez"
+
+[speakers.castellano]
+name = "CASTELLANO"
+color = "#ff0040"
+sprite = "castellano"
+
+[speakers.blackwood]
+name = "BLACKWOOD"
+color = "#c0303a"
+sprite = "blackwood"
+
+[speakers.morrison]
+name = "MORRISON"
+color = "#ffa500"
+sprite = "morrison"
+
+[speakers.eddie_radio]
+name = "EDDIE (radio)"
+color = "#00ffff"
+sprite = "eddie"
+
+[speakers.malone_thinking]
+name = "MALONE (thinking)"
+color = "#00d4ff"
+sprite = "jack_malone"
+thought = true
+
+[speakers.guard]
+name = "GUARD"
+
+[speakers.dying_woman]
+name = "DYING WOMAN"
+
+[speakers.chen]
+name = "CHEN"
+color = "#00ffff"
+
+[speakers.castellano_distant]
+name = "CASTELLANO (distant)"
+color = "#ff0040"
+sprite = "castellano"
+
+[speakers.doc_stevens]
+name = "DOC STEVENS"
+
+[speakers.news_anchor]
+name = "NEWS ANCHOR"
+
+[speakers.blackwood_emerging]
+name = "BLACKWOOD (emerging)"
+color = "#c0303a"
+sprite = "blackwood"

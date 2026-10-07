@@ -1,0 +1,30 @@
+# Describe characters here, then draw them with:
+#   python3 tools/portrait.py stories/<your_story_id>
+# which writes characters/<id>.toml for each entry below.
+#
+# hair_style: messy | slick | short | long | bob | undercut | bald
+# hat:        none | fedora | cap | police
+# outfit:     trench | suit | leather | uniform | dress | vest | rags
+# extras:     stubble mustache beard scar cigarette glasses earrings cyber_eye
+#             neon_streak tattoo freckles lashes wrinkles pinstripe gray_temples
+# colors:     skin hair brows eyes lips cloth shirt accent hat_color metal neon glasses
+#
+# Every generated character has these expressions:
+#   neutral happy smirk angry afraid sad pained shocked
+
+[hero]
+name = "You"
+hair_style = "messy"
+hair = "#3a2a20"
+outfit = "trench"
+cloth = "#5a5246"
+extras = ["stubble"]
+
+[stranger]
+name = "Stranger"
+hair_style = "long"
+hair = "#c8b8a0"
+outfit = "dress"
+cloth = "#2a2238"
+eyes = "#6a8aaa"
+extras = ["lashes", "earrings"]

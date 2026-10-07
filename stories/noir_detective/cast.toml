@@ -1,0 +1,92 @@
+# Character descriptions for tools/portrait.py, which draws characters/<id>.toml.
+# Run: python3 tools/portrait.py stories/noir_detective
+# Options are listed at the top of tools/portrait.py.
+
+[jack_malone]
+name = "Jack Malone"
+hat = "fedora"
+hat_color = "#5a4a3a"
+hair_style = "short"
+hair = "#2b211b"
+outfit = "trench"
+cloth = "#9c8460"
+shirt = "#d9d3c4"
+accent = "#6e1f1f"
+skin = "#cfa98c"
+eyes = "#6f8094"
+extras = ["stubble", "cigarette"]
+
+[castellano]
+name = "Castellano"
+hair_style = "slick"
+hair = "#141216"
+outfit = "suit"
+cloth = "#23222b"
+shirt = "#e8e4da"
+accent = "#9a1b1b"
+skin = "#c19072"
+eyes = "#3b2a20"
+extras = ["scar", "pinstripe", "gray_temples"]
+
+[eddie]
+name = "Eddie"
+hat = "cap"
+hat_color = "#5b5f52"
+hair_style = "messy"
+hair = "#6b3f22"
+outfit = "vest"
+cloth = "#4a4a3f"
+shirt = "#cfc8b5"
+accent = "#3a5a7a"
+skin = "#e0bfa3"
+eyes = "#4f7a52"
+extras = ["freckles"]
+
+[rodriguez]
+name = "Captain Rodriguez"
+hat = "police"
+hat_color = "#1f2a44"
+hair_style = "short"
+hair = "#2a2420"
+outfit = "uniform"
+cloth = "#25345a"
+shirt = "#d0d4dc"
+accent = "#d4af37"
+skin = "#b07d5a"
+eyes = "#3a2a1e"
+extras = ["mustache", "wrinkles"]
+
+[morrison]
+name = "Morrison"
+hair_style = "bald"
+hair = "#7a746c"
+outfit = "suit"
+cloth = "#5a5c62"
+shirt = "#e2e2dc"
+accent = "#2c4a6e"
+skin = "#e3c1a8"
+eyes = "#7b8b96"
+extras = ["glasses", "wrinkles"]
+
+[blackwood]
+name = "Blackwood"
+hair_style = "slick"
+hair = "#c9c9cf"
+outfit = "suit"
+cloth = "#1c1b24"
+shirt = "#cfc9d6"
+accent = "#4a1060"
+skin = "#d8c4b4"
+eyes = "#9fb4c8"
+brows = "#8a8a92"
+
+[tony]
+name = "Tony 'The Fist'"
+hair_style = "short"
+hair = "#1a1614"
+outfit = "leather"
+cloth = "#2e2622"
+metal = "#9a9a9a"
+skin = "#c49a7a"
+eyes = "#2a2018"
+extras = ["stubble", "scar"]

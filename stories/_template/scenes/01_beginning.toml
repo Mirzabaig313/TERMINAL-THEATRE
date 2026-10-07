@@ -1,0 +1,68 @@
+# Scenes can be split across any number of files in scenes/ (loaded in name order).
+# Each [table] is one scene; its name is the scene id used by `goto`.
+
+[opening]
+text = """
+Rain on the window. A knock at the door.
+
+Paragraphs are separated by a blank line."""
+# still ASCII art for the top of the screen (optional)
+art = """
+   ┌────────────┐
+   │  ░░░░░░░░  │
+   │  ░ RAIN ░  │
+   │  ░░░░░░░░  │
+   └────────────┘"""
+mood = "mystery"
+set_flags = ["heard_knock"]
+dialogue = [
+  { who = "hero_thinking", line = "Who knocks at this hour?" },
+  # mood = an expression of the speaker's sprite; fx = shake | glitch | flash
+  { who = "stranger", line = "Let me in. Please.", mood = "afraid", fx = "shake" },
+]
+
+[[opening.choices]]
+text = "Open the door"
+goto = "door_open"
+
+[[opening.choices]]
+text = "Stay silent"
+goto = "silence"
+
+[door_open]
+text = "The stranger stumbles inside, soaked and shaking."
+add_items = ["Wet Letter"]
+# animated art: frames shown in turn every art_ms milliseconds
+art_frames = [
+"""
+  .  '  .  '
+ '  .  '  .""",
+"""
+ '  .  '  .
+  .  '  .  '""",
+]
+art_ms = 300
+dialogue = [
+  { who = "stranger", line = "They're coming for both of us now.", mood = "sad" },
+  { who = "hero", line = "Then we'd better move.", mood = "angry" },
+]
+
+[[door_open.choices]]
+text = "Read the letter"
+goto = "ending_letter"
+# only shown when the player has this item (or any_flags = [...])
+any_items = ["Wet Letter"]
+
+[silence]
+text = "The knocking stops. Footsteps fade into the rain."
+dialogue = [
+  { who = "narrator_voice", line = "Some doors should stay closed." },
+]
+
+[[silence.choices]]
+text = "Go back to sleep"
+goto = "ending_letter"
+
+[ending_letter]
+text = "Whatever happens next, it starts here."
+ending = true

@@ -1,0 +1,117 @@
+title = "BLOOD AND NEON"
+description = "The city never sleeps, but it dreams. Dark dreams.\nYou're Marcus Kane, a detective who's seen too much and forgotten too little.\nThree bodies in three nights. All connected. All pointing to something\nthat shouldn't exist. In the shadows between neon lights,\nthe truth waits. Along with something far worse."
+start = "prologue"
+summary = "An Epic Noir Detective Saga"
+blurb = """
+The city never sleeps, but it dreams. Dark dreams.
+You're Marcus Kane, a detective investigating three ritualistic murders
+connected by tarot cards and a pharmaceutical conspiracy.
+
+Seven victims. Seven sacrifices. One chance to stop a brilliant killer
+before the pattern completes and the city drowns in blood.
+⏱ Playtime: 60-90 minutes | 🎭 Full Story | 🔀 Deep Branching | 8+ Endings"""
+# speaker whose portrait waits beside the choice menu
+player = "kane"
+# character shown on the story-select screen
+cover = "cassandra"
+cover_mood = "mystery"
+
+[themes.noir]
+accent = "#ff2a6d"
+mote = "#00e5ff"
+border = "#5a2050"
+bg = "#0a0810"
+panel = "#120d1a"
+
+[themes.mystery]
+accent = "#b04cff"
+mote = "#ff2a6d"
+
+[themes.danger]
+accent = "#ff1744"
+mote = "#ff2a6d"
+
+[themes.alert]
+accent = "#00e5ff"
+mote = "#00e5ff"
+border = "#105a6a"
+
+[speakers.marcus_kane]
+name = "MARCUS KANE"
+sprite = "kane"
+
+[speakers.kane_thinking]
+name = "KANE (thinking)"
+sprite = "kane"
+thought = true
+
+[speakers.kane]
+name = "KANE"
+sprite = "kane"
+
+[speakers.reeves]
+name = "REEVES"
+sprite = "reeves"
+
+[speakers.forensic_tech]
+name = "FORENSIC TECH"
+
+[speakers.sarah]
+name = "SARAH"
+sprite = "sarah"
+
+[speakers.riley]
+name = "RILEY"
+sprite = "riley"
+
+[speakers.woman]
+name = "WOMAN"
+
+[speakers.selene]
+name = "SELENE"
+sprite = "selene"
+
+[speakers.dr_cross_video]
+name = "DR. CROSS (video)"
+
+[speakers.voice]
+name = "VOICE"
+
+[speakers.cassandra]
+name = "CASSANDRA"
+sprite = "cassandra"
+
+[speakers.madame_zora]
+name = "MADAME ZORA"
+
+[speakers.elias]
+name = "ELIAS"
+sprite = "elias"
+
+[speakers.damien_raving]
+name = "DAMIEN (raving)"
+
+[speakers.sarah_radio]
+name = "SARAH (radio)"
+sprite = "sarah"
+
+[speakers.kane_radio]
+name = "KANE (radio)"
+sprite = "kane"
+
+[speakers.cassandra_from_darkness]
+name = "CASSANDRA (from darkness)"
+
+[speakers.dr_marsh]
+name = "DR. MARSH"
+
+[speakers.marsh]
+name = "MARSH"
+
+[speakers.kane_phone_message]
+name = "KANE (phone message)"
+sprite = "kane"
+
+[speakers.sarah_through_the_drug]
+name = "SARAH (through the drug)"
+sprite = "sarah"

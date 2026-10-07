@@ -1,0 +1,1320 @@
+[opening]
+mood = "mystery"
+text = """
+The neon sign outside your office window flickers - 'MALONE INVESTIGATIONS'. It's 2 AM. The dame who walked in an hour ago is now lying face-down on your carpet, a red rose blooming across her white dress. Your gun is still warm in your hand.
+
+You don't remember pulling the trigger. But in this business, memory is just another luxury you can't afford."""
+art = """
+
+╔════════════════════════════════════════════════════════════════╗
+║                   MALONE INVESTIGATIONS                       ║
+║                      47th Floor                               ║
+╠════════════════════════════════════════════════════════════════╣
+║                                                              ║
+║   ╔══════════════════╗                    ╔══════════════╗   ║
+║   ║    FILE          ║                    ║   VENETIAN   ║   ║
+║   ║   CABINET        ║       ╭────────╮   ║    BLINDS    ║   ║
+║   ║      │           ║      ╱          ╲  ║              ║   ║
+║   ║  ┌───┴──┐        ║     │            │ ║   ░░░░░░░   ║   ║
+║   ║  │ FILES│        ║     │   DESK    │ ║   ░░░░░░░   ║   ║
+║   ║  │ CASE │        ║     │           │ ║   ░░░░░░░   ║   ║
+║   ║  │  #47 │        ║     │  ┌─────┐ │ ║   ▓▓▓▓▓▓▓   ║   ║
+║   ║  └─────┘        ║     │  │ GUN │ │ ║              ║   ║
+║   ║                 ║     │  └─────┘ │ ║   CITY VIEW   ║   ║
+║   ║                 ║     │  ┌─────┐ │ ║   (DARK)      ║   ║
+║   ║                 ║     │  │ LAMP│ │ ║              ║   ║
+║   ╚═════════════════╝     ╰──┬─────┬──╯ ╚══════════════╝   ║
+║                             │     │                         ║
+║                          ≈ ≈ ≈ ≈ ≈ ≈ ≈                      ║
+║                         ( CIGARETTE SMOKE )                  ║
+║                                                              ║
+║   "Three days of rain. Three days of lies.                   ║
+║    She's dead. I'm holding the gun. Cops are coming."        ║
+║                                                              ║
+╚════════════════════════════════════════════════════════════════╝
+        """
+dialogue = [
+  { who = "jack_malone", line = "Think, Jack. Think... What happened?", mood = "pained", fx = "glitch" },
+  { who = "jack_malone", line = "The dame said she was being followed. Said she had proof that would bring down the Castellano family. Then... nothing.", mood = "sad" },
+  { who = "jack_malone", line = "I need to figure this out fast. Cops will be here any minute.", mood = "afraid" },
+]
+[[opening.choices]]
+text = "Search the woman's body for clues"
+goto = "search_body"
+[[opening.choices]]
+text = "Check your own gun - how many bullets fired?"
+goto = "check_gun"
+[[opening.choices]]
+text = "Run. Get out while you still can."
+goto = "run_away"
+
+[search_body]
+mood = "alert"
+text = """
+You kneel beside the body, your hands steady despite everything. Professional habits die hard. In her clutch, you find a photograph: Vincent Castellano shaking hands with Police Chief Morrison.
+
+Behind them, a warehouse with '47' painted on the door.
+There's something else - a ticket stub. Tonight's performance at the Ritz Theater. Section 47. Seat 13."""
+dialogue = [
+  { who = "jack_malone", line = "Warehouse 47... Seat 47... That's not coincidence.", mood = "shocked" },
+  { who = "jack_malone", line = "Either she wanted me to find this, or someone wanted me to find her." },
+]
+[[search_body.choices]]
+text = "Go to Warehouse 47 - confront this head-on"
+goto = "warehouse"
+[[search_body.choices]]
+text = "Visit the Ritz Theater - check out the connection"
+goto = "theater"
+[[search_body.choices]]
+text = "Take the evidence to Captain Rodriguez - he's clean"
+goto = "rodriguez"
+
+[check_gun]
+mood = "alert"
+text = """
+You pop the cylinder. Six chambers. Six bullets.
+Not a single one fired.
+
+Your blood runs cold. Someone else pulled the trigger.
+Someone who wants you to take the fall."""
+set_flags = ["examined_gun"]
+dialogue = [
+  { who = "jack_malone", line = "I've been played. Set up like a patsy.", mood = "angry", fx = "flash" },
+  { who = "jack_malone", line = "But who? And why?", mood = "afraid" },
+]
+[[check_gun.choices]]
+text = "Search the dame for clues"
+goto = "search_body_after_gun"
+[[check_gun.choices]]
+text = "Check the office - maybe they're still here"
+goto = "check_office"
+[[check_gun.choices]]
+text = "Call your old partner Eddie for help"
+goto = "call_eddie"
+
+[run_away]
+mood = "danger"
+text = """
+You grab your coat and hat, heading for the fire escape. The rain hits you like a fist as you descend into the alley.
+
+But as you reach the street, three figures emerge from the shadows. Castellano's men. They've been waiting."""
+art = """
+
+╔═══════════════════════════════════════════════════════════════════╗
+║                    DOWNTOWN SKYLINE - NIGHT                      ║
+║                    (Seen from Malone's Office)                   ║
+╠═══════════════════════════════════════════════════════════════════╣
+║                                                                 ║
+║              ▌ │ ▌     ▌ │     ▌ │ ▌      ▌ │ ▌             ║
+║              █ │ █     █ │ █   █ │ █      █ │ █             ║
+║              █ │ █     █ │ █   █ │ █      █ │ █             ║
+║              █ │ █  ◈  █ │ █ ◈ █ │ █  ◈  █ │ █             ║
+║              █ │ █     █ │ █   █ │ █      █ │ █             ║
+║              █ │ █     █ │ █   █ │ █      █ │ █             ║
+║              █ │ █  ◈  █ │ █ ◈ █ │ █  ◈  █ │ █             ║
+║              █ │ █     █ │ █   █ │ █      █ │ █             ║
+║              █ │ █  ◈  █ │ █ ◈ █ │ █  ◈  █ │ █             ║
+║         ╔════╬═╬═════╬═╬═╬═╬════╬═╬═════════╗               ║
+║         ║ ≈≈ │ │ ≈≈≈ │ │ │ │ ≈≈ │ │ streets ║ (wet)        ║
+║         ║≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈║               ║
+║         ║  neon signs flicker  • rain falls  ║               ║
+║         ║       people hurry past              ║               ║
+║         ╚════════════════════════════════════╝               ║
+║                                                                 ║
+║  "The city breathes tonight. And it stinks of crime."           ║
+║                                                                 ║
+╚═══════════════════════════════════════════════════════════════════╝
+        """
+dialogue = [
+  { who = "tony_the_fist", line = "Going somewhere, Malone?", mood = "smirk" },
+  { who = "jack_malone", line = "Just out for a smoke, Tony.", mood = "smirk" },
+  { who = "tony", line = "Mr. Castellano wants to see you. Says you got something belongs to him.", mood = "angry" },
+]
+[[run_away.choices]]
+text = "Go with them peacefully - maybe you can talk to Castellano"
+goto = "castellano_meeting"
+[[run_away.choices]]
+text = "Fight your way out - three against one, you've had worse odds"
+goto = "alley_fight"
+[[run_away.choices]]
+text = "Tell them about the dame - claim you were set up"
+goto = "blame_setup"
+
+[search_body_after_gun]
+mood = "danger"
+text = """
+The photograph tells you everything: Vincent Castellano, Police Chief Morrison, and Warehouse 47. There's also a ticket stub from the Ritz Theater.
+
+But now you know you're being framed. Someone wanted this woman dead and wanted you holding the bag."""
+dialogue = [
+  { who = "jack_malone", line = "This is bigger than I thought. The cops, the mob... all connected.", mood = "shocked" },
+]
+[[search_body_after_gun.choices]]
+text = "Head to Warehouse 47 - end this tonight"
+goto = "warehouse"
+[[search_body_after_gun.choices]]
+text = "Find Eddie first - you need backup"
+goto = "call_eddie"
+
+[check_office]
+mood = "alert"
+text = """
+You move through your office like a ghost, checking corners, shadows. Behind the filing cabinet, you find it: a service panel left ajar.
+
+Someone was in the walls. They could have shot her from there, tossed your gun in your hand while you were... what? Drugged?
+
+On the floor, a business card: 'The Velvet Room - Where Secrets Sleep.'"""
+dialogue = [
+  { who = "jack_malone", line = "The Velvet Room. High-class nightclub. Castellano territory." },
+  { who = "jack_malone", line = "Why leave a calling card unless they want me to follow?", mood = "smirk" },
+]
+[[check_office.choices]]
+text = "Go to the Velvet Room - walk into the trap with eyes open"
+goto = "velvet_room"
+[[check_office.choices]]
+text = "Search the dame for more clues first"
+goto = "search_body_after_gun"
+[[check_office.choices]]
+text = "Get out of town - this is above your pay grade"
+goto = "leave_town"
+
+[call_eddie]
+mood = "calm"
+text = """
+You dial Eddie's number. Three rings.
+'Yeah?' His voice is rough with sleep.
+'Eddie, it's Jack. I need help. There's a body in my office and—' 'Say no more. I'll be there in ten.'
+
+Eddie shows up in eight. He surveys the scene with cop's eyes, even though he turned in his badge six months ago."""
+set_flags = ["called_eddie"]
+dialogue = [
+  { who = "eddie", line = "Jesus, Jack. You really stepped in it this time.", mood = "shocked" },
+  { who = "jack_malone", line = "I didn't do it, Eddie.", mood = "pained" },
+  { who = "eddie", line = "I know. You're a lot of things, but you ain't a killer. Not like this, anyway. We need to find who did.", mood = "smirk" },
+  { who = "eddie", line = "I've been hearing things. Warehouse 47. Big meeting tonight. Castellano, Morrison... maybe more. This dame was probably insurance - proof for whoever wanted out." },
+]
+[[call_eddie.choices]]
+text = "Hit Warehouse 47 with Eddie - time to crash the party"
+goto = "warehouse_with_eddie"
+[[call_eddie.choices]]
+text = "Have Eddie watch your back while you visit the Velvet Room"
+goto = "velvet_room_with_eddie"
+
+[warehouse]
+mood = "mystery"
+text = """
+Warehouse 47 sits on the docks like a rotting tooth.
+Two guards out front, cigarettes glowing in the rain.
+Through a grimy window, you see them: Castellano, Morrison, and a third man you don't recognize. Military bearing. Cold eyes."""
+art = """
+
+╔═══════════════════════════════════════════════════════════════════╗
+║                    ABANDONED WAREHOUSE                           ║
+║                        PIER DISTRICT                             ║
+╠═══════════════════════════════════════════════════════════════════╣
+║                                                                 ║
+║      ╔═══════════════╗              ╔═══════════════╗            ║
+║      ║               ║              ║               ║            ║
+║      ║   STORAGE     ║              ║   CRATES      ║            ║
+║      ║    UNIT 1     ║              ║    & BOXES    ║            ║
+║      ║               ║              ║               ║            ║
+║      ╚═══════════════╝              ╚═══════════════╝            ║
+║                                                                 ║
+║  ╔══════════════════════════════════════════════════════════╗    ║
+║  ║                                                          ║    ║
+║  ║            [STAGE 47]                                   ║    ║
+║  ║     ┌──────────────────────┐                            ║    ║
+║  ║     │  LOADING DOCK DOOR   │                            ║    ║
+║  ║     │                      │  ▲ SKYLIGHT                ║    ║
+║  ║     │   ╔╗╔╗╔╗╔╗╔╗╔╗     │  │ (2 stories up)           ║    ║
+║  ║     │   ║║║║║║║║║║║║║║    │  │                         ║    ║
+║  ║     └──────────────────────┘                            ║    ║
+║  ║                                                          ║    ║
+║  ║  Moisture. Rust. The smell of old money and older       ║    ║
+║  ║  crimes. Shadows dance under emergency lighting.         ║    ║
+║  ║                                                          ║    ║
+║  ╚══════════════════════════════════════════════════════════╝    ║
+║                                                                 ║
+╚═══════════════════════════════════════════════════════════════════╝
+        """
+dialogue = [
+  { who = "jack_malone", line = "Whatever's happening in there, it's big enough to kill for.", mood = "afraid" },
+]
+[[warehouse.choices]]
+text = "Sneak in through the roof - get close and listen"
+goto = "warehouse_sneak"
+[[warehouse.choices]]
+text = "Walk in the front door - surprise is a weapon too"
+goto = "warehouse_front"
+[[warehouse.choices]]
+text = "Wait and follow whoever leaves first"
+goto = "warehouse_wait"
+
+[theater]
+mood = "mystery"
+text = """
+The Ritz Theater is dark except for the exit signs.
+You find Section 47, Seat 13. Under the cushion: an envelope. Inside, documents. Bank transfers. Payoffs. Names.
+
+The whole department is dirty. Not just Morrison - dozens of cops, judges, city councilmen. And at the center: Project Nightfall. Military weapons being sold to the highest bidder."""
+dialogue = [
+  { who = "jack_malone", line = "The dame wasn't running from Castellano. She was running from everyone. This is enough to burn the whole city down.", mood = "shocked" },
+  { who = "voice_from_darkness", line = "That's exactly right, Mr. Malone.", fx = "shake" },
+]
+[[theater.choices]]
+text = "Spin and draw your gun"
+goto = "theater_fight"
+[[theater.choices]]
+text = "Stay calm - 'Who's there?'"
+goto = "theater_reveal"
+
+[rodriguez]
+mood = "calm"
+text = """
+Captain Rodriguez looks at the photograph, his face unreadable. For a long moment, he says nothing. Then he opens his desk drawer and pulls out a bottle of whiskey. Two glasses.
+
+'I've been waiting for this day, Jack. Hoping it wouldn't come, but knowing it would.'"""
+set_flags = ["went_to_rodriguez"]
+dialogue = [
+  { who = "rodriguez", line = "I've known about Morrison for two years. Couldn't prove it. Couldn't trust anyone. The rot goes deep.", mood = "sad" },
+  { who = "jack_malone", line = "And now?" },
+  { who = "rodriguez", line = "Now we have proof. And now you're a murder suspect. They played this smart - take you off the board, silence their leak, all in one move.", mood = "angry" },
+  { who = "rodriguez", line = "I can protect you, Jack. But we need to move fast. There's a meeting tonight. Warehouse 47. All the players will be there." },
+]
+[[rodriguez.choices]]
+text = "Trust Rodriguez - let him handle this officially"
+goto = "rodriguez_plan"
+[[rodriguez.choices]]
+text = "Take the evidence and do this your way"
+goto = "solo_mission"
+
+[castellano_meeting]
+mood = "mystery"
+text = """
+They drive you to the Velvet Room. Vincent Castellano sits in a private booth, flanked by men who look like they eat bullets for breakfast.
+
+'Jack Malone. I'd say it's good to see you, but we both know I'd be lying.' He gestures to the seat across from him."""
+art = """
+
+╔═══════════════════════════════════════════════════════════════════╗
+║              THE VELVET ROOM - PRIVATE SANCTUM                   ║
+║                    CASTELLANO RESIDENCE                          ║
+╠═══════════════════════════════════════════════════════════════════╣
+║                                                                 ║
+║  ◆ ◆ ◆ ◆ ◆ ◆ ◆ ◆ ◆ ◆ ◆ ◆ ◆ ◆ ◆ ◆ ◆ ◆ ◆ ◆ ◆ ◆ ◆ ◆ ◆ ◆ ◆ ◆  ║
+║                                                                 ║
+║       ╔════════════════════════════════════════╗                ║
+║       ║    Rich mahogany. Cut crystal.        ║                ║
+║       ║           Soft leather chairs.        ║                ║
+║       ║                                        ║                ║
+║       ║    ╔──────────────────────────╗       ║                ║
+║       ║    │   CASTELLANO'S TABLE     │       ║                ║
+║       ║    │                          │       ║                ║
+║       ║    │  ◇ Chess set (white)    │       ║                ║
+║       ║    │                          │       ║                ║
+║       ║    │  Smoking Cigar (Macanudo)       ║                ║
+║       ║    │  Glass of 30-year Scotch        ║                ║
+║       ║    │                          │       ║                ║
+║       ║    └──────────────────────────┘       ║                ║
+║       ║                                        ║                ║
+║       ║       "Sit, Mr. Malone. We have     ║                ║
+║       ║        much to discuss about        ║                ║
+║       ║        Miss Valentina."              ║                ║
+║       ║                                        ║                ║
+║       ╚════════════════════════════════════════╝                ║
+║                                                                 ║
+║  ◆ ◆ ◆ ◆ ◆ ◆ ◆ ◆ ◆ ◆ ◆ ◆ ◆ ◆ ◆ ◆ ◆ ◆ ◆ ◆ ◆ ◆ ◆ ◆ ◆ ◆ ◆ ◆  ║
+║                                                                 ║
+╚═══════════════════════════════════════════════════════════════════╝
+        """
+dialogue = [
+  { who = "castellano", line = "You got a dead woman in your office and your prints on the gun. Bad night for you, Jack.", mood = "smirk" },
+  { who = "jack_malone", line = "I didn't kill her.", mood = "angry" },
+  { who = "castellano", line = "I know. I did.", mood = "smirk", fx = "flash" },
+]
+[[castellano_meeting.choices]]
+text = "'Why tell me?' - keep him talking"
+goto = "castellano_reveal"
+[[castellano_meeting.choices]]
+text = "Go for your gun - end this now"
+goto = "castellano_shootout"
+
+[alley_fight]
+text = """
+You throw the first punch. Tony's nose breaks with a satisfying crunch. The second goon pulls a knife, but you're already moving.
+
+The fight is brutal, quick, messy. When it's over, you're bleeding from three places and Tony's friends aren't getting up.
+Tony himself is on one knee, glaring at you."""
+dialogue = [
+  { who = "tony", line = "You're... dead, Malone. Mr. C will... burn this city... to find you.", mood = "pained" },
+  { who = "jack_malone", line = "Tell your boss I'm coming for him. And I'm bringing answers.", mood = "angry" },
+]
+[[alley_fight.choices]]
+text = "Head to Warehouse 47 - finish this tonight"
+goto = "warehouse_injured"
+[[alley_fight.choices]]
+text = "Find a doctor you can trust - you won't survive much more bleeding"
+goto = "doctor_visit"
+
+[blame_setup]
+text = """
+'Your boss wanted me to take the fall for a murder I didn't commit. The dame in my office? Someone else pulled that trigger.'
+
+Tony exchanges a glance with his boys. You see the doubt creep in."""
+dialogue = [
+  { who = "tony", line = "Mr. C don't play games like that. He wants someone dead, they die. No setups, no frames.", mood = "angry" },
+  { who = "jack_malone", line = "Then maybe someone's playing him too. Someone bigger." },
+  { who = "tony", line = "Get in the car. We're all gonna have a talk with the boss.", mood = "angry" },
+]
+[[blame_setup.choices]]
+text = "Get in the car - meet Castellano"
+goto = "castellano_meeting"
+[[blame_setup.choices]]
+text = "Make a break for it - run while they're confused"
+goto = "escape_run"
+
+[warehouse_with_eddie]
+mood = "danger"
+text = """
+You and Eddie approach Warehouse 47 like the old days.
+No words needed - you take the roof, he takes the back door.
+
+From above, you see the meeting: Castellano, Morrison,
+and a man in a military uniform. General Marcus Blackwood. You know that name. Army weapons contractor. Officially dead two years ago."""
+dialogue = [
+  { who = "blackwood", line = "Gentlemen, Project Nightfall is proceeding as planned. The weapons shipment arrives in three days. Half goes to Castellano's buyers. Half goes to Morrison's distribution network.", mood = "smirk" },
+  { who = "morrison", line = "What about the Malone situation?", mood = "afraid" },
+  { who = "blackwood", line = "By morning, he'll be wanted for murder. By noon, he'll be dead. One way or another.", mood = "smirk" },
+]
+[[warehouse_with_eddie.choices]]
+text = "Drop in guns blazing - citizen's arrest"
+goto = "warehouse_shootout_eddie"
+[[warehouse_with_eddie.choices]]
+text = "Record everything and get out - build a real case"
+goto = "warehouse_evidence"
+
+[velvet_room_with_eddie]
+mood = "mystery"
+text = """
+The Velvet Room is packed. Jazz plays soft and low.
+Eddie takes a position at the bar while you head to the back rooms.
+
+You find what you're looking for: an office. Inside, filing cabinets full of records. Blackmail material. Insurance policies. And a ledger with every dirty cop in the city."""
+dialogue = [
+  { who = "eddie_radio", line = "Jack, we got company. Morrison just walked in. He's headed your way.", mood = "afraid", fx = "glitch" },
+  { who = "jack_malone", line = "Copy that. I've got what we need. Meet at the back exit." },
+]
+[[velvet_room_with_eddie.choices]]
+text = "Confront Morrison - end this face to face"
+goto = "morrison_confrontation"
+[[velvet_room_with_eddie.choices]]
+text = "Slip out with the evidence - let the law handle it"
+goto = "escape_with_evidence"
+
+[warehouse_sneak]
+mood = "mystery"
+text = """
+The skylight gives you a perfect view. You listen as they discuss Project Nightfall - a massive weapons smuggling operation. Military hardware being sold to criminals. The dead dame was an accountant who discovered the truth."""
+dialogue = [
+  { who = "blackwood", line = "Malone will be eliminated before dawn. The evidence is in place.", mood = "smirk" },
+  { who = "castellano", line = "What about the other copies?" },
+  { who = "blackwood", line = "There are no other copies. The woman was working alone." },
+  { who = "malone_thinking", line = "They're wrong. If she came to me, she had insurance.", mood = "smirk" },
+]
+[[warehouse_sneak.choices]]
+text = "Crash through the skylight - surprise attack"
+goto = "warehouse_skylight_attack"
+[[warehouse_sneak.choices]]
+text = "Back out slowly and regroup - you're outgunned"
+goto = "warehouse_retreat"
+
+[warehouse_front]
+mood = "alert"
+text = """
+You walk up to the front door and knock. The guards look at you like you've lost your mind.
+
+'Tell Castellano that Jack Malone is here. Tell him I know about Nightfall. And tell him I have copies.'"""
+dialogue = [
+  { who = "guard", line = "You got a death wish, Malone?" },
+  { who = "jack_malone", line = "Just good business sense. Your boss wants what I have. I want what he knows. Let's deal.", mood = "smirk" },
+]
+[[warehouse_front.choices]]
+text = "Wait to be let in - play this cool"
+goto = "warehouse_negotiation"
+[[warehouse_front.choices]]
+text = "The guards are distracted - rush them"
+goto = "warehouse_rush_guards"
+
+[warehouse_wait]
+mood = "alert"
+text = """
+Patience is a virtue in your line of work. You wait in the rain, watching. An hour passes. Then Morrison emerges alone, carrying a briefcase.
+
+He looks nervous. Keeps checking over his shoulder.
+You follow him through the rain-slicked streets."""
+dialogue = [
+  { who = "jack_malone", line = "Where are you going, Chief? What's so important you're cutting out early?", mood = "smirk" },
+]
+[[warehouse_wait.choices]]
+text = "Confront Morrison in the street"
+goto = "street_confrontation"
+[[warehouse_wait.choices]]
+text = "Follow him to his destination"
+goto = "follow_morrison"
+
+[theater_fight]
+text = """
+You spin, gun drawn. The shot echoes through the empty theater. The figure drops. You approach carefully.
+
+It's not a soldier. Not a mobster. It's a woman. Late fifties. She's wearing a federal badge."""
+art = """
+
+                    .38 SNUBNOSE REVOLVER
+                    
+          ╔═════════════════════════════╗
+        ╭─║░░░░░░░░░░░░░░░░░░░░░░░░░░░║─╮
+        │ ║ ◌ ◌ ◌ ◌ ◌                  ║ │ (cold steel)
+        │ ║░░░░░░░░░░░░░░░░░░░░░░░░░░░║ │
+        │ ╰─────────────────────────────╯ │
+        │       ╎                         │
+        ╰───────╊─────────────────────────╯
+                ◇ (safety)
+        """
+dialogue = [
+  { who = "dying_woman", line = "Idiot... I was here... to help you... FBI... investigating... Project Nightfall..." },
+  { who = "jack_malone", line = "Jesus... I didn't know...", mood = "shocked" },
+  { who = "dying_woman", line = "They'll come... for you... run..." },
+]
+[[theater_fight.choices]]
+text = "Turn yourself in - it was self defense"
+goto = "turn_self_in"
+[[theater_fight.choices]]
+text = "Run - you're in too deep now"
+goto = "run_from_fbi"
+
+[theater_reveal]
+mood = "mystery"
+text = """
+The figure steps into the dim light. FBI Special Agent Sarah Chen. She lowers her weapon.
+
+'Mr. Malone. I've been tracking Project Nightfall for two years. The woman in your office was one of my informants.'"""
+dialogue = [
+  { who = "chen", line = "They killed her to frame you. Two birds, one stone. You've been making people nervous, asking the wrong questions." },
+  { who = "jack_malone", line = "So what happens now?" },
+  { who = "chen", line = "Now we have a choice. You can come in, become a witness, and hope my protection holds. Or we can end this tonight. Warehouse 47. All the players. One final move." },
+]
+[[theater_reveal.choices]]
+text = "Trust the FBI - let them handle it"
+goto = "fbi_cooperation"
+[[theater_reveal.choices]]
+text = "Partner with Chen - end it tonight at the warehouse"
+goto = "chen_partnership"
+
+[rodriguez_plan]
+mood = "alert"
+text = """
+Rodriguez works the phones. Within an hour, he's assembled a team of cops he trusts - not many, but enough. You suit up: tactical gear, body armor, the works.
+
+'This is it, Jack. We go in hard, we go in clean. Everyone comes out in cuffs or body bags. And when it's done, you're clear.'"""
+dialogue = [
+  { who = "jack_malone", line = "Let's finish this.", mood = "angry" },
+]
+[[rodriguez_plan.choices]]
+text = "Raid Warehouse 47 - the right way"
+goto = "rodriguez_raid"
+
+[solo_mission]
+mood = "danger"
+text = """
+You take the evidence and walk out of Rodriguez's office. He doesn't stop you. You both know this is personal now.
+
+Warehouse 47 looms ahead. You check your gun one more time. Six bullets. Hopefully enough."""
+dialogue = [
+  { who = "jack_malone", line = "One man against the world. Just how I like it.", mood = "smirk" },
+]
+[[solo_mission.choices]]
+text = "Attack the warehouse - no backup, no plan, just justice"
+goto = "solo_warehouse_attack"
+
+[castellano_reveal]
+text = """
+Castellano leans back, lighting a cigar.
+
+'I tell you because you're already dead, Jack. Question is whether you die knowing the truth or die confused. Me? I'm generous that way.'"""
+dialogue = [
+  { who = "castellano", line = "That dame worked for a man named Blackwood. General Marcus Blackwood. He's running guns, weapons, military hardware. I'm just the distributor.", mood = "smirk" },
+  { who = "castellano", line = "She got cold feet. Wanted out. Wanted to talk. So Blackwood ordered her dead. And you framed. Two problems, one solution.", mood = "smirk" },
+  { who = "jack_malone", line = "Why tell me this?" },
+  { who = "castellano", line = "Because I'm tired of being Blackwood's errand boy. You want revenge? Help me take him down. Then we both walk away clean.", mood = "angry" },
+]
+[[castellano_reveal.choices]]
+text = "Accept the deal - enemy of my enemy"
+goto = "castellano_alliance"
+[[castellano_reveal.choices]]
+text = "Refuse - 'I don't work with killers'"
+goto = "refuse_castellano"
+
+[castellano_shootout]
+mood = "danger"
+text = """
+Your hand moves for your gun. Castellano's guards are faster. Three guns bark. You feel the impacts like hammers.
+
+The world tilts. You hit the floor. Castellano stands over you."""
+dialogue = [
+  { who = "castellano", line = "Shame, Malone. We could've helped each other. Instead, you die stupid.", mood = "smirk", fx = "shake" },
+]
+[[castellano_shootout.choices]]
+text = "..."
+goto = "ending_killed_by_castellano"
+
+[warehouse_injured]
+mood = "danger"
+text = """
+You stagger to Warehouse 47, leaving a trail of blood.
+The guards see you coming. They raise their weapons.
+
+You raise your hands. 'I need to see Castellano. Tell him I know who really killed the dame. Tell him it wasn't me.'"""
+dialogue = [
+  { who = "guard", line = "Boss! Malone's here. Says he's got information." },
+  { who = "castellano_distant", line = "Bring him in. Let's hear what the dead man walking has to say.", mood = "smirk" },
+]
+[[warehouse_injured.choices]]
+text = "Enter the warehouse - last gambit"
+goto = "warehouse_wounded_entry"
+
+[doctor_visit]
+mood = "calm"
+text = """
+Doc Stevens doesn't ask questions anymore. He patches you up, gives you painkillers, and points you toward the door.
+
+'Whatever you're into, Jack, finish it soon. Next time I might not be able to put you back together.'"""
+dialogue = [
+  { who = "jack_malone", line = "Thanks, Doc. Put it on my tab.", mood = "smirk" },
+  { who = "doc_stevens", line = "Your tab could buy a new clinic. Just... be careful." },
+]
+[[doctor_visit.choices]]
+text = "Head to Warehouse 47 - time to end this"
+goto = "warehouse"
+[[doctor_visit.choices]]
+text = "Investigate the Velvet Room instead"
+goto = "velvet_room"
+
+[escape_run]
+mood = "danger"
+text = """
+You bolt. Tony shouts, but you're already around the corner. The rain works in your favor - sound dampened, visibility low.
+
+You know these streets. You disappear into the night like smoke. But now Castellano knows you're onto something. And he'll be looking."""
+dialogue = [
+  { who = "jack_malone", line = "Bought myself some time. Now I need to use it.", mood = "smirk" },
+]
+[[escape_run.choices]]
+text = "Go to ground at Eddie's place - need backup"
+goto = "call_eddie"
+[[escape_run.choices]]
+text = "Hit Warehouse 47 before they expect it"
+goto = "warehouse"
+
+[warehouse_shootout_eddie]
+mood = "danger"
+text = """
+You drop through the skylight, gun blazing. Eddie kicks in the back door. The warehouse erupts in chaos.
+
+Morrison goes down first. Castellano's men return fire.
+Blackwood pulls a weapon you've never seen before - military prototype. The beam cuts through metal like paper."""
+dialogue = [
+  { who = "eddie", line = "Jack! Get down!", mood = "afraid", fx = "shake" },
+]
+[[warehouse_shootout_eddie.choices]]
+text = "Take cover and return fire"
+goto = "shootout_tactical"
+[[warehouse_shootout_eddie.choices]]
+text = "Charge Blackwood - end this fast"
+goto = "charge_blackwood"
+
+[warehouse_evidence]
+mood = "alert"
+text = """
+Eddie has it all on tape. Video, audio, everything.
+You slip out the way you came in.
+
+Two days later, the evidence hits every news station simultaneously. The arrests start within hours. Morrison, Castellano, Blackwood. The whole rotten system comes crashing down."""
+dialogue = [
+  { who = "news_anchor", line = "In the biggest corruption scandal in city history...", fx = "glitch" },
+  { who = "rodriguez", line = "Good work, Jack. You're cleared of all charges.", mood = "happy" },
+  { who = "jack_malone", line = "Just doing my job, Captain.", mood = "smirk" },
+]
+[[warehouse_evidence.choices]]
+text = "The End"
+goto = "ending_evidence_victory"
+
+[morrison_confrontation]
+mood = "danger"
+text = """
+You step out of the office as Morrison rounds the corner. His hand goes for his gun. Yours is already out."""
+dialogue = [
+  { who = "jack_malone", line = "Don't. I've got enough evidence here to bury you ten times over.", mood = "angry" },
+  { who = "morrison", line = "You're a dead man, Malone. You just don't know it yet.", mood = "angry" },
+  { who = "jack_malone", line = "Maybe. But I'm taking you with me.", mood = "smirk" },
+]
+[[morrison_confrontation.choices]]
+text = "Arrest Morrison at gunpoint"
+goto = "arrest_morrison"
+[[morrison_confrontation.choices]]
+text = "Shoot first, ask questions never"
+goto = "shoot_morrison"
+
+[escape_with_evidence]
+mood = "calm"
+text = """
+You and Eddie vanish into the night with the ledger.
+The evidence is damning. Every dirty cop, every payoff, every crime.
+
+You deliver it anonymously to three journalists you trust. Within a week, the city is in chaos. In a month, it's clean. Well, cleaner."""
+dialogue = [
+  { who = "eddie", line = "We did good, Jack.", mood = "happy" },
+  { who = "jack_malone", line = "We did what we had to. That's all.", mood = "sad" },
+]
+[[escape_with_evidence.choices]]
+text = "The End"
+goto = "ending_silent_victory"
+
+[warehouse_skylight_attack]
+text = """
+Glass shatters. You drop into hell.
+Bullets fly. You take down two guards before you hit the ground.
+
+Castellano draws. Morrison runs. Blackwood stands his ground, a strange weapon in his hands."""
+dialogue = [
+  { who = "blackwood", line = "Impressive, Mr. Malone. But foolish.", mood = "smirk" },
+]
+[[warehouse_skylight_attack.choices]]
+text = "Dive for cover"
+goto = "dive_cover"
+[[warehouse_skylight_attack.choices]]
+text = "Take the shot at Blackwood"
+goto = "shoot_blackwood"
+
+[warehouse_retreat]
+mood = "alert"
+text = """
+You back away slowly. Sometimes living to fight another day is the only win.
+
+You take the information to the FBI. Special Agent Chen takes your statement. Three weeks later, coordinated raids bring down the entire operation. You testify. They go to prison. You go free."""
+dialogue = [
+  { who = "chen", line = "You made the smart choice, Malone. Not many do." },
+  { who = "jack_malone", line = "I've been called a lot of things. Smart isn't usually one of them.", mood = "smirk" },
+]
+[[warehouse_retreat.choices]]
+text = "The End"
+goto = "ending_smart_play"
+
+[warehouse_negotiation]
+mood = "alert"
+text = """
+They let you in. Castellano, Morrison, and Blackwood sit at a table like business partners. Which, you suppose, they are."""
+dialogue = [
+  { who = "castellano", line = "Jack Malone. You've got balls, I'll give you that.", mood = "smirk" },
+  { who = "jack_malone", line = "I've got evidence. Documentation of Project Nightfall. Every transaction, every weapons sale, every dirty cop. I want a deal." },
+  { who = "blackwood", line = "What kind of deal?", mood = "smirk" },
+  { who = "jack_malone", line = "I walk away clean. You let me disappear. The evidence disappears with me." },
+]
+[[warehouse_negotiation.choices]]
+text = "Wait for their response"
+goto = "negotiation_response"
+
+[warehouse_rush_guards]
+mood = "danger"
+text = """
+You're fast. The first guard goes down with a broken jaw. The second pulls a gun. You're faster.
+
+Inside the warehouse, alarms blare. You've lost the element of surprise, but you're inside. Now it's just survival."""
+dialogue = [
+  { who = "jack_malone", line = "No turning back now.", mood = "angry" },
+]
+[[warehouse_rush_guards.choices]]
+text = "Fight your way to the meeting room"
+goto = "warehouse_combat"
+
+[street_confrontation]
+text = """
+You step out of the shadows, gun drawn.
+'Going somewhere, Chief?'
+
+Morrison freezes. His hand hovers near his weapon."""
+dialogue = [
+  { who = "morrison", line = "Malone. You should be in custody by now.", mood = "shocked" },
+  { who = "jack_malone", line = "Should be a lot of things. But here I am. What's in the briefcase?", mood = "smirk" },
+  { who = "morrison", line = "Insurance. Same as you, I imagine. We're not so different.", mood = "smirk" },
+]
+[[street_confrontation.choices]]
+text = "Take the briefcase"
+goto = "take_briefcase"
+[[street_confrontation.choices]]
+text = "Let Morrison go - follow the bigger fish"
+goto = "let_morrison_go"
+
+[follow_morrison]
+mood = "alert"
+text = """
+Morrison leads you to a train station. He's leaving town. Smart man. But before he boards, he stops at a locker.
+Deposits the briefcase. Takes out another.
+
+After he leaves, you pick the lock. Inside: more evidence. And a note: 'For whoever comes looking - finish what I couldn't.'"""
+dialogue = [
+  { who = "jack_malone", line = "Morrison was trying to get out. They probably killed him before the train reached the next station.", mood = "sad" },
+]
+[[follow_morrison.choices]]
+text = "Use Morrison's evidence to end this"
+goto = "morrison_evidence_ending"
+
+[turn_self_in]
+text = """
+You call Rodriguez. Tell him everything.
+He brings you in, but he believes you. The FBI confirms the dead woman's identity.
+
+You spend six months in protective custody while they build the case. When it's over, you're cleared. Project Nightfall is exposed. But the woman in your office is still dead. And so is the FBI agent."""
+dialogue = [
+  { who = "jack_malone", line = "Two good people dead because I pulled a trigger. Self defense doesn't make it hurt less.", mood = "sad" },
+]
+[[turn_self_in.choices]]
+text = "The End"
+goto = "ending_guilty_conscience"
+
+[run_from_fbi]
+text = """
+You run. Mexico first, then further south.
+The evidence goes to a journalist you trust.
+
+Project Nightfall gets exposed, but you can never go home. Some nights, you wonder if it was worth it.
+Most nights, you try not to think at all."""
+dialogue = [
+  { who = "jack_malone", line = "They say you can't run from your past. But you can sure as hell try.", mood = "sad" },
+]
+[[run_from_fbi.choices]]
+text = "The End"
+goto = "ending_exile"
+
+[fbi_cooperation]
+mood = "calm"
+text = """
+You trust Agent Chen. She brings in her team.
+The FBI raids Warehouse 47 with tactical precision.
+
+Blackwood resists. He's killed in the firefight.
+Castellano and Morrison are arrested. You testify.
+They go away for life. You get your badge back.
+Metaphorically speaking."""
+dialogue = [
+  { who = "chen", line = "You're a good man, Malone. In a bad business." },
+  { who = "jack_malone", line = "Only business I know.", mood = "smirk" },
+]
+[[fbi_cooperation.choices]]
+text = "The End"
+goto = "ending_fbi_victory"
+
+[chen_partnership]
+mood = "alert"
+text = """
+You and Chen approach Warehouse 47 together.
+Federal agent and private eye. Strange bedfellows.
+
+The raid is surgical. Chen's team takes the perimeter.
+You and Chen go inside. Blackwood surrenders when he sees the FBI badges. Castellano tries to run. Morrison eats his gun."""
+dialogue = [
+  { who = "chen", line = "It's over. You're cleared of all charges." },
+  { who = "jack_malone", line = "The dame is still dead.", mood = "sad" },
+  { who = "chen", line = "Yes. But her death wasn't for nothing. We got them all." },
+]
+[[chen_partnership.choices]]
+text = "The End"
+goto = "ending_partnership_success"
+
+[rodriguez_raid]
+mood = "danger"
+text = """
+The raid is by the book. Rodriguez's team hits the warehouse hard. Castellano surrenders immediately - he's a businessman, not a fighter. Morrison tries to shoot his way out. He doesn't make it. Blackwood triggers a dead man's switch. The warehouse explodes.
+
+But you all got out first. And the evidence survived."""
+dialogue = [
+  { who = "rodriguez", line = "Good work, Jack. The city owes you one.", mood = "happy" },
+  { who = "jack_malone", line = "The city owes me about a hundred. But who's counting?", mood = "smirk" },
+]
+[[rodriguez_raid.choices]]
+text = "The End"
+goto = "ending_by_the_book"
+
+[solo_warehouse_attack]
+text = """
+You walk into Warehouse 47 like it's your office.
+The guards raise their weapons. You raise yours.
+
+The firefight is short and brutal. When the smoke clears, you're still standing. Barely. Castellano's dead. Morrison's dead. Blackwood is gone - he slipped out during the chaos.
+
+You collapse. When you wake up, you're in a hospital.
+Rodriguez is sitting by your bed."""
+dialogue = [
+  { who = "rodriguez", line = "You crazy son of a bitch. You did it.", mood = "happy" },
+  { who = "jack_malone", line = "Blackwood got away.", mood = "pained" },
+  { who = "rodriguez", line = "FBI picked him up at the airport. It's over, Jack. You're clear.", mood = "happy" },
+]
+[[solo_warehouse_attack.choices]]
+text = "The End"
+goto = "ending_lone_wolf_victory"
+
+[castellano_alliance]
+text = """
+You shake hands with the devil.
+Castellano provides the location of Blackwood's headquarters. You provide the distraction.
+
+Together, you bring down Project Nightfall.
+Blackwood dies in the raid. Morrison goes to prison.
+Castellano walks free - there's no evidence linking him anymore.
+
+You wonder if you made the right choice.
+Then again, in this city, there are no right choices.
+Only choices you can live with."""
+dialogue = [
+  { who = "castellano", line = "Pleasure doing business with you, Malone.", mood = "smirk" },
+  { who = "jack_malone", line = "If we ever meet again, the deal's off.", mood = "angry" },
+  { who = "castellano", line = "Understood. Let's hope we don't.", mood = "smirk" },
+]
+[[castellano_alliance.choices]]
+text = "The End"
+goto = "ending_deal_with_devil"
+
+[refuse_castellano]
+text = """
+'I don't work with killers.'
+'Pity,' Castellano says. He nods to his men.
+
+The last thing you see is the muzzle flash."""
+dialogue = [
+  { who = "castellano", line = "Shame. We could've done great things together.", mood = "smirk", fx = "flash" },
+]
+[[refuse_castellano.choices]]
+text = "..."
+goto = "ending_died_with_honor"
+
+[warehouse_wounded_entry]
+mood = "mystery"
+text = """
+They take you inside. You're leaving a blood trail.
+Castellano looks at you with something approaching respect."""
+dialogue = [
+  { who = "castellano", line = "You got guts, Malone. I'll give you that much. Talk. You got thirty seconds before I finish what Tony started.", mood = "smirk" },
+  { who = "jack_malone", line = "General Marcus Blackwood. He's using you. He killed the dame, framed me, and when this goes south, you're next.", mood = "pained" },
+  { who = "blackwood_emerging", line = "That's enough, Mr. Malone.", mood = "smirk", fx = "shake" },
+]
+[[warehouse_wounded_entry.choices]]
+text = "'There he is. The man behind the curtain.'"
+goto = "final_confrontation_wounded"
+
+[velvet_room]
+mood = "mystery"
+text = """
+The Velvet Room is all red velvet and dim lights.
+Jazz plays. Smoke curls. You flash your PI license at the hostess. 'I need to see the owner. Tell him it's about the dame.'
+
+Five minutes later, you're in a back office.
+Castellano pours two drinks."""
+dialogue = [
+  { who = "castellano", line = "I heard about your problem, Jack. Bad business." },
+  { who = "jack_malone", line = "Your business?", mood = "angry" },
+  { who = "castellano", line = "Not mine. Bigger fish. I'm just the middleman. You want answers? Help me take down the real monster.", mood = "smirk" },
+]
+[[velvet_room.choices]]
+text = "Hear him out"
+goto = "castellano_reveal"
+[[velvet_room.choices]]
+text = "This is a trap - get out"
+goto = "velvet_room_escape"
+
+[shootout_tactical]
+mood = "danger"
+text = """
+You take cover behind steel crates. Eddie flanks right.
+The energy weapon tears through the warehouse.
+
+But you and Eddie are professionals. You wait for the reload. Then you move. Two shots. Blackwood goes down.
+The weapon skitters across the floor."""
+dialogue = [
+  { who = "eddie", line = "Clear!", mood = "happy" },
+  { who = "jack_malone", line = "Call it in. We're done here." },
+]
+[[shootout_tactical.choices]]
+text = "The End"
+goto = "ending_tactical_victory"
+
+[charge_blackwood]
+text = """
+You charge. The energy beam catches you in the shoulder. Pain like you've never felt. But you keep moving.
+
+Three steps. Two. One.
+You crash into Blackwood. Your gun against his chest.
+One shot. It's over."""
+dialogue = [
+  { who = "eddie", line = "Jack! You hit?", mood = "afraid" },
+  { who = "jack_malone", line = "I'll live. Probably. Is he dead?", mood = "pained" },
+  { who = "eddie", line = "Very.", mood = "smirk" },
+]
+[[charge_blackwood.choices]]
+text = "The End"
+goto = "ending_heroic_victory"
+
+[arrest_morrison]
+mood = "noir"
+text = """
+You hold Morrison at gunpoint while Eddie calls Rodriguez. The good cops come. Morrison goes quietly in the end.
+
+With his testimony, the whole operation falls apart.
+Project Nightfall ends not with a bang, but with handcuffs."""
+dialogue = [
+  { who = "rodriguez", line = "Good work, Jack. Both of you.", mood = "happy" },
+]
+[[arrest_morrison.choices]]
+text = "The End"
+goto = "ending_justice_served"
+
+[shoot_morrison]
+mood = "danger"
+text = """
+You pull the trigger. Morrison drops.
+Eddie stares at you."""
+dialogue = [
+  { who = "eddie", line = "Jack... he was surrendering...", mood = "shocked" },
+  { who = "jack_malone", line = "He killed that dame. He killed dozens. He was never going to see the inside of a prison. You know it. I know it.", mood = "angry" },
+  { who = "eddie", line = "Maybe. But that was murder.", mood = "sad" },
+]
+[[shoot_morrison.choices]]
+text = "The End"
+goto = "ending_dark_justice"
+
+[dive_cover]
+text = """
+The energy beam passes over your head. You roll, fire twice. Both shots hit. Blackwood staggers, falls.
+
+Castellano tries to run. You shoot him in the leg.
+When the police arrive, you're sitting on a crate,
+smoking a cigarette, surrounded by bodies."""
+dialogue = [
+  { who = "jack_malone", line = "Sometimes you get lucky. Sometimes you get even. Tonight, I got both.", mood = "smirk" },
+]
+[[dive_cover.choices]]
+text = "The End"
+goto = "ending_survivor"
+
+[shoot_blackwood]
+mood = "danger"
+text = """
+You take the shot. The bullet catches Blackwood in the throat. He goes down. The energy weapon powers down.
+
+Castellano raises his hands. Morrison is already running. You let him. He'll be dead by morning anyway.
+Men like that always are."""
+dialogue = [
+  { who = "jack_malone", line = "It's over." },
+]
+[[shoot_blackwood.choices]]
+text = "The End"
+goto = "ending_quick_draw"
+
+[negotiation_response]
+text = """
+Blackwood laughs. It's not a pleasant sound.
+'Mr. Malone, we both know you don't have any copies.
+If you did, you would have used them already.
+You're a good detective, but a terrible liar.'
+
+He pulls out a weapon. Not a gun. Something worse.
+'Goodbye, Mr. Malone.'"""
+dialogue = [
+  { who = "jack_malone", line = "Worth a shot...", mood = "afraid", fx = "flash" },
+]
+[[negotiation_response.choices]]
+text = "..."
+goto = "ending_bad_bluff"
+
+[warehouse_combat]
+mood = "mystery"
+text = """
+You fight through the warehouse like a one-man army.
+Guards fall. You take bullets but keep moving.
+
+By the time you reach the meeting room, you're running on adrenaline and fury. Blackwood, Castellano, and Morrison turn to face you. Too late."""
+dialogue = [
+  { who = "jack_malone", line = "It ends tonight.", mood = "angry" },
+]
+[[warehouse_combat.choices]]
+text = "Finish it"
+goto = "warehouse_final_showdown"
+
+[take_briefcase]
+text = """
+You take the briefcase. Morrison doesn't resist.
+Inside: enough evidence to bury everyone involved.
+
+'Why?' you ask.
+'Because I'm tired,' Morrison says. 'Tired of the lies.
+Tired of the blood. Use it. End this.'
+
+He walks away into the rain. You never see him again."""
+dialogue = [
+  { who = "jack_malone", line = "Even bad men get tired of being bad. Sometimes.", mood = "sad" },
+]
+[[take_briefcase.choices]]
+text = "Use the evidence"
+goto = "morrison_evidence_ending"
+
+[let_morrison_go]
+text = """
+You let Morrison go. He's not the real villain here.
+Just another piece on the board.
+
+You tail him back to Warehouse 47. Now you know where everyone is. Now you can end it."""
+[[let_morrison_go.choices]]
+text = "Attack the warehouse"
+goto = "solo_warehouse_attack"
+
+[morrison_evidence_ending]
+mood = "mystery"
+text = """
+Morrison's evidence is devastating. You leak it to every news outlet. Within 48 hours, the arrests begin. Blackwood. Castellano. Dozens of dirty cops.
+
+You're cleared of all charges. The dame's death is solved. Morrison is found dead a week later. Suicide, they say.
+You don't believe it. But you let it go."""
+dialogue = [
+  { who = "jack_malone", line = "Justice isn't clean. But it's better than nothing.", mood = "sad" },
+]
+[[morrison_evidence_ending.choices]]
+text = "The End"
+goto = "ending_evidence_endgame"
+
+[final_confrontation_wounded]
+text = """
+Blackwood draws his weapon. You draw yours.
+For a moment, everything is still.
+
+Then Castellano draws too. Not at you. At Blackwood.
+'Nobody frames me,' Castellano says. 'Nobody.'
+
+The warehouse erupts in gunfire. When it's over,
+Blackwood is dead. Castellano is dead. You're barely alive. But you're alive."""
+dialogue = [
+  { who = "jack_malone", line = "Sometimes the bad guys kill each other. Sometimes you get lucky.", mood = "pained" },
+]
+[[final_confrontation_wounded.choices]]
+text = "The End"
+goto = "ending_pyrrhic_victory"
+
+[velvet_room_escape]
+mood = "mystery"
+text = """
+You back toward the door. Castellano doesn't stop you.
+'You'll be back,' he says. 'They always come back.'
+
+He's wrong. You go to the FBI. Give them everything.
+Three months later, it's over. Castellano, Blackwood, Morrison. All behind bars. You're free."""
+dialogue = [
+  { who = "jack_malone", line = "Sometimes the smart play is walking away. Then hitting them from behind.", mood = "smirk" },
+]
+[[velvet_room_escape.choices]]
+text = "The End"
+goto = "ending_smart_escape"
+
+[warehouse_final_showdown]
+mood = "mystery"
+text = """
+The fight is quick and brutal. You're wounded, exhausted, running on empty. But you're also right. And that counts for something.
+
+When the smoke clears, Blackwood and Morrison are dead.
+Castellano lives, barely. He'll talk. He'll deal.
+And you'll finally get the truth."""
+dialogue = [
+  { who = "jack_malone", line = "It's over. Finally.", mood = "pained" },
+]
+[[warehouse_final_showdown.choices]]
+text = "The End"
+goto = "ending_final_showdown_victory"
+
+[ending_killed_by_castellano]
+mood = "danger"
+text = """
+You died trying to fight the mob. Brave, but stupid."""
+ending = true
+
+[ending_evidence_victory]
+mood = "mystery"
+text = """
+You brought down the conspiracy with evidence and patience. The city is cleaner. Your name is cleared. The dame's death is avenged.
+
+ENDING: THE EVIDENCE SPEAKS"""
+ending = true
+
+[ending_silent_victory]
+text = """
+You operated from the shadows and brought down the corrupt system. No glory, no recognition. Just justice.
+
+ENDING: THE SILENT GUARDIAN"""
+ending = true
+
+[ending_smart_play]
+text = """
+You made the smart choice and lived to tell about it.
+Sometimes retreat is victory.
+
+ENDING: WISDOM OVER VALOR"""
+ending = true
+
+[ending_guilty_conscience]
+text = """
+You're cleared of all charges, but the weight of the deaths stays with you. Justice was served, but at what cost?
+
+ENDING: THE BURDEN OF TRUTH"""
+ending = true
+
+[ending_exile]
+text = """
+You exposed the conspiracy but lost everything in the process. Freedom has a price.
+
+ENDING: THE PRICE OF JUSTICE"""
+ending = true
+
+[ending_fbi_victory]
+text = """
+By working with the FBI, you brought down Project Nightfall officially. Justice served, badge and all.
+
+ENDING: BY THE BOOK"""
+ending = true
+
+[ending_partnership_success]
+mood = "calm"
+text = """
+You and Agent Chen made a great team. The conspiracy is destroyed, and you both walk away clean.
+
+ENDING: UNLIKELY ALLIES"""
+ending = true
+
+[ending_by_the_book]
+text = """
+Rodriguez led a clean operation. Everything by the book. The evidence is solid. Justice is served.
+
+ENDING: PROPER PROCEDURE"""
+ending = true
+
+[ending_lone_wolf_victory]
+text = """
+You took on the entire conspiracy alone and won.
+Battered, bleeding, but victorious.
+
+ENDING: THE LONE WOLF"""
+ending = true
+
+[ending_deal_with_devil]
+text = """
+You made a deal with a monster to catch a bigger monster. The conspiracy is destroyed, but at what moral cost?
+
+ENDING: DEAL WITH THE DEVIL"""
+ending = true
+
+[ending_died_with_honor]
+text = """
+You refused to compromise your principles, even at the cost of your life. Some would call it stupid. Others would call it heroic.
+
+ENDING: DIED WITH HONOR"""
+ending = true
+
+[ending_tactical_victory]
+text = """
+You and Eddie executed a perfect tactical operation.
+Precision, skill, and teamwork brought down the conspiracy.
+
+ENDING: TACTICAL PERFECTION"""
+ending = true
+
+[ending_heroic_victory]
+text = """
+You charged into danger and emerged victorious despite your wounds. A hero's ending to a dark story.
+
+ENDING: HEROIC SACRIFICE"""
+ending = true
+
+[ending_justice_served]
+text = """
+By arresting Morrison and securing his testimony, you brought down the entire operation legally and properly.
+
+ENDING: JUSTICE SERVED"""
+ending = true
+
+[ending_dark_justice]
+mood = "mystery"
+text = """
+You executed Morrison rather than let him face trial.
+The conspiracy ends, but you've become what you fought against.
+
+ENDING: DARK JUSTICE"""
+ending = true
+
+[ending_survivor]
+text = """
+Through skill and luck, you survived impossible odds.
+The conspiracy is destroyed. You live to fight another day.
+
+ENDING: THE SURVIVOR"""
+ending = true
+
+[ending_quick_draw]
+text = """
+One perfect shot ended it all. Clean, quick, effective.
+Just like you.
+
+ENDING: THE QUICK DRAW"""
+ending = true
+
+[ending_bad_bluff]
+text = """
+Your bluff failed. Blackwood called it.
+You died trying to negotiate with monsters.
+
+ENDING: BAD BLUFF"""
+ending = true
+
+[ending_evidence_endgame]
+mood = "mystery"
+text = """
+Morrison's evidence proved devastating to the conspiracy. Even bad men can do good things in the end.
+
+ENDING: THE EVIDENCE ENDGAME"""
+ending = true
+
+[ending_pyrrhic_victory]
+text = """
+You survived by letting the villains destroy each other. Victory, but at great cost.
+
+ENDING: PYRRHIC VICTORY"""
+ending = true
+
+[ending_smart_escape]
+text = """
+You walked away when it mattered, then struck from a position of strength. The conspiracy is destroyed through cleverness, not violence.
+
+ENDING: THE SMART ESCAPE"""
+ending = true
+
+[ending_final_showdown_victory]
+text = """
+Despite overwhelming odds, you stormed the warehouse and won. Wounded but victorious. The perfect ending to a noir tale.
+
+ENDING: THE FINAL SHOWDOWN"""
+ending = true
+
+[leave_town]
+text = """
+You pack a bag. One suitcase, one gun, and all the cash you can carry. The bus station at 4 AM is full of people running from something. You're just one more.
+
+Mexico first. Then further south. The dame's death goes unsolved. The conspiracy continues. Blackwood, Castellano, Morrison - they all win. But you're alive. Sometimes that's the only victory that matters.
+
+In your pocket, the photograph burns like a brand.
+Every night, you see her face. Every night, you wonder if you made the right choice.
+
+ENDING: THE COWARD'S EXIT"""
+ending = true

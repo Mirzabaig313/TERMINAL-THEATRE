@@ -1,0 +1,68 @@
+[office_ambush]
+mood = "danger"
+text = """
+The office door opens. You spin, hand on your weapon.
+
+Cassandra Westmore stands in the doorway. She's exactly as you imagined from the photographs. Raven hair. Emerald eyes. Dressed in black that seems to drink the light. In her hand: a syringe filled with amber liquid.
+
+'Detective Kane. Dr. Cross spoke highly of you. Said you were the one who'd figure it out. She was right. She usually was.'"""
+dialogue = [
+  { who = "kane", line = "Cassandra Westmore. You're under arrest for—", mood = "angry" },
+  { who = "cassandra", line = "For what? Killing people who deserved to die? For seeking justice when the system failed? Your gun is empty, Detective. I know because I was here two hours ago. I removed the firing pin.", mood = "smirk", fx = "flash" },
+  { who = "kane", line = "What's in the syringe?", mood = "afraid" },
+  { who = "cassandra", line = "Nightshade. Refined. Purified. Weaponized. One dose rewrites memory. Two doses create permanent psychosis. Three doses... well. Dr. Cross found out what three doses do.", mood = "smirk" },
+]
+[[office_ambush.choices]]
+text = "Rush her - close the distance before she can inject"
+goto = "tackle_cassandra"
+[[office_ambush.choices]]
+text = "Talk - keep her engaged, buy time"
+goto = "negotiate_cassandra"
+[[office_ambush.choices]]
+text = "Run - get out before she doses you"
+goto = "flee_office"
+
+[escape_office]
+mood = "calm"
+text = """
+You grab Dr. Cross's research and bolt. Behind you, footsteps. Cassandra or her people. You don't stop to check.
+
+The building is a maze. Corridors. Stairwells. You burst out a side door into an alley. The rain hits you like salvation.
+
+You've got the files. The truth about Westmore, Nightshade, the conspiracy. Everything you need to stop her.
+
+If you can survive long enough to use it."""
+dialogue = [
+  { who = "kane_thinking", line = "Seven victims. I know who four of them are now. Foster. Hartley. Cross. Tolliver. But who are the other three? And why am I the seventh?", mood = "afraid" },
+]
+[[escape_office.choices]]
+text = "Find somewhere to analyze the files"
+goto = "safe_house"
+[[escape_office.choices]]
+text = "Go straight to Captain Reeves - need backup"
+goto = "precinct_return"
+
+[pier_nineteen_with_sarah]
+text = """
+Together, you and Sarah approach the pier. The scene is as horrific as you feared. Dr. Cross's body. The ritual positioning. The card.
+
+But Sarah sees something you missed. She always does.
+
+'Marcus. Look at her hands. The way they're positioned. That's not just ritual. That's... that's American Sign Language.'
+
+You look closer. She's right. The positioning spells out a word: SEVEN.
+
+'She knew she was going to die,' Sarah continues. 'She positioned herself. Left us a message. Seven victims. But we've only seen three.'
+
+'Four more to come,' you say. 'Or four we haven't found yet.'"""
+dialogue = [
+  { who = "sarah", line = "We need to find the pattern. Seven connected people. All linked to the Westmore case. Who else was involved?" },
+  { who = "kane", line = "The prosecutor. Damien Cross - Evelyn's husband. He led the case against Westmore. If she's targeting everyone involved—", mood = "shocked" },
+  { who = "sarah", line = "Then he's next. We need to find him. Now.", mood = "afraid" },
+]
+[[pier_nineteen_with_sarah.choices]]
+text = "Protect Damien Cross - stop victim four"
+goto = "protect_damien"
+[[pier_nineteen_with_sarah.choices]]
+text = "Use Damien as bait - set a trap for Cassandra"
+goto = "bait_trap"

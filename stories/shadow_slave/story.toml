@@ -1,0 +1,41 @@
+title = "SHADOW SLAVE"
+description = "A dark fantasy tale of nightmares, shadows, and survival.\nEnter the Spell and face the terrors that await in the Dream Realm.\nYour choices will determine your fate in this nightmare world."
+start = "nightmare_begins"
+summary = "An Epic Dark Fantasy Tale"
+blurb = """
+Infected by the Nightmare Spell, you're pulled into the Dream Realm -
+a world of impossible horrors, ancient ruins, and twisted reality.
+
+Survive your First Nightmare by gaining power from fallen warriors,
+consuming shadow essence, or showing mercy to trapped spirits.
+Face the Guardian and prove worthy of the title: Awakened.
+
+⏱ Playtime: 30-45 minutes | 🎭 Full Story | 🔀 Deep Branching
+✨ 38 Scenes | ⚔ 5 Endings | 🎨 Rich ASCII Art | 💀 Nightmare Awaits"""
+# speaker whose portrait waits beside the choice menu
+player = "your_thoughts"
+# character shown on the story-select screen
+cover = "the_spell"
+# mood used for the story-select screen
+cover_mood = "mystery"
+
+[speakers.the_spell]
+name = "THE SPELL"
+sprite = "the_spell"
+
+[speakers.your_thoughts]
+name = "YOUR THOUGHTS"
+sprite = "sunny"
+thought = true
+
+[speakers.whisper]
+name = "WHISPER"
+
+[speakers.unknown_voice]
+name = "UNKNOWN VOICE"
+
+[speakers.ghost]
+name = "GHOST"
+
+[speakers.ghost_captain]
+name = "GHOST CAPTAIN"

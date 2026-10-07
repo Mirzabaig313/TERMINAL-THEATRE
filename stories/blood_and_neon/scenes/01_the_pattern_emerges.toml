@@ -1,0 +1,528 @@
+[prologue]
+text = """
+Rain hammers the windows of your apartment like bullets seeking flesh. Three AM. The phone screams. You already know what it means.
+
+Another body. Another message. Another step deeper into the labyrinth.
+
+Detective Marcus Kane. Fifteen years on the force. Divorced twice. Once by a woman, once by the department when they put you in Homicide. They said you had a gift for seeing patterns. A gift that feels more like a curse when the patterns lead somewhere you don't want to go.
+
+The voice on the phone is Captain Reeves. Gravel and exhaustion. 'Kane. Pier 19. Get here now. It's... it's like the others.'
+
+You reach for your coat, your gun, and the bottle of scotch that knows your touch better than any lover. Three bodies in three nights. All posed. All positioned. All pointing to something that shouldn't exist in a rational world.
+
+But this city gave up on rationality years ago. Now it just bleeds."""
+art = """
+
+    ╔════════════════════════════════════════════════════════════╗
+    ║                  3 AM - KANE'S APARTMENT                   ║
+    ╚════════════════════════════════════════════════════════════╝
+    
+    ╔════════════════════════════════════════════════════════════╗
+    ║ ║  ║  ║     ║  ║  ║     ║  ║  ║     ║  ║  ║              ║
+    ║    ║  ║  ║     ║  ║  ║     ║  ║  ║     ║  ║  ║           ║
+    ║ ║     ║  ║  ║     ║  ║  ║     ║  ║  ║     ║  ║           ║
+    ║  ║  ║     ║  ║  ║     ║  ║  ║     ║  ║  ║     ║          ║
+    ║     ║  ║  ║     ║  ║  ║     ║  ║  ║     ║  ║  ║          ║
+    ║  ║     ║  ║  ║     ║  ║  ║     ║  ║  ║     ║  ║          ║
+    ║ ║  ║     ║  ║  ║     ║  ║  ║     ║  ║  ║     ║           ║
+    ║    ║  ║     ║  ║  ║     ║  ║  ║     ║  ║  ║     ║        ║
+    ╚════════════════════════════════════════════════════════════╝
+    
+             [Rain hammers the glass like accusations]
+    """
+dialogue = [
+  { who = "marcus_kane", line = "Three nights. Three bodies. This isn't random anymore. If it ever was.", mood = "sad" },
+  { who = "kane_thinking", line = "The first was a lawyer. Found in an alley, arranged like he was praying. The second, a judge. Positioned as if offering something. Now a third. The pattern tightens like a noose.", mood = "afraid" },
+]
+[[prologue.choices]]
+text = "Drive to Pier 19 - face whatever's waiting"
+goto = "pier_nineteen"
+[[prologue.choices]]
+text = "Call your old partner first - you need someone you trust"
+goto = "call_sarah"
+[[prologue.choices]]
+text = "Review the case files one more time - you're missing something"
+goto = "review_files"
+
+[pier_nineteen]
+text = """
+The pier stretches into darkness like a dead man's finger pointing at eternity. Police lights strobe the scene in arterial reds and blues. The rain mixes with seawater, washing away evidence, washing away truth.
+
+The body lies at the end of the pier. Dr. Evelyn Cross. Forensic pathologist. You know her. Knew her. Past tense comes too easily in this business.
+
+She's arranged in the same ritualistic pose as the others - on her knees, arms outstretched, head tilted back as if receiving benediction from a god who forgot mercy. Her throat has been cut with surgical precision. Between her hands: a playing card. The Queen of Swords.
+
+The first body held the King of Cups. The second, the Knight of Wands. Tarot. Someone's telling a story in blood and symbolism.
+
+Captain Reeves stands nearby, smoking despite the rain.
+'Kane. Thank Christ. Look at her hands. There's something written there.'"""
+art = """
+
+    ╔════════════════════════════════════════════════════════════╗
+    ║                    PIER 19 - 3:00 AM                       ║
+    ╚════════════════════════════════════════════════════════════╝
+    
+    ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
+    ▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒
+    ▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓
+    ════════════════════════════════════════════════════════════
+          ║    ║    ║    ║    ║    ║    ║    ║    ║    ║
+          ║    ║    ║    ║    ║    ║    ║    ║    ║    ║
+          ║    ║    ║    ║    ║    ║    ║    ║    ║    ║
+          ║    ║    ║    ║    ║    ║    ║    ║    ║    ║
+          ║    ║    ║    ║    ║    ║    ║    ║    ║    ║
+    ▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓
+    ▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒
+    ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
+    """
+dialogue = [
+  { who = "kane", line = "Latin. 'Tertius ex septem.' Third of seven.", mood = "sad" },
+  { who = "reeves", line = "Jesus. You're saying there are four more coming?", mood = "shocked" },
+  { who = "kane", line = "I'm saying someone's working through a sequence. Tarot. Latin. Ritual positioning. This is structured. Practiced. And we're only seeing Act One.", mood = "angry" },
+  { who = "forensic_tech", line = "Detective. Found something in her pocket. A business card. 'The Crimson Hour - Where Night Becomes Forever.'" },
+]
+[[pier_nineteen.choices]]
+text = "Examine the tarot card carefully - it might have prints"
+goto = "examine_card"
+[[pier_nineteen.choices]]
+text = "Question the forensic tech about similar patterns"
+goto = "question_forensics"
+[[pier_nineteen.choices]]
+text = "Follow the business card lead to 'The Crimson Hour'"
+goto = "crimson_hour_club"
+[[pier_nineteen.choices]]
+text = "Search Dr. Cross's office - she was investigating something"
+goto = "cross_office"
+
+[call_sarah]
+text = """
+Sarah Vega. Your partner for six years before she made Lieutenant and you made a career of burning bridges. She answers on the second ring.
+
+'Marcus. I heard about the pier. You okay?'
+
+Her voice carries concern and caution in equal measure. You have history - the kind that saves lives and complicates everything else."""
+dialogue = [
+  { who = "kane", line = "Define okay. Three bodies, Sarah. All connected. All performing some kind of ritual sequence.", mood = "pained" },
+  { who = "sarah", line = "Tarot. I've been reading the case files. Someone's recreating the Major Arcana. But why these specific people?" },
+  { who = "kane", line = "Lawyer. Judge. Pathologist. They're all connected to the Foster trial five years ago. The one where—" },
+  { who = "sarah", line = "Where the evidence disappeared and the suspect walked. Marcus, that case was sealed. Classified. Someone high up buried it deep.", mood = "afraid" },
+  { who = "kane", line = "And now someone's digging it back up. In blood.", mood = "angry" },
+  { who = "sarah", line = "I'm coming in. Don't go to the pier alone." },
+]
+[[call_sarah.choices]]
+text = "Wait for Sarah - you work better together"
+goto = "sarah_arrives"
+[[call_sarah.choices]]
+text = "Can't wait - head to Pier 19 now"
+goto = "pier_nineteen"
+
+[review_files]
+text = """
+Your apartment walls are a conspiracy theorist's fever dream. Photographs. Police reports. Newspaper clippings. Red string connecting the dots in patterns only you can see. Or maybe only you want to see.
+
+Body One: Marcus Foster, defense attorney. Found in Mercy Alley. King of Cups. 'Primus ex septem' - First of seven.
+
+Body Two: Judge Ellen Hartley. Found in Courthouse Square. Knight of Wands. 'Secundus ex septem' - Second of seven.
+
+Both connected to the Westmore case. Five years ago. A pharmaceutical exec accused of manufacturing a designer drug called 'Nightshade.' Foster defended him. Hartley presided. The evidence vanished. Westmore walked. Three months later, Westmore died in a yacht explosion.
+
+Or did he?
+
+You pull out a photograph you've kept hidden even from yourself. Alexander Westmore. Standing in front of his company, Prometheus Industries. Behind him, barely visible in the glass reflection: a symbol. An ouroboros. A snake eating its tail.
+
+The same symbol carved into the palm of every victim."""
+dialogue = [
+  { who = "kane_thinking", line = "Westmore. The case everyone wanted buried. But dead men don't kill. Unless... unless Westmore never died. Unless the explosion was staged.", mood = "shocked" },
+  { who = "kane_thinking", line = "Prometheus Industries. Greek mythology. The titan who stole fire from the gods. Who gave knowledge to humanity. Who was punished eternally. Seven victims. Seven sins? Seven sacrifices?" },
+]
+[[review_files.choices]]
+text = "Deep dive into Prometheus Industries - follow the money"
+goto = "prometheus_research"
+[[review_files.choices]]
+text = "The yacht explosion - get the original reports"
+goto = "yacht_explosion"
+[[review_files.choices]]
+text = "Enough theory - get to Pier 19"
+goto = "pier_nineteen"
+
+[examine_card]
+text = """
+The Queen of Swords. In tarot, she represents clarity through pain, truth through loss. Someone who has suffered and emerged with wisdom.
+
+The card is expensive. Hand-painted. Not a mass-market deck. On the back, in silver ink almost invisible: a phone number.
+
+You copy it down. The card itself is clean - no prints except Dr. Cross's. Which means it was placed there after death, pressed into her already cooling hands. The killer wants you to find it. Wants you to call.
+
+This is a game. And you're a player whether you want to be or not."""
+set_flags = ["examined_tarot_card"]
+add_items = ["Queen of Swords"]
+dialogue = [
+  { who = "kane", line = "Captain. The card has a number on it." },
+  { who = "reeves", line = "Don't even think about calling it, Kane. We'll trace it, bring in the tech team—", mood = "angry" },
+  { who = "kane", line = "By which time four more people are dead. This killer is on a schedule. We're already three steps behind.", mood = "angry" },
+]
+[[examine_card.choices]]
+text = "Call the number now - take the bait"
+goto = "call_killer"
+[[examine_card.choices]]
+text = "Wait for the tech trace - do this right"
+goto = "tech_trace"
+[[examine_card.choices]]
+text = "Research the card deck instead - find the source"
+goto = "card_research"
+
+[question_forensics]
+text = """
+The forensic tech is young. Too young for this much death. Her name is Riley Chen. She's seen the pattern too.
+
+'Detective, the cuts are identical on all three victims. Same blade, same angle, same depth. Whoever this is, they're trained. Medical background, maybe military. The precision is... artistic.'
+
+She pulls out her tablet, shows you overlays of the wounds. 'But that's not the weird part. Look at the trace elements in the wounds. Residue. Chemical compound I've never seen. Dr. Cross was analyzing it before she... before tonight.'
+
+She hands you a file. Dr. Cross's last report. Her handwriting shaky: 'Compound matches samples from Westmore trial. Nightshade derivative. But enhanced. Weaponized. Someone continued the research. Someone—'
+
+The report ends there. Unfinished, like her life."""
+dialogue = [
+  { who = "kane", line = "Riley. This compound. Where would someone synthesize it?" },
+  { who = "riley", line = "High-end lab. Pharmaceutical grade equipment. Or... or someone with access to a place like Prometheus Industries.", mood = "afraid" },
+  { who = "kane", line = "Prometheus. The company Westmore owned.", mood = "shocked" },
+  { who = "riley", line = "Owned. Past tense. After he died, the company was bought out. Restructured. New name. But same facility, same research division." },
+  { who = "kane", line = "New name?" },
+  { who = "riley", line = "Ouroboros Pharmaceuticals.", mood = "afraid" },
+]
+[[question_forensics.choices]]
+text = "Investigate Ouroboros Pharmaceuticals immediately"
+goto = "ouroboros_pharma"
+[[question_forensics.choices]]
+text = "First, visit 'The Crimson Hour' club - the card lead"
+goto = "crimson_hour_club"
+[[question_forensics.choices]]
+text = "Search Dr. Cross's office for more research"
+goto = "cross_office"
+
+[crimson_hour_club]
+mood = "mystery"
+text = """
+The Crimson Hour sits in the meat-packing district like a jewel in a wound. No sign outside. Just a red door and a doorman built like mythology.
+
+Inside: velvet darkness punctuated by candles that burn red. The air tastes of jasmine and secrets. Beautiful people move through the space like sharks through deep water - elegant, dangerous, always circling.
+
+The music is low, hypnotic. Quarter tones and dissonance that shouldn't work but somehow does. Like everything else in this place.
+
+A woman approaches. She moves like smoke given form. Hair black as sin, eyes green as envy. She's wearing a dress that costs more than your car.
+
+'Detective Kane. We've been expecting you. Please. The proprietor would like a word. Upstairs.'"""
+art = """
+
+    ╔════════════════════════════════════════════════════════════╗
+    ║              THE CRIMSON HOUR - ENTRANCE                   ║
+    ╚════════════════════════════════════════════════════════════╝
+    
+    ████████████████████████████████████████████████████████████
+    ████████████████████████████████████████████████████████████
+    ███                                                      ███
+    ███  ╔══════════════════════════════════════════════╗  ███
+    ███  ║▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓║  ███
+    ███  ║▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓║  ███
+    ███  ║▓▓▓                                    ▓▓▓▓▓▓║  ███
+    ███  ║▓▓▓    [No sign. Just the door.]      ▓▓▓▓▓▓║  ███
+    ███  ║▓▓▓                                    ▓▓▓▓▓▓║  ███
+    ███  ║▓▓▓    [Blood-red paint, expensive]    ▓▓▓▓▓▓║  ███
+    ███  ║▓▓▓                                    ▓▓▓▓▓▓║  ███
+    ███  ║▓▓▓          ╔═════╗                  ▓▓▓▓▓▓║  ███
+    ███  ║▓▓▓          ║  ●  ║                  ▓▓▓▓▓▓║  ███
+    ███  ║▓▓▓          ╚═════╝                  ▓▓▓▓▓▓║  ███
+    ███  ║▓▓▓                                    ▓▓▓▓▓▓║  ███
+    ███  ║▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓║  ███
+    ███  ╚══════════════════════════════════════════════╝  ███
+    ███                                                      ███
+    ████████████████████████████████████████████████████████████
+    """
+dialogue = [
+  { who = "kane", line = "You know my name.", mood = "shocked" },
+  { who = "woman", line = "We know many things. Names. Secrets. Desires. It's our business to know. I'm Selene. And you're investigating deaths you don't understand. Not yet." },
+  { who = "kane", line = "Three murders. Same MO. Same ritual. Business card led me here." },
+  { who = "selene", line = "Murders. Such a crude word. Let's call them... transformations. Come. Elias is waiting. And Elias hates to be kept waiting.", mood = "smirk" },
+]
+[[crimson_hour_club.choices]]
+text = "Follow Selene upstairs - walk into the trap with eyes open"
+goto = "meet_elias"
+[[crimson_hour_club.choices]]
+text = "Refuse - question her here where there are witnesses"
+goto = "question_selene"
+[[crimson_hour_club.choices]]
+text = "Draw your weapon - arrest her as a material witness"
+goto = "arrest_selene"
+
+[cross_office]
+mood = "calm"
+text = """
+Dr. Evelyn Cross's office is a shrine to forensic science. Textbooks. Case files. Photographs of crime scenes arranged like a gallery of human darkness.
+
+Her computer is still logged in. She left in a hurry.
+Or was taken.
+
+You scan through her recent work. All three victims - she performed the autopsies. She saw the pattern first. And she kept working.
+
+A folder marked 'WESTMORE - SEALED' sits on her desktop. Inside: everything. The original trial. The evidence that disappeared. The witness statements that were recanted. The chemical analysis of Nightshade that was classified.
+
+And a video file. Timestamped three hours ago. Before she died. You click play."""
+dialogue = [
+  { who = "dr_cross_video", line = "If you're watching this, I'm dead. They got to me. Like they got to Foster and Hartley. We all knew. We all helped bury it. The Nightshade compound. It wasn't a drug. It was a weapon.", fx = "glitch" },
+  { who = "dr_cross_video", line = "Westmore developed it for the military. Psychological warfare. A compound that rewrites memory, amplifies fear, makes people suggestible. When the trial happened, someone made us all destroy the evidence. Said it was national security." },
+  { who = "dr_cross_video", line = "But Westmore didn't die. The explosion was staged. He's been operating in the shadows, continuing his research. And now he's killing everyone who helped cover it up. Everyone who knows the truth. Marcus, if you're seeing this - you're next. The seventh sacrifice. Find him. Stop him. Before—" },
+]
+[[cross_office.choices]]
+text = "The video cut off - someone's here"
+goto = "office_ambush"
+[[cross_office.choices]]
+text = "Grab the files and run - you're exposed"
+goto = "escape_office"
+
+[sarah_arrives]
+text = """
+Sarah Vega arrives in twenty minutes. She's brought coffee and ammunition. Both essential. Together, you review what you know.
+
+'Seven victims. Seven tarot cards. Seven sacrifices,' Sarah says. 'This is ritualistic. But it's also revenge. Westmore is killing everyone who helped destroy his life's work.'
+
+'But he's already dead,' you counter. 'The yacht explosion was confirmed. DNA, dental records, everything.'
+
+'Everything except a body. The explosion was hot enough to destroy identification. Maybe the DNA was planted. Maybe we saw what someone wanted us to see.'
+
+She pulls out a photograph. Alexander Westmore, five years ago. Brilliant. Wealthy. Dangerous. And beside him in the photo: a woman. Raven-haired. Green eyes. Beautiful and terrible.
+
+'His partner,' Sarah says. 'Dr. Cassandra Westmore. She disappeared the same night as the explosion. No body. No trace.'"""
+set_flags = ["sarah_partnered"]
+dialogue = [
+  { who = "kane", line = "Cassandra Westmore. The wife?", mood = "shocked" },
+  { who = "sarah", line = "More than that. The brilliant one. Alexander had the money, the vision. She had the genius. If anyone could continue the research, weaponize Nightshade, and orchestrate this—" },
+  { who = "kane", line = "Then we're not looking for a dead man. We're looking for a woman with nothing to lose and everything to avenge.", mood = "angry" },
+]
+[[sarah_arrives.choices]]
+text = "Head to Pier 19 together - safety in numbers"
+goto = "pier_nineteen_with_sarah"
+[[sarah_arrives.choices]]
+text = "Split up - you take the pier, Sarah investigates Ouroboros"
+goto = "split_investigation"
+
+[prometheus_research]
+mood = "alert"
+text = """
+Prometheus Industries. The paper trail leads through shell companies, offshore accounts, and classified government contracts.
+
+The deep dive takes hours. Coffee goes cold. Your eyes burn. But patterns emerge like stars through fog.
+
+Prometheus developed Nightshade under military contract. Psychological operations. A way to make enemy combatants compliant, suggestible. But the side effects were catastrophic. Psychosis. Violence. Suicide.
+
+When the trial went public, someone buried everything. The military. The DOD. Three-letter agencies whose names you can only guess at.
+
+But Alexander Westmore refused to stop. He believed the research was too important. Too revolutionary. He continued in secret.
+
+And when they came for him, he faked his death.
+
+The yacht explosion was the perfect cover. DNA evidence from a purchased corpse. Dental records altered by a complicit medical examiner. The examiner's name: Dr. Evelyn Cross.
+
+Who's now body number three."""
+dialogue = [
+  { who = "kane_thinking", line = "Cross helped him fake his death. Now he's killing her. Why? Revenge? Tying up loose ends? Or something else?" },
+  { who = "kane_thinking", line = "Seven victims. Seven cards. The Major Arcana tells a story. The Fool's Journey. Death and rebirth. Transformation. Westmore isn't just killing. He's performing a ritual. But to what end?", mood = "afraid" },
+]
+[[prometheus_research.choices]]
+text = "Enough research - get to the pier"
+goto = "pier_nineteen"
+[[prometheus_research.choices]]
+text = "Dig deeper into the yacht explosion"
+goto = "yacht_explosion"
+
+[yacht_explosion]
+mood = "danger"
+text = """
+The Coast Guard report is clinical. Explosion at 2:47 AM. Fire hot enough to melt steel. Body recovered - charred beyond recognition.
+
+But there's a supplemental report. An addendum filed months later by an investigator named James Tolliver. He noted inconsistencies.
+
+The explosion pattern suggested military-grade accelerants. The dental records were verified by a single examiner - Dr. Cross. And the DNA sample was processed at a private lab.
+A lab owned by Ouroboros Pharmaceuticals.
+
+Tolliver recommended further investigation.
+His recommendation was denied. He was reassigned. 
+Two months later, he died of an apparent heart attack.
+
+He was thirty-four years old and in perfect health.
+
+You look up James Tolliver's death certificate. Cause of death: acute myocardial infarction. Signed by: Dr. Evelyn Cross."""
+dialogue = [
+  { who = "kane_thinking", line = "Tolliver got too close. They killed him and made it look natural. Cross covered it up. Another name on the list. Another sin to atone for.", mood = "angry" },
+  { who = "kane_thinking", line = "But seven victims. Tolliver would be eight. Unless... unless he's already been counted. The pattern includes past kills. This isn't the beginning. It's the finale.", mood = "shocked" },
+]
+[[yacht_explosion.choices]]
+text = "Find out if Tolliver's body can be exhumed"
+goto = "exhume_tolliver"
+[[yacht_explosion.choices]]
+text = "This is getting too deep - call Sarah"
+goto = "call_sarah"
+[[yacht_explosion.choices]]
+text = "Get to the pier before victim four appears"
+goto = "pier_nineteen"
+
+[call_killer]
+mood = "danger"
+text = """
+You dial the number. It rings once. Twice.
+
+A voice answers. Female. Cultured. Amused.
+
+'Detective Kane. Right on schedule. You've always been predictable. That's why you're still alive. You follow the breadcrumbs exactly where I want you to go.'
+
+You recognize the voice from somewhere. A memory like smoke."""
+set_flags = ["contacted_killer"]
+dialogue = [
+  { who = "kane", line = "Who is this?", mood = "angry" },
+  { who = "voice", line = "Someone who died five years ago. Someone you helped bury. Not literally, of course. You weren't part of the coverup. You were just... collateral damage. Like everyone else.", fx = "glitch" },
+  { who = "kane", line = "Cassandra Westmore.", mood = "shocked" },
+  { who = "cassandra", line = "Very good, Detective. Yes. Cassandra. The dead woman walking. The ghost in your city's machine. Do you like my work? The tableau? The symbolism?", mood = "smirk" },
+  { who = "kane", line = "You're killing innocent people.", mood = "angry" },
+  { who = "cassandra", line = "Innocent? Foster hid evidence. Hartley threw the trial. Cross faked my husband's death and then helped cover up the murder of James Tolliver. Innocent is a word that lost meaning years ago. But you... you're different. You weren't part of it. That's why you get to be the finale.", mood = "smirk" },
+]
+[[call_killer.choices]]
+text = "'I'm coming for you' - make it personal"
+goto = "threat_cassandra"
+[[call_killer.choices]]
+text = "'Why the theatrics? Why not just vanish?' - keep her talking"
+goto = "question_cassandra"
+[[call_killer.choices]]
+text = "Trace the call - have tech lock her location"
+goto = "trace_cassandra"
+
+[tech_trace]
+text = """
+The tech team swarms the number. Within minutes they have a location. A cell tower in the warehouse district. Near the old Prometheus facility.
+
+But it's a burner phone. And by the time the trace completes, the signal is dead. She knew. She expected this.
+
+Captain Reeves orders a SWAT team to the location. You gear up. This ends tonight. One way or another."""
+dialogue = [
+  { who = "reeves", line = "Kane. You're not going in first. We do this by the book. SWAT clears the building, then we investigate.", mood = "angry" },
+  { who = "kane", line = "Captain, she's playing a game. If we follow procedure, she wins. She's always three moves ahead.", mood = "angry" },
+  { who = "reeves", line = "And if you go in alone, you're dead. Your choice, Detective. Follow orders or turn in your badge.", mood = "angry" },
+]
+[[tech_trace.choices]]
+text = "Follow orders - wait for SWAT"
+goto = "swat_raid"
+[[tech_trace.choices]]
+text = "Turn in your badge - do this your way"
+goto = "go_rogue"
+
+[card_research]
+mood = "alert"
+text = """
+The tarot deck is custom. Hand-painted. You trace it to a specialist in the art district. An old woman named Madame Zora who deals in occult supplies and doesn't ask questions.
+
+'Oh yes,' she says when you show her a photograph of the card. 'Beautiful work. I sold that deck six months ago. Custom commission. Full Major Arcana. Twenty-two cards. Beautiful woman. Paid in cash.'
+
+'Can you describe her?'
+
+'Black hair. Green eyes. Moved like a dancer. Or a killer. Hard to tell the difference sometimes. She had... presence. Like she was more real than the rest of us. Gave me the shivers, truth be told.'"""
+dialogue = [
+  { who = "kane", line = "Did she say what she needed them for?" },
+  { who = "madame_zora", line = "Said she was telling a story. A tragedy in seven acts. About sacrifice and transformation. About paying debts written in blood. I thought she was being poetic. Artists usually are." },
+  { who = "kane", line = "Did she leave a name?" },
+  { who = "madame_zora", line = "Called herself Cassandra. Like the prophet. The one who saw the future but no one believed. Fitting, no?" },
+]
+[[card_research.choices]]
+text = "Ask if she's been back - maybe she'll return"
+goto = "stake_out_shop"
+[[card_research.choices]]
+text = "That's all you need - head to the warehouse district"
+goto = "warehouse_district_early"
+
+[meet_elias]
+text = """
+The private room at the top of the Crimson Hour is decorated in themes of mortality. Baroque paintings of death. Sculptures of endings.
+
+A man sits at a desk carved from black wood. Mid-fifties. Silver hair. Eyes like a shark's - flat, cold, measuring. He's reading a book. You catch the title: 'The Alchemical Wedding.'
+
+'Detective Kane. Please, sit. Would you like a drink? I recommend the absinthe. Traditional preparation. It helps with... clarity.'
+
+Elias closes his book with deliberate care."""
+art = """
+
+    ╔════════════════════════════════════════════════════════════╗
+    ║                    LIQUID COURAGE                          ║
+    ╚════════════════════════════════════════════════════════════╝
+    
+                          ╱▔▔▔▔▔╲
+                         │       │
+                         │       │
+                        │  ░▒▒░  │
+                        │  ▒▒▒▒  │
+                         │ ▒▒▒▒ │
+                          ╲▁▁▁▁╱
+                          ▕████▏
+                           ▔▔▔▔
+    
+                    [Some nights require help]
+    """
+dialogue = [
+  { who = "elias", line = "You're investigating murders you don't understand. Three so far. Four more to come. Seven in total. A complete cycle.", mood = "smirk" },
+  { who = "kane", line = "You seem to know a lot about it." },
+  { who = "elias", line = "I know everything that happens in this city after dark. It's my business to know. The Crimson Hour isn't just a club, Detective. It's a sanctuary. For those who understand that transformation requires sacrifice.", mood = "smirk" },
+  { who = "kane", line = "You're talking about Cassandra Westmore." },
+  { who = "elias", line = "I'm talking about someone who understands the old truths. That death is change. That justice requires blood. That some debts can only be paid in the currency of life itself." },
+  { who = "kane", line = "You're protecting her.", mood = "angry" },
+  { who = "elias", line = "I'm providing context. Cassandra comes here sometimes. For solace. For community. We share certain... philosophies. But her work is her own. I merely appreciate its artistry.", mood = "smirk" },
+]
+[[meet_elias.choices]]
+text = "Arrest Elias as an accessory - bring him in"
+goto = "arrest_elias"
+[[meet_elias.choices]]
+text = "Play along - pretend to be interested in his philosophy"
+goto = "philosophy_game"
+[[meet_elias.choices]]
+text = "Threaten him - make him give up Cassandra's location"
+goto = "threaten_elias"
+
+[question_selene]
+text = """
+You keep Selene in public view. Smart. But she doesn't seem concerned.
+
+'Questions, Detective? Ask. I have nothing to hide. Unlike most who pass through these doors.'
+
+Around you, the beautiful people circulate. None of them seem to notice a police interrogation happening. Or maybe they just don't care."""
+dialogue = [
+  { who = "kane", line = "How do you know Cassandra Westmore?" },
+  { who = "selene", line = "We all know Cassandra. She's a legend here. A woman who died and came back changed. Refined by fire. Clarified by loss.", mood = "happy" },
+  { who = "kane", line = "She's a murderer.", mood = "angry" },
+  { who = "selene", line = "She's an artist. She's a philosopher. She's someone who understands that conventional morality is a cage we build to feel safe. But safety is an illusion, Detective. Everyone dies. Cassandra just decides who, when, and how.", mood = "smirk" },
+  { who = "kane", line = "When did you last see her?" },
+  { who = "selene", line = "Tonight. She was here two hours ago. Right before you arrived. She said you'd come. She says you're important. The final piece.", mood = "smirk" },
+]
+[[question_selene.choices]]
+text = "She's still here - search the building"
+goto = "search_crimson_hour"
+[[question_selene.choices]]
+text = "Where did she go? - follow the trail"
+goto = "follow_cassandra_from_club"
+
+[arrest_selene]
+text = """
+You pull your weapon and badge. 'Selene, you're under arrest as a material witness. You have the right—'
+
+The room erupts. Not in panic. In laughter.
+
+Selene smiles. 'Oh, Detective. How wonderfully theatrical. But you're not in a police station. You're in our world now. And here, your badge means nothing.'
+
+The beautiful people close in. Not threatening. Just... present. Between you and the exit. You're outnumbered. Outflanked."""
+set_flags = ["arrested_selene"]
+dialogue = [
+  { who = "selene", line = "You can leave anytime you want, Detective. Just walk away. But if you insist on this arrest... well. Things might get complicated. And you strike me as someone who prefers simple solutions to messy problems.", mood = "smirk" },
+]
+[[arrest_selene.choices]]
+text = "Stand your ground - call for backup"
+goto = "call_backup_club"
+[[arrest_selene.choices]]
+text = "Tactical retreat - you're outgunned"
+goto = "retreat_from_club"
+[[arrest_selene.choices]]
+text = "Draw your weapon - make them take you seriously"
+goto = "shootout_club"

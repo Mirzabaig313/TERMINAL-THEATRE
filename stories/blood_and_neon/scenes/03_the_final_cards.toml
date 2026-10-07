@@ -1,0 +1,532 @@
+[protect_damien]
+text = """
+Damien Cross lives in a brownstone in the Heights. Expensive. Secure. Or so he thinks. You and Sarah arrive to find his security system disabled. The door ajar. Inside: silence that screams.
+
+You find him in his study. Still alive. Barely.
+
+He's been injected with something. His eyes are wide, pupils dilated. He's seeing things that aren't there. Screaming at ghosts.
+
+On his desk: the Four of Pentacles. And a note in elegant script: 'Too late, Detective. He'll live. But he'll never be sane again. This is what mercy looks like. Quartus ex septem.'"""
+dialogue = [
+  { who = "sarah", line = "Ambulance is on the way. But Marcus... look at him. Whatever she gave him, it's destroyed his mind.", mood = "afraid" },
+  { who = "kane", line = "Nightshade. Advanced formula. She's not just killing. She's leaving some of them alive to suffer.", mood = "angry" },
+  { who = "damien_raving", line = "The shadows! The shadows have teeth! Make them stop! Make them stop seeing me!", fx = "glitch" },
+]
+[[protect_damien.choices]]
+text = "Search his house for clues while Sarah stays with him"
+goto = "search_damien_house"
+[[protect_damien.choices]]
+text = "Review his case files - what did he know?"
+goto = "damien_files"
+
+[bait_trap]
+mood = "danger"
+text = """
+You convince Damien Cross to help set the trap. He's terrified but agrees. Everyone wants revenge when death comes calling.
+
+The setup is simple. Damien stays in his study, visible through the window. You and Sarah position yourselves in adjacent rooms. Waiting. Watching.
+
+Three hours pass. Then four. You're starting to think she won't—
+
+The lights go out. Emergency backup doesn't kick in. She cut the power.
+
+In the darkness, you hear it: footsteps. Soft. Measured. Coming closer."""
+dialogue = [
+  { who = "sarah_radio", line = "Marcus. Movement on the second floor. She's inside.", mood = "afraid" },
+  { who = "kane_radio", line = "Hold position. Let her get to Damien. Then we close the trap." },
+  { who = "cassandra_from_darkness", line = "Oh, Detective. Did you really think I wouldn't know? I've been watching you. Since the beginning. I know how you think. How you move. How you hunt. Because we're the same, you and I.", fx = "shake" },
+]
+[[bait_trap.choices]]
+text = "Turn on your flashlight - force the confrontation"
+goto = "flashlight_confrontation"
+[[bait_trap.choices]]
+text = "Stay silent - hunt her in the dark"
+goto = "dark_hunt"
+
+[tackle_cassandra]
+text = """
+You rush her. Fast. Professional. The tackle is perfect.
+
+But Cassandra is ready. She sidesteps with impossible grace. Dancer. Martial artist. Something more. The syringe flashes.
+
+You feel the needle pierce your neck. The burn of injection.
+
+The world tilts. Colors intensify. Sounds become symphonies. Cassandra's face above you, beautiful and terrible.
+
+'Goodbye, Detective. Thank you for playing your part. The seventh sacrifice. The completion of the cycle. When you wake, you'll remember none of this. You'll only know fear.'"""
+[[tackle_cassandra.choices]]
+text = "Fight the drug - stay conscious"
+goto = "resist_nightshade"
+[[tackle_cassandra.choices]]
+text = "Let it take you - maybe she'll think you're done"
+goto = "fake_unconscious"
+
+[final_confrontation]
+text = """
+You track Cassandra to the old Prometheus facility. The place where it all began. Where Nightshade was created. Where the conspiracy was born. Where it ends.
+
+She's waiting for you in the central laboratory. Surrounded by vials of amber liquid. Each one a dose of madness. Each one a weapon.
+
+'I knew you'd come,' she says. 'You couldn't resist. The pattern demands completion. Seven victims. Seven cards. Seven sacrifices. You're the last, Marcus. The Fool. The beginning and the end.'
+
+She holds up a tarot card. The Fool. Your card.
+
+'But I'm giving you a choice. Something the others didn't get. Walk away. Leave this city. Never come back. And I'll stop. Or stay. Try to stop me. And become what you're hunting.'"""
+art = """
+
+    ╔════════════════════════════════════════════════════════════╗
+    ║                     THE FOOL CARD                          ║
+    ╚════════════════════════════════════════════════════════════╝
+    
+                    ╔═══════════════════╗
+                    ║  ┌─────────────┐  ║
+                    ║  │     ☺       │  ║
+                    ║  │    /│\\      │  ║
+                    ║  │   / │ \\     │  ║
+                    ║  │     │       │  ║
+                    ║  │    / \\      │  ║
+                    ║  │   /   \\     │  ║
+                    ║  │            │  ║
+                    ║  │    /\\      │  ║
+                    ║  │   /  \\     │  ║
+                    ║  │  /    \\    │  ║
+                    ║  │            │  ║
+                    ║  │    0.       │  ║
+                    ║  │  THE FOOL   │  ║
+                    ║  └─────────────┘  ║
+                    ╚═══════════════════╝
+    """
+dialogue = [
+  { who = "kane", line = "Why me? Why am I different?", mood = "pained" },
+  { who = "cassandra", line = "Because you weren't part of it. You didn't destroy the evidence. You didn't help bury the truth. You're just... collateral damage. Like I was. Like Alexander was. And I find I can't kill someone who doesn't deserve it. Not anymore. I've become too... refined.", mood = "sad" },
+  { who = "kane", line = "I can't let you kill anyone else.", mood = "angry" },
+  { who = "cassandra", line = "Then you'll have to kill me. Can you do that, Detective? Can you murder someone for crimes they haven't committed yet? Can you become what you hate to stop what I've become?", mood = "smirk" },
+]
+[[final_confrontation.choices]]
+text = "Shoot her - end this now"
+goto = "shoot_cassandra"
+[[final_confrontation.choices]]
+text = "Arrest her - bring her in alive"
+goto = "arrest_cassandra"
+[[final_confrontation.choices]]
+text = "Walk away - let her disappear"
+goto = "walk_away_ending"
+[[final_confrontation.choices]]
+text = "'There's another way' - negotiate a truce"
+goto = "negotiate_ending"
+
+[shoot_cassandra]
+mood = "danger"
+text = """
+You pull the trigger. The shot echoes in the abandoned laboratory.
+
+Cassandra falls. The vials of Nightshade shatter around her, mixing with blood, creating patterns like abstract art on the concrete.
+
+Her last words: 'Thank you. I couldn't stop. But you could.'
+
+The investigation reveals three more bodies. Hidden. Preserved. The seven victims complete. Foster. Hartley. Cross. Tolliver. Three federal agents who helped cover up the trial. And Cassandra herself.
+
+Seven sacrifices. Seven cards. The cycle complete.
+
+You close the case. You're called a hero. You get a commendation. But every night, you see her face. Every night, you wonder if you did the right thing. If justice and murder are really different.
+
+The rain keeps falling. The city keeps bleeding. And you keep hunting. Because that's all you know how to do.
+
+ENDING: THE EXECUTIONER"""
+ending = true
+
+[arrest_cassandra]
+text = """
+You arrest Cassandra Westmore. The trial is sensational. She pleads guilty to seven counts of murder. The truth about Nightshade, about the conspiracy, about the government coverup - all of it comes out.
+
+Three senators resign. A dozen federal agents are indicted. The city's corruption is exposed like a wound opened to light.
+
+Cassandra is sentenced to life. No parole. But she seems... satisfied. Like this was the goal all along. Not revenge. Exposure. Truth.
+
+You visit her once in prison. She smiles when she sees you.
+
+'Thank you, Detective. For helping me finish it. For making sure the truth came out. I couldn't have done it without you.'
+
+You realize then: you were always part of her plan. The seventh card. The Fool. The one who travels through darkness to find light.
+
+You walk away and never visit again. But you understand her now. And understanding is its own kind of curse.
+
+ENDING: THE TRUTH IN DARKNESS"""
+ending = true
+
+[walk_away_ending]
+text = """
+You holster your weapon. You turn. You walk away.
+
+Behind you, Cassandra says nothing. There's nothing left to say.
+
+You leave the city that night. No goodbyes. No explanations. Some cases can't be solved. Some evils can't be fought.
+Sometimes survival means knowing when you're beaten.
+
+You hear later that Cassandra disappeared. No more murders. No more cards. The seven sacrifices remain incomplete.
+
+You live with the knowledge that you let a killer walk free. But you also live with the knowledge that you're alive to feel guilty.
+
+In the end, maybe that's all any of us can ask for.
+
+ENDING: THE COWARD'S REDEMPTION"""
+ending = true
+
+[negotiate_ending]
+text = """
+You talk. For hours. About justice. About revenge. About the system that failed both of you. About the people who got away with everything while the innocent paid the price.
+
+In the end, you strike a bargain. Cassandra gives you evidence. Names. Dates. Proof of the conspiracy that goes higher than either of you imagined. To senators. To generals. To people who should have been protecting the innocent.
+
+In exchange, you give her twelve hours. A head start. By the time you report back, she's gone. Vanished into whatever shadows birthed her.
+
+The evidence destroys the corrupt system. Dozens of arrests. Hundreds of indictments. The city is cleaner. For a while.
+
+You never see Cassandra again. But sometimes, late at night, you get messages. Encrypted. Anonymous. Tips about cases. About corruption. About evil operating in the dark.
+
+She's still out there. Still hunting. Still seeking her own kind of justice. And you're helping her. Because maybe, sometimes, the system needs monsters to fight monsters.
+
+ENDING: THE DEVIL'S BARGAIN"""
+ending = true
+
+[nightshade_ending]
+text = """
+The Nightshade takes you. You wake in a white room. Clean. Sterile. Sarah is there. She explains: you were under for three days. The dose was massive. You should be dead. Instead, you're... changed.
+
+Colors are brighter. Sounds are clearer. But there are gaps. Holes in your memory. Things you can't remember. Things you shouldn't forget.
+
+Cassandra is gone. The case is closed. But you can't shake the feeling that you're forgetting something important. Something crucial.
+
+Seven victims. Seven cards. But who was the seventh? You can't remember.
+
+Sometimes, in mirrors, you see things. Shadows that move wrong. And in those moments, you wonder: did Cassandra really inject you? Or did you inject yourself? Did the detective catch the killer? Or did the killer become the detective?
+
+The rain keeps falling. And you keep hunting. Because you can't stop. Won't stop. Even though you're not sure why anymore.
+
+ENDING: LOST IN THE PATTERN"""
+ending = true
+
+[partner_sacrifice_ending]
+mood = "calm"
+text = """
+Sarah takes the bullet meant for you. Falls in slow motion. Like angels descending. Like everything good leaving the world.
+
+Cassandra escapes in the chaos. You hold Sarah as she dies. Her last words: 'Finish it. For me. For all of us.'
+
+You hunt Cassandra for six months. Across three states. Through a dozen cities. She leaves a trail of bodies. All people who helped bury the Westmore case. The seven sacrifices expand to twenty. To fifty.
+
+She can't stop. The pattern has her. Like a drug. Like a religion.
+
+When you finally corner her, she's grateful. Ready. Waiting. 'I couldn't stop,' she says. 'Thank you for stopping me.'
+
+You don't arrest her. You don't call it in. You just pull the trigger.
+
+For Sarah. For the victims. For everyone the system failed.
+
+You turn in your badge the next day. Some weights can't be carried.
+
+ENDING: THE WEIGHT OF ANGELS"""
+ending = true
+
+[conspiracy_victory_ending]
+mood = "mystery"
+text = """
+The evidence Sarah and you compiled destroys everything. Senators. Generals. Corporate executives. The entire conspiracy exposed.
+
+Cassandra testifies at the trials. Every day for six months. She becomes the face of justice denied. Of victims fighting back. Of truth emerging from darkness. She's sentenced to house arrest. Mental health treatment. The jury finds her not guilty by reason of temporary insanity.
+
+You're not sure how you feel about that. Justice should be cleaner. But justice, you've learned, is just another word for revenge we've agreed to legitimize.
+
+The city changes. Slowly. Corruption roots get pulled. Light finds the dark places. For the first time in your career, you feel like maybe - just maybe - you're winning.
+
+On your last day before retirement, Cassandra sends you a card. The Fool. And a note: 'Thank you for walking the path with me.'
+
+You frame it. A reminder. That sometimes the line between hero and villain is just a question of perspective.
+
+ENDING: THE FOOL'S JOURNEY COMPLETE"""
+ending = true
+
+[ouroboros_pharma]
+text = """
+Ouroboros Pharmaceuticals occupies a glass tower that reflects the city like a mirror showing you the ugliness you'd rather not see.
+
+Security is tight. Corporate. But your badge opens doors that should probably stay closed. The receptionist makes a call. Five minutes later, you're in an executive office that costs more than your annual salary.
+
+The nameplate reads: Dr. Helena Marsh, CEO.
+
+She's sixty. Sharp. Every inch the pharmaceutical executive. But there's something in her eyes. Recognition. Fear."""
+dialogue = [
+  { who = "dr_marsh", line = "Detective Kane. I've been expecting you. Or someone like you. It was only a matter of time before someone connected the dots." },
+  { who = "kane", line = "You knew about Nightshade. About what Westmore was doing.", mood = "angry" },
+  { who = "dr_marsh", line = "I was his partner. His collaborator. When the military wanted the research buried, I helped bury it. When they wanted him dead, I helped stage the explosion." },
+  { who = "kane", line = "Why are you telling me this?" },
+  { who = "dr_marsh", line = "Because I'm tired of running. Because Cassandra is killing everyone involved. And because I'm next. Look at this." },
+]
+[[ouroboros_pharma.choices]]
+text = "She shows you a tarot card - she's already been marked"
+goto = "marsh_marked"
+[[ouroboros_pharma.choices]]
+text = "She has evidence - files, recordings, everything"
+goto = "marsh_evidence"
+
+[marsh_marked]
+text = """
+Dr. Marsh opens her desk drawer. Inside: a tarot card. The Hierophant. And written in her own blood: 'Quintus ex septem.' Fifth of seven.
+
+'She broke into my home last night,' Marsh says. 'Cut my hand while I slept. Left this. I woke up and she was standing over me. She said: You have three days. Get your affairs in order. Then you answer for what you've done.'
+
+Marsh is shaking. You've seen killers with more composure.
+
+'Help me, Detective. Please. I'll testify. I'll give you everything. Just... just don't let her kill me like the others.'"""
+dialogue = [
+  { who = "kane", line = "Three days. That gives us time. We can protect you." },
+  { who = "marsh", line = "No one can protect me from Cassandra. She's a ghost. She's everywhere and nowhere. She knows things she shouldn't know. Sees things she shouldn't see. It's like she's become something more than human." },
+  { who = "kane", line = "Or she has help. Someone feeding her information. Someone inside the police. Inside the system.", mood = "shocked" },
+]
+[[marsh_marked.choices]]
+text = "Put Marsh in protective custody - use the system"
+goto = "protective_custody"
+[[marsh_marked.choices]]
+text = "Hide Marsh yourself - you trust no one"
+goto = "hide_marsh"
+[[marsh_marked.choices]]
+text = "Use Marsh as bait - trap Cassandra"
+goto = "marsh_bait"
+
+[swat_raid]
+text = """
+SWAT hits the warehouse at dawn. Tactical. Professional. By the book.
+
+The building is empty. But it's been used recently. You find evidence: a laboratory setup. Vials of Nightshade in various stages of refinement. And on the wall, written in luminescent paint visible only under UV:
+
+THE FOOL WALKS THE PATH
+THE FOOL SEES THE TRUTH
+THE FOOL BECOMES THE PATTERN
+SEVEN CARDS
+SEVEN SOULS
+ONE CYCLE COMPLETE
+
+Below the words: photographs. Seven people. Including you."""
+dialogue = [
+  { who = "reeves", line = "Kane. You need to see this. These photos. The other six are the victims. Foster. Hartley. Cross. Tolliver. Damien Cross. Helena Marsh. And... you.", mood = "shocked", fx = "flash" },
+  { who = "kane", line = "She's had this planned from the beginning. Every move. Every kill. Leading to me. But why? What makes me special?", mood = "afraid" },
+  { who = "forensic_tech", line = "Detective. Found something else. A journal. Looks like Cassandra's been keeping notes." },
+]
+[[swat_raid.choices]]
+text = "Read the journal - understand her mind"
+goto = "cassandra_journal"
+[[swat_raid.choices]]
+text = "This is a distraction - find her real location"
+goto = "find_real_location"
+
+[go_rogue]
+text = """
+You unclip your badge. Place it on Reeves' desk.
+'I'm sorry, Captain. But she's too far ahead. She'll see SWAT coming from a mile away. I need to do this my way.'
+
+Reeves looks at you for a long moment. Then he nods.
+
+'You've got forty-eight hours. Then I have to put out a warrant. Do what you need to do, Marcus. Just... come back alive.'
+
+You walk out of the precinct. No badge. No backup. Just you, your gun, and the knowledge that you're now hunting a killer who's been hunting you all along."""
+dialogue = [
+  { who = "kane_thinking", line = "Seven victims. Seven days. She's on a schedule. Which means she has to move. Has to make mistakes. And when she does, I'll be there.", mood = "angry" },
+]
+[[go_rogue.choices]]
+text = "Start with her known associates - work backwards"
+goto = "cassandra_associates"
+[[go_rogue.choices]]
+text = "Go to the Prometheus facility - that's where it started"
+goto = "prometheus_facility"
+
+[cassandra_journal]
+text = """
+The journal is meticulous. Detailed. Beautiful handwriting that would look at home in a medieval manuscript. You read:
+
+'Day 1,247: The detective doesn't know he's chosen. The Fool never does. He walks the path thinking he's hunting. Not understanding he's completing the cycle. Seven deaths. Seven transformations. Seven steps from ignorance to enlightenment.
+
+Marcus Kane will be the last. Not because he deserves death. Because he deserves understanding. He'll see what I've seen. Know what I know. And in that moment, he'll have to choose: remain the detective. Or become something more.'
+
+There are detailed notes about your life. Your routine. Your habits. She's been watching you for years. Preparing. Positioning.
+
+You're not hunting her. You never were. You're being guided. Like a piece in a game you don't understand."""
+dialogue = [
+  { who = "kane_thinking", line = "She thinks I'll join her. Transform. Become like her. She thinks this is about enlightenment. About becoming something more than human. She's insane. But she's also brilliant. And that makes her infinitely dangerous.", mood = "afraid" },
+]
+[[cassandra_journal.choices]]
+text = "The journal mentions a final location - 'Where it all ends'"
+goto = "final_location"
+[[cassandra_journal.choices]]
+text = "Confront this head-on - call her, arrange a meeting"
+goto = "call_cassandra_direct"
+
+[philosophy_game]
+text = """
+You sit. Accept the absinthe. Play the game.
+
+'Tell me about transformation,' you say to Elias. 'About the philosophy behind what Cassandra is doing.'
+
+Elias smiles. Like a teacher pleased with an apt student.
+
+'The alchemists understood. Death isn't an ending. It's a purification. Cassandra is practicing the Great Work. Seven sacrifices. Seven transformations. Each death refines the world. Makes it cleaner. Closer to perfection. The people she kills aren't victims. They're components in a greater operation. Lead into gold. Corruption into justice.'"""
+dialogue = [
+  { who = "kane", line = "That's just murder dressed up in mysticism.", mood = "angry" },
+  { who = "elias", line = "Is it? The alchemists sought the Philosopher's Stone. A substance that could transform anything. Cassandra found it. Nightshade. A compound that transforms consciousness itself. And she's using it not for profit. Not for power. But for art. For philosophy. For truth. That makes her more than a murderer, Detective. It makes her a visionary.", mood = "smirk" },
+  { who = "kane", line = "Or it makes her a sociopath with a chemistry degree.", mood = "smirk" },
+  { who = "elias", line = "Perhaps both. The line is thinner than you think.", mood = "smirk" },
+]
+[[philosophy_game.choices]]
+text = "'Where is she?' - time to stop playing"
+goto = "demand_location"
+[[philosophy_game.choices]]
+text = "'Let me join her' - infiltrate deeper"
+goto = "infiltrate_cult"
+
+[split_investigation]
+text = """
+You and Sarah split up. She heads to Ouroboros Pharmaceuticals. You go to the pier. Divide and conquer. Old tactics.
+
+But two hours later, Sarah's not answering her radio. Her phone goes straight to voicemail. The last ping from her phone was at Ouroboros.
+
+You finish at the pier and race to the pharmaceutical building. Security says Lieutenant Vega never checked in. Never arrived.
+
+But you know she was here. Her car is in the parking structure. Door open. Keys in the ignition. And on the driver's seat: a tarot card. The Tower. Destruction. Upheaval. Everything falling apart."""
+dialogue = [
+  { who = "kane_thinking", line = "She has Sarah. The pattern breaks. Sarah wasn't part of the original seven. Unless... unless Cassandra is adapting. Improvising. Making Sarah part of the ritual because she got too close.", mood = "afraid" },
+  { who = "kane_phone_message", line = "Sarah. If you can hear this. I'm coming. Hold on. Just hold on.", mood = "pained" },
+]
+[[split_investigation.choices]]
+text = "Storm Ouroboros - tear the building apart to find her"
+goto = "storm_ouroboros"
+[[split_investigation.choices]]
+text = "Cassandra wants you to panic - think, don't react"
+goto = "stay_calm_sarah"
+
+[resist_nightshade]
+text = """
+The drug hits like a freight train made of nightmares. But you fight it. Years of discipline. Training. Sheer stubborn refusal to give up.
+
+The hallucinations come anyway. Walls breathing. Colors screaming. Cassandra's face multiplying into fractal patterns. But underneath the chaos, you hold onto one thing: your purpose. Find her. Stop her.
+
+You claw back to consciousness. Hours later? Days? Time has no meaning when reality is negotiable. But you're alive. Aware. Functional.
+
+And you remember where Cassandra said she'd be. The final location. Where the seventh sacrifice completes the cycle."""
+dialogue = [
+  { who = "kane_thinking", line = "She underestimated me. Thought the drug would break me. Make me compliant. Instead, it just pissed me off. I'm coming for you, Cassandra. And nothing - not your drugs, not your philosophy, not your pattern - will stop me.", mood = "angry", fx = "glitch" },
+]
+[[resist_nightshade.choices]]
+text = "Go to the final location - end this"
+goto = "final_confrontation"
+
+[fake_unconscious]
+text = """
+You let the drug take you. Or pretend to. You go limp. Still. Through slitted eyes, you watch Cassandra.
+
+She checks your pulse. Satisfied. Then she does something unexpected. She sits beside you. Strokes your hair. Like a mother with a sick child.
+
+'I'm sorry, Marcus,' she whispers. 'You deserved better. We all did. But the pattern demands completion. Seven sacrifices to remake the world. Seven deaths to birth something new. You'll understand soon. When you wake on the other side. If you wake at all.'
+
+She leaves. You wait. Count to a hundred. Then you move."""
+dialogue = [
+  { who = "kane_thinking", line = "She's more broken than I thought. There's genuine regret there. Genuine sorrow. She doesn't want to kill. She thinks she has to. That makes her more dangerous. True believers always are.", mood = "sad" },
+]
+[[fake_unconscious.choices]]
+text = "Follow her - she'll lead you to the final location"
+goto = "track_cassandra"
+[[fake_unconscious.choices]]
+text = "The drug is affecting you - get medical help first"
+goto = "medical_help"
+
+[storm_ouroboros]
+text = """
+You storm Ouroboros with every cop loyal to you. Warrants be damned. Dr. Marsh tries to stop you. Security tries to intervene. You go through them like they're made of paper.
+
+In the subbasement - levels that don't exist on any blueprint - you find it. A laboratory. Pristine. Sterile. And in the center: Sarah.
+
+She's strapped to a medical chair. An IV in her arm. Amber liquid dripping into her bloodstream. Nightshade. She's convulsing. Screaming at things that aren't there.
+
+Cassandra stands beside her. Serene. Like a priest at an altar.
+
+'You're too late, Detective. The transformation has begun. In an hour, Lieutenant Vega will be gone. And someone new will emerge.'"""
+dialogue = [
+  { who = "kane", line = "Let her go, Cassandra. She's not part of this.", mood = "angry" },
+  { who = "cassandra", line = "Everyone is part of this. The whole world is part of the pattern. She got too close. Saw too much. She had to be... refined.", mood = "smirk" },
+  { who = "sarah_through_the_drug", line = "Marcus... kill me... please... I can see... everything... it's too much... too much...", mood = "pained", fx = "glitch" },
+]
+[[storm_ouroboros.choices]]
+text = "Shoot Cassandra - save Sarah no matter what"
+goto = "shoot_cassandra_save_sarah"
+[[storm_ouroboros.choices]]
+text = "Disconnect the IV - stop the dose"
+goto = "save_sarah_medical"
+[[storm_ouroboros.choices]]
+text = "Cassandra has the antidote - make her give it up"
+goto = "demand_antidote"
+
+[shoot_cassandra_save_sarah]
+mood = "danger"
+text = """
+You shoot. Center mass. Professional. Fatal.
+
+Cassandra falls. Her last words: 'The pattern... incomplete...'
+
+You disconnect Sarah's IV. Call for medical. She's rushed to the ER. The doctors work for six hours. When they emerge, they look exhausted.
+
+'She'll live. But Detective... the drug did something to her brain. There's damage. Extensive. She may never be the same.'
+
+Sarah wakes three days later. She knows who she is. Remembers you. But there are gaps. Missing pieces. And sometimes, she sees things. Patterns in chaos. Connections that shouldn't exist.
+
+'I can see it now,' she tells you. 'What Cassandra saw. The pattern behind everything. The way it all connects. She wasn't crazy, Marcus. She was just... awake. And now I am too.'
+
+You don't know if you saved her or damned her.
+
+ENDING: THE PRICE OF SALVATION"""
+ending = true
+
+[save_sarah_medical]
+text = """
+You disconnect the IV. Stop the dose. Every second counts.
+
+Cassandra doesn't stop you. She just watches. Sad. Resigned.
+
+'It won't matter,' she says. 'Once you've seen the pattern, you can't unsee it. The Nightshade just opens the door. But the door doesn't close.'
+
+Sarah stabilizes. The hospital keeps her for observation. Two weeks later, she's cleared to return to duty. But she's different. Quieter. Distant.
+
+She puts in for a transfer. Different city. Different life.
+
+'I need to get away from this,' she tells you. 'From the case. From the pattern. From... everything. I'm sorry, Marcus.'
+
+You let her go. Because that's what partners do. You protect each other. Even from yourselves.
+
+Cassandra is never found. She vanished during the chaos. The case remains open. Seven victims. Six bodies. One killer still out there.
+
+You keep hunting. Because it's all you know how to do.
+
+ENDING: INCOMPLETE PATTERNS"""
+ending = true
+
+[true_ending]
+text = """
+In the final confrontation at the old Prometheus facility, you realize the truth. The terrible truth that Cassandra has been guiding you toward.
+
+You're not the seventh victim. You're the seventh sacrifice. But not in death. In transformation. In understanding. In seeing the pattern.
+
+Cassandra shows you everything. The evidence. The conspiracy. How deep the corruption runs. How the system that's supposed to protect people instead protects monsters. How justice is just another commodity bought and sold by those with power.
+
+She offers you a choice: destroy the evidence and maintain the lie. Or release it and watch the world burn.
+
+You choose the third option. You take the evidence. You arrest Cassandra. And you release the information - but strategically. Piece by piece. Dismantling the corruption without destroying the system.
+
+It takes three years. Hundreds of arrests. Thousands of man-hours. But in the end, the city is cleaner. Not perfect. Never perfect. But better. A little bit better.
+
+Cassandra serves her sentence. You visit her sometimes. She always asks: 'Do you see it now? The pattern?'
+
+And you have to admit: you do. You see how it all connects. How justice and revenge blur together. How the line between hero and villain is just a matter of perspective. How we're all trapped in patterns of our own making.
+
+But seeing the pattern doesn't mean accepting it. It means choosing to break it. Or at least trying.
+
+That's all any of us can do. Try.
+
+ENDING: EYES WIDE OPEN"""
+ending = true

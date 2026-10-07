@@ -1,0 +1,17 @@
+[package]
+name = "terminal-theatre"
+description = "Terminal front-end for Terminal Theatre stories."
+edition.workspace = true
+version.workspace = true
+
+[lib]
+path = "src/lib.rs"
+
+[[bin]]
+name = "theatre"
+path = "src/main.rs"
+
+[dependencies]
+anyhow.workspace = true
+ratatui.workspace = true
+theatre-engine.workspace = true

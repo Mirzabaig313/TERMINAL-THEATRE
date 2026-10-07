@@ -1,0 +1,38 @@
+# Copy this folder to stories/<your_story_id>/ to start a new story.
+# Folders starting with "_" are hidden from the menu.
+
+title = "MY NEW STORY"
+description = "One or two lines shown on the story-select screen."
+start = "opening"
+
+# speaker whose portrait waits beside the choice menu (optional)
+player = "hero"
+# character shown on the story-select screen (optional, a file in characters/)
+cover = "hero"
+# mood of the story-select screen: noir | danger | alert | calm | mystery
+cover_mood = "noir"
+# mood for scenes that do not set one (scene ids containing words like
+# "fight", "dream" or "secret" also pick a mood automatically)
+default_mood = "noir"
+
+# Recolor any mood for this story. Keys: bg panel border text dim accent mote
+[themes.noir]
+accent = "#d4af37"
+
+# Everyone who speaks. `sprite` is a file in characters/ (without .toml).
+[speakers.hero]
+name = "YOU"
+sprite = "hero"
+
+[speakers.hero_thinking]
+name = "YOU (thinking)"
+sprite = "hero"
+thought = true
+
+[speakers.stranger]
+name = "STRANGER"
+sprite = "stranger"
+
+[speakers.narrator_voice]
+name = "A VOICE"
+# no sprite: the line is shown without a portrait

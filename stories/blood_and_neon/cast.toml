@@ -1,0 +1,93 @@
+# Character descriptions for tools/portrait.py, which draws characters/<id>.toml.
+# Run: python3 tools/portrait.py stories/blood_and_neon
+# Options are listed at the top of tools/portrait.py.
+
+[kane]
+name = "Marcus Kane"
+hair_style = "undercut"
+hair = "#1c1a22"
+outfit = "leather"
+cloth = "#1e1c26"
+metal = "#8a8fa0"
+skin = "#c8a088"
+eyes = "#5a6a80"
+neon = "#00e5ff"
+extras = ["stubble", "cyber_eye"]
+
+[sarah]
+name = "Sarah Vega"
+hair_style = "bob"
+hair = "#2a1820"
+outfit = "leather"
+cloth = "#3a1f2e"
+metal = "#ff2a6d"
+skin = "#c99476"
+eyes = "#5a3a2a"
+lips = "#a03a4a"
+neon = "#ff2a6d"
+extras = ["lashes", "earrings", "neon_streak"]
+
+[cassandra]
+name = "Cassandra Westmore"
+hair_style = "long"
+hair = "#e8e2f0"
+brows = "#b8b0c4"
+outfit = "dress"
+cloth = "#120c18"
+accent = "#c41e3a"
+metal = "#c0c0d0"
+skin = "#ecd8cc"
+eyes = "#b04cff"
+lips = "#b0102a"
+neon = "#b04cff"
+extras = ["lashes", "earrings"]
+
+[elias]
+name = "Elias"
+hair_style = "slick"
+hair = "#3a2a1a"
+outfit = "suit"
+cloth = "#e6e2da"
+shirt = "#20202a"
+accent = "#c41e3a"
+skin = "#d6b49a"
+eyes = "#2a6a5a"
+extras = ["glasses"]
+
+[selene]
+name = "Selene"
+hair_style = "long"
+hair = "#140f1a"
+outfit = "dress"
+cloth = "#2a0a2e"
+accent = "#00e5ff"
+metal = "#00e5ff"
+skin = "#b88466"
+eyes = "#1a1418"
+lips = "#5a1a4a"
+neon = "#00e5ff"
+extras = ["lashes", "neon_streak", "tattoo"]
+
+[reeves]
+name = "Captain Reeves"
+hair_style = "short"
+hair = "#7a7a80"
+outfit = "uniform"
+cloth = "#1a2236"
+shirt = "#c0c6d0"
+metal = "#d4af37"
+skin = "#8a5a40"
+eyes = "#2a1e16"
+extras = ["mustache", "wrinkles"]
+
+[riley]
+name = "Riley"
+hair_style = "messy"
+hair = "#d06a2a"
+outfit = "vest"
+cloth = "#2a3a3a"
+shirt = "#3a4a5a"
+skin = "#ecc8b0"
+eyes = "#3a7a4a"
+neon = "#3aff8a"
+extras = ["glasses", "freckles", "tattoo"]

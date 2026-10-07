@@ -1,0 +1,196 @@
+name = "Sunny"
+size = [32, 40]
+base = """
+................................
+............k......k............
+........k..kHk....kHk..k........
+.......khk.khhk..khhk.khk.......
+......khhhkhhhhkkhhhhkhhhk......
+.....khhHhhhhhhhhhhhhhhHhhk.....
+....khhhHhhhhhhHHhhhhhhHhhhk....
+....khhhhhHhhhhhhhhhhHhhhhhk....
+...khhhhhhhhhhhhhhhhhhhhhhhhk...
+...khhhhhhhhhhhhhhhhhhhhhhhhk...
+...khhhhhhhhhhhhhhhhhhhhhhhhk...
+...khhhhhhhhhhhhhhhhhhhhhhhhk...
+...khhhhhhshhhshhshhhshhhhhhk...
+...khhhsshssshsssshhsshsshhhk...
+...khhsssssssssssssssssssshhk...
+...khhsssssssssssssssssssshhk...
+...khhsssssssssssssssssssshhk...
+...khhSssssssssssssssssssShhk...
+....khSssssssssssssssssssShk....
+....kkSssssssssSSssssssssSkk....
+.....kSssssssssssssssssssSk.....
+......kSssssssssssssssssSk......
+......kSSssssssssssssssSSk......
+.......kSSssssssssssssSSk.......
+........kSSssssssssssSSk........
+.........kkSSSSSSSSSSkk.........
+...........knSSSSSSnk...........
+...........knSSSSSSnk...........
+........kkkkcnSSSSnckkkk........
+......kkcccccckSSkcccccckk......
+....kkcccccCccknnkccCccccckk....
+...kccccCccccckkkkcccccCcccck...
+..kcccCcccccccrccrcccccccCccck..
+.kccCcccrcccccrccrcccccrcccCcck.
+.kcCccccrccccccccccccccrccccCck.
+kccCccccrcccCccccccCcccrccccCcck
+kcCcccccrcccCccccccCcccrcccccCck
+kcCccccccccCccccccccCccccccccCck
+kcccccccccCccccccccccCccccccccck
+kcccccccccCccccccccccCccccccccck
+"""
+
+[palette]
+k = "#0b0a10"
+h = "#1d1b27"
+H = "#3b3852"
+s = "#d8c3b4"
+S = "#ab9184"
+d = "#6f5a57"
+n = "#8d7469"
+w = "#e9e7f2"
+i = "#8b91a8"
+p = "#0f0f18"
+m = "#7c4246"
+c = "#24212b"
+C = "#3a3543"
+r = "#55505e"
+b = "#5a2a2e"
+
+[anim]
+blink_eyes = "closed"
+blink_ms = [2200, 5200]
+breathe_ms = 1400
+breathe_from_row = 26
+talk_ms = 110
+
+[parts.brows.neutral]
+at = [10, 12]
+grid = """
+............
+hhhhh..hhhhh
+"""
+
+[parts.brows.angry]
+at = [10, 12]
+grid = """
+hhh......hhh
+...hh..hh...
+"""
+
+[parts.brows.worried]
+at = [10, 12]
+grid = """
+...hh..hh...
+hhh......hhh
+"""
+
+[parts.eyes.open]
+at = [10, 14]
+grid = """
+.kkk....kkk.
+kwipw..wpiwk
+.SSS....SSS.
+"""
+
+[parts.eyes.half]
+at = [10, 14]
+grid = """
+kkkkk..kkkkk
+kwipw..wpiwk
+.SSS....SSS.
+"""
+
+[parts.eyes.closed]
+at = [10, 14]
+grid = """
+.sss....sss.
+kkkkk..kkkkk
+.SSS....SSS.
+"""
+
+[parts.eyes.wide]
+at = [10, 14]
+grid = """
+kkkkk..kkkkk
+wwpww..wwpww
+kwwwk..kwwwk
+"""
+
+[parts.eyes.narrow]
+at = [10, 14]
+grid = """
+kkkkk..kkkkk
+kipik..kipik
+.kkk....kkk.
+"""
+
+[parts.mouth.closed]
+at = [13, 21]
+grid = """
+......
+.mmmm.
+"""
+
+[parts.mouth.open]
+at = [13, 20]
+grid = """
+.kkkk.
+.kbbk.
+..kk..
+"""
+
+[parts.mouth.grim]
+at = [13, 21]
+grid = """
+......
+kmmmmk
+"""
+
+[parts.mouth.smirk]
+at = [13, 20]
+grid = """
+.....m
+.mmmk.
+"""
+
+[parts.mouth.gasp]
+at = [13, 20]
+grid = """
+..kk..
+.kbbk.
+..kk..
+"""
+
+[expressions.neutral]
+brows = "neutral"
+eyes = "open"
+mouth = "closed"
+talk = "open"
+
+[expressions.afraid]
+brows = "worried"
+eyes = "wide"
+mouth = "gasp"
+talk = "open"
+
+[expressions.angry]
+brows = "angry"
+eyes = "narrow"
+mouth = "grim"
+talk = "open"
+
+[expressions.smirk]
+brows = "neutral"
+eyes = "half"
+mouth = "smirk"
+talk = "open"
+
+[expressions.pained]
+brows = "worried"
+eyes = "closed"
+mouth = "grim"
+talk = "gasp"
