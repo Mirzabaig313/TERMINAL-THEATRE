@@ -11,7 +11,10 @@ use theatre_engine::settings::data_dir;
 use terminal_theatre::app::{self, App, Start};
 use terminal_theatre::screens::Ctx;
 
+/// Frame time while something moves quickly (typing, transitions, effects).
 const FRAME: Duration = Duration::from_millis(33);
+/// Frame time when the screen is idle: animations step every 125 ms anyway.
+const IDLE_FRAME: Duration = Duration::from_millis(125);
 
 const HELP: &str = "\
 Terminal Theatre - interactive stories in the terminal
@@ -84,15 +87,21 @@ fn main() -> Result<()> {
         while !app.quit {
             app.tick(begin.elapsed().as_millis() as u64);
             terminal.draw(|f| app.draw(f))?;
-            let deadline = Instant::now() + FRAME;
+            let frame = if app.busy() { FRAME } else { IDLE_FRAME };
+            let deadline = Instant::now() + frame;
             while let Some(left) = deadline.checked_duration_since(Instant::now()) {
                 if !event::poll(left)? {
                     break;
                 }
-                if let Event::Key(k) = event::read()?
-                    && k.kind == KeyEventKind::Press
-                {
-                    app.key(k);
+                match event::read()? {
+                    Event::Key(k) if k.kind == KeyEventKind::Press => {
+                        app.key(k);
+                        // show the result right away instead of at the frame deadline
+                        break;
+                    }
+                    // a resized window needs a full redraw now
+                    Event::Resize(..) => break,
+                    _ => {}
                 }
             }
         }

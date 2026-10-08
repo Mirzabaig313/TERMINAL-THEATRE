@@ -166,7 +166,6 @@ A broken story never crashes the game: it shows up on the menu with its error.
 ├── tui/        terminal-theatre: the `theatre` binary, screens, drawing, effects
 ├── stories/    one self-contained folder per story, found automatically
 ├── tools/      portrait.py (character generator), check_story.py (quick checks)
-└── python/     (git-ignored) local copy of the original Python version
 ```
 
 | Engine module | What it does |

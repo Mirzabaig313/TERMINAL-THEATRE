@@ -56,9 +56,9 @@ p = "#05030a"
 r = "#ff4d6d"
 
 [cycles]
-g = { ms = 140, colors = ["#3c096c", "#5a189a", "#7b2cbf", "#9d4edd", "#c77dff", "#9d4edd", "#7b2cbf", "#5a189a"] }
-G = { ms = 140, colors = ["#c77dff", "#9d4edd", "#7b2cbf", "#5a189a", "#3c096c", "#5a189a", "#7b2cbf", "#9d4edd"] }
-i = { ms = 220, colors = ["#c77dff", "#e0aaff", "#f2ecff", "#e0aaff"] }
+g = { ms = 280, colors = ["#3c096c", "#5a189a", "#7b2cbf", "#9d4edd", "#c77dff", "#9d4edd", "#7b2cbf", "#5a189a"] }
+G = { ms = 280, colors = ["#c77dff", "#9d4edd", "#7b2cbf", "#5a189a", "#3c096c", "#5a189a", "#7b2cbf", "#9d4edd"] }
+i = { ms = 440, colors = ["#c77dff", "#e0aaff", "#f2ecff", "#e0aaff"] }
 
 [anim]
 blink_eyes = "closed"

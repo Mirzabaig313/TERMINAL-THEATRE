@@ -52,12 +52,13 @@ pub fn shimmer(title: &str, t_ms: u64, color: Rgb) -> Line<'static> {
     let spaced: Vec<char> = title.chars().flat_map(|c| [c, ' ']).collect();
     let spaced = &spaced[..spaced.len().saturating_sub(1)];
     let n = spaced.len() as f32;
-    let sweep = (t_ms as f32 / 1800.0).fract() * (n + 20.0) - 10.0;
+    let t = (t_ms / super::fx::ANIM_STEP_MS * super::fx::ANIM_STEP_MS) as f32;
+    let sweep = (t / 1800.0).fract() * (n + 20.0) - 10.0;
     let spans: Vec<Span> = spaced
         .iter()
         .enumerate()
         .map(|(i, c)| {
-            let glow = (1.0 - ((i as f32 - sweep).abs() / 6.0)).max(0.0);
+            let glow = ((1.0 - ((i as f32 - sweep).abs() / 6.0)).max(0.0) * 3.0).round() / 3.0;
             let col = lerp(color, (255, 245, 255), glow);
             Span::styled(
                 c.to_string(),

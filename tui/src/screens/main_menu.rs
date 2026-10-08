@@ -8,7 +8,7 @@ use ratatui::text::Line;
 use ratatui::widgets::{Block, BorderType, Paragraph};
 use theatre_engine::Rng;
 use theatre_engine::color::scale;
-use theatre_engine::save::format_playtime;
+use theatre_engine::save::{Metadata, format_playtime};
 
 use super::{Action, Ctx, Go};
 use crate::render::fx::{self, Particles};
@@ -49,6 +49,8 @@ const ITEMS: [(Item, &str, &str); 6] = [
 ];
 
 pub struct MainMenu {
+    /// the newest save, shown on Continue
+    latest: Option<Metadata>,
     selected: usize,
     konami: usize,
     secret_at: Option<u64>,
@@ -58,9 +60,11 @@ pub struct MainMenu {
 }
 
 impl MainMenu {
-    pub fn new(now: u64) -> Self {
+    pub fn new(now: u64, ctx: &Ctx) -> Self {
         let mut rng = Rng::new(0xBADA55 ^ now);
         MainMenu {
+            // read once: drawing must not query the database every frame
+            latest: ctx.store.latest(),
             selected: 0,
             konami: 0,
             secret_at: None,
@@ -112,7 +116,7 @@ impl MainMenu {
         match ITEMS[self.selected].0 {
             Item::NewGame if ctx.settings.cinematics => Go::Cinematic.into(),
             Item::NewGame => Go::StorySelect.into(),
-            Item::Continue => match ctx.store.latest() {
+            Item::Continue => match self.latest.clone() {
                 Some(m) => match ctx.store.load(&m.story_id, m.slot) {
                     Ok(file) => {
                         Go::Resume(ctx.stories.join(&m.story_id), Box::new(file.state), m.name)
@@ -143,7 +147,7 @@ impl MainMenu {
         }
     }
 
-    pub fn draw(&mut self, f: &mut Frame, ctx: &Ctx, now: u64) {
+    pub fn draw(&mut self, f: &mut Frame, now: u64) {
         let th = Theme::theatre();
         let area = f.area();
         f.render_widget(Block::new().style(Style::new().bg(rgb(th.bg))), area);
@@ -164,7 +168,7 @@ impl MainMenu {
             title,
         );
 
-        let latest = ctx.store.latest();
+        let latest = &self.latest;
         let box_area = centered(body, 76, 16);
         let block = panel("MAIN MENU", &th, th.border)
             .border_type(BorderType::Rounded)
@@ -176,7 +180,7 @@ impl MainMenu {
         f.render_widget(block, box_area);
         let mut lines = Vec::new();
         for (i, (item, label, desc)) in ITEMS.iter().enumerate() {
-            let detail = match (item, &latest) {
+            let detail = match (item, latest) {
                 (Item::Continue, Some(m)) => format!(
                     "{} · {}",
                     m.scene_description,
@@ -212,7 +216,7 @@ impl MainMenu {
             if now - at < 2200 {
                 let r = centered(area, 56, 9);
                 let inner = modal(f, r, "SECRET UNLOCKED", &th, th.accent, "any key");
-                let pulse = 0.7 + 0.3 * (now as f32 / 150.0).sin();
+                let pulse = 0.4 + 0.6 * fx::wave(now, 150.0, 3);
                 f.render_widget(
                     Paragraph::new(vec![
                         Line::styled(

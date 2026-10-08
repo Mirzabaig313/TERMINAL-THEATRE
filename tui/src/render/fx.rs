@@ -67,6 +67,19 @@ pub fn downgrade_256(buf: &mut Buffer, area: Rect) {
     }
 }
 
+/// Idle animations advance in steps of this many ms, so most frames are
+/// identical and the terminal receives nothing new (editor terminals are slow
+/// to draw, and a fully animated screen floods them).
+pub const ANIM_STEP_MS: u64 = 125;
+
+/// A slow 0..1 wave for glows and pulses, stepped in time and in `levels`.
+pub fn wave(now: u64, period_ms: f32, levels: u32) -> f32 {
+    let t = (now / ANIM_STEP_MS * ANIM_STEP_MS) as f32;
+    let v = 0.5 + 0.5 * (t / period_ms).sin();
+    let n = levels.max(2) as f32 - 1.0;
+    (v * n).round() / n
+}
+
 /// Monochrome mode: every color becomes its gray.
 pub fn grayscale(buf: &mut Buffer, area: Rect) {
     map_colors(buf, area, |(r, g, b)| {
@@ -175,13 +188,12 @@ impl Particles {
         for m in &self.motes {
             let x = area.x + (m.x * area.width as f32) as u16;
             let y = area.y + (m.y * area.height as f32) as u16;
-            let glow = 0.35 + 0.65 * (0.5 + 0.5 * m.phase.sin());
-            let ch = if glow > 0.8 {
-                '•'
-            } else if glow > 0.55 {
-                '·'
-            } else {
-                '.'
+            // three brightness steps only, so a mote's cell changes rarely
+            let level = ((0.5 + 0.5 * m.phase.sin()) * 2.99) as u8;
+            let (ch, glow) = match level {
+                2 => ('•', 1.0),
+                1 => ('·', 0.7),
+                _ => ('.', 0.4),
             };
             if let Some(cell) = buf.cell_mut(Position::new(x, y))
                 && cell.symbol() == " "

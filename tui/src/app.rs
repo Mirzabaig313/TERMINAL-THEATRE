@@ -20,7 +20,7 @@ use crate::screens::{Action, Ctx, Go};
 
 enum Screen {
     Opening(Opening),
-    MainMenu(MainMenu),
+    MainMenu(Box<MainMenu>),
     Cinematic(Cinematic),
     StorySelect(Box<Menu>),
     Settings(SettingsScreen),
@@ -40,6 +40,8 @@ pub struct App {
     ctx: Ctx,
     screen: Screen,
     t: u64,
+    /// last key press or screen change, for the frame rate
+    last_input: u64,
     pub quit: bool,
 }
 
@@ -47,6 +49,7 @@ impl App {
     pub fn new(ctx: Ctx, start: Start) -> Self {
         let screen = Screen::Opening(Opening::new(0, seed()));
         let mut app = App {
+            last_input: 0,
             ctx,
             screen,
             t: 0,
@@ -70,6 +73,20 @@ impl App {
 
     pub fn ctx_mut(&mut self) -> &mut Ctx {
         &mut self.ctx
+    }
+
+    /// Draw at full frame rate? True right after input and while the current
+    /// screen animates quickly; otherwise the main loop slows to the idle rate,
+    /// which keeps terminals (especially editor terminals) responsive.
+    pub fn busy(&self) -> bool {
+        let now = self.t;
+        now.saturating_sub(self.last_input) < 1000
+            || match &self.screen {
+                Screen::Opening(s) => s.busy(now),
+                Screen::Cinematic(_) => true,
+                Screen::Play(p) => p.busy(now),
+                _ => false,
+            }
     }
 
     pub fn tick(&mut self, now: u64) {
@@ -104,6 +121,7 @@ impl App {
             return;
         }
         let now = self.t;
+        self.last_input = now;
         let action = match &mut self.screen {
             Screen::Opening(s) => s.key(k, now),
             Screen::MainMenu(s) => s.key(k, &self.ctx, now),
@@ -127,8 +145,9 @@ impl App {
 
     fn go(&mut self, g: Go) {
         let now = self.t;
+        self.last_input = now;
         self.screen = match g {
-            Go::MainMenu => Screen::MainMenu(MainMenu::new(now)),
+            Go::MainMenu => Screen::MainMenu(Box::new(MainMenu::new(now, &self.ctx))),
             Go::StorySelect => Screen::StorySelect(Box::new(Menu::new(
                 &self.ctx.stories,
                 &self.ctx.store,
@@ -165,7 +184,7 @@ impl App {
         let now = self.t;
         match &mut self.screen {
             Screen::Opening(s) => s.draw(f, now),
-            Screen::MainMenu(s) => s.draw(f, &self.ctx, now),
+            Screen::MainMenu(s) => s.draw(f, now),
             Screen::Cinematic(s) => s.draw(f, now),
             Screen::StorySelect(s) => s.draw(f, now),
             Screen::Settings(s) => s.draw(f, &self.ctx, now),

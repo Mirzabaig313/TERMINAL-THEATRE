@@ -373,7 +373,7 @@ impl Menu {
                 .wrap(Wrap { trim: true }),
             desc,
         );
-        let pulse = 0.55 + 0.45 * ((now as f32 / 450.0).sin() * 0.5 + 0.5);
+        let pulse = 0.55 + 0.45 * fx::wave(now, 450.0, 4);
         f.render_widget(
             Paragraph::new(match self.progress(&e.id) {
                 Some(p) => format!("▶  press ENTER to begin  ·  E endings found ({p})"),

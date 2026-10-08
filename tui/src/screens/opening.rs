@@ -108,6 +108,11 @@ impl Opening {
             || now.saturating_sub(self.start) > self.reveal_end() + FLICKERS * FLICKER_MS + 300
     }
 
+    /// The marquee is still being revealed or flickering.
+    pub fn busy(&self, now: u64) -> bool {
+        !self.done(now)
+    }
+
     pub fn tick(&mut self, dt: f32) {
         self.particles.update(dt);
     }
@@ -183,7 +188,7 @@ impl Opening {
             lerp(
                 NEON_RED,
                 (255, 120, 150),
-                0.5 + 0.5 * (now as f32 / 700.0).sin() * 0.4,
+                0.3 + 0.4 * fx::wave(now, 700.0, 5),
             )
         };
         let lines: Vec<Line> = TITLE_ART

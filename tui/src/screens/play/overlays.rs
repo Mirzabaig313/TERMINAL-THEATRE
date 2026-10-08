@@ -43,7 +43,11 @@ impl Play {
                     KeyCode::Esc => self.overlay = Overlay::None,
                     KeyCode::Enter | KeyCode::Char(' ') => match *selected {
                         P_RESUME => self.overlay = Overlay::None,
-                        P_SAVE => self.overlay = Overlay::SaveSlots { selected: 0 },
+                        P_SAVE => {
+                            // read once: drawing must not query the database every frame
+                            self.slots = ctx.store.slots(&self.runner.pack.id);
+                            self.overlay = Overlay::SaveSlots { selected: 0 };
+                        }
                         P_HISTORY => self.overlay = Overlay::Backlog { scroll: 0 },
                         P_MENU => self.overlay = Overlay::ConfirmLeave,
                         _ => return Some(Action::Quit),
@@ -140,6 +144,28 @@ impl Play {
         }
     }
 
+    /// Text of the title card: the description, or a resume summary.
+    fn intro_body(&self, resumed: Option<&str>) -> String {
+        match resumed {
+            Some(name) => format!(
+                "Resuming your story...\n\n\"{name}\" · {} · {} played",
+                pretty(self.runner.scene_id()),
+                format_playtime(self.runner.state.playtime_ms)
+            ),
+            None => self.runner.pack.meta.description.clone(),
+        }
+    }
+
+    /// Characters of the title card shown at `now` (usize::MAX when done).
+    pub(super) fn intro_shown(&self, resumed: Option<&str>, since: u64, now: u64) -> usize {
+        if self.runner.speed <= 0.0 {
+            return usize::MAX;
+        }
+        let elapsed = now.saturating_sub(since).saturating_sub(400);
+        let ms = ((20.0 * self.runner.speed).round() as u64).max(1);
+        revealed(&self.intro_body(resumed), elapsed, ms)
+    }
+
     /// Story title card: the description types out for a new game.
     pub(super) fn draw_intro(
         &self,
@@ -152,14 +178,7 @@ impl Play {
         let area = f.area();
         f.render_widget(Block::new().style(Style::new().bg(rgb(th.bg))), area);
         let meta = &self.runner.pack.meta;
-        let body = match resumed {
-            Some(name) => format!(
-                "Resuming your story...\n\n\"{name}\" · {} · {} played",
-                pretty(self.runner.scene_id()),
-                format_playtime(self.runner.state.playtime_ms)
-            ),
-            None => meta.description.clone(),
-        };
+        let body = self.intro_body(resumed);
         let w = area.width.min(84);
         let body_h = wrapped_height(&body, w as usize) as u16;
         let [_, rule1, title, rule2, _, text, _, prompt, _] = Layout::vertical([
@@ -187,13 +206,7 @@ impl Play {
             Paragraph::new(shimmer(&meta.title, now, th.accent)).centered(),
             title,
         );
-        let elapsed = now.saturating_sub(since).saturating_sub(400);
-        let ms = ((20.0 * self.runner.speed).round() as u64).max(1);
-        let shown = if self.runner.speed <= 0.0 {
-            usize::MAX
-        } else {
-            revealed(&body, elapsed, ms)
-        };
+        let shown = self.intro_shown(resumed, since, now);
         let text_area = Rect {
             x: text.x + (text.width - w) / 2,
             width: w,
@@ -211,7 +224,7 @@ impl Play {
             text_area,
         );
         if shown == usize::MAX {
-            let pulse = 0.55 + 0.45 * ((now as f32 / 450.0).sin() * 0.5 + 0.5);
+            let pulse = 0.55 + 0.45 * fx::wave(now, 450.0, 4);
             f.render_widget(
                 Paragraph::new("Press ENTER to continue...  ·  Esc to go back")
                     .style(Style::new().fg(rgb(scale(th.dim, pulse * 1.3))))
@@ -226,7 +239,7 @@ impl Play {
         );
     }
 
-    pub(super) fn draw_overlay(&self, f: &mut Frame, ctx: &Ctx, th: &Theme, now: u64) {
+    pub(super) fn draw_overlay(&self, f: &mut Frame, th: &Theme, now: u64) {
         let area = f.area();
         match &self.overlay {
             Overlay::None | Overlay::Intro { .. } => {}
@@ -288,11 +301,11 @@ impl Play {
                     th.border,
                     "↑/↓ or 1-9 · Enter choose · Esc back",
                 );
-                let slots = ctx.store.slots(&self.runner.pack.id);
+                let slots = &self.slots;
                 let mut lines = Vec::new();
                 for slot in 1..=MAX_SLOT {
                     let i = slot as usize - 1;
-                    let (label, detail) = match &slots[slot as usize] {
+                    let (label, detail) = match slots.get(slot as usize).and_then(Option::as_ref) {
                         Some(m) => (
                             m.name.clone(),
                             format!(

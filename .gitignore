@@ -170,7 +170,6 @@ target/
 .github/instructions/codacy.instructions.md
 
 #local settings
-docs/
 .github/instructions
 .codacy
 python*

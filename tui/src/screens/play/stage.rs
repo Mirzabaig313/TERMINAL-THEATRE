@@ -60,7 +60,7 @@ impl Play {
             );
             fx::fade(f.buffer_mut(), full, 0.3 + 0.7 * k);
         }
-        self.draw_overlay(f, ctx, &th, now);
+        self.draw_overlay(f, &th, now);
         if let Some(t) = &self.toast {
             t.draw(f, full, &th, now);
         }
@@ -186,11 +186,7 @@ impl Play {
             .map(|(i, l)| {
                 // vertical gradient, slowly breathing
                 let k = i as f32 / art_h.max(1) as f32;
-                let pulse = 0.8 + 0.2 * ((now as f32 / 900.0) + k * 3.0).sin();
-                let col = scale(
-                    lerp(th.accent, th.dim, k),
-                    pulse * (since / 1200.0).min(1.0),
-                );
+                let col = scale(lerp(th.accent, th.dim, k), (since / 1200.0).min(1.0));
                 Line::styled(*l, Style::new().fg(rgb(col)))
             })
             .collect();
@@ -349,7 +345,7 @@ impl Play {
             // choices slide in one after another
             let appear = ((since as f32 - i as f32 * 90.0) / 250.0).clamp(0.0, 1.0);
             let selected = i == self.runner.selected();
-            let pulse = 0.75 + 0.25 * (now as f32 / 300.0).sin();
+            let pulse = 0.75 + 0.25 * fx::wave(now, 300.0, 3);
             let col = if selected {
                 scale(th.accent, pulse)
             } else {

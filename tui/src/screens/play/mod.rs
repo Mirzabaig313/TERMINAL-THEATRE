@@ -26,7 +26,7 @@ use ratatui::widgets::{Block, BorderType, Borders, Padding, Paragraph, Wrap};
 use theatre_engine::color::{lerp, parse_hex, scale};
 use theatre_engine::progress::{NARRATION, Seen};
 use theatre_engine::runner::{Phase, Runner, revealed};
-use theatre_engine::save::{AUTOSAVE_SLOT, MAX_SLOT, QUICKSAVE_SLOT, format_playtime};
+use theatre_engine::save::{AUTOSAVE_SLOT, MAX_SLOT, Metadata, QUICKSAVE_SLOT, format_playtime};
 use theatre_engine::scene::{LineFx, Mood};
 use theatre_engine::settings::Effects;
 use theatre_engine::sprite::Actor;
@@ -87,6 +87,8 @@ pub struct Play {
     /// lines read in any earlier session, plus this one
     seen: Seen,
     backlog: Backlog,
+    /// save slots, read when the save dialog opens
+    slots: Vec<Option<Metadata>>,
     /// set when an ending is reached: (first time?, endings found, endings in the story)
     ending: Option<(bool, usize, usize)>,
 }
@@ -120,8 +122,26 @@ impl Play {
             last_skip: 0,
             seen,
             backlog: Backlog::default(),
+            slots: Vec::new(),
             ending: None,
         }
+    }
+
+    /// Something on screen moves quickly right now (typing, a transition, an
+    /// effect, auto/skip), so the app should draw at full frame rate.
+    pub fn busy(&self, now: u64) -> bool {
+        let recent = |t: u64, ms: u64| now.saturating_sub(t) < ms;
+        if let Overlay::Intro { resumed, since } = &self.overlay {
+            // the title card is busy while it fades in and types out
+            return now.saturating_sub(*since) < 1000
+                || self.intro_shown(resumed.as_deref(), *since, now) != usize::MAX;
+        }
+        !self.runner.typing_done(now)
+            || recent(self.runner.scene_start(), 1000)
+            || recent(self.runner.phase_start(), 800)
+            || recent(self.actor_since, 600)
+            || recent(self.fx_start, 600)
+            || self.mode != Mode::Normal
     }
 
     pub fn tick(&mut self, now: u64, dt: f32, ctx: &Ctx) {
