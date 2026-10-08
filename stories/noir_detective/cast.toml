@@ -90,3 +90,54 @@ metal = "#9a9a9a"
 skin = "#c49a7a"
 eyes = "#2a2018"
 extras = ["stubble", "scar"]
+
+[chen]
+name = "Special Agent Sarah Chen"
+hair_style = "bob"
+hair = "#141218"
+outfit = "suit"
+cloth = "#2c2f3a"
+shirt = "#e4e2dc"
+accent = "#3a4a6a"
+skin = "#e2c2a6"
+eyes = "#2a2018"
+lips = "#8a3a40"
+extras = ["lashes", "earrings"]
+
+[doc_stevens]
+name = "Doc Stevens"
+hair_style = "bald"
+hair = "#b8b4ac"
+outfit = "vest"
+cloth = "#4a4038"
+shirt = "#dcd6c8"
+accent = "#6a2a2a"
+skin = "#d8b49a"
+eyes = "#5a6a70"
+extras = ["glasses", "wrinkles", "mustache"]
+
+[dying_woman]
+name = "The Woman in Red"
+hair_style = "long"
+hair = "#4a1e14"
+outfit = "dress"
+cloth = "#6a0f18"
+accent = "#d4af37"
+metal = "#d4af37"
+skin = "#e6c8b0"
+eyes = "#3a5a4a"
+lips = "#a01828"
+extras = ["lashes", "earrings"]
+
+[guard]
+name = "Guard"
+hat = "cap"
+hat_color = "#2a2a2a"
+hair_style = "short"
+hair = "#2a201a"
+outfit = "leather"
+cloth = "#2a2622"
+metal = "#8a8a8a"
+skin = "#c49a7a"
+eyes = "#2a2018"
+extras = ["stubble"]

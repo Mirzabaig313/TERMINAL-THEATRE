@@ -1,0 +1,261 @@
+# THE LAST CASE - Chapter 1: The Office
+# 2 AM, forty-seventh floor. A dead woman, a warm gun, and three ways out.
+
+[opening]
+mood = "mystery"
+text = """
+The neon sign outside your window stutters on and off like a bad heart - MALONE INVESTIGATIONS, then nothing, then MALONE INVESTIGATIONS again, painting the office the colour of a fresh wound. It's 2 AM. The rain has been coming down for three days, and it slides down the glass in long grey ropes, as if the whole city is trying to wash its hands.
+
+The dame who walked in an hour ago is lying face-down on your carpet. White dress. A red rose blooming across the back of it, still spreading, slow as gossip. Her shoe has come off. Somehow that's the part you can't stop looking at.
+
+Your gun is in your hand. It's warm.
+
+There's a taste in your mouth like pennies and cheap bourbon, and a hole in your memory you could drive a hearse through. You remember her name - Valentina - and the way she kept glancing at the door. You remember pouring two drinks. After that, the reel snaps.
+
+Somewhere far below, a siren starts its long climb up the scale. In this business, memory is just another luxury you can't afford."""
+art = """
+
+╔════════════════════════════════════════════════════════════════╗
+║                   MALONE INVESTIGATIONS                       ║
+║                      47th Floor                               ║
+╠════════════════════════════════════════════════════════════════╣
+║                                                              ║
+║   ╔══════════════════╗                    ╔══════════════╗   ║
+║   ║    FILE          ║                    ║   VENETIAN   ║   ║
+║   ║   CABINET        ║       ╭────────╮   ║    BLINDS    ║   ║
+║   ║      │           ║      ╱          ╲  ║              ║   ║
+║   ║  ┌───┴──┐        ║     │            │ ║   ░░░░░░░   ║   ║
+║   ║  │ FILES│        ║     │   DESK    │ ║   ░░░░░░░   ║   ║
+║   ║  │ CASE │        ║     │           │ ║   ░░░░░░░   ║   ║
+║   ║  │  #47 │        ║     │  ┌─────┐ │ ║   ▓▓▓▓▓▓▓   ║   ║
+║   ║  └─────┘        ║     │  │ GUN │ │ ║              ║   ║
+║   ║                 ║     │  └─────┘ │ ║   CITY VIEW   ║   ║
+║   ║                 ║     │  ┌─────┐ │ ║   (DARK)      ║   ║
+║   ║                 ║     │  │ LAMP│ │ ║              ║   ║
+║   ╚═════════════════╝     ╰──┬─────┬──╯ ╚══════════════╝   ║
+║                             │     │                         ║
+║                          ≈ ≈ ≈ ≈ ≈ ≈ ≈                      ║
+║                         ( CIGARETTE SMOKE )                  ║
+║                                                              ║
+║   "Three days of rain. Three days of lies.                   ║
+║    She's dead. I'm holding the gun. Cops are coming."        ║
+║                                                              ║
+╚════════════════════════════════════════════════════════════════╝
+        """
+dialogue = [
+  { who = "jack_malone", line = "Think, Jack. Think... What happened?", mood = "pained", fx = "glitch" },
+  { who = "jack_malone", line = "The dame said she was being followed. Said she had proof that would bring down the Castellano family. Then... nothing.", mood = "sad" },
+  { who = "malone_thinking", line = "That siren's not going anywhere else. Ten minutes, maybe less.", mood = "afraid" },
+]
+[[opening.choices]]
+text = "Search the woman's body for clues"
+goto = "search_body"
+[[opening.choices]]
+text = "Check your own gun - how many bullets fired?"
+goto = "check_gun"
+[[opening.choices]]
+text = "Run. Get out while you still can."
+goto = "run_away"
+
+[search_body]
+mood = "alert"
+text = """
+You kneel beside her. Your knees crack like knuckles. Professional habits die hard, and right now they're the only thing keeping your hands steady.
+
+Her clutch is black patent leather, the kind of bag that costs more than your rent. Inside: a lipstick worn down to a nub, a ring of keys, and a photograph folded twice so the crease runs straight through somebody's smile. You flatten it on your knee under the stuttering neon.
+
+Vincent Castellano, the man who owns half the docks and rents out the other half, shaking hands with Police Chief Morrison. Both of them grinning like they just split a pie. Behind them, a warehouse door with a number painted in white: 47.
+
+Tucked behind the photo, a ticket stub. The Ritz Theater. Tonight's performance. Section 47, Seat 13. The show let out two hours ago - she never used it. Or she never meant to.
+
+You pocket both. The photograph feels heavier than paper has a right to."""
+add_items = ["Photograph", "Ritz Ticket"]
+dialogue = [
+  { who = "jack_malone", line = "Warehouse 47... Section 47... That's not coincidence.", mood = "shocked" },
+  { who = "jack_malone", line = "Either she wanted me to find this, or someone wanted me to find her." },
+]
+[[search_body.choices]]
+text = "Go to Warehouse 47 - confront this head-on"
+goto = "warehouse"
+[[search_body.choices]]
+text = "Visit the Ritz Theater - Seat 13 is waiting for someone"
+goto = "theater"
+[[search_body.choices]]
+text = "Take the evidence to Captain Rodriguez - he's clean"
+goto = "rodriguez"
+
+[check_gun]
+mood = "alert"
+text = """
+You thumb the latch and the cylinder swings out with a sound like a cocked eyebrow.
+
+Six chambers. Six brass faces looking up at you. Not one of them kissed by a firing pin.
+
+You sniff the barrel. Oil and nothing else. This gun hasn't spoken since you cleaned it on Sunday.
+
+Your blood runs cold, then hot, then cold again. Somebody else pulled the trigger in your office, with you sitting right there, and then pressed your own iron into your palm like a party favour. Somebody who knew where you keep the bottle and how much it takes to put you under.
+
+That's not a robbery. That's not a jealous husband. That's craftsmanship.
+
+You snap the cylinder home and keep the gun. Six live rounds is the best alibi you've got, and you're not leaving it for the cops to lose."""
+set_flags = ["examined_gun"]
+add_items = ["Unfired Revolver"]
+dialogue = [
+  { who = "jack_malone", line = "I've been played. Set up like a patsy.", mood = "angry", fx = "flash" },
+  { who = "jack_malone", line = "But who? And why?", mood = "afraid" },
+]
+[[check_gun.choices]]
+text = "Search the dame for clues"
+goto = "search_body_after_gun"
+[[check_gun.choices]]
+text = "Check the office - maybe they're still here"
+goto = "check_office"
+[[check_gun.choices]]
+text = "Call your old partner Eddie for help"
+goto = "call_eddie"
+[[check_gun.choices]]
+text = "Sirens on the street - take the fire escape now and think later"
+goto = "run_away"
+
+[search_body_after_gun]
+mood = "danger"
+text = """
+You go through her clutch with new eyes. Not a client's bag anymore. A dead witness's.
+
+The photograph is folded twice: Vincent Castellano and Police Chief Morrison shaking hands outside a warehouse marked 47, both of them wearing the smiles of men who have never once been told no. Behind it, a ticket stub for the Ritz Theater, Section 47, Seat 13 - unused.
+
+Now it reads differently. She didn't come here to hire you. She came here to hand you something, and somebody made sure she never got the words out. You were the perfect place to leave her: a washed-up private eye with a bottle in his drawer and a grudge against half the precinct. Who'd believe a man like that?
+
+Rain rattles the window like a tin cup. You fold the photo back along its creases and slip it inside your coat, next to the gun that never fired."""
+add_items = ["Photograph", "Ritz Ticket"]
+dialogue = [
+  { who = "jack_malone", line = "This is bigger than I thought. The cops, the mob... all connected.", mood = "shocked" },
+  { who = "malone_thinking", line = "Somebody went to a lot of trouble to make me the bad guy. That means I'm worth something to them.", mood = "smirk" },
+]
+[[search_body_after_gun.choices]]
+text = "Head to Warehouse 47 - end this tonight"
+goto = "warehouse"
+[[search_body_after_gun.choices]]
+text = "Find Eddie first - you need backup"
+goto = "call_eddie"
+[[search_body_after_gun.choices]]
+text = "Try the Ritz - Seat 13 might be her dead drop"
+goto = "theater"
+[[search_body_after_gun.choices]]
+text = "Take the photo and your gun to Captain Rodriguez"
+goto = "rodriguez"
+
+[check_office]
+mood = "alert"
+text = """
+You move through your own office like a burglar, gun up, letting the neon do your searching for you. Red. Dark. Red. The coat rack throws a shadow like a hanged man. The bottle on your desk is two fingers lower than you remember pouring.
+
+Behind the filing cabinet, a draught. You put your shoulder to the steel and it scrapes back over the boards. The service panel behind it is hanging open, screws on the floor, and beyond it the building's wet black guts - pipes, wiring, a crawlspace that runs the length of the forty-seventh floor.
+
+Somebody was in your walls. Close enough to hear you pour. Close enough to take the shot, slip out, and leave you holding the bag while the knockout drops did their work.
+
+On the floor by the panel, a business card, cream stock, embossed in gold: The Velvet Room - Where Secrets Sleep. There's a lipstick print on the back. Not hers. Wrong shade."""
+set_flags = ["found_service_panel"]
+dialogue = [
+  { who = "jack_malone", line = "The Velvet Room. High-class nightclub. Castellano territory." },
+  { who = "jack_malone", line = "Why leave a calling card unless they want me to follow?", mood = "smirk" },
+]
+[[check_office.choices]]
+text = "Go to the Velvet Room - walk into the trap with eyes open"
+goto = "velvet_room"
+[[check_office.choices]]
+text = "Search the dame for more clues first"
+goto = "search_body_after_gun"
+[[check_office.choices]]
+text = "Get out of town - this is above your pay grade"
+goto = "leave_town"
+
+[call_eddie]
+mood = "calm"
+text = """
+You dial Eddie's number with a finger that won't quite stay still. Three rings. Four.
+
+'Yeah?' His voice is gravel in a coffee can.
+
+'Eddie, it's Jack. I need help. There's a body in my office and-'
+
+'Say no more. I'll be there in ten.'
+
+He's there in eight. Eddie, six months off the force and still walking like the badge is pinned to him, rain dripping off the peak of a flat cap older than his marriage. He takes in the room the way a cop does - body, gun, window, door - and he doesn't ask you whether you did it. He just looks at you, long enough to read the answer, and then he nods.
+
+That nod is worth more than any alibi in this city. You'd forgotten what it felt like to have somebody in your corner."""
+set_flags = ["called_eddie"]
+dialogue = [
+  { who = "eddie", line = "Jesus, Jack. You really stepped in it this time.", mood = "shocked" },
+  { who = "jack_malone", line = "I didn't do it, Eddie.", mood = "pained" },
+  { who = "eddie", line = "I know. You're a lot of things, but you ain't a killer. Not like this, anyway. We need to find who did.", mood = "smirk" },
+  { who = "eddie", line = "I've been hearing things. Warehouse 47. Big meeting tonight. Castellano, Morrison... maybe more. This dame was probably insurance - proof for whoever wanted out." },
+  { who = "eddie", line = "Whatever you decide, I'm in. I'll be by my phone or by your side. Your call.", mood = "smirk" },
+]
+[[call_eddie.choices]]
+text = "Hit Warehouse 47 with Eddie - time to crash the party"
+goto = "warehouse_with_eddie"
+[[call_eddie.choices]]
+text = "Have Eddie watch your back while you visit the Velvet Room"
+goto = "velvet_room_with_eddie"
+[[call_eddie.choices]]
+text = "Tell Eddie to sit by the phone - you'll scout the docks alone first"
+goto = "warehouse"
+[[call_eddie.choices]]
+text = "Check the Ritz first - the ticket stub has to mean something"
+goto = "theater"
+any_items = ["Ritz Ticket"]
+
+[run_away]
+mood = "danger"
+text = """
+You grab your coat and hat and leave her there. It's the worst thing you've done in years, and you do it in four seconds flat.
+
+The fire escape groans under your weight, every rung slick as a liar's handshake. The rain hits you like a fist, gets down your collar, fills your shoes. Forty-seven floors of iron zigzag down the side of the building, and with every landing the siren gets louder and the neon gets further away.
+
+You drop the last six feet into the alley. Garbage cans. Steam from a grate. A cat that wants nothing to do with you.
+
+And three figures stepping out of the shadows at the mouth of the alley, hat brims dripping, hands in their pockets in the way that means the pockets aren't empty. The one in the middle is built like a mailbox and has knuckles like walnuts.
+
+Tony 'The Fist'. Castellano's errand boy. They've been waiting down here the whole time - which means somebody knew you'd come down this way."""
+art = """
+
+╔═══════════════════════════════════════════════════════════════════╗
+║                    DOWNTOWN SKYLINE - NIGHT                      ║
+║                    (Seen from Malone's Office)                   ║
+╠═══════════════════════════════════════════════════════════════════╣
+║                                                                 ║
+║              ▌ │ ▌     ▌ │     ▌ │ ▌      ▌ │ ▌             ║
+║              █ │ █     █ │ █   █ │ █      █ │ █             ║
+║              █ │ █     █ │ █   █ │ █      █ │ █             ║
+║              █ │ █  ◈  █ │ █ ◈ █ │ █  ◈  █ │ █             ║
+║              █ │ █     █ │ █   █ │ █      █ │ █             ║
+║              █ │ █     █ │ █   █ │ █      █ │ █             ║
+║              █ │ █  ◈  █ │ █ ◈ █ │ █  ◈  █ │ █             ║
+║              █ │ █     █ │ █   █ │ █      █ │ █             ║
+║              █ │ █  ◈  █ │ █ ◈ █ │ █  ◈  █ │ █             ║
+║         ╔════╬═╬═════╬═╬═╬═╬════╬═╬═════════╗               ║
+║         ║ ≈≈ │ │ ≈≈≈ │ │ │ │ ≈≈ │ │ streets ║ (wet)        ║
+║         ║≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈║               ║
+║         ║  neon signs flicker  • rain falls  ║               ║
+║         ║       people hurry past              ║               ║
+║         ╚════════════════════════════════════╝               ║
+║                                                                 ║
+║  "The city breathes tonight. And it stinks of crime."           ║
+║                                                                 ║
+╚═══════════════════════════════════════════════════════════════════╝
+        """
+dialogue = [
+  { who = "tony_the_fist", line = "Going somewhere, Malone?", mood = "smirk" },
+  { who = "jack_malone", line = "Just out for a smoke, Tony.", mood = "smirk" },
+  { who = "tony", line = "Mr. Castellano wants to see you. Says you got something belongs to him.", mood = "angry" },
+]
+[[run_away.choices]]
+text = "Go with them peacefully - maybe you can talk to Castellano"
+goto = "castellano_meeting"
+[[run_away.choices]]
+text = "Fight your way out - three against one, you've had worse odds"
+goto = "alley_fight"
+[[run_away.choices]]
+text = "Tell them about the dame - claim you were set up"
+goto = "blame_setup"

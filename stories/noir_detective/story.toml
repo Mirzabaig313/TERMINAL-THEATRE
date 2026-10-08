@@ -72,12 +72,15 @@ thought = true
 
 [speakers.guard]
 name = "GUARD"
+sprite = "guard"
 
 [speakers.dying_woman]
 name = "DYING WOMAN"
+sprite = "dying_woman"
 
 [speakers.chen]
 name = "CHEN"
+sprite = "chen"
 color = "#00ffff"
 
 [speakers.castellano_distant]
@@ -87,6 +90,7 @@ sprite = "castellano"
 
 [speakers.doc_stevens]
 name = "DOC STEVENS"
+sprite = "doc_stevens"
 
 [speakers.news_anchor]
 name = "NEWS ANCHOR"

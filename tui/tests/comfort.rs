@@ -10,8 +10,8 @@ use ratatui::crossterm::event::{KeyCode, KeyEvent, KeyModifiers};
 use ratatui::style::Color;
 use terminal_theatre::app::Start;
 use terminal_theatre::screens::menu::Menu;
-use theatre_engine::Store;
 use theatre_engine::settings::Effects;
+use theatre_engine::{Store, StoryPack};
 
 /// Start a story and get past its title card.
 fn playing(name: &str, story: &str) -> Harness {
@@ -138,7 +138,14 @@ fn gallery_lists_found_and_locked_endings() {
         .collect();
     assert!(screen.contains("ENDINGS"));
     assert!(screen.contains("Ending Heroic Victory"));
-    assert!(screen.contains("1 / 24"));
+    let total = StoryPack::load(&stories().join("noir_detective"))
+        .unwrap()
+        .ending_ids()
+        .len();
+    assert!(
+        screen.contains(&format!("1 / {total}")),
+        "expected 1 / {total}"
+    );
     assert!(screen.contains("? ? ?"));
 }
 

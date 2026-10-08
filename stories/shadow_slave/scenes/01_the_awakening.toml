@@ -2,11 +2,15 @@
 text = """
 Your eyes snap open. But this isn't your bed. This isn't your room.
 
-The ceiling above you writhes with impossible shadows. Ancient words burn themselves into your consciousness, searing through your mind like molten iron.
+There is no room at all - only a darkness with weight to it, pressing down on your chest like deep water. Above you, where a ceiling should be, shadows writhe and crawl, moving toward the faint light instead of away from it.
+
+Then the words arrive. Not heard, but carved: ancient letters burning themselves into the back of your skull one stroke at a time, each as hot as a branding iron. You understand them without ever having learned them.
 
 The Nightmare Spell has chosen you.
 
-You try to move, but your body feels foreign. Wrong. The world spins as reality itself seems to crack and fold around you."""
+You remember the news broadcasts, the quarantine notices, the classmates who fell asleep one night and woke up as something else - or never woke at all. You always believed it would happen to someone else.
+
+You try to move. Your body answers late, like a puppet whose strings were cut and badly retied. The world tilts, and reality splits along a seam you never knew was there."""
 art = """
 
     ╔═══════════════════════════════════════════════════════════╗
@@ -26,10 +30,9 @@ art = """
     ║                                                           ║
     ╚═══════════════════════════════════════════════════════════╝
         """
-set_flags = ["nightmare_started"]
 dialogue = [
   { who = "the_spell", line = "Aspirant! Welcome to the Nightmare Spell.", mood = "focus", fx = "flash" },
-  { who = "the_spell", line = "You have been infected with the Nightmare Seed." },
+  { who = "the_spell", line = "You have been infected with the Nightmare Seed.", mood = "focus" },
   { who = "your_thoughts", line = "No... this can't be real. Wake up. WAKE UP!", mood = "afraid", fx = "shake" },
   { who = "the_spell", line = "Prepare to enter your First Nightmare...", mood = "wrath", fx = "glitch" },
 ]
@@ -42,14 +45,16 @@ goto = "resistance"
 
 [resistance]
 text = """
-You thrash against the invisible bonds holding your consciousness. Pain lances through your skull as the Spell tightens its grip.
+You thrash against the invisible bonds holding your consciousness. You claw at the dark, kick at nothing, scream until your throat is raw - and the dark simply tightens, patient as a closing fist.
 
-Fighting the Nightmare Spell is like fighting the tide. Futile. Exhausting."""
+Pain lances through your skull as the Spell digs in. The burning letters flare brighter, as if your defiance were fuel.
+
+Fighting the Nightmare Spell is like fighting the tide. Futile. Exhausting. And yet some stubborn, starving part of you refuses to stop."""
 set_flags = ["resisted_spell"]
 dialogue = [
   { who = "the_spell", line = "Resistance will only make the transition more... painful.", mood = "wrath" },
   { who = "your_thoughts", line = "I won't... I won't give in!", mood = "angry", fx = "shake" },
-  { who = "the_spell", line = "You have no choice, Aspirant. The Seed has already taken root." },
+  { who = "the_spell", line = "You have no choice, Aspirant. The Seed has already taken root.", mood = "focus" },
 ]
 [[resistance.choices]]
 text = "Stop resisting and accept it"
@@ -60,23 +65,53 @@ goto = "forced_entry"
 
 [forced_entry]
 text = """
-The pain becomes unbearable. Your consciousness fractures under the strain.
+The pain becomes unbearable. Your consciousness fractures under the strain, splintering into a hundred bright, useless pieces.
 
-The Spell doesn't care about your resistance. It never did.
+The Spell doesn't care about your resistance. It never did. You were never fighting an enemy - only weather.
 
-With a violent wrench, you're torn from reality and hurled into the abyss. The last thing you feel is your own scream echoing in the void."""
+With a violent wrench, you're torn from reality and hurled into the abyss. Wind that isn't wind howls past you. Your own scream echoes back from very far below, as if the void has already heard it a thousand times before.
+
+You are falling, and you can feel yourself coming apart as you fall."""
 dialogue = [
   { who = "the_spell", line = "So be it.", mood = "wrath", fx = "glitch" },
+  { who = "your_thoughts", line = "I'm... unravelling. I can't even remember my own face...", mood = "pained" },
 ]
 [[forced_entry.choices]]
-text = "Fall into darkness"
+text = "Let go and fall into darkness"
+goto = "dream_realm_entry_rough"
+[[forced_entry.choices]]
+text = "Scream your own name into the void"
+goto = "name_in_the_void"
+
+[name_in_the_void]
+text = """
+You will not arrive as nothing.
+
+You drag a single word out of the wreckage of your mind - your name - and you scream it into the dark. Once. Twice. Again, until the syllables stop sounding like noise and start sounding like you.
+
+The void shudders. For a heartbeat the burning letters stutter, as though the Spell has met something it did not expect: a mind that refuses to be erased on the way down.
+
+You are still falling. But you are falling as yourself."""
+set_flags = ["held_onto_self"]
+dialogue = [
+  { who = "the_spell", line = "...Noted.", mood = "focus", fx = "glitch" },
+  { who = "your_thoughts", line = "That's right. Remember me. I'm not going anywhere.", mood = "angry" },
+]
+[[name_in_the_void.choices]]
+text = "Fall, holding on to yourself"
 goto = "dream_realm_entry_rough"
 
 [spell_explanation]
 text = """
-You force yourself to breathe slowly. To think. To listen.
+You force yourself to breathe slowly. In. Out. To think. To listen.
 
-The Spell's words continue to flow, each syllable carrying weight beyond comprehension. Information floods your mind: the Dream Realm, Nightmares, Attributes, Memories..."""
+The panic doesn't leave - it just steps aside, the way a crowd parts for something larger. And into that space the Spell pours.
+
+Its words continue to flow, each syllable carrying weight beyond comprehension. Knowledge floods your mind faster than you can catch it: a Dream Realm beneath the waking world, Nightmares that test and kill, Attributes that sleep inside the soul, Memories left behind by the fallen like coins on a grave.
+
+It is too much. It is also, you realise, a gift. The Spell is not cruel. It is not kind. It is simply a system, and systems have rules.
+
+And rules can be learned."""
 art = """
 
             ◈━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━◈
@@ -95,7 +130,7 @@ set_flags = ["learned_spell_basics"]
 dialogue = [
   { who = "the_spell", line = "Wise choice, Aspirant.", mood = "focus" },
   { who = "the_spell", line = "You will now be transported to the Dream Realm to face your First Nightmare." },
-  { who = "the_spell", line = "Survive, and you will awaken with power beyond mortal limits." },
+  { who = "the_spell", line = "Survive, and you will awaken with power beyond mortal limits.", mood = "focus" },
   { who = "the_spell", line = "Fail, and you will be lost forever in the darkness.", mood = "wrath" },
   { who = "your_thoughts", line = "How do I survive? What am I supposed to do?", mood = "afraid" },
   { who = "the_spell", line = "That, Aspirant, is for you to discover." },
@@ -112,55 +147,90 @@ goto = "dream_realm_entry_calm"
 
 [dream_realm_info]
 text = """
-The Spell pauses, as if considering your question."""
+The Spell pauses, as if considering your question. The burning letters dim and rearrange themselves, and for a moment you glimpse a map with no edges - broken cities, black seas, mountains that lean like sleeping giants."""
 set_flags = ["learned_dream_realm"]
 dialogue = [
   { who = "the_spell", line = "The Dream Realm is a place between sleep and death." },
-  { who = "the_spell", line = "A realm of nightmares made manifest. Of ancient horrors and forgotten gods." },
-  { who = "the_spell", line = "Reality there follows different rules. Logic is... flexible." },
+  { who = "the_spell", line = "A realm of nightmares made manifest. Of ancient horrors and forgotten gods.", mood = "wrath" },
+  { who = "the_spell", line = "Reality there follows different rules. Logic is... flexible.", mood = "focus" },
   { who = "your_thoughts", line = "That's not exactly reassuring...", mood = "smirk" },
 ]
 [[dream_realm_info.choices]]
 text = "Prepare yourself mentally"
 goto = "dream_realm_entry_calm"
+[[dream_realm_info.choices]]
+text = "Ask how to survive it, too"
+goto = "survival_info"
 
 [survival_info]
 text = """
-You need to know. Need to understand what you're walking into."""
+You need to know. Need to understand what you're walking into. Knowledge is the only weapon you can carry through a door like this one."""
 set_flags = ["learned_survival_tips"]
 dialogue = [
-  { who = "your_thoughts", line = "How do I survive this nightmare?" },
-  { who = "the_spell", line = "Trust your instincts. Question everything." },
+  { who = "your_thoughts", line = "How do I survive this nightmare?", mood = "afraid" },
+  { who = "the_spell", line = "Trust your instincts. Question everything.", mood = "focus" },
   { who = "the_spell", line = "The Dream Realm will test more than your strength, Aspirant." },
-  { who = "the_spell", line = "It will test your will. Your mind. Your very soul." },
+  { who = "the_spell", line = "It will test your will. Your mind. Your very soul.", mood = "wrath" },
 ]
 [[survival_info.choices]]
 text = "Steel yourself for what's coming"
 goto = "dream_realm_entry_calm"
+[[survival_info.choices]]
+text = "Ask what the Dream Realm actually is"
+goto = "dream_realm_info"
 
 [dream_realm_entry_calm]
 text = """
 You take a deep breath and center yourself.
 
-The world begins to fade. Not violently, but like a gentle dissolution. Colors bleed into grays. Sounds become distant echoes.
+The world begins to fade. Not violently, but like a gentle dissolution - a drawing being erased from the edges inward. Colors bleed into grays. The hum of your own blood becomes a distant tide. Even the burning letters cool, settling into your mind like embers banked for the night.
 
-And then... you fall."""
+You notice that your hands have stopped shaking. You did that. Whatever happens next, you will meet it with your eyes open.
+
+And then... you fall. Slowly at first, like a leaf, and then all at once."""
 dialogue = [
-  { who = "the_spell", line = "Good luck, Aspirant." },
+  { who = "the_spell", line = "Good luck, Aspirant.", mood = "focus" },
   { who = "your_thoughts", line = "Here goes nothing...", mood = "smirk" },
 ]
 [[dream_realm_entry_calm.choices]]
 text = "Open your eyes in the Dream Realm"
 goto = "first_awakening"
+[[dream_realm_entry_calm.choices]]
+text = "Keep your eyes shut and listen first"
+goto = "listen_before_waking"
 
 [dream_realm_entry_rough]
 text = """
 You crash into consciousness like a drowning man breaching water.
 
-Every nerve screams. Your head throbs with phantom pain. But you're alive. For now."""
+Every nerve screams. Your head throbs with phantom pain, and your mouth tastes of blood that may or may not be yours. Stone, cold and gritty, presses against your cheek.
+
+But you're alive. For now."""
 dialogue = [
   { who = "your_thoughts", line = "Ugh... that was... awful.", mood = "pained" },
 ]
 [[dream_realm_entry_rough.choices]]
 text = "Struggle to your feet"
+goto = "first_awakening"
+[[dream_realm_entry_rough.choices]]
+text = "Stay down, catch your breath, and listen"
+goto = "listen_before_waking"
+
+[listen_before_waking]
+text = """
+You lie still and let your ears do the work.
+
+Wind, moving through broken stone with a low, hollow moan. Grit skittering across a floor. Far away, a slow rhythm of heavy hooves - many of them, falling in a pattern: three steps, a pause, three steps, a pause, like something grazing.
+
+Closer, almost beneath you, a hum. Not sound exactly. More like a heartbeat felt through the ground.
+
+And threaded through it all, so faint you might be imagining it, voices. Whispering. Asking for something.
+
+You fix the rhythm of those hooves in your memory. Three steps. A pause. When you finally open your eyes, you open them already knowing more than you did."""
+set_flags = ["listened_first"]
+dialogue = [
+  { who = "your_thoughts", line = "Three steps, then a pause. Whatever's out there, it isn't hunting. Not yet." },
+]
+[[listen_before_waking.choices]]
+text = "Open your eyes"
 goto = "first_awakening"

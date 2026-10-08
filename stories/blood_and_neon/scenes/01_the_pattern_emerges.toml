@@ -79,7 +79,7 @@ dialogue = [
   { who = "kane", line = "Latin. 'Tertius ex septem.' Third of seven.", mood = "sad" },
   { who = "reeves", line = "Jesus. You're saying there are four more coming?", mood = "shocked" },
   { who = "kane", line = "I'm saying someone's working through a sequence. Tarot. Latin. Ritual positioning. This is structured. Practiced. And we're only seeing Act One.", mood = "angry" },
-  { who = "forensic_tech", line = "Detective. Found something in her pocket. A business card. 'The Crimson Hour - Where Night Becomes Forever.'" },
+  { who = "forensic_tech", line = "Detective. Found something in her pocket. A business card. 'The Crimson Hour - Where Night Becomes Forever.'", mood = "shocked" },
 ]
 [[pier_nineteen.choices]]
 text = "Examine the tarot card carefully - it might have prints"
@@ -107,7 +107,7 @@ dialogue = [
   { who = "kane", line = "Lawyer. Judge. Pathologist. They're all connected to the Foster trial five years ago. The one where—" },
   { who = "sarah", line = "Where the evidence disappeared and the suspect walked. Marcus, that case was sealed. Classified. Someone high up buried it deep.", mood = "afraid" },
   { who = "kane", line = "And now someone's digging it back up. In blood.", mood = "angry" },
-  { who = "sarah", line = "I'm coming in. Don't go to the pier alone." },
+  { who = "sarah", line = "I'm coming in. Don't go to the pier alone.", mood = "afraid" },
 ]
 [[call_sarah.choices]]
 text = "Wait for Sarah - you work better together"
@@ -240,7 +240,7 @@ art = """
     """
 dialogue = [
   { who = "kane", line = "You know my name.", mood = "shocked" },
-  { who = "woman", line = "We know many things. Names. Secrets. Desires. It's our business to know. I'm Selene. And you're investigating deaths you don't understand. Not yet." },
+  { who = "woman", line = "We know many things. Names. Secrets. Desires. It's our business to know. I'm Selene. And you're investigating deaths you don't understand. Not yet.", mood = "smirk" },
   { who = "kane", line = "Three murders. Same MO. Same ritual. Business card led me here." },
   { who = "selene", line = "Murders. Such a crude word. Let's call them... transformations. Come. Elias is waiting. And Elias hates to be kept waiting.", mood = "smirk" },
 ]
@@ -268,9 +268,9 @@ A folder marked 'WESTMORE - SEALED' sits on her desktop. Inside: everything. The
 
 And a video file. Timestamped three hours ago. Before she died. You click play."""
 dialogue = [
-  { who = "dr_cross_video", line = "If you're watching this, I'm dead. They got to me. Like they got to Foster and Hartley. We all knew. We all helped bury it. The Nightshade compound. It wasn't a drug. It was a weapon.", fx = "glitch" },
-  { who = "dr_cross_video", line = "Westmore developed it for the military. Psychological warfare. A compound that rewrites memory, amplifies fear, makes people suggestible. When the trial happened, someone made us all destroy the evidence. Said it was national security." },
-  { who = "dr_cross_video", line = "But Westmore didn't die. The explosion was staged. He's been operating in the shadows, continuing his research. And now he's killing everyone who helped cover it up. Everyone who knows the truth. Marcus, if you're seeing this - you're next. The seventh sacrifice. Find him. Stop him. Before—" },
+  { who = "dr_cross_video", line = "If you're watching this, I'm dead. They got to me. Like they got to Foster and Hartley. We all knew. We all helped bury it. The Nightshade compound. It wasn't a drug. It was a weapon.", mood = "afraid", fx = "glitch" },
+  { who = "dr_cross_video", line = "Westmore developed it for the military. Psychological warfare. A compound that rewrites memory, amplifies fear, makes people suggestible. When the trial happened, someone made us all destroy the evidence. Said it was national security.", mood = "sad" },
+  { who = "dr_cross_video", line = "But Westmore didn't die. The explosion was staged. He's been operating in the shadows, continuing his research. And now he's killing everyone who helped cover it up. Everyone who knows the truth. Marcus, if you're seeing this - you're next. The seventh sacrifice. Find him. Stop him. Before—", mood = "afraid", fx = "glitch" },
 ]
 [[cross_office.choices]]
 text = "The video cut off - someone's here"
@@ -425,9 +425,9 @@ The tarot deck is custom. Hand-painted. You trace it to a specialist in the art 
 'Black hair. Green eyes. Moved like a dancer. Or a killer. Hard to tell the difference sometimes. She had... presence. Like she was more real than the rest of us. Gave me the shivers, truth be told.'"""
 dialogue = [
   { who = "kane", line = "Did she say what she needed them for?" },
-  { who = "madame_zora", line = "Said she was telling a story. A tragedy in seven acts. About sacrifice and transformation. About paying debts written in blood. I thought she was being poetic. Artists usually are." },
+  { who = "madame_zora", line = "Said she was telling a story. A tragedy in seven acts. About sacrifice and transformation. About paying debts written in blood. I thought she was being poetic. Artists usually are.", mood = "smirk" },
   { who = "kane", line = "Did she leave a name?" },
-  { who = "madame_zora", line = "Called herself Cassandra. Like the prophet. The one who saw the future but no one believed. Fitting, no?" },
+  { who = "madame_zora", line = "Called herself Cassandra. Like the prophet. The one who saw the future but no one believed. Fitting, no?", mood = "smirk" },
 ]
 [[card_research.choices]]
 text = "Ask if she's been back - maybe she'll return"
@@ -465,7 +465,7 @@ art = """
     """
 dialogue = [
   { who = "elias", line = "You're investigating murders you don't understand. Three so far. Four more to come. Seven in total. A complete cycle.", mood = "smirk" },
-  { who = "kane", line = "You seem to know a lot about it." },
+  { who = "kane", line = "You seem to know a lot about it.", mood = "smirk" },
   { who = "elias", line = "I know everything that happens in this city after dark. It's my business to know. The Crimson Hour isn't just a club, Detective. It's a sanctuary. For those who understand that transformation requires sacrifice.", mood = "smirk" },
   { who = "kane", line = "You're talking about Cassandra Westmore." },
   { who = "elias", line = "I'm talking about someone who understands the old truths. That death is change. That justice requires blood. That some debts can only be paid in the currency of life itself." },

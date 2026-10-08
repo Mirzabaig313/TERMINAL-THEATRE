@@ -11,7 +11,7 @@ consuming shadow essence, or showing mercy to trapped spirits.
 Face the Guardian and prove worthy of the title: Awakened.
 
 ⏱ Playtime: 30-45 minutes | 🎭 Full Story | 🔀 Deep Branching
-✨ 38 Scenes | ⚔ 5 Endings | 🎨 Rich ASCII Art | 💀 Nightmare Awaits"""
+✨ 53 Scenes | ⚔ 10 Endings | 🎨 Rich ASCII Art | 💀 Nightmare Awaits"""
 # speaker whose portrait waits beside the choice menu
 player = "your_thoughts"
 # character shown on the story-select screen
@@ -36,6 +36,8 @@ name = "UNKNOWN VOICE"
 
 [speakers.ghost]
 name = "GHOST"
+sprite = "ghost"
 
 [speakers.ghost_captain]
 name = "GHOST CAPTAIN"
+sprite = "ghost_captain"

@@ -91,3 +91,64 @@ skin = "#ecc8b0"
 eyes = "#3a7a4a"
 neon = "#3aff8a"
 extras = ["glasses", "freckles", "tattoo"]
+
+[dr_marsh]
+name = "Dr. Helena Marsh"
+hair_style = "bob"
+hair = "#c8b89a"
+outfit = "suit"
+cloth = "#e8e6e2"
+shirt = "#2a3a4a"
+accent = "#00a0c0"
+skin = "#ecd2c0"
+eyes = "#4a6a8a"
+lips = "#8a4a50"
+extras = ["glasses", "lashes"]
+
+[madame_zora]
+name = "Madame Zora"
+hair_style = "long"
+hair = "#a8a4b0"
+outfit = "dress"
+cloth = "#3a1a4a"
+accent = "#d4af37"
+metal = "#d4af37"
+skin = "#b08060"
+eyes = "#2a1a10"
+lips = "#6a2a3a"
+neon = "#b04cff"
+extras = ["earrings", "wrinkles", "lashes"]
+
+[forensic_tech]
+name = "Forensic Tech"
+hair_style = "short"
+hair = "#3a2a20"
+outfit = "vest"
+cloth = "#1a3a4a"
+shirt = "#c8d0d8"
+skin = "#d8b49a"
+eyes = "#3a5a40"
+neon = "#3aff8a"
+extras = ["glasses"]
+
+[damien]
+name = "Damien"
+hair_style = "messy"
+hair = "#1a1a1a"
+outfit = "rags"
+cloth = "#2a2a30"
+skin = "#c8b0a0"
+eyes = "#6a2a2a"
+extras = ["stubble", "scar"]
+
+[dr_cross]
+name = "Dr. Cross"
+hair_style = "slick"
+hair = "#8a8a90"
+outfit = "suit"
+cloth = "#2a2a34"
+shirt = "#dcdce4"
+accent = "#5a1a2a"
+skin = "#d8c0ac"
+eyes = "#5a6a7a"
+extras = ["glasses", "wrinkles", "gray_temples"]

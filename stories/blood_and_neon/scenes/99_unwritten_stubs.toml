@@ -26,10 +26,10 @@ Folded between his hands is a tarot card. The Hanged Man. The card stock is cris
 set_flags = ["tolliver_exhumed"]
 add_items = ["Tolliver Sample"]
 dialogue = [
-  { who = "kane", line = "Riley. It's Kane. I'm sending you a photo from a five-year-old grave. Tell me I'm seeing things." },
+  { who = "kane", line = "Riley. It's Kane. I'm sending you a photo from a five-year-old grave. Tell me I'm seeing things.", mood = "shocked" },
   { who = "riley", line = "Detective, I'm at Pier 19 with Dr. Cross... oh God. Those amber deposits. I'm pulling the exact same crystallization out of her wounds right now.", mood = "shocked" },
-  { who = "riley", line = "That's Nightshade. Saturation dose. It doesn't stop the heart so much as convince it to quit. A coroner who wanted to would call it a heart attack." },
-  { who = "kane", line = "Cross was the coroner who wanted to." },
+  { who = "riley", line = "That's Nightshade. Saturation dose. It doesn't stop the heart so much as convince it to quit. A coroner who wanted to would call it a heart attack.", mood = "afraid" },
+  { who = "kane", line = "Cross was the coroner who wanted to.", mood = "angry" },
   { who = "kane_thinking", line = "Before all. Tolliver isn't one of the seven. He's the reason for the seven. The first domino somebody tipped to keep a secret in the dark." },
 ]
 [[exhume_tolliver.choices]]
@@ -60,9 +60,9 @@ set_flags = ["declared_war"]
 dialogue = [
   { who = "cassandra", line = "You want it to be personal. Good. It always was. You just didn't know it yet.", mood = "smirk" },
   { who = "kane", line = "Four more people, Cassandra. You don't get to touch any of them.", mood = "angry" },
-  { who = "cassandra", line = "Four people who signed their names to a lie. And one who didn't. Guess which one I'm saving for last." },
+  { who = "cassandra", line = "Four people who signed their names to a lie. And one who didn't. Guess which one I'm saving for last.", mood = "smirk" },
   { who = "reeves", line = "Kane! Tell me you did not just call that number. Who the hell was on that crane?", mood = "angry" },
-  { who = "kane", line = "Her. Watching me the whole time. The crane backs onto the warehouse district. She's on foot." },
+  { who = "kane", line = "Her. Watching me the whole time. The crane backs onto the warehouse district. She's on foot.", mood = "angry" },
 ]
 [[threat_cassandra.choices]]
 text = "Run for the crane - she can't have gotten far"
@@ -87,7 +87,7 @@ dialogue = [
   { who = "cassandra", line = "Evelyn signed what she was told to sign. The body was real. He was real. I've spent five years learning the name of everyone who held the pen.", mood = "sad" },
   { who = "kane", line = "And who handed them the pen?" },
   { who = "cassandra", line = "A man who never signs anything. He drinks absinthe now and calls himself a philosopher. Ask at the Crimson Hour. Ask nicely. He hates bad manners.", mood = "smirk" },
-  { who = "kane_thinking", line = "Under the poetry and the blood, there's a widow screaming. That doesn't make her less dangerous. It makes her harder to stop." },
+  { who = "kane_thinking", line = "Under the poetry and the blood, there's a widow screaming. That doesn't make her less dangerous. It makes her harder to stop.", mood = "sad" },
 ]
 [[question_cassandra.choices]]
 text = "Go to the Crimson Hour - find the man who signs nothing"
@@ -112,7 +112,7 @@ Cassandra talks. About the rain. About the Queen of Swords and the clarity that 
 dialogue = [
   { who = "reeves", line = "That was a direct order, Kane. Now I've got a killer's address and a detective who doesn't listen. I'm calling SWAT.", mood = "angry" },
   { who = "kane", line = "She gave us that address, Captain. She's never handed us anything that wasn't a door into another room." },
-  { who = "reeves", line = "Then we kick the door in with forty men instead of one. At dawn. Not before." },
+  { who = "reeves", line = "Then we kick the door in with forty men instead of one. At dawn. Not before.", mood = "angry" },
   { who = "kane_thinking", line = "Dawn is four hours off. Four hours is a long time for a woman who plans in years." },
 ]
 [[trace_cassandra.choices]]
@@ -140,7 +140,7 @@ set_flags = ["devil_card_seen"]
 dialogue = [
   { who = "madame_zora", line = "One card. The Devil. Commissioned by the same woman as the deck. She said it was for a man who wears a gold collar under his silk." },
   { who = "kane", line = "The woman who picked it up tonight. Who is she?" },
-  { who = "madame_zora", line = "A messenger. Messengers smell of the house they serve. That one smelled of jasmine and absinthe." },
+  { who = "madame_zora", line = "A messenger. Messengers smell of the house they serve. That one smelled of jasmine and absinthe.", mood = "smirk" },
   { who = "kane_thinking", line = "The Devil. Bondage, chains, the master who's really a slave. Cassandra isn't just collecting debts. She's casting a villain." },
 ]
 [[stake_out_shop.choices]]
@@ -163,9 +163,9 @@ Footsteps on the catwalk above. Slow. Unhurried. You don't need to look up to kn
 dialogue = [
   { who = "cassandra", line = "You came early. I like that. It means you're starting to think like me.", mood = "smirk" },
   { who = "kane", line = "Come down here. Hands where I can see them.", mood = "angry" },
-  { who = "cassandra", line = "If I come down, one of us dies, and it won't be the one you think. My journal is on the bench. Read it. Then decide if you still want to shoot me." },
+  { who = "cassandra", line = "If I come down, one of us dies, and it won't be the one you think. My journal is on the bench. Read it. Then decide if you still want to shoot me.", mood = "smirk" },
   { who = "kane", line = "The hooded picture. The sixth. Who is it?" },
-  { who = "cassandra", line = "The only one who truly deserves it. You'll meet him at the end, Marcus. Everyone meets him at the end." },
+  { who = "cassandra", line = "The only one who truly deserves it. You'll meet him at the end, Marcus. Everyone meets him at the end.", mood = "angry" },
 ]
 [[warehouse_district_early.choices]]
 text = "Read the journal she left on the bench"
@@ -192,7 +192,7 @@ dialogue = [
   { who = "reeves", line = "Kane. Hallway. That was a deputy director of something with no name. He walks. Tonight. I've been told to apologize.", mood = "pained" },
   { who = "kane", line = "Who the hell is he, Captain?", mood = "angry" },
   { who = "reeves", line = "Military, once. Everything else is blacked out. The only word I could read in his file was a company. Ouroboros Pharmaceuticals." },
-  { who = "elias", line = "Do give Cassandra my regards when you find her. Tell her I'm still waiting for my card." },
+  { who = "elias", line = "Do give Cassandra my regards when you find her. Tell her I'm still waiting for my card.", mood = "smirk" },
 ]
 [[arrest_elias.choices]]
 text = "Let him walk - then tail his car"
@@ -214,8 +214,8 @@ Elias doesn't even blink. Men who've given orders that killed people rarely do."
 dialogue = [
   { who = "kane", line = "Where is she? I won't ask twice.", mood = "angry" },
   { who = "elias", line = "You'll ruin the shirt. Fine. Tonight she visits Helena Marsh at Ouroboros. Fifth card, fifth night. After that she goes home. Prometheus. Where the fire was stolen.", mood = "smirk" },
-  { who = "kane", line = "You gave her up fast for a man who calls her an artist." },
-  { who = "elias", line = "She's become unreliable. A good weapon doesn't choose its own targets. Go on, Detective. Do what I would do, if I still did my own work." },
+  { who = "kane", line = "You gave her up fast for a man who calls her an artist.", mood = "smirk" },
+  { who = "elias", line = "She's become unreliable. A good weapon doesn't choose its own targets. Go on, Detective. Do what I would do, if I still did my own work.", mood = "smirk" },
   { who = "kane_thinking", line = "Dog tags under the silk. Under the philosophy, a soldier. And soldiers either follow orders or give them." },
 ]
 [[threaten_elias.choices]]
@@ -238,9 +238,9 @@ add_items = ["Yacht Photograph"]
 dialogue = [
   { who = "selene", line = "You found her chapel. Then you understand.", mood = "sad" },
   { who = "kane", line = "The Devil. Elias is on her list. Your boss is the sixth sacrifice." },
-  { who = "selene", line = "Elias thinks he's her patron. He doesn't know he's her sixth. I worked in Alexander's lab, Detective. I watched what Nightshade did. I watched what Vane did to Alexander." },
-  { who = "kane", line = "And you're letting her do it." },
-  { who = "selene", line = "I'm not letting anything happen. I'm just holding the door. She left by the service tunnel. If you're quick, the rain hasn't washed her away yet." },
+  { who = "selene", line = "Elias thinks he's her patron. He doesn't know he's her sixth. I worked in Alexander's lab, Detective. I watched what Nightshade did. I watched what Vane did to Alexander.", mood = "sad" },
+  { who = "kane", line = "And you're letting her do it.", mood = "angry" },
+  { who = "selene", line = "I'm not letting anything happen. I'm just holding the door. She left by the service tunnel. If you're quick, the rain hasn't washed her away yet.", mood = "smirk" },
 ]
 [[search_crimson_hour.choices]]
 text = "Go upstairs and put the photograph in Elias's face"
@@ -261,7 +261,7 @@ Wind pushes out of the tunnel. A train is coming. And on the opposite platform, 
 The train screams between you. When it's gone, so is she."""
 dialogue = [
   { who = "kane", line = "Cassandra!", mood = "angry", fx = "shake" },
-  { who = "kane_thinking", line = "She mouthed two words before the train hit. Not yet." },
+  { who = "kane_thinking", line = "She mouthed two words before the train hit. Not yet.", mood = "shocked" },
   { who = "kane_thinking", line = "Quintus. The fifth. Ouroboros at nine. She isn't hiding where she's going. She's inviting me to watch." },
 ]
 [[follow_cassandra_from_club.choices]]
@@ -374,7 +374,7 @@ set_flags = ["elias_exposed", "selene_turned"]
 dialogue = [
   { who = "selene", line = "His name isn't Elias. It's Colonel Elias Vane. Department of Defense liaison for Project Lethe. That's what they called Nightshade before it had a street name." },
   { who = "kane", line = "The man who signs nothing.", mood = "pained" },
-  { who = "selene", line = "He promised Alexander a staged death and a new life. Then he had his men switch the charge. Cassandra watched the yacht burn. So did I. From the shore." },
+  { who = "selene", line = "He promised Alexander a staged death and a new life. Then he had his men switch the charge. Cassandra watched the yacht burn. So did I. From the shore.", mood = "sad" },
   { who = "kane", line = "And now she's coming for him." },
   { who = "selene", line = "Tonight. Prometheus. Everything she's gathered about Lethe is in the old Westmore boathouse, Slip Seven. If you want the truth before you want the killer, start there.", mood = "sad" },
 ]
@@ -432,7 +432,7 @@ add_items = ["Cross's Files"]
 dialogue = [
   { who = "cassandra", line = "Run, Marcus. The Fool always runs. It's how he gets where he's going.", mood = "smirk" },
   { who = "kane_thinking", line = "She let me go. She let me take the drive. Either she wants me to read it, or she already knows there's nothing on it that can stop her." },
-  { who = "kane_thinking", line = "Seven victims. I know four names now. Foster. Hartley. Cross. Tolliver. Three to go. And one of them is me." },
+  { who = "kane_thinking", line = "Seven victims. I know four names now. Foster. Hartley. Cross. Tolliver. Three to go. And one of them is me.", mood = "afraid" },
 ]
 [[flee_office.choices]]
 text = "Go to ground - find somewhere to read what you stole"
@@ -456,7 +456,7 @@ dialogue = [
   { who = "kane", line = "Lethe. River of forgetting. They named it after what it does. And everything goes back to two letters. E.V." },
   { who = "sarah", line = "Then we find who E.V. is. Helena Marsh, CEO of Ouroboros, her name is on half of these memos. She'll know." },
   { who = "kane", line = "Or Prometheus. That's where Lethe was born. She keeps circling back to it." },
-  { who = "sarah", line = "Whichever. We go together this time. I'm not reading about you on page nine." },
+  { who = "sarah", line = "Whichever. We go together this time. I'm not reading about you on page nine.", mood = "smirk" },
 ]
 [[safe_house.choices]]
 text = "Go to Ouroboros with Sarah - make Marsh name E.V."
@@ -481,7 +481,7 @@ dialogue = [
   { who = "reeves", line = "A man from Washington came with a letter. Said Tolliver was compromising national security. I moved him to records. Two months later he was dead, and I told myself hearts just quit sometimes.", mood = "pained" },
   { who = "kane", line = "You buried him, Captain. Same as the rest of them.", mood = "angry" },
   { who = "riley", line = "Captain, the metadata. The last time these files were opened was from a warehouse address. Warehouse 14, by the old Prometheus plant. That's where she's working." },
-  { who = "reeves", line = "Then make a choice, Kane. Take it and run, and I'll say I never saw you. Or log it into evidence and we do this the right way. I owe Tolliver at least that much honesty." },
+  { who = "reeves", line = "Then make a choice, Kane. Take it and run, and I'll say I never saw you. Or log it into evidence and we do this the right way. I owe Tolliver at least that much honesty.", mood = "sad" },
 ]
 [[precinct_return.choices]]
 text = "Take the drive and run before the feds arrive - Ouroboros next"
@@ -526,7 +526,7 @@ When the tape ends, you look up. Across the street, under the streetlight, a fig
 add_items = ["Damien's Tape"]
 dialogue = [
   { who = "voice", line = "Every sample. Every page. The Westmore woman as well, if she surfaces. Lethe never existed, counselor." },
-  { who = "damien_raving", line = "(on the tape) And Tolliver? He won't drop it." },
+  { who = "damien_raving", line = "(on the tape) And Tolliver? He won't drop it.", mood = "afraid", fx = "glitch" },
   { who = "voice", line = "Tolliver has a weak heart. He simply doesn't know it yet." },
   { who = "kane_thinking", line = "Insurance. Damien knew someday someone would come for the people who buried this. He just thought it would be a lawyer." },
 ]
@@ -550,10 +550,10 @@ In the margin, in Damien's hand: 'Tolliver. Not one of us. Handled.' Below the s
 set_flags = ["elias_exposed", "knows_the_list"]
 dialogue = [
   { who = "sarah", line = "Six who buried it. And one blank line.", mood = "shocked" },
-  { who = "kane", line = "The seventh isn't someone who buried it. It's someone who digs it back up. That's me." },
+  { who = "kane", line = "The seventh isn't someone who buried it. It's someone who digs it back up. That's me.", mood = "sad" },
   { who = "sarah", line = "Marcus, this man. Vane. Vice has a file on a club owner in the meat-packing district. Silver hair. Calls himself Elias. Runs a place called the Crimson Hour." },
-  { who = "kane", line = "Then the man who gave the order is pouring drinks for the woman who's killing his accomplices." },
-  { who = "sarah", line = "Marsh is fifth. She's still alive. For now." },
+  { who = "kane", line = "Then the man who gave the order is pouring drinks for the woman who's killing his accomplices.", mood = "angry" },
+  { who = "sarah", line = "Marsh is fifth. She's still alive. For now.", mood = "afraid" },
 ]
 [[damien_files.choices]]
 text = "Marsh is the fifth card - get to Ouroboros"
@@ -577,10 +577,10 @@ She doesn't squint. She doesn't blink. She looks into the light the way other pe
 At the end of the hall, Sarah eases out of the dark with her weapon up. Three people. Two guns. One needle. Nobody breathes."""
 dialogue = [
   { who = "cassandra", line = "There you are. You have such honest eyes in the light, Marcus.", mood = "smirk" },
-  { who = "kane", line = "Put it down, Cassandra. It's over. Sarah has you from behind." },
+  { who = "kane", line = "Put it down, Cassandra. It's over. Sarah has you from behind.", mood = "angry" },
   { who = "sarah", line = "Drop it, Westmore! Now!", mood = "angry" },
   { who = "cassandra", line = "Lieutenant Vega. You weren't supposed to be in this story. I'm sorry. Stories are cruel to the people who wander into them.", mood = "sad" },
-  { who = "damien_raving", line = "She's in my head... she's in my head and she's singing..." },
+  { who = "damien_raving", line = "She's in my head... she's in my head and she's singing...", mood = "pained" },
 ]
 [[flashlight_confrontation.choices]]
 text = "Charge her - Sarah has your back"
@@ -601,8 +601,8 @@ Then two sounds, at the same time. To your left, close enough to touch, someone 
 One of them is Cassandra. One of them is probably Sarah. Probably."""
 dialogue = [
   { who = "cassandra_from_darkness", line = "You hunt by sound, Marcus. So do I. Isn't it lovely? Two blind animals in the same dark." },
-  { who = "sarah_radio", line = "Marcus... lost visual... moving to the... stairs...", fx = "glitch" },
-  { who = "kane_thinking", line = "If Sarah's on the stairs, the breathing is Cassandra. If the radio's lying, or Sarah's wrong, I'm about to put my hands on my partner." },
+  { who = "sarah_radio", line = "Marcus... lost visual... moving to the... stairs...", mood = "afraid", fx = "glitch" },
+  { who = "kane_thinking", line = "If Sarah's on the stairs, the breathing is Cassandra. If the radio's lying, or Sarah's wrong, I'm about to put my hands on my partner.", mood = "afraid" },
 ]
 [[dark_hunt.choices]]
 text = "Lunge for the breathing in the dark"
@@ -653,8 +653,8 @@ Across the room, the X-ray light box flickers, and for a moment every shadow in 
 dialogue = [
   { who = "riley", line = "Your pupils are blown, your pulse is one-forty, and you keep answering questions I didn't ask. Detective, this is bad.", mood = "afraid" },
   { who = "kane", line = "Give me the vial, Riley.", mood = "pained", fx = "glitch" },
-  { who = "riley", line = "Or I call an ambulance, they sedate you, and you sleep through the worst of it. But if you go under with that much in your system, I can't promise who wakes up." },
-  { who = "kane_thinking", line = "Cross made this for the people Cassandra would hurt. Maybe she knew she'd never get to use it herself." },
+  { who = "riley", line = "Or I call an ambulance, they sedate you, and you sleep through the worst of it. But if you go under with that much in your system, I can't promise who wakes up.", mood = "afraid" },
+  { who = "kane_thinking", line = "Cross made this for the people Cassandra would hurt. Maybe she knew she'd never get to use it herself.", mood = "sad" },
 ]
 [[medical_help.choices]]
 text = "Take Cross's counter-agent and get back in the fight"
@@ -704,8 +704,8 @@ set_flags = ["elias_wants_her_dead"]
 dialogue = [
   { who = "kane", line = "Why tell me? You call her a visionary." },
   { who = "elias", line = "Visionaries become liabilities. And an honest man with a gun is the most useful instrument in the world. No one ever questions why a policeman fired.", mood = "smirk" },
-  { who = "kane", line = "You want me to kill her for you." },
-  { who = "elias", line = "I want you to do your job, Detective. That it happens to serve me is merely elegant." },
+  { who = "kane", line = "You want me to kill her for you.", mood = "angry" },
+  { who = "elias", line = "I want you to do your job, Detective. That it happens to serve me is merely elegant.", mood = "smirk" },
   { who = "selene", line = "Elias, please...", mood = "afraid" },
 ]
 [[demand_location.choices]]
@@ -730,7 +730,7 @@ add_items = ["Boathouse Key"]
 dialogue = [
   { who = "elias", line = "Drink, Detective. Every pilgrim must cross the river.", mood = "happy" },
   { who = "selene", line = "Drink, brother. Or don't. The river remembers either way.", mood = "afraid" },
-  { who = "kane_thinking", line = "Fifty people watching. If I refuse, I'm made. If I drink, I'm hers." },
+  { who = "kane_thinking", line = "Fifty people watching. If I refuse, I'm made. If I drink, I'm hers.", mood = "afraid" },
 ]
 [[infiltrate_cult.choices]]
 text = "Drink - you can't break cover now"
@@ -754,7 +754,7 @@ There is no sublevel three on the Ouroboros building plans. You checked them you
 
 Under the steering wheel, scratched into the plastic with a key, three ragged characters. Sarah's last conscious act. SL3. She knew you'd look."""
 dialogue = [
-  { who = "kane_thinking", line = "Good girl. Good cop. Even going under, she left me a map." },
+  { who = "kane_thinking", line = "Good girl. Good cop. Even going under, she left me a map.", mood = "sad" },
   { who = "kane", line = "Captain. Sarah's in a sublevel under Ouroboros that doesn't exist on paper. I need people I trust." },
   { who = "reeves", line = "I can get you six men who'd walk into fire for her in twenty minutes. Or you can do whatever crazy thing you're about to do.", mood = "afraid" },
   { who = "kane_thinking", line = "And on the back of the Tower card, in silver ink, a phone number. She wants to bargain." },
@@ -779,10 +779,10 @@ You dial. She answers before the first ring is finished, as if she's been sittin
 
 Outside your window the city hums its electric lullaby. Somewhere out there a clock is running down that only she can see, and you're done letting her wind it."""
 dialogue = [
-  { who = "kane", line = "No more cards. No more bodies. You want me, you have me. Name the place." },
+  { who = "kane", line = "No more cards. No more bodies. You want me, you have me. Name the place.", mood = "angry" },
   { who = "cassandra", line = "Prometheus. The central laboratory. Midnight. Come alone.", mood = "happy" },
   { who = "kane", line = "And everyone else walks away." },
-  { who = "cassandra", line = "Everyone you're worried about will still be breathing at midnight. Whether they're breathing at one minute past is up to you." },
+  { who = "cassandra", line = "Everyone you're worried about will still be breathing at midnight. Whether they're breathing at one minute past is up to you.", mood = "smirk" },
   { who = "kane_thinking", line = "Too clean. Too fast. Cassandra never puts the real thing where she points. She shows you the stage and hides the dressing room." },
 ]
 [[call_cassandra_direct.choices]]
@@ -804,7 +804,7 @@ dialogue = [
   { who = "riley", line = "The silver ink is marine enamel. Boatyards use it to letter names on hulls. It's made to survive salt water for twenty years." },
   { who = "kane", line = "Westmore's yacht was moored at Bellweather Marina. Who owns his slip now?" },
   { who = "riley", line = "Slip Seven. Sold two years ago to a shell company. Same registered agent as Ouroboros. And the power bill's been paid every month since.", mood = "shocked" },
-  { who = "kane_thinking", line = "Slip Seven. The last place Alexander Westmore stood alive. Of course that's where she lives." },
+  { who = "kane_thinking", line = "Slip Seven. The last place Alexander Westmore stood alive. Of course that's where she lives.", mood = "sad" },
 ]
 [[find_real_location.choices]]
 text = "Go to Slip Seven - see what she's hiding"
@@ -826,8 +826,8 @@ On top of the last box, an envelope with your name on it. Inside: 'Now you've se
 set_flags = ["elias_exposed", "archive_found"]
 add_items = ["Lethe Archive"]
 dialogue = [
-  { who = "kane_thinking", line = "Everything. Every lie they told, every dollar they paid, every man who carried a canister. She had enough to hang them all five years ago." },
-  { who = "kane_thinking", line = "And no one would take it. No court, no paper, no cop. So she stopped asking for a trial and started holding one." },
+  { who = "kane_thinking", line = "Everything. Every lie they told, every dollar they paid, every man who carried a canister. She had enough to hang them all five years ago.", mood = "shocked" },
+  { who = "kane_thinking", line = "And no one would take it. No court, no paper, no cop. So she stopped asking for a trial and started holding one.", mood = "sad" },
   { who = "kane", line = "You didn't want them dead, Cassandra. You wanted them seen.", mood = "sad" },
 ]
 [[final_location.choices]]
@@ -850,8 +850,8 @@ add_items = ["Boathouse Key"]
 dialogue = [
   { who = "selene", line = "No badge, Detective? It suits you. You look like a man again instead of a department.", mood = "smirk" },
   { who = "kane", line = "Tell me about Cassandra's people. Who protects her. Who she's protecting." },
-  { who = "selene", line = "I was Alexander's chemist. I tested Nightshade on myself when the volunteers ran out. And the man I work for, Elias, is Colonel Elias Vane. He ordered the charge on that yacht switched." },
-  { who = "kane", line = "And you serve him drinks." },
+  { who = "selene", line = "I was Alexander's chemist. I tested Nightshade on myself when the volunteers ran out. And the man I work for, Elias, is Colonel Elias Vane. He ordered the charge on that yacht switched.", mood = "sad" },
+  { who = "kane", line = "And you serve him drinks.", mood = "smirk" },
   { who = "selene", line = "I serve her. Here. The key to the old Westmore boathouse. Slip Seven. Everything she's gathered is there. See it before you decide what she is.", mood = "sad" },
 ]
 [[cassandra_associates.choices]]
@@ -878,10 +878,10 @@ Then she opens her desk drawer and sets a tarot card on the blotter. The Hieroph
 set_flags = ["elias_exposed"]
 add_items = ["Marsh Ledger"]
 dialogue = [
-  { who = "dr_marsh", line = "Vane told us the yacht would be staged. Smoke and an empty cabin. I learned it wasn't from the evening news, like everyone else." },
+  { who = "dr_marsh", line = "Vane told us the yacht would be staged. Smoke and an empty cabin. I learned it wasn't from the evening news, like everyone else.", mood = "sad" },
   { who = "kane", line = "Where's Vane now?" },
   { who = "dr_marsh", line = "Retired, officially. He runs a nightclub and calls himself Elias. He keeps Cassandra close. He thinks she's his weapon. He thinks she doesn't know." },
-  { who = "dr_marsh", line = "She cut my hand while I slept and left this. Three days, she said. Help me, Detective. I'll testify to all of it. Just don't let her make me a card on a wall." },
+  { who = "dr_marsh", line = "She cut my hand while I slept and left this. Three days, she said. Help me, Detective. I'll testify to all of it. Just don't let her make me a card on a wall.", mood = "afraid" },
   { who = "kane_thinking", line = "Fifth of seven. And the man who started all of it is still pouring absinthe across town." },
 ]
 [[marsh_evidence.choices]]
@@ -904,8 +904,8 @@ At 3:10 AM, a knock. Two men in dark suits with federal identification and paper
 The officers on the door look at you. Marsh looks at the taller man, and every drop of color leaves her face."""
 dialogue = [
   { who = "reeves", line = "Kane, I checked. The order's signed by a federal judge. It's legal. I can't stop it, and neither can you.", mood = "pained" },
-  { who = "dr_marsh", line = "Detective. The tall one. He was on the marina that night. He carried the charge onto Alexander's boat." },
-  { who = "kane_thinking", line = "Legal. Perfect paperwork. The same perfect paperwork that buried Tolliver and burned a man alive." },
+  { who = "dr_marsh", line = "Detective. The tall one. He was on the marina that night. He carried the charge onto Alexander's boat.", mood = "afraid" },
+  { who = "kane_thinking", line = "Legal. Perfect paperwork. The same perfect paperwork that buried Tolliver and burned a man alive.", mood = "angry" },
 ]
 [[protective_custody.choices]]
 text = "Let the transfer go through - it's legal"
@@ -944,7 +944,7 @@ set_flags = ["marsh_confessed", "cassandra_humanized", "elias_exposed"]
 add_items = ["Marsh Confession"]
 dialogue = [
   { who = "cassandra", line = "Did he scream, Helena? When Vane's charge went off. You were on the radio. Did Alexander scream?", mood = "sad" },
-  { who = "dr_marsh", line = "Yes. For a long time. Vane made us listen. He said it was so we'd understand what silence was worth." },
+  { who = "dr_marsh", line = "Yes. For a long time. Vane made us listen. He said it was so we'd understand what silence was worth.", mood = "pained" },
   { who = "kane", line = "I'm recording this, Cassandra. Every word. That's a confession. That's a witness." },
   { who = "cassandra", line = "Then that's all I needed from her. Someone who'd say it out loud, to someone who'd keep it.", mood = "pained" },
   { who = "cassandra", line = "Prometheus. Midnight. Bring her words, Marcus. Let's see if they're enough." },
@@ -969,7 +969,7 @@ Cassandra was already in the building. She was always already in the building.""
 dialogue = [
   { who = "kane", line = "Police! Drop the weapons!", mood = "angry", fx = "flash" },
   { who = "cassandra", line = "You baited a trap for me, Marcus. Look what crawled in instead.", mood = "smirk", fx = "shake" },
-  { who = "dr_marsh", line = "Those are Vane's men! He's cleaning house! He's cleaning all of us!" },
+  { who = "dr_marsh", line = "Those are Vane's men! He's cleaning house! He's cleaning all of us!", mood = "afraid" },
   { who = "kane_thinking", line = "Two shooters left. One killer beside me with a needle. For the next sixty seconds, she's the only one in this room not trying to kill me." },
 ]
 [[marsh_bait.choices]]
@@ -996,7 +996,7 @@ At the end of the corridor, the doors of the central laboratory stand open, and 
 dialogue = [
   { who = "cassandra", line = "Welcome home, Marcus. Well. My home. The place where my husband stole fire from the gods, and the gods sent soldiers.", fx = "glitch" },
   { who = "kane", line = "Who's in the glass, Cassandra?" },
-  { who = "cassandra", line = "The sixth card. You'll understand him once you understand me. Come in. Bring whatever you've found. I'd love to see it." },
+  { who = "cassandra", line = "The sixth card. You'll understand him once you understand me. Come in. Bring whatever you've found. I'd love to see it.", mood = "smirk" },
   { who = "kane_thinking", line = "Every path in this city has been leading here. Whatever I carry through those doors is all I'll have to fight with." },
 ]
 [[prometheus_facility.choices]]

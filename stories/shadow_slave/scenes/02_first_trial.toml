@@ -34,11 +34,10 @@ art = """
 
     ═══════════════════════════════════════════════════════════════
         """
-set_flags = ["entered_dream_realm"]
 dialogue = [
-  { who = "your_thoughts", line = "This is... the Dream Realm. The place between sleep and death." },
-  { who = "your_thoughts", line = "It's real. It's all REAL. And I'm trapped here." },
-  { who = "your_thoughts", line = "Focus. I need to survive. Find shelter. Find weapons. Find a way OUT." },
+  { who = "your_thoughts", line = "This is... the Dream Realm. The place between sleep and death.", mood = "afraid" },
+  { who = "your_thoughts", line = "It's real. It's all REAL. And I'm trapped here.", mood = "afraid" },
+  { who = "your_thoughts", line = "Focus. I need to survive. Find shelter. Find weapons. Find a way OUT.", mood = "angry" },
 ]
 [[first_awakening.choices]]
 text = "Look around for shelter"
@@ -49,17 +48,23 @@ goto = "investigate_shadow"
 [[first_awakening.choices]]
 text = "Search the ruins for supplies"
 goto = "search_ruins"
+[[first_awakening.choices]]
+text = "Climb a fallen pillar and read the ruins - logic here is 'flexible'"
+goto = "read_the_ruins"
+any_flags = ["learned_dream_realm"]
 
 [seek_shelter]
 text = """
-Survival instinct kicks in. Find shelter. Find safety.
+Survival instinct kicks in. Find shelter. Find safety. Find walls you can put your back against.
 
-You spot a partially intact structure among the ruins - an archway leading into darkness. It could provide cover, or it could be a trap.
+You pick your way between toppled columns, keeping low, until you spot a partially intact structure among the ruins - an archway leading into perfect darkness. Its keystone is carved with a face whose eyes have been chiselled out. It could provide cover, or it could be a mouth.
 
-Your eyes catch something else: a faint glow from within the shadows."""
+Your eyes catch something else, too: a faint, shifting glow seeping up from a crack in the ground nearby, colors cycling like oil on water.
+
+You commit the place to memory. Whatever happens, you now know one spot in this city where something other than the sky might be watching over you."""
 set_flags = ["sought_shelter"]
 dialogue = [
-  { who = "your_thoughts", line = "That building might be safe... or it might be where something lives." },
+  { who = "your_thoughts", line = "That building might be safe... or it might be where something lives.", mood = "afraid" },
 ]
 [[seek_shelter.choices]]
 text = "Enter the dark archway carefully"
@@ -73,11 +78,15 @@ goto = "first_awakening"
 
 [investigate_shadow]
 text = """
-Curiosity wars with fear. You need to understand this place.
+Curiosity wars with fear. You need to understand this place, and you can't understand what you refuse to look at.
 
-You move carefully through the ruins toward the massive shadow. As you get closer, details emerge. It's not one creature - it's dozens.
+You move carefully through the ruins toward the massive shadow, sliding from pillar to pillar. As you get closer, details emerge - and none of them are comforting. It's not one creature. It's dozens.
 
-A herd of shadowy beasts, each the size of a horse, grazing on something that might have once been grass. They haven't noticed you yet."""
+A herd of shadowy beasts, each the size of a horse, grazing on something that might once have been grass. Their bodies don't quite hold still; their edges smear and reform with every movement, like ink dropped in water. Where their faces should be, there is only smooth darkness.
+
+The ground trembles faintly under their weight. The smell reaches you a moment later - cold iron and old smoke.
+
+They haven't noticed you yet. Yet."""
 art = """
 
                        ▄▄▄▄▄▄▄
@@ -98,7 +107,7 @@ art = """
         """
 set_flags = ["saw_shadow_beasts"]
 dialogue = [
-  { who = "your_thoughts", line = "Nightmare Creatures... they're real. They're all real." },
+  { who = "your_thoughts", line = "Nightmare Creatures... they're real. They're all real.", mood = "afraid" },
 ]
 [[investigate_shadow.choices]]
 text = "Observe them from a safe distance"
@@ -112,15 +121,15 @@ goto = "first_awakening"
 
 [search_ruins]
 text = """
-You search through the crumbling ruins methodically.
+You search through the crumbling ruins methodically. Rubble. Dust. A child's tooth, which you put down very quickly.
 
-Most of it is worthless debris, but then your hand closes around something solid. A shard of dark metal, sharp enough to cut. It's not much, but it's better than nothing.
+Most of it is worthless debris, but then your hand closes around something solid. A shard of dark metal, sharp enough to cut. It's not much, but it's better than nothing. You wrap the blunt end in a strip torn from your sleeve.
 
 As you pocket the shard, you hear something. A whisper in a language you shouldn't understand... but somehow do."""
 add_items = ["Metal Shard"]
 dialogue = [
   { who = "whisper", line = "Lost... so lost... help us..." },
-  { who = "your_thoughts", line = "What was that?!" },
+  { who = "your_thoughts", line = "What was that?!", mood = "afraid" },
 ]
 [[search_ruins.choices]]
 text = "Follow the whispers"
@@ -166,7 +175,7 @@ art = """
         """
 dialogue = [
   { who = "your_thoughts", line = "A Memory... the Spell mentioned these. Fragments of power left behind by those who came before." },
-  { who = "your_thoughts", line = "But why is it just... sitting here? What's the catch?" },
+  { who = "your_thoughts", line = "But why is it just... sitting here? What's the catch?", mood = "smirk" },
 ]
 [[dark_archway.choices]]
 text = "Touch the glowing object"
@@ -223,8 +232,8 @@ art = """
 dialogue = [
   { who = "unknown_voice", line = "Drink, young Aspirant. Become more than human." },
   { who = "unknown_voice", line = "The shadows will answer your call... if you have the will to command them." },
-  { who = "your_thoughts", line = "This is dangerous. I can feel it. But the power... it could save my life." },
-  { who = "your_thoughts", line = "Do I trust this voice? Can I afford NOT to?" },
+  { who = "your_thoughts", line = "This is dangerous. I can feel it. But the power... it could save my life.", mood = "afraid" },
+  { who = "your_thoughts", line = "Do I trust this voice? Can I afford NOT to?", mood = "pained" },
 ]
 [[mysterious_glow.choices]]
 text = "Drink the glowing liquid"
@@ -235,14 +244,16 @@ goto = "refuse_essence"
 
 [observe_creatures]
 text = """
-You watch the shadow beasts carefully, learning their patterns.
+You flatten yourself behind a slab of fallen masonry and watch the shadow beasts, learning their patterns.
+
+It takes a long time to see it, but once you do, you can't unsee it. They move as one animal. When the largest lifts its head, the others pause. When it lowers its head, they all take three slow steps forward. They never look up. Whatever they fear, it isn't in the sky - it's somewhere ahead, toward the heart of the ruined city, and they give that direction a wide berth.
 
 They're not aggressive, you realize. Just... present. Existing in this twisted reality like everything else.
 
-One of them lifts its head, as if sensing something. Its eyeless face turns in your direction."""
+Then the largest one lifts its head and holds it there. Too long. Its eyeless face turns, slowly, in your direction."""
 set_flags = ["observed_beasts"]
 dialogue = [
-  { who = "your_thoughts", line = "Don't move. Don't even breathe." },
+  { who = "your_thoughts", line = "Don't move. Don't even breathe.", mood = "afraid" },
 ]
 [[observe_creatures.choices]]
 text = "Stay perfectly still"
@@ -255,11 +266,11 @@ goto = "alert_creatures"
 text = """
 You move with careful precision, using the ruins as cover.
 
-Your heart hammers in your chest, but you force yourself to move slowly. One step. Then another.
+Your heart hammers in your chest, but you force yourself to move slowly. One step. Then another. A beast passes so close that you feel the cold coming off it, like standing in front of an open freezer.
 
-You're halfway past when your foot dislodges a loose stone."""
+You're halfway past when your foot dislodges a loose stone. It rattles down the rubble, impossibly loud."""
 dialogue = [
-  { who = "your_thoughts", line = "No!" },
+  { who = "your_thoughts", line = "No!", mood = "afraid", fx = "shake" },
 ]
 [[sneak_past_creatures.choices]]
 text = "Freeze and hope they ignore it"
@@ -267,19 +278,22 @@ goto = "stealth_check"
 [[sneak_past_creatures.choices]]
 text = "Run immediately"
 goto = "alert_creatures"
+[[sneak_past_creatures.choices]]
+text = "Wait for the pause in their three-step rhythm, then move"
+goto = "stealth_success"
+any_flags = ["listened_first"]
 
 [mysterious_whispers]
 text = """
-You follow the whispers deeper into the ruins.
+You follow the whispers deeper into the ruins, down a stairway slick with something that isn't water.
 
-They lead you to a chamber filled with fading light. Ghostly figures float in the air - echoes of people who once lived here.
+They lead you to a chamber filled with fading light. Ghostly figures float in the air - echoes of people who once lived here. A woman holding a basket. An old man with a walking stick. Soldiers in rusted half-plate, still standing in formation after who knows how many centuries.
 
-They're trapped. Bound to this place by something ancient and cruel."""
-set_flags = ["heard_whispers"]
+They're trapped. Bound to this place by something ancient and cruel. You can see the faint lines running from each of them to the floor, taut as leashes."""
 dialogue = [
-  { who = "ghost", line = "Free us... please... the chains..." },
-  { who = "your_thoughts", line = "How? How can I help you?" },
-  { who = "ghost", line = "Break... the seal..." },
+  { who = "ghost", line = "Free us... please... the chains...", mood = "pained" },
+  { who = "your_thoughts", line = "How? How can I help you?", mood = "afraid" },
+  { who = "ghost", line = "Break... the seal...", mood = "sad" },
 ]
 [[mysterious_whispers.choices]]
 text = "Search for the seal they mentioned"
@@ -292,7 +306,7 @@ goto = "abandon_ghosts"
 text = """
 ⚔ WEAPON DISCOVERED ⚔
 
-You ignore the whispers and continue your methodical search through the ruins. Every stone turned, every shadow investigated.
+You keep up your methodical search through the ruins. Every stone turned, every shadow investigated.
 
 Your persistence pays off.
 
@@ -330,12 +344,15 @@ art = """
         """
 add_items = ["Rusty Blade"]
 dialogue = [
-  { who = "your_thoughts", line = "This will have to do. At least I'm not defenseless anymore." },
-  { who = "your_thoughts", line = "Whatever comes for me next... I'll be ready." },
+  { who = "your_thoughts", line = "This will have to do. At least I'm not defenseless anymore.", mood = "smirk" },
+  { who = "your_thoughts", line = "Whatever comes for me next... I'll be ready.", mood = "angry" },
 ]
 [[find_weapon.choices]]
 text = "Continue exploring with your new weapon"
 goto = "trial_encounter"
+[[find_weapon.choices]]
+text = "Follow the whispers after all"
+goto = "mysterious_whispers"
 
 [first_memory]
 text = """
@@ -397,26 +414,34 @@ art = """
         """
 add_items = ["Warrior's Echo"]
 dialogue = [
-  { who = "the_spell", line = "You have acquired a Memory: [Warrior's Echo - Rank: Dormant]" },
-  { who = "the_spell", line = "Type: Tool. Description: The final stand of an unnamed warrior." },
-  { who = "the_spell", line = "Attribute granted: [Combat Proficiency] (Dormant)" },
-  { who = "your_thoughts", line = "I can... I can FIGHT now. I know how. It's like I've trained for years..." },
-  { who = "your_thoughts", line = "Thank you, warrior. I'll make your sacrifice count." },
+  { who = "the_spell", line = "You have acquired a Memory: [Warrior's Echo - Rank: Dormant]", mood = "focus", fx = "flash" },
+  { who = "the_spell", line = "Type: Tool. Description: The final stand of an unnamed warrior.", mood = "focus" },
+  { who = "the_spell", line = "Attribute granted: [Combat Proficiency] (Dormant)", mood = "focus" },
+  { who = "your_thoughts", line = "I can... I can FIGHT now. I know how. It's like I've trained for years...", mood = "smirk" },
+  { who = "your_thoughts", line = "Thank you, warrior. I'll make your sacrifice count.", mood = "pained" },
 ]
 [[first_memory.choices]]
 text = "Leave the temple with your newfound power"
 goto = "trial_encounter"
+[[first_memory.choices]]
+text = "Search the ruins for a blade worthy of that memory"
+goto = "find_weapon"
 
 [examine_memory]
 text = """
 You study the glowing object carefully without touching it.
 
-It's beautiful - a crystallized memory, frozen in time. But something about it feels wrong. Dangerous.
+It's beautiful - a crystallized memory, frozen in time. Up close, you can see shapes moving inside it, tiny as figures in a snow globe: a lone warrior on a hill of bodies, sword raised, refusing to give ground to a tide of monsters. Their lips move, and you read the words without hearing them. Not one step back.
 
-You decide caution is wiser than greed."""
+You watch the scene loop, again and again, until you could draw the warrior's stance from memory. The angle of the shoulders. The way the left foot never moves.
+
+But something about the crystal feels wrong. Hungry. Like a door that only opens one way.
+
+You decide caution is wiser than greed - for now."""
 set_flags = ["examined_memory"]
 dialogue = [
-  { who = "your_thoughts", line = "Maybe I should be more careful in this place." },
+  { who = "your_thoughts", line = "Not one step back... I'll remember you, whoever you were." },
+  { who = "your_thoughts", line = "Maybe I should be more careful in this place.", mood = "afraid" },
 ]
 [[examine_memory.choices]]
 text = "Leave it and explore elsewhere"
@@ -429,76 +454,98 @@ goto = "first_memory"
 text = """
 You cup your hands and drink the glowing liquid.
 
-It tastes like starlight and copper. Power floods through you, raw and overwhelming. Your body changes, adapts, becomes something more.
+It tastes like starlight and copper. Power floods through you, raw and overwhelming. Your shadow twitches on the stone - a half-second after you do. Your body changes, adapts, becomes something more.
 
-But there's a price. You can feel it - a hunger, deep in your soul."""
+But there's a price. You can feel it - a hunger, deep in your soul, opening one eye."""
 set_flags = ["consumed_essence"]
 dialogue = [
-  { who = "the_spell", line = "You have consumed Shadow Essence." },
-  { who = "the_spell", line = "Attribute granted: Shadow Affinity (Dormant)" },
-  { who = "your_thoughts", line = "What have I done to myself?" },
+  { who = "the_spell", line = "You have consumed Shadow Essence.", mood = "focus", fx = "glitch" },
+  { who = "the_spell", line = "Attribute granted: Shadow Affinity (Dormant)", mood = "focus" },
+  { who = "your_thoughts", line = "What have I done to myself?", mood = "pained" },
 ]
 [[drink_essence.choices]]
 text = "Embrace the power"
 goto = "trial_encounter_empowered"
+[[drink_essence.choices]]
+text = "Force the hunger down and walk on as yourself"
+goto = "trial_encounter"
 
 [refuse_essence]
 text = """
 You back away from the crack in the ground.
 
-The voice in your mind seems disappointed, but you trust your instincts. Some gifts come with prices too high to pay."""
+The voice in your mind seems disappointed - and then, briefly, something worse than disappointed. But you trust your instincts. Some gifts come with prices too high to pay, and the ones that beg the hardest cost the most.
+
+The glow dims behind you, sulking."""
 set_flags = ["refused_essence"]
 dialogue = [
-  { who = "your_thoughts", line = "I'll find power my own way." },
+  { who = "unknown_voice", line = "You will wish you had drunk, little Aspirant." },
+  { who = "your_thoughts", line = "I'll find power my own way.", mood = "angry" },
 ]
 [[refuse_essence.choices]]
 text = "Continue exploring"
 goto = "trial_encounter"
+[[refuse_essence.choices]]
+text = "Try the dark archway instead"
+goto = "dark_archway"
 
 [stealth_success]
 text = """
 The shadow beast's attention drifts away. It returns to grazing.
 
-You let out a breath you didn't know you were holding. You made it past. But you've learned something valuable - in this realm, patience is survival."""
+You let out a breath you didn't know you were holding. You made it past. But you've learned something valuable - in this realm, patience is survival.
+
+Ahead, a half-collapsed watchtower leans over the street, its spiral stair still mostly intact."""
 set_flags = ["stealth_mastery"]
 dialogue = [
-  { who = "your_thoughts", line = "I can do this. I can survive here." },
+  { who = "your_thoughts", line = "I can do this. I can survive here.", mood = "smirk" },
 ]
 [[stealth_success.choices]]
 text = "Move onward"
 goto = "trial_encounter"
+[[stealth_success.choices]]
+text = "Climb the leaning watchtower to scout"
+goto = "read_the_ruins"
 
 [stealth_check]
 text = """
 The stone clatters down the rubble. Time seems to slow.
 
-The nearest shadow beast's head snaps toward the sound. It takes a step in your direction... then stops. Another beast makes a sound, drawing its attention away.
+The nearest shadow beast's head snaps toward the sound. It takes a step in your direction... then stops. Another beast makes a sound like a cello string snapping, drawing its attention away.
 
 You've survived. Barely."""
 dialogue = [
-  { who = "your_thoughts", line = "That was too close." },
+  { who = "your_thoughts", line = "That was too close.", mood = "pained" },
 ]
 [[stealth_check.choices]]
 text = "Continue past them carefully"
 goto = "trial_encounter"
+[[stealth_check.choices]]
+text = "Stay hidden and study them a while longer"
+goto = "observe_creatures"
 
 [alert_creatures]
 text = """
 The shadow beasts' heads snap up as one. They've seen you.
 
-For a moment, everything is still. Then they move.
+For a moment, everything is still. The whole herd stands frozen, a dozen smooth black faces pointed at you like compass needles at north. Even the wind seems to stop.
+
+Then they move.
+
+Not the lazy three-step amble of grazing animals - a flood. Their bodies stretch and lengthen as they come, legs multiplying, shapes smearing into one rolling wave of darkness that pours across the rubble toward you. The ground bucks under their weight. Pillars that have stood for a thousand years crack as they pass.
+
+A sound reaches you, high and thin, and it takes you a second to realize it's coming from your own throat.
 
 You run."""
 dialogue = [
-  { who = "your_thoughts", line = "Run! Just run!" },
+  { who = "your_thoughts", line = "Run! Just run!", mood = "afraid", fx = "shake" },
 ]
 [[alert_creatures.choices]]
 text = "Sprint for cover"
 goto = "desperate_escape"
 [[alert_creatures.choices]]
-text = "Stand and fight"
+text = "Stand and fight with whatever you have"
 goto = "hopeless_battle"
-any_items = ["Rusty Blade", "Warrior's Echo"]
 
 [find_seal]
 text = """
@@ -547,47 +594,62 @@ art = """
     ══════════════════════════════════════════════════════════
         """
 dialogue = [
-  { who = "ghost", line = "Please... we beg you... free us from this torment..." },
-  { who = "ghost", line = "We were innocent... trapped here by a tyrant long dead..." },
+  { who = "ghost", line = "Please... we beg you... free us from this torment...", mood = "sad" },
+  { who = "ghost", line = "We were innocent... trapped here by a tyrant long dead...", mood = "pained" },
   { who = "your_thoughts", line = "This feels like a test. The Dream Realm testing my character." },
-  { who = "your_thoughts", line = "Do I have the courage to show mercy... even when it might cost me?" },
+  { who = "your_thoughts", line = "Do I have the courage to show mercy... even when it might cost me?", mood = "afraid" },
 ]
 [[find_seal.choices]]
 text = "Break the seal and free the spirits"
 goto = "break_seal"
+[[find_seal.choices]]
+text = "Pry the seal's cracked keystone loose with your metal shard"
+goto = "break_seal"
+any_items = ["Metal Shard"]
 [[find_seal.choices]]
 text = "Leave the seal intact and walk away"
 goto = "abandon_ghosts"
 
 [abandon_ghosts]
 text = """
-You turn away from the ghosts. Their whispers follow you, pleading, but you keep walking.
+You turn away from the ghosts. Their whispers follow you up the stairway, pleading, then bargaining, then simply saying your name over and over, though you never told them what it was.
 
-Survival is what matters. You can't save everyone. Not here."""
+You keep walking.
+
+Survival is what matters. You can't save everyone. Not here. Maybe not anywhere."""
 set_flags = ["abandoned_ghosts"]
 dialogue = [
-  { who = "your_thoughts", line = "I'm sorry. But I have to survive." },
+  { who = "ghost", line = "You will come back to us... everyone does...", mood = "angry" },
+  { who = "your_thoughts", line = "I'm sorry. But I have to survive.", mood = "pained" },
 ]
 [[abandon_ghosts.choices]]
 text = "Leave the chamber"
 goto = "trial_encounter"
+[[abandon_ghosts.choices]]
+text = "Search the upper ruins for a weapon first"
+goto = "find_weapon"
 
 [break_seal]
 text = """
-You raise your foot and bring it down on the seal.
+You bring everything you have down on the seal's weakest point.
 
-The stone cracks. Light erupts from the fracture. The ghosts scream - not in pain, but in joy - as they're finally released.
+The stone cracks. Light erupts from the fracture - not the sick crimson of the sky but something clean and white, like the first morning after a long illness. The leashes binding the ghosts snap one after another, each with a sound like a harp string.
 
-One of them touches your shoulder before fading. You feel... blessed."""
+The ghosts scream - not in pain, but in joy - as they're finally released.
+
+One of them, an officer whose spectral coat still bears its buttons, touches your shoulder before fading. You feel... blessed."""
 set_flags = ["freed_ghosts"]
 dialogue = [
-  { who = "ghost", line = "Thank you, brave one. We will not forget this kindness." },
-  { who = "the_spell", line = "You have been granted: [Ghost's Blessing]" },
-  { who = "the_spell", line = "Attribute granted: Spirit Sight (Dormant)" },
+  { who = "ghost", line = "Thank you, brave one. We will not forget this kindness.", mood = "happy", fx = "flash" },
+  { who = "the_spell", line = "You have been granted: [Ghost's Blessing]", mood = "focus" },
+  { who = "the_spell", line = "Attribute granted: Spirit Sight (Dormant)", mood = "focus" },
 ]
 [[break_seal.choices]]
 text = "Continue your journey"
 goto = "trial_encounter"
+[[break_seal.choices]]
+text = "Ask the freed spirits what waits ahead"
+goto = "ghost_counsel"
 
 [trial_encounter]
 text = """
@@ -644,34 +706,52 @@ art = """
     ═══════════════════════════════════════════════════════════════
         """
 dialogue = [
-  { who = "the_spell", line = "Your First Nightmare reaches its climax." },
-  { who = "the_spell", line = "Before you stands the Guardian - Rank: Fallen Terror." },
-  { who = "the_spell", line = "Defeat it, and you will awaken as one of the Awakened." },
-  { who = "the_spell", line = "Fail... and you will never leave the Dream Realm." },
-  { who = "your_thoughts", line = "This is it. Everything comes down to this single moment." },
-  { who = "your_thoughts", line = "I will NOT die here. I will NOT fail. I WILL survive!" },
+  { who = "the_spell", line = "Your First Nightmare reaches its climax.", mood = "focus", fx = "shake" },
+  { who = "the_spell", line = "Before you stands the Guardian - Rank: Fallen Terror.", mood = "wrath" },
+  { who = "the_spell", line = "Defeat it, and you will awaken as one of the Awakened.", mood = "focus" },
+  { who = "the_spell", line = "Fail... and you will never leave the Dream Realm.", mood = "wrath" },
+  { who = "your_thoughts", line = "This is it. Everything comes down to this single moment.", mood = "afraid" },
+  { who = "your_thoughts", line = "I will NOT die here. I will NOT fail. I WILL survive!", mood = "angry" },
 ]
 [[trial_encounter.choices]]
 text = "Fight with everything you have"
 goto = "final_battle"
 any_items = ["Rusty Blade", "Warrior's Echo"]
 [[trial_encounter.choices]]
+text = "Look closer - that stance is familiar"
+goto = "guardian_recognition"
+any_items = ["Warrior's Echo"]
+any_flags = ["examined_memory", "ghost_counsel"]
+[[trial_encounter.choices]]
 text = "Use your cunning instead of strength"
 goto = "clever_victory"
-any_flags = ["observed_beasts", "stealth_mastery"]
+any_flags = ["observed_beasts", "stealth_mastery", "mapped_ruins", "studied_guardian"]
 [[trial_encounter.choices]]
 text = "Call upon the spirits for aid"
 goto = "spirit_aid"
 any_flags = ["freed_ghosts"]
 [[trial_encounter.choices]]
+text = "Let the shadow in your veins answer"
+goto = "trial_encounter_empowered"
+any_flags = ["consumed_essence"]
+[[trial_encounter.choices]]
+text = "Ask the Spell what this thing is"
+goto = "spell_answers"
+any_flags = ["learned_spell_basics"]
+[[trial_encounter.choices]]
+text = "Stand your ground, even empty-handed"
+goto = "unarmed_stand"
+[[trial_encounter.choices]]
 text = "Run - you're not ready for this"
-goto = "coward_ending"
+goto = "flight_from_guardian"
 
 [trial_encounter_empowered]
 text = """
 The Shadow Essence burns in your veins as the Guardian appears.
 
-But you're different now. The shadows themselves seem to recognize you. The Guardian hesitates, sensing the power within you."""
+But you're different now. Your shadow no longer lies flat on the stone - it stands a little apart from you, waiting, like a dog that knows its master's voice. The shadows of every broken pillar lean toward you.
+
+The Guardian hesitates, mid-stride. Its burning eyes narrow. For the first time, something in this Nightmare looks at you and wonders what you are."""
 art_frames = [
 """
 
@@ -709,36 +789,47 @@ art_frames = [
 ]
 art_ms = 300
 dialogue = [
-  { who = "the_spell", line = "The Guardian recognizes your Shadow Affinity." },
-  { who = "your_thoughts", line = "I can feel it... the shadows. They're mine to command." },
+  { who = "the_spell", line = "The Guardian recognizes your Shadow Affinity.", mood = "focus", fx = "glitch" },
+  { who = "your_thoughts", line = "I can feel it... the shadows. They're mine to command.", mood = "smirk" },
 ]
 [[trial_encounter_empowered.choices]]
 text = "Command the shadows to fight for you"
-goto = "shadow_victory"
+goto = "shadow_hunger"
 [[trial_encounter_empowered.choices]]
 text = "Fight alongside the shadows"
 goto = "final_battle"
 
 [desperate_escape]
 text = """
-You run faster than you've ever run. Behind you, the shadow beasts give chase.
+You run faster than you've ever run. Your lungs burn. Behind you, the shadow beasts give chase, and the sound of them is like a landslide that has learned to hunt.
 
-You spot a narrow crevice in the ruins. You might fit. They won't."""
+You spot a narrow crevice in the ruins, a black slit between two fallen slabs. You might fit. They won't."""
 dialogue = [
-  { who = "your_thoughts", line = "There! I can make it!" },
+  { who = "your_thoughts", line = "There! I can make it!", mood = "afraid" },
 ]
 [[desperate_escape.choices]]
 text = "Dive into the crevice"
 goto = "narrow_escape"
+[[desperate_escape.choices]]
+text = "Turn and fight in the open"
+goto = "hopeless_battle"
 
 [hopeless_battle]
 ending = true
 text = """
 You stand your ground, weapon raised.
 
-It's a brave choice. A foolish choice.
+It's a brave choice. A foolish choice. Maybe, here, they are the same choice.
 
-You manage to wound one beast before the others overwhelm you. As darkness closes in, you wonder if anyone will remember your defiance."""
+The first beast reaches you and you strike, and something in you sings when the blow lands - a real wound, black mist spilling from it like smoke from a snuffed candle. The beast staggers. For one dizzy heartbeat you think you might actually do this.
+
+Then the rest of the herd arrives.
+
+There is no pain, at first. Only cold, and weight, and the strange intimacy of being surrounded by something that has no face. The crimson sky shrinks to a coin above you, then to a pinprick, then to nothing.
+
+Your last thought is not of the beasts or the Spell or the ruined city. It is of home - your small, unremarkable life - and how badly you wish you had paid more attention to it while you had it.
+
+As darkness closes in, you wonder if anyone will remember your defiance."""
 art = """
 
     ═══════════════════════════════════════════════════════════════
@@ -759,33 +850,41 @@ art = """
     ═══════════════════════════════════════════════════════════════
         """
 dialogue = [
-  { who = "the_spell", line = "You have perished in the Dream Realm." },
+  { who = "the_spell", line = "You have perished in the Dream Realm.", mood = "wrath", fx = "shake" },
 ]
 
 [narrow_escape]
 text = """
-You squeeze through the crevice. The shadow beasts claw at the entrance, but they can't reach you.
+You squeeze through the crevice, scraping skin from your ribs. The shadow beasts claw at the entrance, their smooth faces pressed to the gap, but they can't reach you.
 
-Eventually, they lose interest and wander away.
+Eventually, they lose interest and wander away, back to their three-step grazing.
 
-You survived. This time."""
+You stay a long time in the cold, close dark, learning its shape. A good hiding place is a kind of weapon. You survived. This time."""
+set_flags = ["escaped_beasts"]
 dialogue = [
-  { who = "your_thoughts", line = "I need to be smarter. More careful." },
+  { who = "your_thoughts", line = "I need to be smarter. More careful.", mood = "pained" },
 ]
 [[narrow_escape.choices]]
 text = "Exit the crevice cautiously"
 goto = "trial_encounter"
+[[narrow_escape.choices]]
+text = "Wait until the herd is gone, then explore the ruins again"
+goto = "first_awakening"
 
 [final_battle]
 ending = true
 text = """
 You charge the Guardian with a battle cry.
 
-The fight is brutal. Desperate. You take wounds that should be fatal, but somehow you keep moving. Keep fighting.
+The fight is brutal. Desperate. Its fist comes down and the street simply stops existing where it lands; you are already moving, rolling through the dust, rising inside its reach where its size is a burden rather than a blessing. You take wounds that should be fatal - a rib, a shoulder, a long burning line across your back - but somehow you keep moving. Keep fighting.
 
-Finally, you find an opening. Your blade - or your fists, or your will - strikes true. The Guardian falls.
+Time stops meaning anything. There is only the next breath and the next swing.
 
-As it dissolves into shadow, the Dream Realm begins to fade."""
+Then you find it: a seam between two obsidian plates, low on its flank, where the bone shows through. Your blade - or your fists, or your will - strikes true.
+
+The Guardian falls to one knee. Then the other. The sound it makes as it hits the ground is like a city collapsing.
+
+As it dissolves into shadow, the Dream Realm begins to fade around you, the crimson sky paling to dawn grey. You are standing. You are bleeding. You are alive."""
 art = """
 
     ╔═══════════════════════════════════════════════════════════╗
@@ -806,11 +905,10 @@ art = """
     ║                                                           ║
     ╚═══════════════════════════════════════════════════════════╝
         """
-set_flags = ["completed_nightmare"]
 dialogue = [
-  { who = "the_spell", line = "Your First Nightmare is complete." },
-  { who = "the_spell", line = "You have survived. You are now Awakened." },
-  { who = "your_thoughts", line = "I... I did it. I actually did it." },
+  { who = "the_spell", line = "Your First Nightmare is complete.", mood = "focus", fx = "flash" },
+  { who = "the_spell", line = "You have survived. You are now Awakened.", mood = "focus" },
+  { who = "your_thoughts", line = "I... I did it. I actually did it.", mood = "pained" },
 ]
 
 [clever_victory]
@@ -818,9 +916,15 @@ ending = true
 text = """
 You don't fight the Guardian head-on. That would be suicide.
 
-Instead, you use what you've learned. You lure it into unstable ruins. You use its size against it. You survive through cunning.
+Instead, you use what you've learned. You've watched how things move in this city, what they fear, where the stone is tired. So you let the Guardian chase you - just fast enough to keep it angry, never fast enough to let it catch you - through streets you chose, past pillars you chose, into the leaning quarter where the old towers stand on cracked foundations and borrowed time.
 
-When the Guardian finally falls - crushed under a collapsing pillar you weakened - you realize something important: strength isn't everything."""
+It follows. It always follows. It does not know how to do anything else.
+
+You slip beneath an arch. The Guardian, too large, goes through it instead. Stone groans. Dust sifts down in a fine rain. Then the whole weakened colonnade gives way, and a thousand years of masonry comes down on the Fallen Terror like the fist of an angry god.
+
+When the dust settles, nothing moves under the rubble but slow-fading shadow.
+
+You realize something important, sitting in the ash and laughing a little too hard: strength isn't everything."""
 art = """
 
     ╔═══════════════════════════════════════════════════════════╗
@@ -841,11 +945,11 @@ art = """
     ║                                                           ║
     ╚═══════════════════════════════════════════════════════════╝
         """
-set_flags = ["clever_victory"]
 dialogue = [
-  { who = "the_spell", line = "Your First Nightmare is complete." },
-  { who = "the_spell", line = "You have survived through wisdom. Impressive." },
-  { who = "the_spell", line = "Additional Attribute granted: Tactical Mind (Dormant)" },
+  { who = "the_spell", line = "Your First Nightmare is complete.", mood = "focus" },
+  { who = "the_spell", line = "You have survived through wisdom. Impressive.", mood = "focus" },
+  { who = "the_spell", line = "Additional Attribute granted: Tactical Mind (Dormant)", mood = "focus", fx = "flash" },
+  { who = "your_thoughts", line = "Not bad for someone who can't lift a sword properly.", mood = "smirk" },
 ]
 
 [spirit_aid]
@@ -899,12 +1003,11 @@ art = """
     ║                                                           ║
     ╚═══════════════════════════════════════════════════════════╝
         """
-set_flags = ["spirit_victory"]
 dialogue = [
-  { who = "ghost_captain", line = "Thank you, child of mercy. We can finally rest." },
-  { who = "the_spell", line = "Your First Nightmare is complete." },
+  { who = "ghost_captain", line = "Thank you, child of mercy. We can finally rest.", mood = "happy" },
+  { who = "the_spell", line = "Your First Nightmare is complete.", mood = "focus", fx = "flash" },
   { who = "the_spell", line = "You have proven that compassion can exist even in the darkest places." },
-  { who = "the_spell", line = "Additional Attribute granted: [Spirit Companion] (Dormant)" },
+  { who = "the_spell", line = "Additional Attribute granted: [Spirit Companion] (Dormant)", mood = "focus" },
   { who = "the_spell", line = "The ghosts' blessing will remain with you... always." },
 ]
 
@@ -954,14 +1057,13 @@ art = """
     ║                                                           ║
     ╚═══════════════════════════════════════════════════════════╝
         """
-set_flags = ["shadow_master"]
 dialogue = [
-  { who = "the_spell", line = "Your First Nightmare is complete." },
-  { who = "the_spell", line = "You have consumed the Shadow Essence and claimed dominion over darkness itself." },
-  { who = "the_spell", line = "Title granted: [Shadow Aspirant]" },
-  { who = "the_spell", line = "Additional Attribute granted: [Shadow Legion] (Dormant)" },
-  { who = "your_thoughts", line = "I have power now. Incredible power. But I can feel it... changing me." },
-  { who = "your_thoughts", line = "Was it worth it? ...I hope so." },
+  { who = "the_spell", line = "Your First Nightmare is complete.", mood = "focus" },
+  { who = "the_spell", line = "You have consumed the Shadow Essence and claimed dominion over darkness itself.", mood = "wrath", fx = "glitch" },
+  { who = "the_spell", line = "Title granted: [Shadow Aspirant]", mood = "focus" },
+  { who = "the_spell", line = "Additional Attribute granted: [Shadow Legion] (Dormant)", mood = "focus" },
+  { who = "your_thoughts", line = "I have power now. Incredible power. But I can feel it... changing me.", mood = "smirk" },
+  { who = "your_thoughts", line = "Was it worth it? ...I hope so.", mood = "pained" },
 ]
 
 [coward_ending]
@@ -969,9 +1071,19 @@ ending = true
 text = """
 You turn and run from the Guardian.
 
-But there's nowhere to run. The Dream Realm has no exits for those who fail their trials.
+Or you hide, and wait, and tell yourself that waiting is a plan. It amounts to the same thing.
 
-The Guardian catches you. The nightmare is eternal."""
+There is nowhere to run. The streets you sprint down curve back on themselves; the doors you dive through open onto the same blood-red square. The Dream Realm has no exits for those who refuse their trials. It only has longer and longer corridors.
+
+You hear it behind you the whole time. Not hurrying. It doesn't need to hurry. Every footfall is patient as a clock.
+
+When it finally catches you, in a dead-end alley that was not a dead end a moment ago, you are almost grateful. You do not even turn around.
+
+The last thing you feel is not pain. It is the Spell's attention sliding off you, bored, the way a reader's eye slides past a sentence that doesn't matter.
+
+Somewhere far away, in a hospital bed, a body stops breathing. Here, in the Dream Realm, your story simply ends mid-page.
+
+The nightmare is eternal."""
 art = """
 
     ═══════════════════════════════════════════════════════════════
@@ -992,6 +1104,56 @@ art = """
     ═══════════════════════════════════════════════════════════════
         """
 dialogue = [
-  { who = "the_spell", line = "You have failed your First Nightmare." },
-  { who = "the_spell", line = "You will remain in the Dream Realm forever." },
+  { who = "the_spell", line = "You have failed your First Nightmare.", mood = "wrath" },
+  { who = "the_spell", line = "You will remain in the Dream Realm forever.", mood = "wrath" },
 ]
+
+[read_the_ruins]
+text = """
+You climb until the wind tugs at your clothes, then you stop, cling to cold stone, and look.
+
+The Spell warned you that logic here is flexible - so you stop looking for the logic of a city and start looking for the logic of a nightmare. And there it is.
+
+The streets aren't a grid. They spiral, every one of them, inward toward a great dead plaza at the heart of the ruins where nothing grows and nothing grazes. The shadow herd keeps to the outer rings and never strays toward the center. Something lives there that even monsters avoid.
+
+You mark the rest, too: the eyeless temple to the west; a stairway in the low quarter breathing faint whispers; and between here and the plaza, a district of tall towers leaning against one another like drunks, their foundations split, held up by habit and nothing else.
+
+One good shove, you think. One heavy thing running through the wrong street."""
+set_flags = ["mapped_ruins"]
+dialogue = [
+  { who = "your_thoughts", line = "Everything here spirals toward that plaza. That's where the real test is.", mood = "afraid" },
+  { who = "your_thoughts", line = "And those towers... if something big came through there, they'd come down on it.", mood = "smirk" },
+]
+[[read_the_ruins.choices]]
+text = "Head for the eyeless temple"
+goto = "dark_archway"
+[[read_the_ruins.choices]]
+text = "Follow the whispers in the low quarter"
+goto = "mysterious_whispers"
+[[read_the_ruins.choices]]
+text = "Watch the shadow herd from above"
+goto = "investigate_shadow"
+[[read_the_ruins.choices]]
+text = "Go straight to the dead plaza"
+goto = "trial_encounter"
+
+[ghost_counsel]
+text = """
+The light thickens, and one figure does not fade.
+
+He is taller than the others, his coat a soldier's coat, a ring of keys still hanging from his belt as if he might yet have doors to lock. His face is lined and tired and, for the first time in centuries, at peace.
+
+He looks toward the heart of the city, toward a dead plaza you have not yet seen, and the peace leaves his face.
+
+He tells you about the one who waits there. It was a warrior once - the best of them. When the horde came, it held the pass alone so the rest could flee. It swore it would not take one step back, and it kept that oath so long and so hard that the oath ate the warrior and left only the Guardian behind.
+
+It still remembers its words, he says. Somewhere under all that bone, it still remembers."""
+set_flags = ["ghost_counsel"]
+dialogue = [
+  { who = "ghost_captain", line = "It was our champion, child. 'Not one step back.' That was its oath, and it became its prison.", mood = "sad" },
+  { who = "ghost_captain", line = "If you must face it, remember who it was. It may remember, too.", mood = "pained" },
+  { who = "your_thoughts", line = "A warrior who couldn't stop fighting... even after there was nothing left to protect.", mood = "pained" },
+]
+[[ghost_counsel.choices]]
+text = "Thank him and go to face the Guardian"
+goto = "trial_encounter"

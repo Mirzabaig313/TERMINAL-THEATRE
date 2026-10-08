@@ -1,0 +1,28 @@
+# Character descriptions for tools/portrait.py, which draws characters/<id>.toml.
+# Sunny and The Spell are hand-made sprites and are NOT listed here
+# (the generator would overwrite them).
+# Run: python3 tools/portrait.py stories/shadow_slave
+
+[ghost]
+name = "Ghost"
+hair_style = "long"
+hair = "#8a9ab8"
+brows = "#6a7a98"
+outfit = "rags"
+cloth = "#3a4a66"
+skin = "#b8c8e0"
+eyes = "#e0f0ff"
+lips = "#7a8aa8"
+
+[ghost_captain]
+name = "Ghost Captain"
+hair_style = "short"
+hair = "#7a8aa8"
+outfit = "uniform"
+cloth = "#2a3a5a"
+shirt = "#9aaac8"
+metal = "#c0d0e8"
+skin = "#b0c0d8"
+eyes = "#e0f0ff"
+lips = "#7a8aa8"
+extras = ["mustache", "wrinkles"]

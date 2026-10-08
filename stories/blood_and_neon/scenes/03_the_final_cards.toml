@@ -10,7 +10,7 @@ On his desk: the Four of Pentacles. And a note in elegant script: 'Too late, Det
 dialogue = [
   { who = "sarah", line = "Ambulance is on the way. But Marcus... look at him. Whatever she gave him, it's destroyed his mind.", mood = "afraid" },
   { who = "kane", line = "Nightshade. Advanced formula. She's not just killing. She's leaving some of them alive to suffer.", mood = "angry" },
-  { who = "damien_raving", line = "The shadows! The shadows have teeth! Make them stop! Make them stop seeing me!", fx = "glitch" },
+  { who = "damien_raving", line = "The shadows! The shadows have teeth! Make them stop! Make them stop seeing me!", mood = "afraid", fx = "glitch" },
 ]
 [[protect_damien.choices]]
 text = "Search his house for clues while Sarah stays with him"
@@ -256,11 +256,11 @@ The nameplate reads: Dr. Helena Marsh, CEO.
 
 She's sixty. Sharp. Every inch the pharmaceutical executive. But there's something in her eyes. Recognition. Fear."""
 dialogue = [
-  { who = "dr_marsh", line = "Detective Kane. I've been expecting you. Or someone like you. It was only a matter of time before someone connected the dots." },
+  { who = "dr_marsh", line = "Detective Kane. I've been expecting you. Or someone like you. It was only a matter of time before someone connected the dots.", mood = "sad" },
   { who = "kane", line = "You knew about Nightshade. About what Westmore was doing.", mood = "angry" },
-  { who = "dr_marsh", line = "I was his partner. His collaborator. When the military wanted the research buried, I helped bury it. When they wanted him dead, I helped stage the explosion." },
+  { who = "dr_marsh", line = "I was his partner. His collaborator. When the military wanted the research buried, I helped bury it. When they wanted him dead, I helped stage the explosion.", mood = "sad" },
   { who = "kane", line = "Why are you telling me this?" },
-  { who = "dr_marsh", line = "Because I'm tired of running. Because Cassandra is killing everyone involved. And because I'm next. Look at this." },
+  { who = "dr_marsh", line = "Because I'm tired of running. Because Cassandra is killing everyone involved. And because I'm next. Look at this.", mood = "afraid" },
 ]
 [[ouroboros_pharma.choices]]
 text = "She shows you a tarot card - she's already been marked"
@@ -280,7 +280,7 @@ Marsh is shaking. You've seen killers with more composure.
 'Help me, Detective. Please. I'll testify. I'll give you everything. Just... just don't let her kill me like the others.'"""
 dialogue = [
   { who = "kane", line = "Three days. That gives us time. We can protect you." },
-  { who = "marsh", line = "No one can protect me from Cassandra. She's a ghost. She's everywhere and nowhere. She knows things she shouldn't know. Sees things she shouldn't see. It's like she's become something more than human." },
+  { who = "marsh", line = "No one can protect me from Cassandra. She's a ghost. She's everywhere and nowhere. She knows things she shouldn't know. Sees things she shouldn't see. It's like she's become something more than human.", mood = "afraid" },
   { who = "kane", line = "Or she has help. Someone feeding her information. Someone inside the police. Inside the system.", mood = "shocked" },
 ]
 [[marsh_marked.choices]]
@@ -310,7 +310,7 @@ Below the words: photographs. Seven people. Including you."""
 dialogue = [
   { who = "reeves", line = "Kane. You need to see this. These photos. The other six are the victims. Foster. Hartley. Cross. Tolliver. Damien Cross. Helena Marsh. And... you.", mood = "shocked", fx = "flash" },
   { who = "kane", line = "She's had this planned from the beginning. Every move. Every kill. Leading to me. But why? What makes me special?", mood = "afraid" },
-  { who = "forensic_tech", line = "Detective. Found something else. A journal. Looks like Cassandra's been keeping notes." },
+  { who = "forensic_tech", line = "Detective. Found something else. A journal. Looks like Cassandra's been keeping notes.", mood = "afraid" },
 ]
 [[swat_raid.choices]]
 text = "Read the journal - understand her mind"

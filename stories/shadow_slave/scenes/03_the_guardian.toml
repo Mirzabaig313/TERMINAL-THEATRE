@@ -1,0 +1,274 @@
+# The Guardian confrontation: branches that pay off what the player
+# learned, kept and chose earlier in the Nightmare.
+
+[spell_answers]
+text = """
+You don't take your eyes off the Guardian, but you ask the question anyway - out loud, to the burning letters behind your eyes.
+
+For a moment you think the Spell won't answer. Then the letters rearrange themselves, cold and precise, and the knowledge lands in your mind the way the first lesson did: all at once.
+
+The Guardian was an Aspirant once. A warrior who held a mountain pass against a horde, alone, and swore never to yield a single step. The Nightmare took the oath at its word. It has stood here ever since, advancing on everything, retreating from nothing.
+
+It cannot step back. Not to dodge. Not to brace. Not even to save itself.
+
+You look past the Guardian at the cracked, sagging ground of the plaza, where old cellars yawn beneath a thin crust of stone - and you start to smile."""
+dialogue = [
+  { who = "the_spell", line = "Fallen Terror. Former Aspirant. Oath-bound: it will not retreat.", mood = "focus" },
+  { who = "the_spell", line = "Knowledge is also a weapon, Aspirant. Few think to ask.", mood = "focus" },
+  { who = "your_thoughts", line = "It can only come forward. So I just have to choose where 'forward' leads.", mood = "smirk" },
+]
+[[spell_answers.choices]]
+text = "Back toward the hollow ground and make it follow"
+goto = "clever_victory"
+[[spell_answers.choices]]
+text = "Face it head-on anyway"
+goto = "trial_encounter"
+
+[guardian_recognition]
+text = """
+The Guardian plants its left foot, squares its shoulders, and raises one arm like a blade - and the world stops.
+
+You know that stance.
+
+You know it from the inside: the angle of the shoulders, the left foot that never moves, the breath held behind the teeth. You saw it on a hill of corpses under a sky full of monsters. You saw a warrior make that exact shape and whisper four words before charging into the end of the world.
+
+The thing in front of you is not a monster that killed that warrior. It IS that warrior - or what is left of them after a thousand years of keeping a promise no one remembers asking for.
+
+Behind the burning eyes, something flickers. Not hunger. Something older and much more tired. Its raised arm hangs in the air, and for the first time since it emerged, the Guardian does not advance."""
+dialogue = [
+  { who = "your_thoughts", line = "It's you. The warrior from the memory. You never stopped fighting...", mood = "pained", fx = "flash" },
+  { who = "the_spell", line = "Anomaly detected. The Guardian's oath is... wavering.", mood = "focus", fx = "glitch" },
+]
+[[guardian_recognition.choices]]
+text = "Speak the warrior's words back to it"
+goto = "echo_released"
+[[guardian_recognition.choices]]
+text = "Strike while it hesitates"
+goto = "final_battle"
+[[guardian_recognition.choices]]
+text = "Call the freed spirits - they knew it once"
+goto = "spirit_aid"
+any_flags = ["freed_ghosts"]
+
+[unarmed_stand]
+text = """
+You plant your feet. Your hands are empty, or as good as. Your heart is trying to climb out through your throat.
+
+The Guardian's first blow is almost lazy. You throw yourself sideways and it misses by the width of a breath; the shockwave alone lifts you off the ground and slams you into a pillar. Stars burst behind your eyes. Something in your side gives with a wet, private click.
+
+You get up. You don't know how, but you get up.
+
+The Guardian tilts its enormous head, as though mildly surprised the insect is still moving. It looms over you, close enough now that you can see the seams between its obsidian plates, a hairline crack running across its chest, the old bone showing through.
+
+It raises its arm again. This time it will not miss."""
+dialogue = [
+  { who = "your_thoughts", line = "Okay. Okay. That was one. I can't take two.", mood = "pained", fx = "shake" },
+  { who = "the_spell", line = "Aspirant. Choose.", mood = "wrath" },
+]
+[[unarmed_stand.choices]]
+text = "Drive the metal shard into the crack across its chest"
+goto = "final_battle"
+any_items = ["Metal Shard"]
+[[unarmed_stand.choices]]
+text = "Meet its gaze and refuse to break - you've refused bigger things"
+goto = "final_battle"
+any_flags = ["resisted_spell", "held_onto_self", "refused_essence"]
+[[unarmed_stand.choices]]
+text = "Question everything - look for the lie in its shape"
+goto = "clever_victory"
+any_flags = ["learned_survival_tips"]
+[[unarmed_stand.choices]]
+text = "Throw yourself at it with your bare hands"
+goto = "fallen_aspirant"
+[[unarmed_stand.choices]]
+text = "Break and run"
+goto = "flight_from_guardian"
+
+[flight_from_guardian]
+text = """
+You run.
+
+Behind you, the Guardian follows. It doesn't hurry. Every footfall is the same steady, unhurried weight, like a clock that has decided you are the hour it's counting toward. Pillars burst apart as it walks through them rather than around.
+
+You skid around a corner, lungs on fire, and the ruined city opens its choices to you the way it has all along - every street a question, every shadow an answer you might regret.
+
+You can't run forever. But maybe you don't have to. Maybe you only have to run somewhere."""
+dialogue = [
+  { who = "your_thoughts", line = "Think. THINK. Where can I go that it can't?", mood = "afraid", fx = "shake" },
+]
+[[flight_from_guardian.choices]]
+text = "Just keep running"
+goto = "coward_ending"
+[[flight_from_guardian.choices]]
+text = "Head for the hiding place you found earlier"
+goto = "hiding_place"
+any_flags = ["sought_shelter", "escaped_beasts"]
+[[flight_from_guardian.choices]]
+text = "Lead it straight into the shadow herd"
+goto = "stampede"
+any_flags = ["saw_shadow_beasts"]
+[[flight_from_guardian.choices]]
+text = "Cut through the chamber of the ghosts you left behind"
+goto = "bound_in_their_place"
+any_flags = ["abandoned_ghosts"]
+[[flight_from_guardian.choices]]
+text = "Stop. Turn around. Face it"
+goto = "trial_encounter"
+
+[hiding_place]
+text = """
+You know exactly where to go. That's the only reason you live.
+
+You dive into the place you marked earlier - narrow, dark, too tight for anything the Guardian's size - and press yourself into the cold stone while the world shakes. Its arm comes after you once, scraping the entrance wide enough to let in a wedge of red light. Then it stops.
+
+It stands there, outside, and you watch it through the gap.
+
+Up close and unhurried, you see things you never would have seen while fleeing. It favours its left side; the right knee is cracked through. It cannot turn quickly - its whole body has to follow its eyes. And it never once steps backward. Not to reach you. Not to rebalance. Not even when a slab slides beneath its heel.
+
+Eventually it turns away and paces the plaza, waiting. It has all the time in the world.
+
+You, on the other hand, now have a plan."""
+set_flags = ["studied_guardian"]
+dialogue = [
+  { who = "your_thoughts", line = "Bad right knee. Slow to turn. Never steps back. I can work with that.", mood = "smirk" },
+]
+[[hiding_place.choices]]
+text = "Step out and face it, armed with what you've seen"
+goto = "trial_encounter"
+[[hiding_place.choices]]
+text = "Stay hidden and wait for the Dream Realm to forget you"
+goto = "coward_ending"
+
+[stampede]
+text = """
+You remember the herd - the way the beasts gave the heart of the city a wide berth, the way they shied from whatever lived there. So you run toward them.
+
+You burst into their grazing grounds with the Guardian a dozen strides behind you, and the herd's smooth faces snap up as one. For a terrible second they look at you.
+
+Then they see what is following you.
+
+The stampede is a black wave breaking in every direction at once. Beasts crash into the Guardian from all sides, panicked, clawing, trampling, their edges smearing across its obsidian plates like spilled ink. It swings and swats and roars, half-buried in a tide of frantic darkness, and for once it is not looking at you at all."""
+dialogue = [
+  { who = "your_thoughts", line = "Sorry, guys. Nothing personal.", mood = "smirk" },
+  { who = "the_spell", line = "Unorthodox. Effective.", mood = "focus" },
+]
+[[stampede.choices]]
+text = "Strike while it's tangled in the herd"
+goto = "final_battle"
+any_items = ["Rusty Blade", "Warrior's Echo", "Metal Shard"]
+[[stampede.choices]]
+text = "Slip away and let the chaos bring it down"
+goto = "clever_victory"
+
+[shadow_hunger]
+text = """
+You raise your hand, and the shadows rise with it - from the cracks, from the pillars, from your own feet - and hurl themselves at the Guardian.
+
+It's glorious. For about three seconds.
+
+Then you feel the cost. Every shadow-soldier you call draws on something inside you, and the something is hungry. It wants more. More shadows. More dark. More of you. You can feel it eating outward from your chest like frost spreading across a window, and it is so very easy to let it - because the more you give, the stronger they become, and the stronger they become, the less you remember why you were afraid.
+
+Your fingertips have gone black. Your shadow is no longer attached to your feet.
+
+The Guardian staggers under the swarm. You could finish it. You could finish everything. All you have to do is stop holding on."""
+dialogue = [
+  { who = "unknown_voice", line = "Yes. Let go. You were always meant to be ours." },
+  { who = "your_thoughts", line = "It's... pulling me in. I can't feel my hands...", mood = "pained", fx = "glitch" },
+  { who = "the_spell", line = "Warning. Aspirant identity unstable.", mood = "wrath" },
+]
+[[shadow_hunger.choices]]
+text = "Let the hunger have what it wants"
+goto = "consumed_by_shadow"
+[[shadow_hunger.choices]]
+text = "Master it - your will has held against worse"
+goto = "shadow_victory"
+any_flags = ["resisted_spell", "held_onto_self", "learned_survival_tips"]
+[[shadow_hunger.choices]]
+text = "Release the shadows and finish this yourself"
+goto = "final_battle"
+
+[echo_released]
+ending = true
+text = """
+✦ NOT ONE STEP BACK ✦
+
+You lower your hands. You plant your left foot exactly where the warrior planted theirs, square your shoulders the way they did, and you say the words.
+
+"Not one step back. Not one inch of ground."
+
+And then you add the part nobody ever said to them: "You held. It's over. You can stop now."
+
+The Guardian goes perfectly still. The fire in its eyes gutters like a candle in a draft. Slowly - with a groan of stone grinding against stone, as if the motion is being torn out of a thousand years of refusal - it does the one thing its oath forbade.
+
+It takes a single step back.
+
+The obsidian plates fall from it like leaves. Beneath them is no monster, only a tired figure in battered armor, sword lowered at last. They look at you with eyes you have already seen through once, and they bow.
+
+Then they are gone, scattered on a wind that smells, impossibly, of rain on a mountain pass. The crimson sky cracks open, and through the gap pours ordinary morning light."""
+dialogue = [
+  { who = "the_spell", line = "Your First Nightmare is complete.", mood = "focus", fx = "flash" },
+  { who = "the_spell", line = "The Guardian was not defeated. It was relieved of duty. This is... unprecedented.", mood = "focus" },
+  { who = "the_spell", line = "Title granted: [Oathbreaker of the Fallen]. Attribute granted: [Echo of the Last Stand] (Dormant)", mood = "focus" },
+  { who = "your_thoughts", line = "Rest well, warrior. I'll carry the rest of it from here.", mood = "pained" },
+]
+
+[consumed_by_shadow]
+ending = true
+text = """
+You stop holding on.
+
+It is the easiest thing you have ever done. The cold rushes in through your chest and out through your fingers, and the shadows howl with joy, and the Guardian disappears beneath them like a stone beneath black water. You barely notice it go. It doesn't matter anymore. Nothing that small matters anymore.
+
+You grow. You stretch. Your edges smear and reform like ink in water. Your face - you are briefly, distantly curious about your face - smooths over until there is nothing left on it at all.
+
+Far away, a voice made of burning letters says something about failure, and identity, and the end of a Nightmare. It sounds very small, and very sad, and you do not understand it.
+
+Somewhere in the outer rings of a ruined city, a herd of shadow beasts lifts their faceless heads as one. A new shape is walking toward them across the rubble, three steps and a pause, three steps and a pause.
+
+They make room for it."""
+dialogue = [
+  { who = "the_spell", line = "Aspirant signal lost. Entity reclassified: Nightmare Creature.", mood = "wrath", fx = "glitch" },
+  { who = "the_spell", line = "Your First Nightmare has ended. You have not.", mood = "wrath" },
+]
+
+[bound_in_their_place]
+ending = true
+text = """
+You know the low quarter. You know the stairway. Down there it's narrow and twisting - the Guardian will never follow you down there.
+
+You're right about that. It doesn't follow.
+
+The whispers are waiting for you at the bottom of the stair. They're louder now, and they're not pleading anymore. The ghosts you walked away from drift out of the walls, soldiers and old men and the woman with the basket, and every one of them is smiling.
+
+"You came back," they say. "Everyone does."
+
+The seal on the floor flares with sick violet light. You feel the leash before you see it - a cold line hooking into your chest, drawing taut, anchoring you to the stone. One by one the ghosts' own chains go slack and fall away, and one by one they fade, grateful, into peace.
+
+A seal like this always needs someone to hold. It doesn't much care who.
+
+Years later - or perhaps only minutes; it's hard to say down here - another frightened Aspirant follows a whisper down the stairs. You hear yourself begin to plead."""
+dialogue = [
+  { who = "ghost", line = "Thank you, brave one. We will not forget this kindness.", mood = "smirk" },
+  { who = "your_thoughts", line = "No - wait - I didn't mean - please...!", mood = "afraid", fx = "shake" },
+  { who = "the_spell", line = "Aspirant bound. Your First Nightmare will not end.", mood = "wrath", fx = "glitch" },
+]
+
+[fallen_aspirant]
+ending = true
+text = """
+You have no weapon. You have no plan. You have only the stubborn, stupid refusal to die on your knees.
+
+So you don't.
+
+You run at the Guardian screaming, and you get further than anyone would believe. You duck the second blow. You get inside its reach. You hammer your fists against the crack across its chest until your knuckles split and your blood runs down the obsidian, and you swear - you would swear on anything - that the crack widens. Just a little. Just a hair.
+
+Then its hand closes around you, and the world goes very quiet.
+
+You are not afraid at the end. That surprises you. You are mostly angry, and a little proud, and very, very tired.
+
+The Guardian stands alone in the dead plaza once more. But there is a thin line of red across its chest now, a hairline crack slightly wider than before, and the next Aspirant who walks into this Nightmare might just notice it."""
+dialogue = [
+  { who = "your_thoughts", line = "Come on, then! COME ON!", mood = "angry", fx = "shake" },
+  { who = "the_spell", line = "You have perished in the Dream Realm.", mood = "wrath" },
+  { who = "the_spell", line = "...Your defiance has been recorded.", mood = "focus" },
+]

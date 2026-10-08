@@ -55,6 +55,7 @@ sprite = "reeves"
 
 [speakers.forensic_tech]
 name = "FORENSIC TECH"
+sprite = "forensic_tech"
 
 [speakers.sarah]
 name = "SARAH"
@@ -66,6 +67,7 @@ sprite = "riley"
 
 [speakers.woman]
 name = "WOMAN"
+sprite = "selene"
 
 [speakers.selene]
 name = "SELENE"
@@ -73,6 +75,7 @@ sprite = "selene"
 
 [speakers.dr_cross_video]
 name = "DR. CROSS (video)"
+sprite = "dr_cross"
 
 [speakers.voice]
 name = "VOICE"
@@ -83,6 +86,7 @@ sprite = "cassandra"
 
 [speakers.madame_zora]
 name = "MADAME ZORA"
+sprite = "madame_zora"
 
 [speakers.elias]
 name = "ELIAS"
@@ -90,6 +94,7 @@ sprite = "elias"
 
 [speakers.damien_raving]
 name = "DAMIEN (raving)"
+sprite = "damien"
 
 [speakers.sarah_radio]
 name = "SARAH (radio)"
@@ -104,9 +109,11 @@ name = "CASSANDRA (from darkness)"
 
 [speakers.dr_marsh]
 name = "DR. MARSH"
+sprite = "dr_marsh"
 
 [speakers.marsh]
 name = "MARSH"
+sprite = "dr_marsh"
 
 [speakers.kane_phone_message]
 name = "KANE (phone message)"

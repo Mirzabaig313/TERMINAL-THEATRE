@@ -13,7 +13,7 @@ Written in Rust. One binary, nothing else to install.
 - **Screen Effects**: Screen shake for gunshots, glitches for drugs and static, white flashes for shocking reveals, drifting ash and neon in the background
 - **Mood Lighting**: Every scene is colored by its mood (noir, danger, alert, calm, mystery), and each story can recolor them
 - **Branching Narratives**: Flags, items and conditional choices make earlier decisions matter
-- **Multiple Endings**: 43 endings across three stories
+- **Multiple Endings**: 50 endings across three stories
 - **Save System**: Autosave at every scene, 9 named slots per story, quick save/load, Continue, Load Game, export/import
 - **Reading Comfort**: History of everything read, auto-advance, and skip that races through text you've already read
 - **Endings Gallery**: See which endings you've found in each story, and how many are left
@@ -29,9 +29,9 @@ Written in Rust. One binary, nothing else to install.
 
 Play as Jack Malone, a private eye with a dead client and a smoking gun. Navigate corruption, mob bosses and conspiracies to clear your name.
 
-- **Scenes**: 85
-- **Endings**: 24
-- **Cast**: Jack Malone, Castellano, Eddie, Captain Rodriguez, Morrison, Blackwood, Tony "The Fist"
+- **Scenes**: 80
+- **Endings**: 27
+- **Cast**: Jack Malone, Castellano, Eddie, Captain Rodriguez, Morrison, Blackwood, Tony "The Fist", Agent Sarah Chen, Doc Stevens
 - **Genre**: Film noir detective mystery
 
 ### Blood and Neon (Cyberpunk Noir)
@@ -43,7 +43,7 @@ Play as Detective Marcus Kane, hunting a killer who poses victims as tarot cards
 - **Scenes**: 85
 - **Endings**: 13
 - **Decision Points**: 71
-- **Cast**: Kane (with a glowing cyber-eye), Sarah Vega, Cassandra Westmore, Elias, Selene, Captain Reeves, Riley
+- **Cast**: Kane (with a glowing cyber-eye), Sarah Vega, Cassandra Westmore, Elias, Selene, Captain Reeves, Riley, Dr. Helena Marsh, Madame Zora
 - **Genre**: Neon-soaked detective thriller
 
 ### Shadow Slave (Dark Fantasy)
@@ -52,9 +52,9 @@ Play as Detective Marcus Kane, hunting a killer who poses victims as tarot cards
 
 Pulled into the Dream Realm, you must survive your First Nightmare: ancient ruins, shadow beasts, trapped spirits, and a Guardian who decides whether you awaken.
 
-- **Scenes**: 38
-- **Endings**: 6
-- **Cast**: Sunny, and The Spell, a watching rune-eye
+- **Scenes**: 53
+- **Endings**: 10
+- **Cast**: Sunny, The Spell (a watching rune-eye), and the ghosts of a fallen garrison
 - **Genre**: Dark fantasy survival
 
 ## 🚀 Quick Start
@@ -214,10 +214,10 @@ Every bundled story is checked on each run: it must load, every scene must be re
 ## 📊 Statistics
 
 - **Stories**: 3
-- **Total Scenes**: 208
-- **Unique Endings**: 43
-- **Animated Characters**: 16, with 8 expressions each (hand-made sprites have their own sets)
-- **Lines of Dialogue**: 490
+- **Total Scenes**: 218
+- **Unique Endings**: 50
+- **Animated Characters**: 27, with 8 expressions each (hand-made sprites have their own sets)
+- **Lines of Dialogue**: 587
 - **Tests**: 55
 
 

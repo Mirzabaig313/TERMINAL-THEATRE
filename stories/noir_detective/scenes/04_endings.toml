@@ -1,0 +1,519 @@
+# THE LAST CASE - Endings
+# Every road out of the rain. The gallery counts each one.
+
+[ending_killed_by_castellano]
+mood = "danger"
+text = """
+You make your move. It's a good move - fast, clean, the kind of thing that would have worked ten years and ten thousand cigarettes ago.
+
+Castellano's men are faster. They always are. They get paid to be.
+
+Three guns bark in a room built for whispering. The impacts come like hammer blows - chest, shoulder, somewhere low that takes your legs away - and the world tilts on its axis and slides you off it. You hit the floor. The carpet is red, or it's getting red. Hard to tell anymore.
+
+Castellano stands over you, a dark shape against the light, fastidiously stepping back so you won't get blood on his shoes. Somewhere a trumpet is still playing. They never stop the music for men like you.
+
+You think of the dame on your carpet, two floors and a whole night away. You think you'll be seeing her soon. You hope she's not too sore about how you handled her case.
+
+ENDING: KILLED BY CASTELLANO"""
+dialogue = [
+  { who = "castellano", line = "Shame, Malone. We could've helped each other. Instead, you die stupid.", mood = "smirk", fx = "shake" },
+]
+ending = true
+
+[ending_evidence_victory]
+mood = "mystery"
+text = """
+Rodriguez listens to all of it in his office with the blinds down, chain-smoking, his face getting greyer with every name. When it's over he sits very still for a long time. Then he picks up the phone and starts calling judges.
+
+Two days later the evidence hits every news station in the city at once. The arrests start within hours. Morrison is walked out of headquarters in his own handcuffs, past a gauntlet of flashbulbs. Castellano is pulled out of a steam bath. Blackwood - the late General Blackwood - is picked up at an airfield in Maryland, trying to board a plane under a dead man's name. Fitting.
+
+The whole rotten system comes crashing down like a chandelier with the chain cut. Your name is cleared with a two-line paragraph on page fourteen. The dame's name runs on the front page. That's the right way round.
+
+You buy flowers for her grave. White roses. No red.
+
+ENDING: THE EVIDENCE SPEAKS"""
+dialogue = [
+  { who = "news_anchor", line = "In the biggest corruption scandal in city history...", fx = "glitch" },
+  { who = "rodriguez", line = "Good work, Jack. You're cleared of all charges.", mood = "happy" },
+  { who = "jack_malone", line = "Just doing my job, Captain.", mood = "smirk" },
+]
+ending = true
+
+[ending_silent_victory]
+mood = "noir"
+text = """
+The copies go out in plain brown envelopes from five different post offices, addressed to three reporters you'd trust with your life and two you'd trust with nothing else but this. No return address. No name.
+
+Within a week, the city is in chaos. Front pages scream. Precinct captains resign in batches like Christmas cards. A grand jury is sworn in and a general who supposedly died at sea is arraigned in a borrowed suit. Within a month the city is clean. Well - cleaner. Like a bar floor after closing: mopped, but you still wouldn't eat off it.
+
+Nobody ever finds out where the evidence came from. The papers call the source 'Nightingale.' You read about Nightingale over breakfast, at the counter of a diner on Fifth, and you don't say a word.
+
+No glory. No recognition. Just a dead woman's work finished, and your own name back, and a long quiet walk home in the first dry night in weeks.
+
+ENDING: THE SILENT GUARDIAN"""
+dialogue = [
+  { who = "eddie", line = "Nightingale. They gave you a bird name, Jack.", mood = "smirk" },
+  { who = "jack_malone", line = "Could've been worse. Could've been 'Pigeon'.", mood = "smirk" },
+]
+ending = true
+
+[ending_smart_play]
+mood = "calm"
+text = """
+The federal building smells of floor wax and burnt coffee. A night clerk with a crew cut takes your name like it might bite him, and then, an hour later, a woman in a grey suit with a sharp black bob comes down the stairs, sits across from you in an interview room, and listens.
+
+Special Agent Sarah Chen takes your statement - four hours of it, three cups of coffee, one pack of her cigarettes. She doesn't interrupt once. At the end she closes her notebook and looks at you like you're a puzzle that turned out to have all its pieces.
+
+Three weeks later, coordinated raids bring down the entire operation from Pier 9 to Washington. You testify in a borrowed tie. They go to prison. You go free.
+
+Sometimes retreat is victory. Sometimes the bravest thing a man can do is turn around in the rain and walk the other way, knowing the right people are waiting at the end of the road.
+
+ENDING: WISDOM OVER VALOR"""
+dialogue = [
+  { who = "chen", line = "You made the smart choice, Malone. Not many do.", mood = "smirk" },
+  { who = "jack_malone", line = "I've been called a lot of things. Smart isn't usually one of them.", mood = "smirk" },
+]
+ending = true
+
+[ending_guilty_conscience]
+mood = "noir"
+text = """
+You call Rodriguez from the box office phone, with her blood still on your cuffs, and you tell him everything. Every word. You don't leave out the part where you fired first.
+
+He brings you in. He believes you - you can see it in his face, and you can see what it costs him. The FBI confirms the dead woman's identity by morning: Special Agent Margaret Hale, eleven years with the Bureau, two commendations, working Nightfall undercover. The papers she died guarding go to Agent Chen.
+
+You spend six months in protective custody while they build the case - a hotel room with the windows painted shut and a marshal outside the door. When it's over, you're cleared. Project Nightfall is exposed from the docks to the War Department. Blackwood hangs. Castellano and Morrison grow old in Sing Sing.
+
+But the woman in your office is still dead. And so is the woman in red. Self-defence, the inquest says. The inquest wasn't there.
+
+ENDING: THE BURDEN OF TRUTH"""
+dialogue = [
+  { who = "jack_malone", line = "Two good people dead because I pulled a trigger. Self defense doesn't make it hurt less.", mood = "sad" },
+  { who = "chen", line = "She'd have done the same thing in your shoes, Malone. That's the part you'll have to learn to live with.", mood = "sad" },
+]
+ending = true
+
+[ending_exile]
+mood = "noir"
+text = """
+You run. You leave her in the aisle of the Ritz with the green exit light on her face, and you never stop running after that.
+
+A Greyhound to St. Louis. A freight car to Texas. A fishing boat across the Gulf with a captain who doesn't ask questions as long as the money keeps coming. Mexico first, then further south, a different name in every town, a different colour in your hair.
+
+The papers go to a journalist you trust, mailed from a border town with no return address. Project Nightfall gets exposed. Blackwood falls. Castellano falls. Morrison eats his gun. But there's still a federal warrant with your face on it for the death of a federal agent, and there always will be.
+
+You end up in a white-washed town on a hot coast, running a bar with a ceiling fan that doesn't work. Some nights, you wonder if it was worth it. Most nights, you try not to think at all. The rain never comes here. You miss it more than you'd have believed.
+
+ENDING: THE PRICE OF JUSTICE"""
+dialogue = [
+  { who = "jack_malone", line = "They say you can't run from your past. But you can sure as hell try.", mood = "sad" },
+]
+ending = true
+
+[ending_fbi_victory]
+mood = "calm"
+text = """
+Chen drops her hand, and the night comes apart.
+
+From where you're standing, it's mostly noise - flash-bangs, shouting, a single long burst of automatic fire that makes everyone flinch, and then a silence like the end of the world. Blackwood resists. He's killed in the firefight, still reaching for a weapon that nobody in the room had ever seen before. Castellano and Morrison come out in cuffs, heads down, coats over their wrists.
+
+You testify for nine days in a federal courtroom with marble walls. They go away for life. The Bureau writes you a letter of commendation that you frame and hang over the spot on the carpet where she died, because you couldn't afford a new carpet and you couldn't stand to look at the old one.
+
+You get your badge back. Metaphorically speaking. The phone starts ringing again - honest work, for once. You even answer it.
+
+ENDING: BY THE BOOK"""
+dialogue = [
+  { who = "chen", line = "You're a good man, Malone. In a bad business.", mood = "happy" },
+  { who = "jack_malone", line = "Only business I know.", mood = "smirk" },
+]
+ending = true
+
+[ending_partnership_success]
+mood = "calm"
+text = """
+You walk Blackwood to the car yourself, one hand on his elbow, Chen on his other side. He doesn't say another word. He doesn't need to; his smile says he'll be out in six months. He's wrong. Chen has the papers from Seat 13, and she has you, and between the two of you there isn't a friend in Washington who'll pick up his calls.
+
+Dawn comes up over the harbour the colour of dishwater, and for the first time in three days the rain stops. You and Chen stand on the end of Pier 9 sharing her last cigarette while the agents carry crates out of the warehouse - crates stencilled DESTROYED IN SERVICE, being very much carried.
+
+Six weeks later, an envelope arrives at your office. A federal consultant's contract, and a note in a neat hand: 'In case you ever get tired of being a one-man army. - S.C.'
+
+You don't sign it. Not yet. But you don't throw it away either.
+
+ENDING: UNLIKELY ALLIES"""
+dialogue = [
+  { who = "chen", line = "Not bad, for a private eye with a bad liver.", mood = "smirk" },
+  { who = "jack_malone", line = "Not bad, for a Fed.", mood = "smirk" },
+]
+ending = true
+
+[ending_by_the_book]
+mood = "calm"
+text = """
+They fish you out of the harbour with a boathook and wrap you in a blanket on the back of an ambulance, and you sit there shivering and watching Warehouse 47 burn down to the waterline while the sun comes up behind it.
+
+The ledgers are a soggy mess, but ledgers dry. Rodriguez spends a week with a hair dryer and an ironing board in the precinct basement, page by page, and every page that comes back is another name. Castellano pleads guilty to everything and names everyone. Blackwood is identified from his dental records - a dead man, dead again, for real this time.
+
+Everything by the book. Every warrant signed, every chain of custody unbroken. When the trials come, not one case gets thrown out. The newspapers call it the cleanest raid in the city's history. Rodriguez gets a commissioner's office with a view. He offers you a job. You turn it down. Somebody has to keep the forty-seventh floor lit.
+
+ENDING: PROPER PROCEDURE"""
+dialogue = [
+  { who = "rodriguez", line = "Nine honest cops and one dishonest private eye. Who'd have thought.", mood = "happy" },
+  { who = "jack_malone", line = "I resent that, Captain. I'm very honest about being dishonest.", mood = "smirk" },
+]
+ending = true
+
+[ending_lone_wolf_victory]
+mood = "noir"
+text = """
+You wake up in a hospital bed with the sun on your face, which feels like the first time in a year.
+
+Your chest is wrapped like a parcel. There's a tube in your arm and a cop outside your door, and in the chair beside you, his hat on his knee, sits Captain Rodriguez, looking at you the way a man looks at a dog that came home after everyone had given up.
+
+He tells you the rest. Castellano is dead. Morrison is dead. The warehouse is ash. And Blackwood - the FBI picked him up at the airport four hours after you went down, trying to board a flight to Lisbon under a false name, with the sleeve of his greatcoat still singed from your grenade crate.
+
+You took on the whole conspiracy alone, with six bullets and a bad temper, and you won. Battered, bleeding, stitched together like a rag doll. But you won.
+
+The nurse says you'll have the scars for life. You tell her that's fine. Scars are just receipts.
+
+ENDING: THE LONE WOLF"""
+dialogue = [
+  { who = "rodriguez", line = "You crazy son of a bitch. You did it.", mood = "happy" },
+  { who = "jack_malone", line = "Blackwood got away.", mood = "pained" },
+  { who = "rodriguez", line = "FBI picked him up at the airport. It's over, Jack. You're clear.", mood = "happy" },
+]
+ending = true
+
+[ending_deal_with_devil]
+mood = "noir"
+text = """
+You finish the drink. You put on your hat. You walk out of the Velvet Room into the first dry morning in a week and you don't look back.
+
+Blackwood is dead. Morrison goes to prison on evidence that turns up, very conveniently, in an anonymous parcel at the DA's office. And Castellano walks free - there's nothing left that links him to Nightfall anymore. You made sure of that. That was the deal.
+
+The papers call it a triumph for law and order. Your name is cleared. The dame's killer - the man who actually pulled the trigger in your walls - was one of Blackwood's, and he's at the bottom of the harbour with his boss's guns. Somebody ordered him there. You don't ask who.
+
+Sometimes, late, you see Castellano's car going by on the avenue, and he tips his hat to you through the glass. You never tip yours back.
+
+You wonder if you made the right choice. Then again, in this city, there are no right choices. Only the ones you can live with.
+
+ENDING: DEAL WITH THE DEVIL"""
+ending = true
+
+[ending_double_cross]
+mood = "danger"
+text = """
+You keep your face straight while Castellano pours the celebration drinks. You clink glasses. You even smile.
+
+Then you walk to the pay phone on the corner and call Rodriguez, and you tell him everything Castellano told you in that booth - who gave the order, who carried it out, where the bodies are, the ones in the harbour and the ones in the ledgers. By noon, there are squad cars outside the Velvet Room. By evening, Vincent Castellano is in a cell with no window, and his lawyers have stopped returning his calls.
+
+A deal with the devil is only binding if you're afraid of the devil. You find you're not, anymore.
+
+But devils have long memories and longer reach. A month later, somebody puts a bomb under your car. It goes off early, and takes out a fire hydrant and your favourite hat. You start checking under the chassis every morning. You start sitting with your back to the wall. You start sleeping with the light on.
+
+Valentina got justice. All of it. You get to spend the rest of your life paying the bill.
+
+ENDING: THE DOUBLE CROSS"""
+dialogue = [
+  { who = "jack_malone", line = "I told him the deal was off if we met again. I just didn't say when.", mood = "smirk" },
+]
+ending = true
+
+[ending_died_with_honor]
+mood = "noir"
+text = """
+You don't reach for your gun. You don't run. You don't beg. You stand up straight in the red light of the Velvet Room, settle your hat on your head, and look Vincent Castellano right in the eye.
+
+He's the one who looks away first. You'll take that with you.
+
+The last thing you see is the muzzle flash - three of them, close together, like a neon sign switching on.
+
+They find you in the river two days later. The papers run it on page twenty-three: PRIVATE DETECTIVE FOUND DEAD, SUSPECTED IN OFFICE SLAYING. Case closed.
+
+But somebody at the Velvet Room talks - a hat-check girl who saw your face when you said no. And somebody she tells, tells somebody else. A year later, when Nightfall finally comes apart at the seams, the reporter who breaks the story dedicates the series to you. 'He wouldn't make a deal,' she writes. 'In this city, that's the rarest thing there is.'
+
+Some would call it stupid. Others would call it heroic. You'd call it Tuesday.
+
+ENDING: DIED WITH HONOR"""
+dialogue = [
+  { who = "castellano", line = "Shame. We could've done great things together.", mood = "sad", fx = "flash" },
+]
+ending = true
+
+[ending_tactical_victory]
+mood = "calm"
+text = """
+'Now,' Eddie says, and you move together like two halves of the same thought.
+
+He goes right, drawing the beam with a burst of fire into the rafters. You go left, low, between the crates, and when the dial on the side of Blackwood's weapon swings into the red and he reaches for the lever, you're already there. Two shots. Clean. Blackwood goes down like a felled tree, and the weapon skitters across the concrete, whining down into silence.
+
+Castellano's last man throws his tommy gun on the floor. Morrison is curled behind a crate, holding his leg and crying.
+
+By the time Rodriguez's squad cars come screaming down the pier, the fire's out and you and Eddie are sitting on the loading dock with your legs dangling over the harbour, passing a flask back and forth. Precision, skill, and twelve years of knowing exactly what the other one's going to do.
+
+Eddie's back on the force by Christmas. He requests you as a consultant. You say you'll think about it. You both know you already have.
+
+ENDING: TACTICAL PERFECTION"""
+dialogue = [
+  { who = "eddie", line = "Clear!", mood = "happy" },
+  { who = "jack_malone", line = "Call it in. We're done here." },
+  { who = "eddie", line = "Just like old times, Jack.", mood = "happy" },
+]
+ending = true
+
+[ending_heroic_victory]
+mood = "danger"
+text = """
+You charge. No plan. No cover. Just your legs and your gun and twenty yards of open concrete.
+
+Blackwood swings the weapon round and the beam catches you in the shoulder. Pain like you've never felt - not burning exactly, more like being unmade from the inside out, every nerve singing a different wrong note. Your coat catches fire. You keep moving.
+
+Three steps. Two. One.
+
+You crash into Blackwood with your whole weight. The weapon goes spinning off into the dark. Your gun is against his chest, and his eyes go wide - the first honest expression you've seen on his face all night.
+
+One shot. It's over.
+
+They give you a medal, eventually. The city does that sometimes, when it's embarrassed. You keep it in a drawer with your bottle. Your left arm never works quite right again, and when it rains - which is always - the shoulder aches like a bad conscience. You don't mind. It reminds you that some nights, you were the one who didn't stop.
+
+ENDING: HEROIC SACRIFICE"""
+dialogue = [
+  { who = "eddie", line = "Jack! You hit?", mood = "afraid" },
+  { who = "jack_malone", line = "I'll live. Probably. Is he dead?", mood = "pained", fx = "flash" },
+  { who = "eddie", line = "Very.", mood = "smirk" },
+]
+ending = true
+
+[ending_justice_served]
+mood = "noir"
+text = """
+You hold Morrison at gunpoint while the call goes out to Rodriguez. The good cops come - all nine of them, in two unmarked Fords - and when they put the cuffs on him, Morrison holds out his wrists like a man who's been waiting years for somebody to do it.
+
+He goes quietly in the end.
+
+With his testimony, the whole operation falls apart. He knows everything - every shipment, every payoff, every name in every ledger - and once he starts talking, he can't seem to stop. It pours out of him for six days in a room at the DA's office, like a man finally vomiting up something poisonous he swallowed long ago. Blackwood is arrested at his country house. Castellano is arrested at his barber's.
+
+Project Nightfall ends not with a bang, but with handcuffs and a court stenographer.
+
+At the sentencing, Morrison looks back over his shoulder and finds you in the gallery. He nods once. You nod back. Neither of you knows exactly what it means.
+
+ENDING: JUSTICE SERVED"""
+dialogue = [
+  { who = "rodriguez", line = "Good work, Jack. The law's going to take its sweet time with him, but it's going to take him.", mood = "happy" },
+  { who = "morrison", line = "Get me a lawyer, Malone. And a priest. Not necessarily in that order.", mood = "sad" },
+]
+ending = true
+
+[ending_dark_justice]
+mood = "mystery"
+text = """
+You pull the trigger.
+
+In the corridor of the Velvet Room it's not even that loud - the applause from the bandstand swallows most of it. Morrison drops like a coat falling off a hook. His hands are still raised. His eyes are still open, and surprised.
+
+Eddie stares at you. He doesn't lower his gun right away, and for a terrible second you're not sure which way it's going to point.
+
+The conspiracy ends. The ledger does its work; the names go down one after another like dominoes. Nobody ever charges you for Morrison - the official story says he drew first, and Eddie, God help him, signs the statement. But Eddie never calls you again. Not once. You see him on the street a year later and he crosses to the other side.
+
+You executed a man with his hands up. You can tell yourself it was justice. You do, most nights. Some nights you even believe it.
+
+You've become what you fought against. The rain, at least, doesn't judge.
+
+ENDING: DARK JUSTICE"""
+dialogue = [
+  { who = "eddie", line = "Jack... he was surrendering...", mood = "shocked" },
+  { who = "jack_malone", line = "He killed that dame. He killed dozens. He was never going to see the inside of a prison. You know it. I know it.", mood = "angry" },
+  { who = "eddie", line = "Maybe. But that was murder.", mood = "sad" },
+]
+ending = true
+
+[ending_survivor]
+mood = "danger"
+text = """
+You dive. The beam passes over your head with a sound like tearing silk and takes the top off the crate behind you, which bursts into flame.
+
+You roll, come up on one elbow, and fire twice through the smoke. Both shots hit. Blackwood staggers, looks down at his chest with an expression of mild professional disappointment, and falls. The weapon hums once more and goes dark.
+
+Castellano tries to run for the water. You shoot him in the leg. He goes down on the wet planks howling in Italian.
+
+When the police arrive, sirens screaming, lights painting the pier red and blue and red again, you're sitting on a crate in the middle of the wreckage, smoking a cigarette, surrounded by bodies and broken glass and enough illegal ordnance to start a small war.
+
+Through skill and luck - mostly luck - you survived impossible odds. The conspiracy is destroyed. You live to fight another day, and in this city, there's always another day that needs fighting.
+
+ENDING: THE SURVIVOR"""
+dialogue = [
+  { who = "jack_malone", line = "Sometimes you get lucky. Sometimes you get even. Tonight, I got both.", mood = "smirk", fx = "flash" },
+]
+ending = true
+
+[ending_quick_draw]
+mood = "danger"
+text = """
+You don't think. Thinking is for men with time.
+
+You take the shot. One bullet, across forty feet of smoke and swinging shadow, past Castellano's shoulder and under the lamp. It catches Blackwood in the throat. He goes down without a word, and the strange weapon clatters to the concrete and whines down into silence, the blue light at its tip dying like a match.
+
+Castellano raises his hands. His pearl-handled automatic hits the floor. Morrison is already through the side door and running into the rain. You let him. He'll be dead by morning anyway - men like that always are, once the man who owned them is gone.
+
+The papers say it was the finest piece of shooting the harbour police had ever seen in an official report. It was also the only shot you fired all night. One perfect shot that ended it all.
+
+Clean. Quick. Effective. Just like you, on your best day. You only get a few of those. Tonight, you spent one well.
+
+ENDING: THE QUICK DRAW"""
+dialogue = [
+  { who = "jack_malone", line = "It's over.", fx = "flash" },
+  { who = "castellano", line = "Easy, Malone. Easy. I'm a businessman.", mood = "afraid" },
+]
+ending = true
+
+[ending_bad_bluff]
+mood = "danger"
+text = """
+Blackwood laughs. It's not a pleasant sound. It's the sound of a man who has listened to a lot of other men bargain for their lives and never once been moved.
+
+'Mr. Malone, we both know you don't have any copies. If you did, you would have used them already. You're a good detective, but a terrible liar.'
+
+He stands. He reaches under the table and lifts out a weapon. Not a gun. Something worse - brass coils and glass tubes and a hum that you feel in your back teeth. The air around it smells of a summer thunderstorm.
+
+Castellano looks away. Morrison closes his eyes.
+
+'Goodbye, Mr. Malone.'
+
+There's a light. It's very blue, and very bright, and then there isn't anything at all.
+
+They never find enough of you to bury. The papers say you skipped town after murdering a woman in your office. The bluff failed. Blackwood called it. You died trying to negotiate with monsters, and the monsters went back to counting their money.
+
+ENDING: BAD BLUFF"""
+dialogue = [
+  { who = "jack_malone", line = "Worth a shot...", mood = "afraid", fx = "flash" },
+]
+ending = true
+
+[ending_insurance_policy]
+mood = "alert"
+text = """
+You don't say a word. You just lay it on the table, piece by piece, under the swinging lamp, like a croupier dealing a hand none of them want to play.
+
+A page from Seat 13 on War Department letterhead. Or a leaf torn from a ledger with M.B. on the cover. Or a carbon from Morrison's own briefcase. Whatever you're holding, it's real, and the three of them know it the moment they see it.
+
+'The rest is in three places,' you say. 'One of them is a lawyer's safe. One of them is a newspaper office. One of them is somewhere I'm not going to tell you. If I don't make a certain phone call by six a.m., all three get opened.'
+
+The silence lasts so long the lamp stops swinging. Then Blackwood smiles, thin as a razor cut, and gestures at the door.
+
+You walk out of Warehouse 47 alive. At six a.m. you don't make the call. At nine, the envelopes are opened, and by noon Pier 9 is crawling with federal agents. Turns out insurance only works if you're willing to cash it.
+
+ENDING: THE INSURANCE POLICY"""
+dialogue = [
+  { who = "blackwood", line = "Well played, Mr. Malone. You may go. We'll discuss this again.", mood = "angry" },
+  { who = "jack_malone", line = "No, General. We won't.", mood = "smirk" },
+]
+ending = true
+
+[ending_honor_among_thieves]
+mood = "noir"
+text = """
+Tony moves. Not much - half a step, his gun drifting down toward the floor, his body drifting into the line between you and everybody else's - but in that room, in that moment, it's like watching a wall come down.
+
+'Not him, boss,' Tony says. 'Not this one. Somebody put that job on our name, and it wasn't Malone.'
+
+Nobody moves. Nobody breathes. And in the space Tony has made, you put on your hat and walk out the door, and nobody stops you. Behind you, voices rise. You don't stay to hear what they settle on. The night has its own accounts to balance.
+
+A week later, Tony walks into the federal building with his hat in his hands and asks for whoever is working Nightfall. He talks for three days. Blackwood's network comes apart like wet paper. Castellano goes down with it - he trusted Tony with everything, which is the one mistake men like Castellano never live to make twice.
+
+You get a postcard from Miami at Christmas. No signature. Just a picture of a bottle of rye, and the words: 'The whole bottle. Like you promised.'
+
+ENDING: HONOR AMONG THIEVES"""
+dialogue = [
+  { who = "tony", line = "We're square now, Malone. Don't ever make me do that again.", mood = "angry" },
+  { who = "jack_malone", line = "Tony, you're the only honest man I met all night.", mood = "smirk" },
+]
+ending = true
+
+[ending_evidence_endgame]
+mood = "mystery"
+text = """
+Morrison's evidence is devastating. Twenty-two years of a crooked cop's careful bookkeeping: every envelope, every warehouse, every name, cross-referenced and dated in the neat hand of a man who always knew this day might come and wanted to be able to take everyone with him.
+
+You leak it to every news outlet in the city, then every outlet in the state. Within forty-eight hours, the arrests begin. Blackwood, pulled out of a hotel suite under a dead man's name. Castellano, at his daughter's wedding. Dozens of dirty cops, rounded up in their own station houses by their own sergeants.
+
+You're cleared of all charges. The dame's death is solved. And Morrison is found dead a week later in a motel room outside Gary, Indiana. Suicide, they say. Single gunshot. Note on the nightstand.
+
+You don't believe it. But you let it go. He finished what he couldn't, in the end - through you. Even bad men can do good things, if somebody's there to carry the briefcase.
+
+ENDING: THE EVIDENCE ENDGAME"""
+dialogue = [
+  { who = "jack_malone", line = "Justice isn't clean. But it's better than nothing.", mood = "sad" },
+]
+ending = true
+
+[ending_pyrrhic_victory]
+mood = "noir"
+text = """
+You crawl. It takes about a year. The concrete is cold and wet and slick with things you don't look at, and every foot of it costs you something you're not going to get back.
+
+Somewhere along the way the rain stops, and grey light comes in under the loading door, and you put your face in it like a man drinking from a stream.
+
+That's where they find you - Rodriguez's people, called in by a fisherman who heard the shooting. You're in hospital for three months. You lose a kidney and the hearing in your left ear and two fingers' worth of grip in your right hand. Blackwood is dead. Castellano is dead. Morrison is dead. The Nightfall crates are hauled out of the warehouse by soldiers who refuse to say what's in them.
+
+You survived by letting the villains destroy each other. Victory - the kind that comes with a bill you'll be paying until the day you die. But it's yours. You were the last man standing. Lying down, but still the last.
+
+ENDING: PYRRHIC VICTORY"""
+dialogue = [
+  { who = "doc_stevens", line = "Three months, Jack. If you ever do this to me again, I'll finish the job myself.", mood = "angry" },
+  { who = "jack_malone", line = "Good to see you too, Doc.", mood = "pained" },
+]
+ending = true
+
+[ending_smart_escape]
+mood = "mystery"
+text = """
+You set the glass down untouched and back toward the door. Castellano doesn't stop you. He doesn't even get up. He just swirls his drink and watches you go, with the look of a man who's seen this movie before and knows how it ends.
+
+'You'll be back,' he says. 'They always come back.'
+
+He's wrong. You go out through the kitchen, into the alley, and you don't stop walking until you reach the federal building on Foley Square, where you sit on the steps in the rain until they open the doors at seven. Then you go in and give them everything - the dame, the frame, the Velvet Room, the name 'Blackwood' that Castellano couldn't quite keep from dropping.
+
+Three months later, it's over. Castellano, Blackwood, Morrison. All behind bars. You're free.
+
+You walked away when it mattered, then struck from a position of strength. No bullets. No blood. Just a man who knew when to leave a room.
+
+ENDING: THE SMART ESCAPE"""
+dialogue = [
+  { who = "jack_malone", line = "Sometimes the smart play is walking away. Then hitting them from behind.", mood = "smirk" },
+]
+ending = true
+
+[ending_final_showdown_victory]
+mood = "danger"
+text = """
+Blackwood first. You don't even aim; you just point, the way you'd point at something you wanted the world to remember.
+
+The fight is quick and brutal. You're wounded, exhausted, running on empty. But you're also right. And that counts for something - not much, in this city, but on this one night, on this one pier, it counts for just enough.
+
+When the smoke clears, Blackwood and Morrison are dead on the concrete under the swinging lamp. Castellano lives, barely, with a bullet in his hip and his hands up. He'll talk. He'll deal. Men like him always do, once the man above them is gone.
+
+And you'll finally get the truth - the whole of it, every name, every crate, every dollar. You'll get it in a courtroom, in daylight, with a stenographer taking it down.
+
+You sit down on a crate and light your last cigarette with fingers that won't stop shaking. Outside, the rain is finally letting up.
+
+Despite overwhelming odds, you stormed the warehouse and won. Wounded but victorious. The perfect ending to a noir tale.
+
+ENDING: THE FINAL SHOWDOWN"""
+dialogue = [
+  { who = "jack_malone", line = "It's over. Finally.", mood = "pained" },
+  { who = "castellano", line = "Get me a doctor, Malone. And then get me a deal.", mood = "pained" },
+]
+ending = true
+
+[leave_town]
+mood = "noir"
+text = """
+You pack a bag. One suitcase, one gun, and all the cash you can carry from the coffee can behind the filing cabinet. You leave the lights on and the neon buzzing and the dame on the carpet, and you don't look at her on your way out. That's the part you'll remember.
+
+The bus station at 4 AM is full of people running from something. Sailors. Runaways. A woman with a black eye and two kids asleep on her lap. You're just one more, hat pulled low, collar turned up, ticket to anywhere.
+
+Mexico first. Then further south. The dame's death goes unsolved. The conspiracy continues. Blackwood, Castellano, Morrison - they all win. But you're alive. Sometimes that's the only victory that matters.
+
+In your pocket, the photograph burns like a brand. Every night, you see her face. Every night, you wonder if you made the right choice.
+
+ENDING: THE COWARD'S EXIT"""
+ending = true
