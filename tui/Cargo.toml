@@ -13,5 +13,8 @@ path = "src/main.rs"
 
 [dependencies]
 anyhow.workspace = true
+image = { version = "0.25.10", default-features = false, features = ["png", "jpeg"] }
 ratatui.workspace = true
+ratatui-image = { version = "11.1.0", default-features = false, features = ["crossterm"] }
+resvg = { version = "0.48.1", default-features = false, features = ["text", "system-fonts", "memmap-fonts"] }
 theatre-engine.workspace = true

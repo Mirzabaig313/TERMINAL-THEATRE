@@ -40,6 +40,12 @@ def main(folder):
     if meta["start"] not in scenes:
         errors.append(f"start scene '{meta['start']}' missing")
     for sid, scene in scenes.items():
+        if "image" in scene:
+            img = os.path.join(folder, scene["image"])
+            if not os.path.isfile(img):
+                errors.append(f"{sid}: image '{scene['image']}' not found")
+            elif not img.lower().endswith((".png", ".jpg", ".jpeg", ".svg")):
+                errors.append(f"{sid}: image '{scene['image']}' must be .png, .jpg or .svg")
         if "mood" in scene and scene["mood"] not in MOODS:
             errors.append(f"{sid}: scene mood '{scene['mood']}' not in {sorted(MOODS)}")
         for line in scene.get("dialogue", []):

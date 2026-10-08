@@ -13,6 +13,10 @@ art = """
    │  ░ RAIN ░  │
    │  ░░░░░░░░  │
    └────────────┘"""
+# a picture for the stage (PNG or JPEG inside the story folder). Terminals with
+# Kitty, iTerm2 or Sixel graphics show the real image, others draw it in
+# character cells; players who turn Scene Images off see the ASCII art above.
+image = "images/rain.png"
 mood = "mystery"
 set_flags = ["heard_knock"]
 dialogue = [
@@ -31,6 +35,8 @@ goto = "silence"
 
 [door_open]
 text = "The stranger stumbles inside, soaked and shaking."
+# SVG pictures work too: drawn sharp at any size
+image = "images/doorway.svg"
 add_items = ["Wet Letter"]
 # animated art: frames shown in turn every art_ms milliseconds
 art_frames = [

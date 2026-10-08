@@ -14,6 +14,7 @@ pub mod settings;
 use std::path::PathBuf;
 
 use anyhow::Result;
+use ratatui_image::picker::Picker;
 use theatre_engine::Store;
 use theatre_engine::library;
 use theatre_engine::settings::Settings;
@@ -30,6 +31,8 @@ pub struct Ctx {
     pub store: Store,
     /// the terminal shows 24-bit color; otherwise colors are reduced to 256
     pub truecolor: bool,
+    /// how scene pictures are drawn; half-blocks until the terminal is queried
+    pub picker: Picker,
 }
 
 /// Whether the terminal handles 24-bit color. `THEATRE_COLOR=256` or
@@ -76,6 +79,7 @@ impl Ctx {
             stories,
             data,
             truecolor: detect_truecolor(),
+            picker: Picker::halfblocks(),
         })
     }
 

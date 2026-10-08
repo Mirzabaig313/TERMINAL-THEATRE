@@ -68,6 +68,22 @@ fn idle_story_scene_is_nearly_static() {
 }
 
 #[test]
+fn idle_scene_with_a_picture_is_static() {
+    let mut h = Harness::new("perf-picture", Start::Story("_template".into()));
+    h.wait(20_000);
+    h.press(KeyCode::Enter); // the opening has a picture
+    h.press(KeyCode::Enter); // finish typing the narration
+    h.wait(3000);
+    assert!(!h.app.busy());
+    let churn = idle_churn(&mut h);
+    assert!(
+        churn < 0.03,
+        "{:.1}% of cells change per idle frame",
+        churn * 100.0
+    );
+}
+
+#[test]
 fn fast_frames_only_while_something_moves() {
     let mut h = Harness::new("perf-busy", Start::Story("_template".into()));
     h.wait(200);

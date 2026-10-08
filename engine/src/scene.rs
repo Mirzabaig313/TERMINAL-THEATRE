@@ -9,6 +9,10 @@ pub struct Scene {
     /// still ASCII art for the stage
     #[serde(default)]
     pub art: Option<String>,
+    /// a picture for the stage (PNG, JPEG or SVG, path inside the story folder);
+    /// shown instead of the ASCII art when the player has scene images on
+    #[serde(default)]
+    pub image: Option<String>,
     /// animated ASCII art: frames shown in turn every `art_ms`
     #[serde(default)]
     pub art_frames: Vec<String>,
@@ -41,7 +45,7 @@ fn yes() -> bool {
 
 impl Scene {
     pub fn has_art(&self) -> bool {
-        self.art.is_some() || !self.art_frames.is_empty()
+        self.art.is_some() || !self.art_frames.is_empty() || self.image.is_some()
     }
 
     /// The art to show `elapsed_ms` after the scene started.

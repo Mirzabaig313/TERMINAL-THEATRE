@@ -11,6 +11,7 @@ Written in Rust. One binary, nothing else to install.
 - **Living Characters**: Pixel-art portraits that blink, breathe and move their lips as they speak, with eight expressions each (happy, smirk, angry, afraid, sad, pained, shocked, neutral)
 - **Cinematic Presentation**: Animated neon title sequence, a skippable pre-show cinematic, scene dissolves and typewriter text
 - **Screen Effects**: Screen shake for gunshots, glitches for drugs and static, white flashes for shocking reveals, drifting ash and neon in the background
+- **Scene Pictures**: Real images in Kitty, iTerm2, WezTerm and Sixel terminals, drawn in character cells everywhere else, with ASCII art as the fallback
 - **Mood Lighting**: Every scene is colored by its mood (noir, danger, alert, calm, mystery), and each story can recolor them
 - **Branching Narratives**: Flags, items and conditional choices make earlier decisions matter
 - **Multiple Endings**: 50 endings across three stories
@@ -66,7 +67,7 @@ Pulled into the Dream Realm, you must survive your First Nightmare: ancient ruin
 cargo run --release
 ```
 
-Best in a truecolor terminal around **120×48** or larger (iTerm2, WezTerm, Kitty, Ghostty, Windows Terminal, the VS Code terminal…). Other terminals get the 256-color palette automatically (`THEATRE_COLOR=256` or `THEATRE_COLOR=truecolor` overrides the guess), and smaller windows still work.
+Best in a truecolor terminal around **120×48** or larger (iTerm2, WezTerm, Kitty, Ghostty, Windows Terminal, the VS Code terminal…). Scene pictures appear as real images in Kitty, iTerm2, WezTerm and Sixel terminals and as character cells elsewhere (`THEATRE_GRAPHICS=halfblocks` forces the latter). Other terminals get the 256-color palette automatically (`THEATRE_COLOR=256` or `THEATRE_COLOR=truecolor` overrides the guess), and smaller windows still work.
 
 ```bash
 cargo run --release -- --skip-intro     # straight to the main menu
@@ -149,6 +150,14 @@ stories/my_story/
    cargo run --release -- my_story
    ```
 
+Give a scene a picture (PNG, JPEG or SVG inside the story folder; SVGs are drawn sharp at any size). Terminals with image support show it as a real image; others draw it in character cells; players who turn Scene Images off see the scene's ASCII art instead:
+
+```toml
+[opening]
+image = "images/rain.png"
+art = """ ...ASCII fallback... """
+```
+
 Give a line an expression and an effect right in the dialogue:
 
 ```toml
@@ -189,7 +198,7 @@ A broken story never crashes the game: it shows up on the menu with its error.
 | `screens/play/` | Playing a story: `mod.rs` (state, keys, story flow), `stage.rs` (drawing the scene), `overlays.rs` (intro, pause menu, save dialog, history), `modes.rs` (auto, skip, quick save/load) |
 | `screens/backlog` | The history of everything read |
 | `screens/load`, `settings`, `credits` | The other menu screens |
-| `render/*` | Sprite drawing, effects, color themes, text helpers |
+| `render/*` | Sprite drawing, scene pictures, effects, color themes, text helpers |
 
 The engine never names a story or a character, so adding a story never touches code.
 
@@ -217,7 +226,7 @@ Every bundled story is checked on each run: it must load, every scene must be re
 - **Unique Endings**: 50
 - **Animated Characters**: 27, with 8 expressions each (hand-made sprites have their own sets)
 - **Lines of Dialogue**: 587
-- **Tests**: 55
+- **Tests**: 68
 
 
 ## 🔮 Future Plans

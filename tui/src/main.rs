@@ -33,6 +33,7 @@ ENVIRONMENT:
     THEATRE_STORIES   folder with story folders (default: next to the binary, then the source tree)
     THEATRE_HOME      where the database (saves, settings) lives (default: ~/.terminal_theatre)
     THEATRE_COLOR     256 or truecolor, to override the terminal color detection
+    THEATRE_GRAPHICS  halfblocks, to draw scene pictures in character cells only
 
 KEYS:
     Enter/Space continue · ↑/↓ or 1-9 choose · h history · a auto · s skip
@@ -80,8 +81,11 @@ fn main() -> Result<()> {
         _ => bail!("unknown arguments: {}\n\n{HELP}", args.join(" ")),
     };
 
-    let mut app = App::new(ctx, start);
     let mut terminal = ratatui::init();
+    // ask the terminal how it can show pictures (needs the alternate screen, before events)
+    let mut ctx = ctx;
+    ctx.picker = terminal_theatre::render::image::detect_picker();
+    let mut app = App::new(ctx, start);
     let begin = Instant::now();
     let result = (|| -> Result<()> {
         while !app.quit {

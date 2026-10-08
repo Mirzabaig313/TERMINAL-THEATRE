@@ -1,0 +1,78 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 360">
+  <!-- A soaked stranger in a doorway, hallway light spilling into a dark room. -->
+  <defs>
+    <linearGradient id="room" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#0b0a14"/>
+      <stop offset="1" stop-color="#16121f"/>
+    </linearGradient>
+    <linearGradient id="hall" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#f4c77a"/>
+      <stop offset="0.6" stop-color="#c98a3a"/>
+      <stop offset="1" stop-color="#7a4a1c"/>
+    </linearGradient>
+    <linearGradient id="spill" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#f4c77a" stop-opacity="0.55"/>
+      <stop offset="1" stop-color="#f4c77a" stop-opacity="0"/>
+    </linearGradient>
+    <radialGradient id="bulb" cx="0.5" cy="0.5" r="0.5">
+      <stop offset="0" stop-color="#fff2cc"/>
+      <stop offset="1" stop-color="#fff2cc" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+
+  <!-- the room -->
+  <rect width="640" height="360" fill="url(#room)"/>
+  <!-- floorboards -->
+  <g stroke="#221c2c" stroke-width="2">
+    <line x1="0" y1="300" x2="640" y2="300"/>
+    <line x1="0" y1="325" x2="640" y2="325"/>
+    <line x1="0" y1="348" x2="640" y2="348"/>
+  </g>
+
+  <!-- the open door and the hallway beyond -->
+  <rect x="250" y="40" width="140" height="262" fill="url(#hall)"/>
+  <circle cx="320" cy="62" r="40" fill="url(#bulb)"/>
+  <!-- door leaf swung inward, in shadow -->
+  <polygon points="390,40 470,22 470,320 390,302" fill="#120f19" stroke="#2a2232" stroke-width="3"/>
+  <circle cx="455" cy="176" r="5" fill="#b08a4a"/>
+  <!-- door frame -->
+  <rect x="244" y="34" width="152" height="270" fill="none" stroke="#2c2436" stroke-width="10"/>
+
+  <!-- light spilling across the floor -->
+  <polygon points="250,302 390,302 470,360 170,360" fill="url(#spill)"/>
+
+  <!-- the stranger: a silhouette in a long coat, hat brim low -->
+  <g fill="#07060b">
+    <ellipse cx="320" cy="96" rx="40" ry="8"/>            <!-- hat brim -->
+    <rect x="300" y="72" width="40" height="26" rx="6"/>   <!-- hat crown -->
+    <ellipse cx="320" cy="112" rx="16" ry="19"/>           <!-- head -->
+    <polygon points="286,140 354,140 368,300 272,300"/>    <!-- coat -->
+    <polygon points="286,142 270,236 282,240 298,160"/>    <!-- left arm -->
+    <polygon points="354,142 372,232 360,238 344,160"/>    <!-- right arm, hand on the frame -->
+    <rect x="292" y="296" width="16" height="8"/>          <!-- feet -->
+    <rect x="330" y="296" width="16" height="8"/>
+  </g>
+
+  <!-- rain dripping from the coat, puddle catching the light -->
+  <g stroke="#9fb4d8" stroke-width="2" stroke-linecap="round" opacity="0.8">
+    <line x1="276" y1="244" x2="276" y2="256"/>
+    <line x1="283" y1="262" x2="283" y2="272"/>
+    <line x1="364" y1="246" x2="364" y2="258"/>
+    <line x1="357" y1="266" x2="357" y2="276"/>
+    <line x1="300" y1="306" x2="300" y2="314"/>
+    <line x1="340" y1="310" x2="340" y2="318"/>
+  </g>
+  <ellipse cx="320" cy="318" rx="62" ry="8" fill="#9fb4d8" opacity="0.18"/>
+
+  <!-- a sliver of window on the left: the storm outside -->
+  <rect x="40" y="70" width="110" height="150" fill="#101a2e" stroke="#2c2436" stroke-width="8"/>
+  <g stroke="#3c5478" stroke-width="2" opacity="0.9">
+    <line x1="58" y1="80" x2="50" y2="104"/>
+    <line x1="92" y1="86" x2="84" y2="110"/>
+    <line x1="126" y1="78" x2="118" y2="102"/>
+    <line x1="70" y1="140" x2="62" y2="164"/>
+    <line x1="112" y1="150" x2="104" y2="174"/>
+    <line x1="134" y1="186" x2="126" y2="210"/>
+  </g>
+  <line x1="95" y1="70" x2="95" y2="220" stroke="#2c2436" stroke-width="5"/>
+</svg>

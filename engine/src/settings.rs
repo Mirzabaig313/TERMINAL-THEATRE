@@ -105,6 +105,8 @@ pub struct Settings {
     pub effects: Effects,
     /// skip mode also skips text never read before
     pub skip_unread: bool,
+    /// show scene pictures (false = ASCII art only)
+    pub images: bool,
     /// pause after a fully shown line in auto mode, in ms (scaled by line length)
     pub auto_delay_ms: u64,
 }
@@ -119,6 +121,7 @@ impl Default for Settings {
             sound: false,
             effects: Effects::Full,
             skip_unread: false,
+            images: true,
             auto_delay_ms: 1500,
         }
     }

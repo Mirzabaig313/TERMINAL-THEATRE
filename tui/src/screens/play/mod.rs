@@ -11,9 +11,12 @@ mod modes;
 mod overlays;
 mod stage;
 
+use std::path::PathBuf;
+
 use super::backlog::{Backlog, Entry};
 use super::{Action, Ctx, Go};
 use crate::render::fx::{self, Particles};
+use crate::render::image::{SceneImage, is_graphics};
 use crate::render::text::{continue_hint, pretty, shimmer, typed, wrapped_height};
 use crate::render::ui::{Toast, centered, modal, option_line};
 use crate::render::{Theme, rgb, sprite};
@@ -87,6 +90,10 @@ pub struct Play {
     /// lines read in any earlier session, plus this one
     seen: Seen,
     backlog: Backlog,
+    /// the current scene's picture, when it has one and pictures are on
+    image: Option<SceneImage>,
+    /// a picture that failed to load (not retried every frame)
+    image_error: Option<PathBuf>,
     /// save slots, read when the save dialog opens
     slots: Vec<Option<Metadata>>,
     /// set when an ending is reached: (first time?, endings found, endings in the story)
@@ -123,6 +130,8 @@ impl Play {
             seen,
             backlog: Backlog::default(),
             slots: Vec::new(),
+            image: None,
+            image_error: None,
             ending: None,
         }
     }
@@ -145,6 +154,10 @@ impl Play {
     }
 
     pub fn tick(&mut self, now: u64, dt: f32, ctx: &Ctx) {
+        // pictures load once the scene is on screen (not behind the title card)
+        if !matches!(self.overlay, Overlay::Intro { .. }) {
+            self.sync_image(ctx, now);
+        }
         self.runner.speed = ctx.settings.speed();
         self.particles.update(dt);
         if matches!(self.overlay, Overlay::None) {
@@ -291,6 +304,51 @@ impl Play {
                 life_ms: 1400,
                 ..Toast::new("Autosaved", (128, 128, 136), now)
             });
+        }
+    }
+
+    /// Keep the decoded picture in step with the scene and settings. Only the
+    /// current scene's picture is kept in memory.
+    fn sync_image(&mut self, ctx: &Ctx, now: u64) {
+        let want = if ctx.settings.images {
+            self.runner.pack.image_path(self.runner.scene_id())
+        } else {
+            None
+        };
+        let gray = !ctx.settings.color;
+        let Some(path) = want else {
+            self.image = None;
+            return;
+        };
+        let current = self
+            .image
+            .as_ref()
+            .is_some_and(|i| i.path == path && i.gray == gray);
+        if current || self.image_error.as_ref() == Some(&path) {
+            return;
+        }
+        match SceneImage::load(&ctx.picker, &path, gray) {
+            Ok(img) => self.image = Some(img),
+            Err(e) => {
+                // short: the file name and what went wrong, not the full path
+                let name = path
+                    .file_name()
+                    .map(|n| n.to_string_lossy().into_owned())
+                    .unwrap_or_default();
+                let why = e
+                    .chain()
+                    .nth(1)
+                    .map(|c| c.to_string())
+                    .unwrap_or_else(|| e.to_string());
+                let why: String = why.chars().take(60).collect();
+                self.image = None;
+                self.image_error = Some(path);
+                self.toast = Some(Toast::new(
+                    format!("Picture {name} not shown: {why}"),
+                    (255, 165, 0),
+                    now,
+                ));
+            }
         }
     }
 

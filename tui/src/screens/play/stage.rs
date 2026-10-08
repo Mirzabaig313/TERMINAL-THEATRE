@@ -29,6 +29,10 @@ impl Play {
         .areas(area);
         self.draw_header(f, header, &th);
         self.draw_stage(f, stage, &th, now);
+        let graphics = is_graphics(&ctx.picker);
+        if !graphics && let Some(img) = &mut self.image {
+            img.draw(f, stage_inner(stage));
+        }
         self.draw_bottom(f, bottom, &th, now);
 
         // line effects, scaled by the Screen Effects setting
@@ -60,10 +64,35 @@ impl Play {
             );
             fx::fade(f.buffer_mut(), full, 0.3 + 0.7 * k);
         }
+        // real images go on top of everything, unshaken and outside the effects,
+        // and only once the scene has settled: every redraw resends the image
+        if graphics
+            && since_scene >= SCENE_FADE_MS
+            && matches!(self.overlay, Overlay::None)
+            && let Some(img) = &mut self.image
+        {
+            let [_, still_stage, _] = Layout::vertical([
+                Constraint::Length(1),
+                Constraint::Fill(1),
+                Constraint::Length(BOTTOM_H),
+            ])
+            .areas(full);
+            img.draw(f, stage_inner(still_stage));
+        }
         self.draw_overlay(f, &th, now);
         if let Some(t) = &self.toast {
             t.draw(f, full, &th, now);
         }
+    }
+
+    /// The stage shows art or a picture, so the narration goes in the bottom box.
+    fn stage_has_picture(&self, now: u64) -> bool {
+        self.image.is_some()
+            || self
+                .runner
+                .scene()
+                .art_at(now.saturating_sub(self.runner.scene_start()))
+                .is_some()
     }
 
     /// Screen shake: full is 2 cells for 400 ms, reduced 1 cell for 150 ms, off none.
@@ -146,6 +175,9 @@ impl Play {
         let inner = block.inner(area);
         f.render_widget(block, area);
         let phase = self.runner.phase();
+        if self.image.is_some() {
+            return; // the picture is drawn by `draw`
+        }
 
         let Some(art) = scene.art_at(now.saturating_sub(self.runner.scene_start())) else {
             // no art: the narration lives on the stage and stays (dimmed) during dialogue
@@ -230,7 +262,7 @@ impl Play {
             Phase::Line(_) => self.draw_line(f, dbox, th, now),
             Phase::Choose => self.draw_choices(f, box_col, th, now),
             Phase::End => self.draw_end(f, box_col, th, now),
-            Phase::Narration if self.runner.scene().has_art() => {
+            Phase::Narration if self.stage_has_picture(now) => {
                 self.draw_narration(f, area, th, now)
             }
             Phase::Narration => {}
@@ -434,4 +466,12 @@ impl Play {
         };
         f.render_widget(Paragraph::new(lines).alignment(Alignment::Center), r);
     }
+}
+
+/// Inside of the stage box (border and side padding), where art and pictures go.
+fn stage_inner(stage: Rect) -> Rect {
+    Block::new()
+        .borders(Borders::ALL)
+        .padding(Padding::horizontal(3))
+        .inner(stage)
 }

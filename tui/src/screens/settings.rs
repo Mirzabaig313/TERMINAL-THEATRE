@@ -12,13 +12,14 @@ use super::{Action, Ctx, Go};
 use crate::render::ui::{Toast, centered, modal, option_line};
 use crate::render::{Theme, rgb};
 
-const ROWS: [&str; 8] = [
+const ROWS: [&str; 9] = [
     "Color Mode",
     "Cinematic Intro",
     "Text Speed",
     "Typewriter Effect",
     "Screen Effects",
     "Skip Mode",
+    "Scene Images",
     "Sound Effects",
     "Back",
 ];
@@ -57,7 +58,13 @@ impl SettingsScreen {
                 "Read text only"
             }
             .into(),
-            6 => "Coming Soon".into(),
+            6 => if s.images {
+                "On (pictures where a scene has one)"
+            } else {
+                "Off (ASCII art)"
+            }
+            .into(),
+            7 => "Coming Soon".into(),
             _ => "Return".into(),
         }
     }
@@ -77,7 +84,8 @@ impl SettingsScreen {
                     3 => s.toggle_typewriter(),
                     4 => s.effects = s.effects.next(),
                     5 => s.skip_unread = !s.skip_unread,
-                    6 => {
+                    6 => s.images = !s.images,
+                    7 => {
                         s.sound = !s.sound;
                         self.toast = Some(Toast {
                             life_ms: 4000,
@@ -103,14 +111,14 @@ impl SettingsScreen {
         f.render_widget(Block::new().style(Style::new().bg(rgb(th.bg))), area);
         let [_, body, desc, _] = Layout::vertical([
             Constraint::Fill(1),
-            Constraint::Length(20),
+            Constraint::Length(22),
             Constraint::Length(3),
             Constraint::Fill(1),
         ])
         .areas(area);
         let inner = modal(
             f,
-            centered(body, 72, 20),
+            centered(body, 76, 22),
             "SETTINGS",
             &th,
             th.border,

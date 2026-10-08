@@ -177,6 +177,23 @@ impl StoryPack {
             bail!("player '{p}' is not a speaker");
         }
         for (id, scene) in &self.scenes {
+            if let Some(img) = &scene.image {
+                let path = self.dir.join(img);
+                if !path.is_file() {
+                    bail!(
+                        "scene '{id}': image '{img}' not found at {}",
+                        path.display()
+                    );
+                }
+                let ext = path
+                    .extension()
+                    .and_then(|e| e.to_str())
+                    .unwrap_or("")
+                    .to_lowercase();
+                if !matches!(ext.as_str(), "png" | "jpg" | "jpeg" | "svg") {
+                    bail!("scene '{id}': image '{img}' must be a .png, .jpg or .svg");
+                }
+            }
             for c in &scene.choices {
                 if !self.scenes.contains_key(&c.goto) {
                     bail!(
@@ -208,6 +225,15 @@ impl StoryPack {
             }
         }
         Ok(())
+    }
+
+    /// Full path of a scene's image, if it has one.
+    pub fn image_path(&self, scene_id: &str) -> Option<PathBuf> {
+        self.scenes
+            .get(scene_id)?
+            .image
+            .as_ref()
+            .map(|i| self.dir.join(i))
     }
 
     pub fn speaker_name<'a>(&'a self, who: &'a str) -> &'a str {
