@@ -106,7 +106,10 @@ fn story_files_reload_when_saved() {
     let mut h = rehearse("reh-reload", &lib, "silence", &[]);
     assert!(h.screen().contains("The knocking stops"));
 
-    let text = std::fs::read_to_string(&scenes).unwrap();
+    let text = std::fs::read_to_string(&scenes)
+        .unwrap()
+        // Windows checkouts may have CRLF line endings
+        .replace("\r\n", "\n");
     std::fs::write(
         &scenes,
         text.replace("The knocking stops.", "The knocking STOPS, rewritten."),

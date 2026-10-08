@@ -30,7 +30,14 @@ fn files(dir: &Path, out: &mut Vec<PathBuf>) {
 }
 
 fn main() {
-    let root = PathBuf::from(std::env::var("CARGO_MANIFEST_DIR").unwrap()).join("../stories");
+    // `stories` inside the crate: a link to ../stories in the repository, a real
+    // folder in the package published to crates.io. Windows checkouts may get
+    // the link as a plain file, so fall back to ../stories.
+    let manifest = PathBuf::from(std::env::var("CARGO_MANIFEST_DIR").unwrap());
+    let root = [manifest.join("stories"), manifest.join("../stories")]
+        .into_iter()
+        .find(|p| p.is_dir())
+        .expect("no stories folder to bundle");
     let root = root.canonicalize().unwrap_or(root);
     println!("cargo:rerun-if-changed={}", root.display());
     let mut list = Vec::new();

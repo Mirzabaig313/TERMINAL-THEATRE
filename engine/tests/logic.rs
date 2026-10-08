@@ -187,7 +187,10 @@ fn story_with_a_typo_in_a_condition_does_not_load() {
     }
     std::fs::copy(src.join("story.toml"), dir.join("story.toml")).unwrap();
     let scenes = dir.join("scenes/01_beginning.toml");
-    let text = std::fs::read_to_string(&scenes).unwrap();
+    let text = std::fs::read_to_string(&scenes)
+        .unwrap()
+        // Windows checkouts may have CRLF line endings
+        .replace("\r\n", "\n");
     std::fs::write(
         &scenes,
         text.replace("caution >= 1 && !visited('door_open')", "caution >= && x"),

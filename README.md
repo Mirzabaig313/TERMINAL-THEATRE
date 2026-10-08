@@ -287,7 +287,7 @@ A broken story never crashes the game: it shows up on the menu with its error.
 1. Set the version in `Cargo.toml` (`[workspace.package] version = "0.2.0"`) and commit.
 2. `git tag v0.2.0 && git push origin v0.2.0`
 
-GitHub Actions builds for macOS (Apple Silicon and Intel), Linux (x86_64 and ARM, each with and without sound) and Windows, then publishes the release with checksums and the install scripts. The tag has to match the version in `Cargo.toml`. The stories are built into the binary (`tui/build.rs`).
+GitHub Actions builds for macOS (Apple Silicon and Intel), Linux (x86_64 and ARM, each with and without sound) and Windows, then publishes the release with checksums and the install scripts. The tag has to match the version in `Cargo.toml`. The stories are built into the binary (`tui/build.rs`). Homebrew, itch.io and crates.io are set up as described in [docs/PUBLISHING.md](docs/PUBLISHING.md).
 
 | Engine module | What it does |
 |---|---|

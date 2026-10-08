@@ -3,6 +3,13 @@ name = "theatre-engine"
 description = "Story format, loading and playback for Terminal Theatre. No terminal code."
 edition.workspace = true
 version.workspace = true
+rust-version.workspace = true
+license.workspace = true
+repository.workspace = true
+homepage.workspace = true
+authors.workspace = true
+keywords = ["interactive-fiction", "story", "game", "branching", "narrative"]
+categories = ["game-engines", "games"]
 
 [dependencies]
 anyhow.workspace = true

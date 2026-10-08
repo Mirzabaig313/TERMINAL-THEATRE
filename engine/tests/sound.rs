@@ -91,7 +91,10 @@ fn template_with(name: &str, edit: impl Fn(String) -> String) -> std::path::Path
     }
     std::fs::copy(src.join("story.toml"), dir.join("story.toml")).unwrap();
     let scenes = dir.join("scenes/01_beginning.toml");
-    let text = std::fs::read_to_string(&scenes).unwrap();
+    let text = std::fs::read_to_string(&scenes)
+        .unwrap()
+        // Windows checkouts may have CRLF line endings
+        .replace("\r\n", "\n");
     std::fs::write(&scenes, edit(text)).unwrap();
     dir
 }
@@ -113,7 +116,10 @@ fn audio_files_must_exist_and_be_playable() {
 
     std::fs::write(dir.join("sounds/knock.txt"), b"x").unwrap();
     let scenes = dir.join("scenes/01_beginning.toml");
-    let text = std::fs::read_to_string(&scenes).unwrap();
+    let text = std::fs::read_to_string(&scenes)
+        .unwrap()
+        // Windows checkouts may have CRLF line endings
+        .replace("\r\n", "\n");
     std::fs::write(
         &scenes,
         text.replace("sounds/knock.ogg", "sounds/knock.txt"),

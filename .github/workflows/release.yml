@@ -1,6 +1,10 @@
 # Pushing a version tag (git tag v0.1.0 && git push origin v0.1.0) builds the
 # game for every system and publishes a GitHub Release with the downloads,
 # their SHA-256 checksums and the install scripts.
+#
+# Optional channels, each skipped until it's set up (see docs/PUBLISHING.md):
+#   Homebrew tap: secret HOMEBREW_TAP_TOKEN (and variable HOMEBREW_TAP, default <owner>/homebrew-tap)
+#   itch.io:      secret BUTLER_API_KEY and variable ITCH_GAME (like mirzabaig313/terminal-theatre)
 name: Release
 
 on:
@@ -103,3 +107,106 @@ jobs:
           EOF
           gh release create "$GITHUB_REF_NAME" artifacts/* install.sh install.ps1 \
             --title "Terminal Theatre $GITHUB_REF_NAME" --notes-file notes.md --verify-tag
+
+  homebrew:
+    needs: publish
+    runs-on: ubuntu-latest
+    env:
+      TAP_TOKEN: ${{ secrets.HOMEBREW_TAP_TOKEN }}
+      TAP: ${{ vars.HOMEBREW_TAP || format('{0}/homebrew-tap', github.repository_owner) }}
+    steps:
+      - name: Homebrew tap not set up
+        if: env.TAP_TOKEN == ''
+        run: echo "No HOMEBREW_TAP_TOKEN secret, so Homebrew is skipped (see docs/PUBLISHING.md)."
+      - uses: actions/download-artifact@v4
+        if: env.TAP_TOKEN != ''
+        with:
+          path: artifacts
+          merge-multiple: true
+      - name: Update the formula in the tap
+        if: env.TAP_TOKEN != ''
+        run: |
+          version="${GITHUB_REF_NAME#v}"
+          url="https://github.com/${{ github.repository }}/releases/download/$GITHUB_REF_NAME"
+          sha() { cat "artifacts/theatre-$1.tar.gz.sha256"; }
+          git clone "https://x-access-token:$TAP_TOKEN@github.com/$TAP.git" tap
+          mkdir -p tap/Formula
+          cat > tap/Formula/terminal-theatre.rb <<EOF
+          class TerminalTheatre < Formula
+            desc "Interactive movie game for your terminal"
+            homepage "https://github.com/${{ github.repository }}"
+            version "$version"
+            license "AGPL-3.0-only"
+
+            on_macos do
+              on_arm do
+                url "$url/theatre-aarch64-apple-darwin.tar.gz"
+                sha256 "$(sha aarch64-apple-darwin)"
+              end
+              on_intel do
+                url "$url/theatre-x86_64-apple-darwin.tar.gz"
+                sha256 "$(sha x86_64-apple-darwin)"
+              end
+            end
+
+            # Linux gets the silent builds: they don't need the system's ALSA library
+            on_linux do
+              on_arm do
+                url "$url/theatre-aarch64-unknown-linux-gnu-silent.tar.gz"
+                sha256 "$(sha aarch64-unknown-linux-gnu-silent)"
+              end
+              on_intel do
+                url "$url/theatre-x86_64-unknown-linux-gnu-silent.tar.gz"
+                sha256 "$(sha x86_64-unknown-linux-gnu-silent)"
+              end
+            end
+
+            def install
+              bin.install "theatre"
+            end
+
+            test do
+              assert_match "Terminal Theatre", shell_output("#{bin}/theatre --help")
+            end
+          end
+          EOF
+          cd tap
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add Formula/terminal-theatre.rb
+          git commit -m "terminal-theatre $version"
+          git push
+
+  itch:
+    needs: publish
+    runs-on: ubuntu-latest
+    env:
+      BUTLER_API_KEY: ${{ secrets.BUTLER_API_KEY }}
+      ITCH_GAME: ${{ vars.ITCH_GAME }}
+    steps:
+      - name: itch.io not set up
+        if: env.BUTLER_API_KEY == '' || env.ITCH_GAME == ''
+        run: echo "No BUTLER_API_KEY secret or ITCH_GAME variable, so itch.io is skipped (see docs/PUBLISHING.md)."
+      - uses: actions/download-artifact@v4
+        if: env.BUTLER_API_KEY != '' && env.ITCH_GAME != ''
+        with:
+          path: artifacts
+          merge-multiple: true
+      - name: Push every build to its itch.io channel
+        if: env.BUTLER_API_KEY != '' && env.ITCH_GAME != ''
+        run: |
+          curl -fsSL https://broth.itch.zone/butler/linux-amd64/LATEST/archive/default -o butler.zip
+          unzip -q butler.zip -d butler && chmod +x butler/butler
+          push() { # archive channel
+            mkdir -p "upload/$2"
+            case "$1" in
+              *.zip) unzip -q "artifacts/$1" -d "upload/$2" ;;
+              *) tar -xzf "artifacts/$1" -C "upload/$2" ;;
+            esac
+            butler/butler push "upload/$2" "$ITCH_GAME:$2" --userversion "${GITHUB_REF_NAME#v}"
+          }
+          push theatre-aarch64-apple-darwin.tar.gz mac-arm64
+          push theatre-x86_64-apple-darwin.tar.gz mac-intel
+          push theatre-x86_64-unknown-linux-gnu.tar.gz linux-x64
+          push theatre-aarch64-unknown-linux-gnu.tar.gz linux-arm64
+          push theatre-x86_64-pc-windows-msvc.zip windows

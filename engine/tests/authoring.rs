@@ -71,7 +71,10 @@ fn template_with(name: &str, edit: impl Fn(String) -> String) -> StoryPack {
     }
     std::fs::copy(src.join("story.toml"), dir.join("story.toml")).unwrap();
     let scenes = dir.join("scenes/01_beginning.toml");
-    let text = std::fs::read_to_string(&scenes).unwrap();
+    let text = std::fs::read_to_string(&scenes)
+        .unwrap()
+        // Windows checkouts may have CRLF line endings
+        .replace("\r\n", "\n");
     std::fs::write(&scenes, edit(text)).unwrap();
     let pack = StoryPack::load(&dir).unwrap();
     std::fs::remove_dir_all(dir).ok();

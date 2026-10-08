@@ -5,13 +5,18 @@ resolver = "3"
 [workspace.package]
 edition = "2024"
 version = "0.1.0"
+rust-version = "1.88"
+license = "AGPL-3.0-only"
+repository = "https://github.com/Mirzabaig313/TERMINAL-THEATRE"
+homepage = "https://github.com/Mirzabaig313/TERMINAL-THEATRE"
+authors = ["Mirza"]
 
 [workspace.dependencies]
 anyhow = "1"
 ratatui = "0.30"
 serde = { version = "1", features = ["derive"] }
 toml = "1.1"
-theatre-engine = { path = "engine" }
+theatre-engine = { path = "engine", version = "0.1.0" }
 
 # Dependencies (SVG and image decoding especially) are slow unoptimized; build them
 # optimized even in dev so `cargo run` and tests stay quick. Our own code stays debug.
