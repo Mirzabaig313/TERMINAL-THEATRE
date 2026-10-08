@@ -11,6 +11,7 @@ dialogue = [
   { who = "sarah", line = "Ambulance is on the way. But Marcus... look at him. Whatever she gave him, it's destroyed his mind.", mood = "afraid" },
   { who = "kane", line = "Nightshade. Advanced formula. She's not just killing. She's leaving some of them alive to suffer.", mood = "angry" },
   { who = "damien_raving", line = "The shadows! The shadows have teeth! Make them stop! Make them stop seeing me!", mood = "afraid", fx = "glitch" },
+  { who = "kane_thinking", line = "I slide the Four of Pentacles into an evidence bag. {cards} of her cards in my pocket now. She's dealing me a hand one card at a time.", if = "cards >= 2" },
 ]
 [[protect_damien.choices]]
 text = "Search his house for clues while Sarah stays with him"
@@ -18,6 +19,7 @@ goto = "search_damien_house"
 [[protect_damien.choices]]
 text = "Review his case files - what did he know?"
 goto = "damien_files"
+add = { sarah_trust = 1 }
 
 [bait_trap]
 mood = "danger"
@@ -102,6 +104,9 @@ dialogue = [
   { who = "cassandra", line = "Because you weren't part of it. You didn't destroy the evidence. You didn't help bury the truth. You're just... collateral damage. Like I was. Like Alexander was. And I find I can't kill someone who doesn't deserve it. Not anymore. I've become too... refined.", mood = "sad" },
   { who = "kane", line = "I can't let you kill anyone else.", mood = "angry" },
   { who = "cassandra", line = "Then you'll have to kill me. Can you do that, Detective? Can you murder someone for crimes they haven't committed yet? Can you become what you hate to stop what I've become?", mood = "smirk" },
+  { who = "cassandra", line = "Though look at you. Threats, a gun in a crowded room, orders ignored. You've crossed more lines this week than I did my first year. You're closer to me than you think.", mood = "smirk", if = "lines_crossed >= 4" },
+  { who = "cassandra", line = "Not one rule broken. Not one. You walked through my whole city and kept your hands clean. I didn't think that was still possible.", mood = "shocked", if = "lines_crossed == 0" },
+  { who = "cassandra", line = "You kept them, didn't you? My cards. {cards} of them in your coat. You've been reading my story the whole way here.", mood = "sad", if = "cards >= 2" },
 ]
 [[final_confrontation.choices]]
 text = "Shoot her - end this now"
@@ -119,6 +124,22 @@ goto = "negotiate_ending"
 [shoot_cassandra]
 image = "images/shoot_cassandra.svg"
 mood = "danger"
+variants = [
+  { if = "lines_crossed >= 4", text = """
+You pull the trigger. It's easy. That's the part that frightens you later. Every line you stepped over this week was a rehearsal for this one.
+
+Cassandra falls. The vials of Nightshade shatter around her, mixing with blood, creating patterns like abstract art on the concrete.
+
+Her last words: 'There you are. I knew you were in there.'
+
+The investigation reveals three more bodies. Hidden. Preserved. Foster. Hartley. Cross. Tolliver. Three federal agents who helped cover up the trial. And Cassandra herself. Seven sacrifices. Seven cards. The cycle complete.
+
+The department calls it a clean shoot. Reeves signs the report without reading it and won't meet your eyes. Internal Affairs opens a file on the rest of your week and quietly closes it, because heroes are useful and the city needs one.
+
+You keep hunting. You're good at it now. Better than you were. And some nights, cleaning your gun, you catch yourself wondering what card she would have drawn for you.
+
+ENDING: THE EXECUTIONER""" },
+]
 text = """
 You pull the trigger. The shot echoes in the abandoned laboratory.
 
@@ -274,6 +295,7 @@ text = "She has evidence - files, recordings, everything"
 goto = "marsh_evidence"
 
 [marsh_marked]
+add = { cards = 1 }
 text = """
 Dr. Marsh opens her desk drawer. Inside: a tarot card. The Hierophant. And written in her own blood: 'Quintus ex septem.' Fifth of seven.
 
@@ -296,6 +318,7 @@ goto = "hide_marsh"
 [[marsh_marked.choices]]
 text = "Use Marsh as bait - trap Cassandra"
 goto = "marsh_bait"
+add = { lines_crossed = 1 }
 
 [swat_raid]
 text = """
@@ -314,6 +337,8 @@ Below the words: photographs. Seven people. Including you."""
 dialogue = [
   { who = "reeves", line = "Kane. You need to see this. These photos. The other six are the victims. Foster. Hartley. Cross. Tolliver. Damien Cross. Helena Marsh. And... you.", mood = "shocked", fx = "flash" },
   { who = "kane", line = "She's had this planned from the beginning. Every move. Every kill. Leading to me. But why? What makes me special?", mood = "afraid" },
+  { who = "reeves", line = "For what it's worth, Kane, you did this one by the book. Every step. If we get her, it'll stick.", if = "lines_crossed == 0" },
+  { who = "reeves", line = "And Kane? After the week you've had, half my SWAT team asked if you were on the list or running it.", mood = "angry", if = "lines_crossed >= 3" },
   { who = "forensic_tech", line = "Detective. Found something else. A journal. Looks like Cassandra's been keeping notes.", mood = "afraid" },
 ]
 [[swat_raid.choices]]
@@ -387,6 +412,7 @@ text = "'Let me join her' - infiltrate deeper"
 goto = "infiltrate_cult"
 
 [split_investigation]
+add = { cards = 1 }
 text = """
 You and Sarah split up. She heads to Ouroboros Pharmaceuticals. You go to the pier. Divide and conquer. Old tactics.
 
@@ -398,10 +424,13 @@ But you know she was here. Her car is in the parking structure. Door open. Keys 
 dialogue = [
   { who = "kane_thinking", line = "She has Sarah. The pattern breaks. Sarah wasn't part of the original seven. Unless... unless Cassandra is adapting. Improvising. Making Sarah part of the ritual because she got too close.", mood = "afraid" },
   { who = "kane_phone_message", line = "Sarah. If you can hear this. I'm coming. Hold on. Just hold on.", mood = "pained" },
+  { who = "kane_thinking", line = "She told me everything she had before she left. I told her everything I had. She went in trusting me to have her back. I'd better.", mood = "sad", if = "sarah_trust >= 2" },
+  { who = "kane_thinking", line = "She didn't want to split up. I didn't listen. Again.", mood = "pained", if = "sarah_trust < 2" },
 ]
 [[split_investigation.choices]]
 text = "Storm Ouroboros - tear the building apart to find her"
 goto = "storm_ouroboros"
+add = { lines_crossed = 1 }
 [[split_investigation.choices]]
 text = "Cassandra wants you to panic - think, don't react"
 goto = "stay_calm_sarah"
@@ -488,6 +517,26 @@ ENDING: THE PRICE OF SALVATION"""
 ending = true
 
 [save_sarah_medical]
+variants = [
+  { if = "sarah_trust >= 2", text = """
+You disconnect the IV. Stop the dose. Every second counts.
+
+Cassandra doesn't stop you. She just watches. Sad. Resigned.
+
+'It won't matter,' she says. 'Once you've seen the pattern, you can't unsee it. The Nightshade just opens the door. But the door doesn't close.'
+
+Sarah stabilizes. The hospital keeps her for observation. Two weeks later, she's cleared to return to duty. She's quieter. Some nights she wakes up seeing things in the ceiling.
+
+The transfer papers sit on her kitchen table for a week. Then she tears them in half.
+
+'You sent me in alone,' she tells you. 'But you came for me. You always told me the truth, even when it was ugly. I can work with that. I can't work with anyone else.'
+
+Cassandra is never found. She vanished during the chaos. The case remains open. Seven victims. Six bodies. One killer still out there.
+
+You keep hunting. Both of you. Back to back, the way it used to be.
+
+ENDING: INCOMPLETE PATTERNS""" },
+]
 text = """
 You disconnect the IV. Stop the dose. Every second counts.
 

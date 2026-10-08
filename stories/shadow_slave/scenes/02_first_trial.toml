@@ -39,6 +39,8 @@ dialogue = [
   { who = "your_thoughts", line = "This is... the Dream Realm. The place between sleep and death.", mood = "afraid" },
   { who = "your_thoughts", line = "It's real. It's all REAL. And I'm trapped here.", mood = "afraid" },
   { who = "your_thoughts", line = "Focus. I need to survive. Find shelter. Find weapons. Find a way OUT.", mood = "angry" },
+  { who = "your_thoughts", line = "The shadows of those pillars are leaning toward me. Not away from the light - toward ME.", mood = "afraid", if = "corruption >= 1" },
+  { who = "your_thoughts", line = "I know my name. I know what I'm doing here. That's more than this place expected.", mood = "smirk", if = "resolve >= 3" },
 ]
 [[first_awakening.choices]]
 text = "Look around for shelter"
@@ -205,6 +207,18 @@ It pulses hypnotically, each throb synchronized with your own heartbeat. You can
 But there's something else too - a hunger lurking beneath the promise. A darkness that goes deeper than any shadow. This power has a price.
 
 A voice echoes in your mind - definitely not the Spell. Something older. Something that's been waiting here for a very, very long time."""
+variants = [
+  { if = "visited('refuse_essence')", text = """
+≋ SHADOW ESSENCE ≋
+
+The crack is still there. Of course it is.
+
+The liquid shadow has risen since you last stood here, brimming almost to the lip of the fracture, cycling through its impossible colors a little faster, like a pulse that quickened when it heard your footsteps. You told it no once. It does not seem to have believed you.
+
+The hunger beneath the promise hasn't gone anywhere either. If anything, it has been patient. Patience is cheap when you have eternity to spend.
+
+The old voice stirs again, and this time it sounds almost fond.""" },
+]
 art = """
 
         ╔═══════════════════════════════════════════════╗
@@ -237,6 +251,8 @@ dialogue = [
   { who = "unknown_voice", line = "The shadows will answer your call... if you have the will to command them." },
   { who = "your_thoughts", line = "This is dangerous. I can feel it. But the power... it could save my life.", mood = "afraid" },
   { who = "your_thoughts", line = "Do I trust this voice? Can I afford NOT to?", mood = "pained" },
+  { who = "unknown_voice", line = "You already let go once, on the way down. The second time is so much easier.", if = "corruption >= 1" },
+  { who = "unknown_voice", line = "Back again. They always come back.", if = "visited('refuse_essence')" },
 ]
 [[mysterious_glow.choices]]
 text = "Drink the glowing liquid"
@@ -244,6 +260,11 @@ goto = "drink_essence"
 [[mysterious_glow.choices]]
 text = "Refuse and back away"
 goto = "refuse_essence"
+if = "!visited('refuse_essence')"
+[[mysterious_glow.choices]]
+text = "Turn your back on it a second time"
+goto = "first_awakening"
+if = "visited('refuse_essence')"
 
 [observe_creatures]
 text = """
@@ -293,7 +314,16 @@ You follow the whispers deeper into the ruins, down a stairway slick with someth
 They lead you to a chamber filled with fading light. Ghostly figures float in the air - echoes of people who once lived here. A woman holding a basket. An old man with a walking stick. Soldiers in rusted half-plate, still standing in formation after who knows how many centuries.
 
 They're trapped. Bound to this place by something ancient and cruel. You can see the faint lines running from each of them to the floor, taut as leashes."""
+variants = [
+  { if = "mercy < 0", text = """
+You come back down the stairway you told yourself you would never take again. It is just as slick, just as cold. Your feet remember every step.
+
+The chamber is the same. The woman with the basket. The old man with the stick. The soldiers in their rusted half-plate, still in formation. The faint lines from each of them to the floor, taut as leashes.
+
+What has changed is the way they look at you. Before, they pleaded. Now they simply watch, the way the drowning watch a boat that has already passed them once.""" },
+]
 dialogue = [
+  { who = "ghost", line = "You came back... everyone does.", mood = "sad", if = "mercy < 0" },
   { who = "ghost", line = "Free us... please... the chains...", mood = "pained" },
   { who = "your_thoughts", line = "How? How can I help you?", mood = "afraid" },
   { who = "ghost", line = "Break... the seal...", mood = "sad" },
@@ -443,6 +473,7 @@ But something about the crystal feels wrong. Hungry. Like a door that only opens
 
 You decide caution is wiser than greed - for now."""
 set_flags = ["examined_memory"]
+add = { resolve = 1 }
 dialogue = [
   { who = "your_thoughts", line = "Not one step back... I'll remember you, whoever you were." },
   { who = "your_thoughts", line = "Maybe I should be more careful in this place.", mood = "afraid" },
@@ -461,18 +492,33 @@ You cup your hands and drink the glowing liquid.
 It tastes like starlight and copper. Power floods through you, raw and overwhelming. Your shadow twitches on the stone - a half-second after you do. Your body changes, adapts, becomes something more.
 
 But there's a price. You can feel it - a hunger, deep in your soul, opening one eye."""
+variants = [
+  { if = "flag('refused_essence')", text = """
+You told it no. You walked away. And then you came back, and the coming back is the part you will remember.
+
+You cup your hands and drink.
+
+It tastes like starlight and copper, and faintly of your own hesitation. Power floods through you, raw and overwhelming. Your shadow twitches on the stone - a half-second after you do. Your body changes, adapts, becomes something more.
+
+Somewhere very deep, the hunger opens one eye, and it looks pleased with itself. It knew you would.""" },
+]
 set_flags = ["consumed_essence"]
+add = { corruption = 2 }
 dialogue = [
   { who = "the_spell", line = "You have consumed Shadow Essence.", mood = "focus", fx = "glitch" },
   { who = "the_spell", line = "Attribute granted: Shadow Affinity (Dormant)", mood = "focus" },
+  { who = "the_spell", line = "Shadow saturation: {corruption}. Monitor it, Aspirant.", mood = "wrath", if = "corruption >= 3" },
   { who = "your_thoughts", line = "What have I done to myself?", mood = "pained" },
+  { who = "your_thoughts", line = "No. I said my name to the dark once. I can say it to this.", mood = "angry", if = "resolve >= 2" },
 ]
 [[drink_essence.choices]]
 text = "Embrace the power"
 goto = "trial_encounter_empowered"
+add = { corruption = 1 }
 [[drink_essence.choices]]
 text = "Force the hunger down and walk on as yourself"
 goto = "trial_encounter"
+add = { corruption = -1, resolve = 1 }
 
 [refuse_essence]
 text = """
@@ -482,9 +528,11 @@ The voice in your mind seems disappointed - and then, briefly, something worse t
 
 The glow dims behind you, sulking."""
 set_flags = ["refused_essence"]
+add = { resolve = 1 }
 dialogue = [
   { who = "unknown_voice", line = "You will wish you had drunk, little Aspirant." },
   { who = "your_thoughts", line = "I'll find power my own way.", mood = "angry" },
+  { who = "your_thoughts", line = "I let go once already, falling in here. Not again. Not for that.", mood = "angry", if = "corruption >= 1" },
 ]
 [[refuse_essence.choices]]
 text = "Continue exploring"
@@ -601,6 +649,7 @@ art = """
 dialogue = [
   { who = "ghost", line = "Please... we beg you... free us from this torment...", mood = "sad" },
   { who = "ghost", line = "We were innocent... trapped here by a tyrant long dead...", mood = "pained" },
+  { who = "ghost", line = "There is shadow on you, Aspirant. We can smell it. ...And still you came.", mood = "afraid", if = "corruption >= 1" },
   { who = "your_thoughts", line = "This feels like a test. The Dream Realm testing my character." },
   { who = "your_thoughts", line = "Do I have the courage to show mercy... even when it might cost me?", mood = "afraid" },
 ]
@@ -622,10 +671,20 @@ You turn away from the ghosts. Their whispers follow you up the stairway, pleadi
 You keep walking.
 
 Survival is what matters. You can't save everyone. Not here. Maybe not anywhere."""
+variants = [
+  { if = "mercy <= -2", text = """
+Twice now. You came back down those stairs, you looked them in their faces, and you turned away again.
+
+This time they don't plead. They don't bargain. They don't say your name. The silence follows you up the stairway instead, and it is much heavier than the whispers were.
+
+Somewhere around the twentieth step you notice your shadow is a little longer than it should be for the light. You keep walking. You are getting good at that.""" },
+]
 set_flags = ["abandoned_ghosts"]
+add = { corruption = 1, mercy = -1 }
 dialogue = [
   { who = "ghost", line = "You will come back to us... everyone does...", mood = "angry" },
   { who = "your_thoughts", line = "I'm sorry. But I have to survive.", mood = "pained" },
+  { who = "your_thoughts", line = "It's easier the second time. That's the worst part.", mood = "pained", if = "mercy <= -2" },
 ]
 [[abandon_ghosts.choices]]
 text = "Leave the chamber"
@@ -633,6 +692,7 @@ goto = "trial_encounter"
 [[abandon_ghosts.choices]]
 text = "Search the upper ruins for a weapon first"
 goto = "find_weapon"
+if = "!item('Rusty Blade')"
 
 [break_seal]
 text = """
@@ -643,8 +703,20 @@ The stone cracks. Light erupts from the fracture - not the sick crimson of the s
 The ghosts scream - not in pain, but in joy - as they're finally released.
 
 One of them, an officer whose spectral coat still bears its buttons, touches your shoulder before fading. You feel... blessed."""
+variants = [
+  { if = "flag('abandoned_ghosts')", text = """
+You walked away from them once. That is exactly why your hands don't shake now.
+
+You bring everything you have down on the seal's weakest point. The stone cracks. Light erupts from the fracture - not the sick crimson of the sky but something clean and white, like the first morning after a long illness. The leashes binding the ghosts snap one after another, each with a sound like a harp string.
+
+The ghosts don't scream with joy. Not at first. They stare at you as if they cannot quite believe it - as if, in all their centuries, no one who climbed those stairs and left ever came back down to finish the job.
+
+Then an officer whose spectral coat still bears its buttons crosses the chamber and touches your shoulder, and the cold that has been sitting in your chest since you turned away goes out of you like a held breath.""" },
+]
 set_flags = ["freed_ghosts"]
+add = { mercy = 2, corruption = -1 }
 dialogue = [
+  { who = "ghost", line = "You came back. In all our years, no one ever came back for us.", mood = "shocked", if = "flag('abandoned_ghosts')" },
   { who = "ghost", line = "Thank you, brave one. We will not forget this kindness.", mood = "happy", fx = "flash" },
   { who = "the_spell", line = "You have been granted: [Ghost's Blessing]", mood = "focus" },
   { who = "the_spell", line = "Attribute granted: Spirit Sight (Dormant)", mood = "focus" },
@@ -678,6 +750,40 @@ The Guardian. The final obstacle between you and freedom. Between you and death.
 This is the moment everything has been building toward. Every choice you've made, every power you've gained, every lesson you've learned - it all comes down to this.
 
 The Guardian raises one massive arm. Reality screams."""
+variants = [
+  { if = "corruption >= 2", text = """
+⚠ FINAL TRIAL BEGINS ⚠
+
+You've explored the ruins. You've gained power. You've survived this far. You are no longer entirely sure that the one who survived is you.
+
+The ground trembles beneath your feet. Cracks spiderweb across the basalt stone - and the shadows in those cracks do not stay put. They lean toward you as you pass, the way flowers lean toward a window. When you raise your hand to shield your eyes, the skin across your knuckles is a shade darker than it was this morning, as though you have been holding ink.
+
+Then... it emerges.
+
+From the deepest shadows of the ruined city comes a towering colossus of nightmare and bone, three times your height, a patchwork of obsidian plates and exposed bone that gleams like polished ivory.
+
+Its burning eyes lock onto you - and for a heartbeat, they narrow. It is looking at you the way it looks at the shadow beasts on the outer rings. As if trying to decide which side of the line you are standing on.
+
+The Guardian. The final obstacle between you and freedom. Between you and death. Between you and whatever you are turning into.
+
+The Guardian raises one massive arm. Reality screams.""" },
+  { if = "resolve >= 4", text = """
+⚠ FINAL TRIAL BEGINS ⚠
+
+You've explored the ruins. You've learned. You've listened. You've survived this far as yourself, and that has started to feel like a kind of armour.
+
+The ground trembles beneath your feet. Cracks spiderweb across the basalt stone. The crimson sky darkens, clouds roiling like a storm-tossed sea, and the air grows thick with pressure, as if reality itself is holding its breath.
+
+Then... it emerges.
+
+From the deepest shadows of the ruined city comes a towering colossus of nightmare and bone, three times your height, a patchwork of obsidian plates and exposed bone that gleams like polished ivory. Its burning eyes lock onto you.
+
+You notice, distantly, that your hands are not shaking. Your heart is pounding hard enough to hurt - but your feet are planted, and they are staying planted. You know your name. You know why you're here. Somewhere along the way, fear stopped being the thing that decides.
+
+The Guardian. The final obstacle between you and freedom.
+
+The Guardian raises one massive arm. Reality screams.""" },
+]
 art = """
 
     ═══════════════════════════════════════════════════════════════
@@ -716,7 +822,9 @@ dialogue = [
   { who = "the_spell", line = "Before you stands the Guardian - Rank: Fallen Terror.", mood = "wrath" },
   { who = "the_spell", line = "Defeat it, and you will awaken as one of the Awakened.", mood = "focus" },
   { who = "the_spell", line = "Fail... and you will never leave the Dream Realm.", mood = "wrath" },
-  { who = "your_thoughts", line = "This is it. Everything comes down to this single moment.", mood = "afraid" },
+  { who = "the_spell", line = "Note: Aspirant shadow saturation is {corruption}. The Guardian has noticed.", mood = "wrath", fx = "glitch", if = "corruption >= 2" },
+  { who = "your_thoughts", line = "This is it. Everything comes down to this single moment.", mood = "afraid", if = "resolve < 4" },
+  { who = "your_thoughts", line = "This is it. And I'm still me. Let's see what that's worth.", mood = "angry", if = "resolve >= 4" },
   { who = "your_thoughts", line = "I will NOT die here. I will NOT fail. I WILL survive!", mood = "angry" },
 ]
 [[trial_encounter.choices]]
@@ -740,10 +848,15 @@ any_flags = ["freed_ghosts"]
 text = "Let the shadow in your veins answer"
 goto = "trial_encounter_empowered"
 any_flags = ["consumed_essence"]
+add = { corruption = 1 }
 [[trial_encounter.choices]]
 text = "Ask the Spell what this thing is"
 goto = "spell_answers"
 any_flags = ["learned_spell_basics"]
+[[trial_encounter.choices]]
+text = "Plant your feet, say your name, and don't move"
+goto = "unbroken_stand"
+if = "resolve >= 4"
 [[trial_encounter.choices]]
 text = "Stand your ground, even empty-handed"
 goto = "unarmed_stand"
@@ -758,6 +871,14 @@ The Shadow Essence burns in your veins as the Guardian appears.
 But you're different now. Your shadow no longer lies flat on the stone - it stands a little apart from you, waiting, like a dog that knows its master's voice. The shadows of every broken pillar lean toward you.
 
 The Guardian hesitates, mid-stride. Its burning eyes narrow. For the first time, something in this Nightmare looks at you and wonders what you are."""
+variants = [
+  { if = "corruption >= 4", text = """
+The Shadow Essence doesn't burn in your veins any more. It has stopped burning the way a fire stops burning once there is nothing left to catch.
+
+Your shadow no longer waits beside you. It stands in front of you now, between you and the Guardian, taller than you are, and it does not look back to see whether you approve. Every shadow in the plaza has turned toward you - not leaning, but kneeling. Your hands are dark to the wrist.
+
+The Guardian stops mid-stride. Its burning eyes move from you to the thing your shadow has become, and back again, and for the first time something in this Nightmare looks at you and is not sure which of you it should be fighting.""" },
+]
 art_frames = [
 """
 
@@ -797,6 +918,8 @@ art_ms = 300
 dialogue = [
   { who = "the_spell", line = "The Guardian recognizes your Shadow Affinity.", mood = "focus", fx = "glitch" },
   { who = "your_thoughts", line = "I can feel it... the shadows. They're mine to command.", mood = "smirk" },
+  { who = "the_spell", line = "Warning. Shadow saturation {corruption}. Aspirant integrity declining.", mood = "wrath", fx = "glitch", if = "corruption >= 3" },
+  { who = "your_thoughts", line = "...Or am I theirs?", mood = "afraid", if = "corruption >= 4" },
 ]
 [[trial_encounter_empowered.choices]]
 text = "Command the shadows to fight for you"
@@ -856,6 +979,7 @@ art = """
     ═══════════════════════════════════════════════════════════════
         """
 dialogue = [
+  { who = "your_thoughts", line = "At least it was me who stood here. Not something wearing me.", mood = "pained", if = "resolve >= 3" },
   { who = "the_spell", line = "You have perished in the Dream Realm.", mood = "wrath", fx = "shake" },
 ]
 
@@ -891,6 +1015,18 @@ Then you find it: a seam between two obsidian plates, low on its flank, where th
 The Guardian falls to one knee. Then the other. The sound it makes as it hits the ground is like a city collapsing.
 
 As it dissolves into shadow, the Dream Realm begins to fade around you, the crimson sky paling to dawn grey. You are standing. You are bleeding. You are alive."""
+variants = [
+  { if = "corruption >= 3", text = """
+You charge the Guardian with a battle cry, and your shadow charges a half-step ahead of you.
+
+The fight is brutal. Desperate. Its fist comes down and the street simply stops existing where it lands; you are already moving, rolling through the dust, rising inside its reach. You take wounds that should be fatal - a rib, a shoulder, a long burning line across your back - and the blood that runs from them is not red. It is dark and slow and faintly cold, and the wounds close around it like water closing over a stone.
+
+You don't let yourself think about that. There is only the next breath and the next swing.
+
+Then you find it: a seam between two obsidian plates, low on its flank, where the bone shows through. You strike true. The Guardian falls to one knee. Then the other. The sound it makes as it hits the ground is like a city collapsing.
+
+As it dissolves into shadow, a little of that shadow drifts toward you instead of away, and settles on your skin like dust. The crimson sky pales to dawn grey. You are standing. You are alive. You will have to find out later what else you are.""" },
+]
 art = """
 
     ╔═══════════════════════════════════════════════════════════╗
@@ -915,6 +1051,7 @@ dialogue = [
   { who = "the_spell", line = "Your First Nightmare is complete.", mood = "focus", fx = "flash" },
   { who = "the_spell", line = "You have survived. You are now Awakened.", mood = "focus" },
   { who = "your_thoughts", line = "I... I did it. I actually did it.", mood = "pained" },
+  { who = "your_thoughts", line = "Why won't my hands stop being this colour?", mood = "afraid", if = "corruption >= 3" },
 ]
 
 [clever_victory]
@@ -985,6 +1122,44 @@ The Guardian falls.
 As it dissolves, the ghosts turn to you one final time. They smile - truly smile - before fading into peace at last.
 
 Kindness, it turns out, has terrible power in the Dream Realm."""
+variants = [
+  { if = "mercy >= 3", text = """
+☆ THE SPIRITS ANSWER YOUR CALL ☆
+
+The Guardian lunges toward you, massive fists ready to crush you into paste.
+
+You don't even have to finish calling.
+
+Light erupts around you - soft, silvery, clean - and at its centre stands the officer with the ring of keys, the one who stayed behind to warn you. He is not a fading wisp any more. He wears his old coat like armour, and behind him the whole chamber has come: the soldiers in their half-plate, the old man with his stick raised like a spear, even the woman with the basket, who has set it down at last.
+
+'You freed us,' the captain says, 'and then you stayed and listened. Few do both.'
+
+They meet the Guardian's blow together. Spirit blades flash. The captain calls out a name - an old name, a soldier's name - and the Guardian falters at the sound of it, as if somewhere under the bone it still answers to roll call.
+
+Together, you bring it down. Not as a monster. As a comrade being carried off the field.
+
+As it dissolves, the ghosts turn to you one final time. They smile - truly smile - and the captain presses one cold, weightless key into your palm before fading into peace at last.
+
+Kindness, it turns out, has terrible power in the Dream Realm.""" },
+  { if = "flag('abandoned_ghosts')", text = """
+☆ THE SPIRITS ANSWER YOUR CALL ☆
+
+The Guardian lunges toward you, massive fists ready to crush you into paste.
+
+You cry out to the spirits - and for a long, awful heartbeat you are sure no one will come. You walked away from them once. You would not blame them.
+
+Then light breaks around you, thinner than you hoped. Not the whole chamber - only a handful of them, the soldiers in rusted half-plate, their spectral blades lifted. They do not look at you as they take their places between you and the Guardian. They look at it.
+
+'You left us,' one of them says, without turning. 'Then you came back. We are still deciding which of those you are. Fight, and we will find out.'
+
+You fight. Flesh and blood and something to prove, beside echoes of the dead who are watching you as closely as the enemy.
+
+The Guardian falls.
+
+As it dissolves, the soldiers turn to you at last. One of them nods - just once, a soldier's nod - before they fade into peace.
+
+It is not forgiveness. But it is close enough to carry.""" },
+]
 art = """
 
     ╔═══════════════════════════════════════════════════════════╗
@@ -1011,7 +1186,9 @@ art = """
     ╚═══════════════════════════════════════════════════════════╝
         """
 dialogue = [
-  { who = "ghost_captain", line = "Thank you, child of mercy. We can finally rest.", mood = "happy" },
+  { who = "ghost_captain", line = "Thank you, child of mercy. We can finally rest.", mood = "happy", if = "!flag('abandoned_ghosts')" },
+  { who = "ghost", line = "You came back. Remember that part. We will.", mood = "sad", if = "flag('abandoned_ghosts')" },
+  { who = "ghost_captain", line = "Keep the key. Somewhere, someday, there will be a door that needs it.", mood = "happy", if = "mercy >= 3" },
   { who = "the_spell", line = "Your First Nightmare is complete.", mood = "focus", fx = "flash" },
   { who = "the_spell", line = "You have proven that compassion can exist even in the darkest places." },
   { who = "the_spell", line = "Additional Attribute granted: [Spirit Companion] (Dormant)", mood = "focus" },
@@ -1072,6 +1249,8 @@ dialogue = [
   { who = "the_spell", line = "Additional Attribute granted: [Shadow Legion] (Dormant)", mood = "focus" },
   { who = "your_thoughts", line = "I have power now. Incredible power. But I can feel it... changing me.", mood = "smirk" },
   { who = "your_thoughts", line = "Was it worth it? ...I hope so.", mood = "pained" },
+  { who = "your_thoughts", line = "My fingertips are still black. They're not fading. ...They're not fading.", mood = "afraid", if = "corruption >= 4" },
+  { who = "your_thoughts", line = "My hands are my own. I checked. I'll keep checking.", mood = "smirk", if = "corruption <= 3" },
 ]
 
 [coward_ending]
@@ -1157,6 +1336,7 @@ He tells you about the one who waits there. It was a warrior once - the best of 
 
 It still remembers its words, he says. Somewhere under all that bone, it still remembers."""
 set_flags = ["ghost_counsel"]
+add = { mercy = 1, resolve = 1 }
 dialogue = [
   { who = "ghost_captain", line = "It was our champion, child. 'Not one step back.' That was its oath, and it became its prison.", mood = "sad" },
   { who = "ghost_captain", line = "If you must face it, remember who it was. It may remember, too.", mood = "pained" },

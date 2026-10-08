@@ -71,6 +71,8 @@ Tucked behind the photo, a ticket stub. The Ritz Theater. Tonight's performance.
 
 You pocket both. The photograph feels heavier than paper has a right to."""
 add_items = ["Photograph", "Ritz Ticket"]
+# every real lead Malone turns up adds to his case
+add = { evidence = 1 }
 dialogue = [
   { who = "jack_malone", line = "Warehouse 47... Section 47... That's not coincidence.", mood = "shocked" },
   { who = "jack_malone", line = "Either she wanted me to find this, or someone wanted me to find her." },
@@ -101,6 +103,7 @@ That's not a robbery. That's not a jealous husband. That's craftsmanship.
 You snap the cylinder home and keep the gun. Six live rounds is the best alibi you've got, and you're not leaving it for the cops to lose."""
 set_flags = ["examined_gun"]
 add_items = ["Unfired Revolver"]
+add = { evidence = 1 }
 dialogue = [
   { who = "jack_malone", line = "I've been played. Set up like a patsy.", mood = "angry", fx = "flash" },
   { who = "jack_malone", line = "But who? And why?", mood = "afraid" },
@@ -129,9 +132,12 @@ Now it reads differently. She didn't come here to hire you. She came here to han
 
 Rain rattles the window like a tin cup. You fold the photo back along its creases and slip it inside your coat, next to the gun that never fired."""
 add_items = ["Photograph", "Ritz Ticket"]
+add = { evidence = 1 }
 dialogue = [
   { who = "jack_malone", line = "This is bigger than I thought. The cops, the mob... all connected.", mood = "shocked" },
   { who = "malone_thinking", line = "Somebody went to a lot of trouble to make me the bad guy. That means I'm worth something to them.", mood = "smirk" },
+  { who = "malone_thinking", line = "Six live rounds, a hole in my wall, a photograph that won't stop talking. That's {evidence} pieces of a puzzle and no picture on the box.", if = "flag('found_service_panel')" },
+  { who = "malone_thinking", line = "Six live rounds and a photograph that won't stop talking. That's {evidence} pieces of a puzzle and no picture on the box.", if = "!flag('found_service_panel')" },
 ]
 [[search_body_after_gun.choices]]
 text = "Head to Warehouse 47 - end this tonight"
@@ -157,6 +163,7 @@ Somebody was in your walls. Close enough to hear you pour. Close enough to take 
 
 On the floor by the panel, a business card, cream stock, embossed in gold: The Velvet Room - Where Secrets Sleep. There's a lipstick print on the back. Not hers. Wrong shade."""
 set_flags = ["found_service_panel"]
+add = { evidence = 1 }
 dialogue = [
   { who = "jack_malone", line = "The Velvet Room. High-class nightclub. Castellano territory." },
   { who = "jack_malone", line = "Why leave a calling card unless they want me to follow?", mood = "smirk" },
@@ -186,11 +193,28 @@ He's there in eight. Eddie, six months off the force and still walking like the 
 
 That nod is worth more than any alibi in this city. You'd forgotten what it felt like to have somebody in your corner."""
 set_flags = ["called_eddie"]
+# from the street the call comes from a pay phone, not the office
+variants = [
+  { if = "visited('run_away')", text = """
+The only phone still lit on the block is in an all-night diner that smells of burnt grease and wet wool. You feed it a nickel with a finger that won't quite stay still. Three rings. Four.
+
+'Yeah?' His voice is gravel in a coffee can.
+
+'Eddie, it's Jack. I need help. There's a body in my office, Castellano's boys are on my heels, and-'
+
+'Say no more. Where are you?'
+
+He's there in eight. Eddie, six months off the force and still walking like the badge is pinned to him, rain dripping off the peak of a flat cap older than his marriage. He slides into the booth across from you and takes you in the way a cop does - the wet coat, the shaking cup, the way you keep checking the door - and he doesn't ask you whether you did it. He just looks at you, long enough to read the answer, and then he nods.
+
+That nod is worth more than any alibi in this city. You'd forgotten what it felt like to have somebody in your corner.""" },
+]
 dialogue = [
   { who = "eddie", line = "Jesus, Jack. You really stepped in it this time.", mood = "shocked" },
   { who = "jack_malone", line = "I didn't do it, Eddie.", mood = "pained" },
   { who = "eddie", line = "I know. You're a lot of things, but you ain't a killer. Not like this, anyway. We need to find who did.", mood = "smirk" },
   { who = "eddie", line = "I've been hearing things. Warehouse 47. Big meeting tonight. Castellano, Morrison... maybe more. This dame was probably insurance - proof for whoever wanted out." },
+  { who = "eddie", line = "And Jack - your description's on every prowl-car radio from here to the river. Keep your hat low and your head lower.", mood = "afraid", if = "heat >= 1" },
+  { who = "eddie", line = "The gun, the photo, and more besides? That's {evidence} pieces, Jack. That ain't a hunch anymore. That's a case.", mood = "happy", if = "evidence >= 3" },
   { who = "eddie", line = "Whatever you decide, I'm in. I'll be by my phone or by your side. Your call.", mood = "smirk" },
 ]
 [[call_eddie.choices]]
@@ -220,6 +244,8 @@ You drop the last six feet into the alley. Garbage cans. Steam from a grate. A c
 And three figures stepping out of the shadows at the mouth of the alley, hat brims dripping, hands in their pockets in the way that means the pockets aren't empty. The one in the middle is built like a mailbox and has knuckles like walnuts.
 
 Tony 'The Fist'. Castellano's errand boy. They've been waiting down here the whole time - which means somebody knew you'd come down this way."""
+# running from a murder scene makes the city hot for Malone
+add = { heat = 1 }
 art = """
 
 ╔═══════════════════════════════════════════════════════════════════╗
@@ -255,6 +281,7 @@ dialogue = [
 [[run_away.choices]]
 text = "Go with them peacefully - maybe you can talk to Castellano"
 goto = "castellano_meeting"
+add = { trust_tony = 1 }
 [[run_away.choices]]
 text = "Fight your way out - three against one, you've had worse odds"
 goto = "alley_fight"

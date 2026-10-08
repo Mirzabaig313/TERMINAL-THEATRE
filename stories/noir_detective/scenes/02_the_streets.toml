@@ -13,6 +13,8 @@ The second goon pulls a knife. You hear it before you see it, that oily little c
 It's brutal and quick and ugly, the way real fights are. Nobody dances. When it's over you're bleeding from three places - lip, eyebrow, and somewhere under your ribs that's starting to feel warm and wet - and two of Castellano's boys aren't getting up.
 
 Tony is on one knee in the rain, holding his face together with one hand, blood running between his fingers. His gun is in the gutter, a yard from your shoe. He looks at it. He looks at you. He doesn't reach."""
+# a street brawl with Castellano's men: the whole city hears about it
+add = { heat = 2 }
 dialogue = [
   { who = "tony", line = "You're... dead, Malone. Mr. C will... burn this city... to find you.", mood = "pained" },
   { who = "jack_malone", line = "Tell your boss I'm coming for him. And I'm bringing answers.", mood = "angry" },
@@ -24,6 +26,8 @@ goto = "tony_message"
 [[alley_fight.choices]]
 text = "Leave him in the gutter and head for Warehouse 47 - finish this tonight"
 goto = "warehouse_injured"
+# bodies left in the street turn up the heat
+add = { heat = 1 }
 [[alley_fight.choices]]
 text = "Find a doctor you can trust - you won't survive much more bleeding"
 goto = "doctor_visit"
@@ -41,6 +45,8 @@ Something moves behind his eyes. In Tony's line of work, nobody hands you your h
 
 He doesn't say thank you. He spits red, nods once, and limps off into the steam."""
 set_flags = ["tony_owes_you"]
+# a debt, but a grudging one - you did break his nose. And no bodies in the gutter.
+add = { trust_tony = 1, heat = -1 }
 dialogue = [
   { who = "tony", line = "This don't make us friends, Malone.", mood = "pained" },
   { who = "jack_malone", line = "Wouldn't dream of it. Just remember who handed you your hat.", mood = "smirk" },
@@ -62,6 +68,7 @@ You keep your hands where they can see them and your voice low and even, the way
 Rain drums on the garbage cans. One of the goons shifts his weight. Tony doesn't answer right away, and that's the tell: a man who's sure of something answers fast.
 
 He exchanges a glance with his boys. You see the doubt creep in, thin as smoke under a door. Castellano's people are a lot of things, but they're proud of their work. A frame job is somebody else's signature on their wall."""
+add = { trust_tony = 1 }
 dialogue = [
   { who = "tony", line = "Mr. C don't play games like that. He wants someone dead, they die. No setups, no frames.", mood = "angry" },
   { who = "jack_malone", line = "Then maybe someone's playing him too. Someone bigger." },
@@ -91,6 +98,8 @@ For a long moment there's nothing but the rain and the hiss of the grate. Then T
 
 'I never saw you,' he says. 'Twenty minutes. After that, I gotta tell Mr. C something, and it's gonna be the truth. Whoever did this to you, Malone - they did it to us too. Nobody puts a job on our name without asking.' He lights a cigarette, cups it against the rain. 'Pier 9. Warehouse 47. Two o'clock tonight, there's a sit-down. Everybody who matters. You didn't hear it from me.'"""
 set_flags = ["tony_owes_you"]
+# shown the truth, not beaten into it: Tony is really on your side now
+add = { trust_tony = 2 }
 dialogue = [
   { who = "tony", line = "Twenty minutes. Don't make me regret it.", mood = "angry" },
   { who = "jack_malone", line = "Tony, if I live through this, I owe you a drink.", mood = "smirk" },
@@ -113,12 +122,14 @@ The rain works in your favour. Sound goes dead in it. Shapes go grey. A man in a
 Behind you, a car engine starts up and starts hunting.
 
 You stop under an awning to get your breath back and light a cigarette with fingers that shake more than you'd like. You've bought yourself some time. Not much. Castellano knows now that you're onto something, and by sunrise every bartender, cab driver and cop on his payroll will have your description."""
+add = { heat = 1 }
 dialogue = [
   { who = "jack_malone", line = "Bought myself some time. Now I need to use it.", mood = "smirk" },
 ]
 [[escape_run.choices]]
 text = "Go to ground at Eddie's place - need backup"
 goto = "call_eddie"
+add = { heat = -1 }
 [[escape_run.choices]]
 text = "Hit Warehouse 47 before they expect it"
 goto = "warehouse"
@@ -135,11 +146,29 @@ He doesn't ask questions anymore. He just points at the table. You lie down on b
 The needle goes in and out, in and out. You count the stitches to keep from counting the dead. Eleven. The bourbon he gives you is better than yours, which is a sad thing to learn about yourself.
 
 When he's done he snaps off his gloves, washes his hands for a long time, and looks at you the way a mechanic looks at a car that should have gone to the scrapyard years ago."""
+# Doc's military rounds are a real lead
+add = { evidence = 1 }
+variants = [
+  { if = "visited('warehouse_injured')", text = """
+You turn your back on Pier 9 and the guards' laughter and make it six blocks on nothing but willpower and the last of your blood. By the time you reach Delancey, the street is tilting like the deck of a ship.
+
+Doc Stevens works out of the back of a laundromat, behind a curtain that smells of starch and carbolic. He lost his licence in '38 for treating the wrong kind of patient, and he's been treating nothing but the wrong kind ever since. He catches you as you come through the curtain, which is just as well, because your knees have stopped taking orders.
+
+He doesn't ask questions anymore. You lie on butcher paper under a single bare bulb while he cuts your shirt off with tailor's shears and peers at the hole under your ribs through glasses as thick as ashtrays.
+
+'Knife,' he says. 'And then a walk to the docks on top of it. Half an inch to the left and I'd be calling the undertaker. Another block and I'd be calling him anyway.'
+
+The needle goes in and out, in and out. You count the stitches to keep from counting the dead. Eleven. The bourbon he gives you is better than yours, which is a sad thing to learn about yourself.
+
+When he's done he snaps off his gloves, washes his hands for a long time, and looks at you the way a mechanic looks at a car that should have gone to the scrapyard years ago.""" },
+]
 dialogue = [
   { who = "doc_stevens", line = "Whatever you're into, Jack, finish it soon. Next time I might not be able to put you back together.", mood = "sad" },
   { who = "jack_malone", line = "Thanks, Doc. Put it on my tab.", mood = "smirk" },
   { who = "doc_stevens", line = "Your tab could buy a new clinic. Just... be careful.", mood = "smirk" },
   { who = "doc_stevens", line = "And Jack - two of Castellano's boys came through here an hour ago with bullet burns. Military rounds. Not the kind you buy on the street.", mood = "afraid" },
+  { who = "doc_stevens", line = "Two uniforms already came by asking after a man with a knife in him. Your face is on every prowl-car radio in the city. If you go out that door now, you won't get three blocks.", mood = "afraid", if = "heat >= 3" },
+  { who = "doc_stevens", line = "Nobody's come asking after you yet. Rodriguez at the Ninth still owes me for his brother's appendix, if you need a cop who isn't for sale.", if = "heat <= 2" },
 ]
 [[doctor_visit.choices]]
 text = "Head to Warehouse 47 - time to end this"
@@ -147,6 +176,15 @@ goto = "warehouse"
 [[doctor_visit.choices]]
 text = "Investigate the Velvet Room instead"
 goto = "velvet_room"
+[[doctor_visit.choices]]
+text = "Lie low in Doc's back room until the patrols thin out, then make for the docks"
+goto = "warehouse"
+if = "heat >= 3"
+add = { heat = -2 }
+[[doctor_visit.choices]]
+text = "Have Doc ring Captain Rodriguez - a clean cop, while you're still a suspect and not a fugitive"
+goto = "rodriguez"
+if = "heat <= 2"
 
 # ---------------------------------------------------------------- castellano
 
@@ -290,7 +328,8 @@ Three guns come out from under three good jackets. The sound of three hammers go
 Your own gun is a mile away on your hip. The door is behind you and the beaded curtain is nothing but glass and string. You've got maybe two seconds, and a whole life you could spend in them."""
 dialogue = [
   { who = "castellano", line = "Shame. We could've done great things together.", mood = "sad" },
-  { who = "tony", line = "Boss...", mood = "pained" },
+  { who = "tony", line = "Boss...", mood = "pained", if = "trust_tony >= 1" },
+  { who = "tony", line = "Nothing personal, Malone. Just the job.", if = "trust_tony == 0" },
 ]
 [[refuse_castellano.choices]]
 text = "Stand your ground. Look him in the eye. Don't give him the satisfaction."
@@ -319,10 +358,27 @@ Then he opens his desk drawer and pulls out a bottle of rye and two glasses with
 
 Before you leave, he presses a flare pistol into your hand, the kind the harbour patrol carries. 'Whatever you decide,' he says, 'if you get in over your head, light up the sky. My people will come.'"""
 set_flags = ["went_to_rodriguez"]
+# walking in on your own two feet: cooperating cools things down
+add = { heat = -1 }
+# arriving from Doc's back room, with stitches instead of a photograph
+variants = [
+  { if = "!item('Photograph')", text = """
+Doc's phone call gets you in through the garage at the back of the 9th Precinct, past a desk sergeant who has been told not to look up. At 3 AM the place is a cathedral of bad coffee and worse lighting. A drunk sings in the holding cells. Somebody's typewriter goes clack-clack-ding with the patience of a man filling out a form for the thousandth time.
+
+Captain Rodriguez's office is at the end of the hall, the only door with the light still on. You've got no photograph to show him. Just eleven fresh stitches and a story: the dame on your carpet, Tony and his boys waiting in the alley like they'd been told where to stand, the military rounds Doc dug out of Castellano's men. He listens to all of it without moving. His face doesn't move. His moustache doesn't move. Only his thumb, rubbing slowly over the edge of his desk as if he could wear a hole in it.
+
+Then he opens his desk drawer and pulls out a bottle of rye and two glasses with the precinct crest on them.
+
+'I've been waiting for this day, Jack. Hoping it wouldn't come, but knowing it would.'
+
+Before you leave, he presses a flare pistol into your hand, the kind the harbour patrol carries. 'Whatever you decide,' he says, 'if you get in over your head, light up the sky. My people will come.'""" },
+]
 dialogue = [
   { who = "rodriguez", line = "I've known about Morrison for two years. Couldn't prove it. Couldn't trust anyone. The rot goes deep.", mood = "sad" },
   { who = "jack_malone", line = "And now?" },
-  { who = "rodriguez", line = "Now we have proof. And now you're a murder suspect. They played this smart - take you off the board, silence their leak, all in one move.", mood = "angry" },
+  { who = "rodriguez", line = "Now we have proof. And now you're a murder suspect. They played this smart - take you off the board, silence their leak, all in one move.", mood = "angry", if = "item('Photograph')" },
+  { who = "rodriguez", line = "Military rounds in Castellano's boys and a dead girl on your carpet. It isn't proof, Jack. But it's the first crack I've seen in two years.", mood = "angry", if = "!item('Photograph')" },
+  { who = "rodriguez", line = "{evidence} separate leads in one night. You're wasted on divorce work, Jack.", mood = "smirk", if = "evidence >= 3" },
   { who = "rodriguez", line = "I can protect you, Jack. But we need to move fast. There's a meeting tonight. Warehouse 47. All the players will be there." },
 ]
 [[rodriguez.choices]]
@@ -352,6 +408,9 @@ He hangs up and slides your gun back across the desk, rounds and all.
 
 'Officially, you're a material witness, Jack. Unofficially? You're clean. And Morrison's going to find out by breakfast that his frame just fell apart in my hands.'"""
 set_flags = ["name_cleared"]
+# ballistics is evidence, and a cleared name takes the city off your back
+add = { evidence = 1 }
+set = { heat = 0 }
 dialogue = [
   { who = "rodriguez", line = "That's the first good news I've had in two years.", mood = "happy" },
   { who = "jack_malone", line = "Don't get used to it. The night's young.", mood = "smirk" },
@@ -394,6 +453,8 @@ The cab drops you six blocks from the docks because the driver won't go closer. 
 Warehouse 47 looms at the end of Pier 9, a black hulk against the slightly less black sky. A sliver of yellow light under the loading door.
 
 You check your gun one more time. Six bullets. Hopefully enough. The flare pistol is a heavy lump in your coat pocket, an argument you haven't finished having with yourself."""
+# off the books again
+add = { heat = 1 }
 dialogue = [
   { who = "jack_malone", line = "One man against the world. Just how I like it.", mood = "smirk" },
 ]
@@ -422,6 +483,7 @@ Underneath: a manila envelope, sealed with a strip of tape and a lipstick kiss.
 
 Inside, documents. Bank transfers. Shipping manifests. Payoffs to the dollar, with dates and signatures. You page through them by the flame and your stomach drops a floor with every page. It isn't just Morrison. It's dozens of cops, three judges, half a city council. And at the centre of the web, in a typed heading on War Department letterhead: PROJECT NIGHTFALL. Military weapons, signed out as destroyed, sold to the highest bidder."""
 add_items = ["Nightfall Papers"]
+add = { evidence = 1 }
 dialogue = [
   { who = "jack_malone", line = "The dame wasn't running from Castellano. She was running from everyone. This is enough to burn the whole city down.", mood = "shocked" },
   { who = "voice_from_darkness", line = "That's exactly right, Mr. Malone.", fx = "shake" },
@@ -443,6 +505,8 @@ The figure in the aisle folds up and goes down.
 You approach with your gun up, heart going like a riveter. It's not a soldier. Not a mobster. It's a woman in a red evening dress, dark hair spilled across the carpet like ink. One earring has come loose and lies glittering on the step. Her clutch has fallen open, and in the green exit light you see what's inside it: a leather wallet, and pinned to it, a federal badge.
 
 She's still breathing. Not for long. You know that sound. Everyone in your line of work learns that sound eventually."""
+# a dead federal agent: the hottest the city gets
+add = { heat = 3 }
 art = """
 
                     .38 SNUBNOSE REVOLVER
@@ -485,8 +549,11 @@ She walks up the aisle and takes the envelope out of your hands, glances at the 
 
 She tucks a plain white card into your breast pocket. A name, a number, nothing else."""
 add_items = ["Chen's Card"]
+# a federal agent in your corner cools things down
+add = { heat = -1 }
 dialogue = [
   { who = "chen", line = "They killed her to frame you. Two birds, one stone. You've been making people nervous, asking the wrong questions.", mood = "angry" },
+  { who = "chen", line = "You've been busy, Malone. {evidence} solid leads in one night. Most of my agents don't manage that in a month.", mood = "smirk", if = "evidence >= 3" },
   { who = "jack_malone", line = "So what happens now?" },
   { who = "chen", line = "Now we have a choice. You can come in, become a witness, and hope my protection holds. Or we can end this tonight. Warehouse 47. All the players. One final move." },
   { who = "chen", line = "Or you walk out that door with my number and do it your own way. I won't stop you. I might even pick up when you call.", mood = "smirk" },

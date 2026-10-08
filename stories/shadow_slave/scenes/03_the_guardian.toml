@@ -64,6 +64,7 @@ It raises its arm again. This time it will not miss."""
 dialogue = [
   { who = "your_thoughts", line = "Okay. Okay. That was one. I can't take two.", mood = "pained", fx = "shake" },
   { who = "the_spell", line = "Aspirant. Choose.", mood = "wrath" },
+  { who = "your_thoughts", line = "I've held on through worse than one punch. Get up. Get UP.", mood = "angry", if = "resolve >= 3" },
 ]
 [[unarmed_stand.choices]]
 text = "Drive the metal shard into the crack across its chest"
@@ -72,7 +73,7 @@ any_items = ["Metal Shard"]
 [[unarmed_stand.choices]]
 text = "Meet its gaze and refuse to break - you've refused bigger things"
 goto = "final_battle"
-any_flags = ["resisted_spell", "held_onto_self", "refused_essence"]
+if = "resolve >= 3 || flag('resisted_spell') || flag('held_onto_self') || flag('refused_essence')"
 [[unarmed_stand.choices]]
 text = "Question everything - look for the lie in its shape"
 goto = "clever_victory"
@@ -111,6 +112,7 @@ any_flags = ["saw_shadow_beasts"]
 text = "Cut through the chamber of the ghosts you left behind"
 goto = "bound_in_their_place"
 any_flags = ["abandoned_ghosts"]
+if = "mercy < 0"
 [[flight_from_guardian.choices]]
 text = "Stop. Turn around. Face it"
 goto = "trial_encounter"
@@ -171,10 +173,35 @@ Then you feel the cost. Every shadow-soldier you call draws on something inside 
 Your fingertips have gone black. Your shadow is no longer attached to your feet.
 
 The Guardian staggers under the swarm. You could finish it. You could finish everything. All you have to do is stop holding on."""
+variants = [
+  { if = "corruption >= 5", text = """
+You raise your hand, and the shadows rise with it - from the cracks, from the pillars, from your own feet - and hurl themselves at the Guardian.
+
+It isn't glorious. It isn't anything. It is simply what happens next, the way water runs downhill.
+
+The cost arrives, and you find there is very little left to pay it with. You let go on the way into this world. You drank, and then you reached for more. Each time, a little of you stayed behind in the dark, and the dark kept it. Now the frost in your chest has finished spreading. There is no window left for it to cross.
+
+You look down. You cannot find where your hands end and your shadow begins. You cannot quite remember what colour your eyes were.
+
+The Guardian staggers under the swarm. Somewhere, a long way off, a small voice that might be yours is asking you to hold on. It is getting harder to hear.""" },
+  { if = "corruption <= 3", text = """
+You raise your hand, and the shadows rise with it - from the cracks, from the pillars, from your own feet - and hurl themselves at the Guardian.
+
+It's glorious. For about three seconds.
+
+Then you feel the cost. Every shadow-soldier you call draws on something inside you, and the something is hungry. It wants more. It reaches for you like frost reaching across a window - and finds, to its surprise, that most of the glass is still warm. You forced it down once already. You remember how.
+
+Your fingertips have gone grey. Your shadow tugs at your heels, but it is still attached.
+
+The Guardian staggers under the swarm. You could finish it. You could finish everything. The hunger whispers that you only have to stop holding on - but you have been holding on all day, and you are getting good at it.""" },
+]
+add = { corruption = 1 }
 dialogue = [
   { who = "unknown_voice", line = "Yes. Let go. You were always meant to be ours." },
   { who = "your_thoughts", line = "It's... pulling me in. I can't feel my hands...", mood = "pained", fx = "glitch" },
   { who = "the_spell", line = "Warning. Aspirant identity unstable.", mood = "wrath" },
+  { who = "the_spell", line = "Shadow saturation {corruption}. Threshold exceeded. Recovery improbable.", mood = "wrath", fx = "glitch", if = "corruption >= 5" },
+  { who = "your_thoughts", line = "No. I know this feeling. I've pushed it down before.", mood = "angry", if = "corruption <= 4" },
 ]
 [[shadow_hunger.choices]]
 text = "Let the hunger have what it wants"
@@ -182,7 +209,11 @@ goto = "consumed_by_shadow"
 [[shadow_hunger.choices]]
 text = "Master it - your will has held against worse"
 goto = "shadow_victory"
-any_flags = ["resisted_spell", "held_onto_self", "learned_survival_tips"]
+if = "corruption <= 4 && (resolve >= 2 || flag('resisted_spell') || flag('held_onto_self') || flag('learned_survival_tips'))"
+[[shadow_hunger.choices]]
+text = "Try to master it - and reach for a will that isn't there any more"
+goto = "consumed_by_shadow"
+if = "corruption >= 5"
 [[shadow_hunger.choices]]
 text = "Release the shadows and finish this yourself"
 goto = "final_battle"
@@ -206,10 +237,31 @@ It takes a single step back.
 The obsidian plates fall from it like leaves. Beneath them is no monster, only a tired figure in battered armor, sword lowered at last. They look at you with eyes you have already seen through once, and they bow.
 
 Then they are gone, scattered on a wind that smells, impossibly, of rain on a mountain pass. The crimson sky cracks open, and through the gap pours ordinary morning light."""
+variants = [
+  { if = "mercy >= 2", text = """
+✦ NOT ONE STEP BACK ✦
+
+You lower your hands. You plant your left foot exactly where the warrior planted theirs, square your shoulders the way they did, and you say the words.
+
+"Not one step back. Not one inch of ground."
+
+And then you add the part nobody ever said to them: "You held. It's over. You can stop now."
+
+The Guardian goes perfectly still. Behind you, the air turns silver and cold, and you don't need to look to know who has come: the ghosts you freed, standing in their old formation, the captain with his ring of keys at their head. They are not here to fight. They are here to witness.
+
+Slowly - with a groan of stone grinding against stone, as if the motion is being torn out of a thousand years of refusal - the Guardian does the one thing its oath forbade.
+
+It takes a single step back.
+
+The obsidian plates fall from it like leaves. Beneath them is no monster, only a tired figure in battered armor, sword lowered at last. The captain steps forward and salutes. The figure returns it - stiffly, as if remembering how - and then turns to you, with eyes you have already seen through once, and bows.
+
+Then all of them are gone together, scattered on a wind that smells, impossibly, of rain on a mountain pass. The crimson sky cracks open, and through the gap pours ordinary morning light.""" },
+]
 dialogue = [
   { who = "the_spell", line = "Your First Nightmare is complete.", mood = "focus", fx = "flash" },
   { who = "the_spell", line = "The Guardian was not defeated. It was relieved of duty. This is... unprecedented.", mood = "focus" },
   { who = "the_spell", line = "Title granted: [Oathbreaker of the Fallen]. Attribute granted: [Echo of the Last Stand] (Dormant)", mood = "focus" },
+  { who = "ghost_captain", line = "Stand down, champion. The pass is held. Come home.", mood = "happy", if = "mercy >= 2" },
   { who = "your_thoughts", line = "Rest well, warrior. I'll carry the rest of it from here.", mood = "pained" },
 ]
 
@@ -228,7 +280,24 @@ Far away, a voice made of burning letters says something about failure, and iden
 Somewhere in the outer rings of a ruined city, a herd of shadow beasts lifts their faceless heads as one. A new shape is walking toward them across the rubble, three steps and a pause, three steps and a pause.
 
 They make room for it."""
+variants = [
+  { if = "corruption >= 5", text = """
+There is no moment where you stop holding on. You look for it afterwards - if there is an afterwards, if there is a you to look - and you cannot find it. It went the way a coastline goes: grain by grain, while you were watching something else.
+
+You let go on the way down. You drank when the voice asked, and drank deeper when it asked again. Each time, you thought: just this once. The dark has a very good memory for just-this-once.
+
+The cold finishes its work. The shadows howl with joy, and the Guardian disappears beneath them like a stone beneath black water. You barely notice it go.
+
+You grow. You stretch. Your edges smear and reform like ink in water. Your face smooths over until there is nothing left on it at all.
+
+Far away, a voice made of burning letters reads out a number, and then stops reading.
+
+Somewhere in the outer rings of a ruined city, a herd of shadow beasts lifts their faceless heads as one. A new shape is walking toward them across the rubble, three steps and a pause, three steps and a pause.
+
+They make room for it.""" },
+]
 dialogue = [
+  { who = "the_spell", line = "Final shadow saturation: {corruption}.", mood = "wrath", if = "corruption >= 5" },
   { who = "the_spell", line = "Aspirant signal lost. Entity reclassified: Nightmare Creature.", mood = "wrath", fx = "glitch" },
   { who = "the_spell", line = "Your First Nightmare has ended. You have not.", mood = "wrath" },
 ]
@@ -249,6 +318,18 @@ The seal on the floor flares with sick violet light. You feel the leash before y
 A seal like this always needs someone to hold. It doesn't much care who.
 
 Years later - or perhaps only minutes; it's hard to say down here - another frightened Aspirant follows a whisper down the stairs. You hear yourself begin to plead."""
+variants = [
+  { if = "mercy <= -2", text = """
+You know the low quarter. You know the stairway. You have walked down it twice, and up it twice, and both times you left them there.
+
+The Guardian doesn't follow you down. It doesn't need to.
+
+The ghosts are waiting at the bottom of the stair, and they are not whispering. They have had a long time to decide what to say to you, and in the end they decided on nothing at all. They simply part, the soldiers and the old man and the woman with the basket, and let you see the seal.
+
+It flares with sick violet light. The leash hooks into your chest before you can turn. One by one the ghosts' own chains go slack, and one by one they fade, and not one of them looks back. You taught them how.
+
+Years later - or perhaps only minutes; it's hard to say down here - another frightened Aspirant follows a whisper down the stairs. You hear yourself begin to plead. You already know how it ends: they will listen, and they will look at you, and they will keep walking. Everyone does.""" },
+]
 dialogue = [
   { who = "ghost", line = "Thank you, brave one. We will not forget this kindness.", mood = "smirk" },
   { who = "your_thoughts", line = "No - wait - I didn't mean - please...!", mood = "afraid", fx = "shake" },
@@ -273,4 +354,97 @@ dialogue = [
   { who = "your_thoughts", line = "Come on, then! COME ON!", mood = "angry", fx = "shake" },
   { who = "the_spell", line = "You have perished in the Dream Realm.", mood = "wrath" },
   { who = "the_spell", line = "...Your defiance has been recorded.", mood = "focus" },
+]
+
+[unbroken_stand]
+text = """
+You don't reach for a weapon. You don't look for an exit. You plant your feet on the cracked basalt of the dead plaza, and you say your name - out loud, to the Guardian, to the Spell, to the whole bleeding sky.
+
+The Guardian advances. Each step shakes dust from the pillars. It is close enough now that you can smell it, cold stone and old iron, close enough that its shadow swallows yours.
+
+You do not step back.
+
+It stops.
+
+Its burning eyes study you from a hand's breadth away, and something moves behind them that is not hunger. For a thousand years everything in this city has fled from it, or fought it and fallen. It has never met anything that simply stood. Anything that refused, the way it refused, to give up a single inch.
+
+It raises its arm. It doesn't bring it down. Not yet. It is waiting for you to flinch, so that it can advance - and you are not flinching."""
+variants = [
+  { if = "item(\"Warrior's Echo\")", text = """
+You don't reach for a weapon. You don't look for an exit. You plant your feet on the cracked basalt of the dead plaza, and you say your name - out loud, to the Guardian, to the Spell, to the whole bleeding sky.
+
+The Guardian advances. Each step shakes dust from the pillars. It is close enough now that you can smell it, cold stone and old iron, close enough that its shadow swallows yours.
+
+You do not step back. And somewhere between one heartbeat and the next you realise your body has found the stance on its own: left foot set and still, shoulders squared, breath held behind the teeth. The memory in your muscles knows this moment. It has stood here before.
+
+The Guardian stops.
+
+Its burning eyes study you from a hand's breadth away, and they widen, just slightly, like a man catching his own face in a dark window. It knows that stance. It knows it from the inside, the same way you do.
+
+It raises its arm. It doesn't bring it down."""},
+]
+dialogue = [
+  { who = "the_spell", line = "Aspirant resolve: {resolve}. The Guardian's oath does not account for this.", mood = "focus", fx = "flash" },
+  { who = "your_thoughts", line = "Not one step. Not for you. Not for anything in this place.", mood = "angry" },
+  { who = "your_thoughts", line = "Don't think about the shadows. They're not mine. I'm mine.", mood = "pained", if = "corruption >= 1" },
+]
+[[unbroken_stand.choices]]
+text = "Drive everything you have into the crack across its chest"
+goto = "final_battle"
+[[unbroken_stand.choices]]
+text = "Speak the warrior's words - it already knows them"
+goto = "echo_released"
+if = "item(\"Warrior's Echo\")"
+[[unbroken_stand.choices]]
+text = "Call the freed spirits to stand in the line beside you"
+goto = "spirit_aid"
+if = "flag('freed_ghosts')"
+[[unbroken_stand.choices]]
+text = "Do nothing at all. Hold the ground, and let the Nightmare run out of night"
+goto = "the_unmoving"
+if = "resolve >= 5 && corruption <= 0"
+
+[the_unmoving]
+ending = true
+text = """
+◇ THE UNMOVING ◇
+
+You do nothing. It is the hardest thing you have ever done.
+
+The Guardian's arm hangs above you. It is waiting for you to break - to run, to swing, to give it the inch it needs. You give it nothing. Your legs begin to shake and you let them shake, and you do not move them. Your heart tries to drag you backward and you tell it, very calmly, no.
+
+Minutes pass. Then something longer than minutes. The arm does not fall. Whatever is left of the warrior inside that obsidian cannot bring itself to strike down someone who is holding the line, because once, a very long time ago, that was all it ever wanted anyone to do.
+
+You think about your name. You think about the voice on the way down that tried to take it, and the glow in the crack that offered to trade for it, and how both times you said no. Saying no again turns out to be easy. It's the only thing you've practised all day.
+
+The crimson sky begins to thin. Grey seeps in at the edges, then pale gold. The Nightmare was built to be survived, the Spell told you, and this is what surviving looks like: not winning, only still being here when the night runs out.
+
+The Guardian lowers its arm at last, slowly, the way a sentry lowers a spear at the end of a watch. Neither of you has moved an inch. In the first real light, it inclines its great head to you - one soldier to another - and holds its ground as the dawn takes it.
+
+You hold yours until there is nothing left to hold it against."""
+art = """
+
+    ╔═══════════════════════════════════════════════════════════╗
+    ║                                                           ║
+    ║                   ◇ THE UNMOVING ◇                        ║
+    ║                                                           ║
+    ║          ░░░░░░░░░░░░ dawn ░░░░░░░░░░░░                   ║
+    ║                                                           ║
+    ║              ███                       ▄▄▄                ║
+    ║             █████                     ▐█▌                 ║
+    ║            ███████                    ███                 ║
+    ║            ███████                   ▐███▌                ║
+    ║             █████                     █ █                 ║
+    ║             █   █                     █ █                 ║
+    ║          ▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀              ║
+    ║                                                           ║
+    ║             "Neither of them moved an inch."              ║
+    ║                                                           ║
+    ╚═══════════════════════════════════════════════════════════╝
+        """
+dialogue = [
+  { who = "the_spell", line = "Your First Nightmare is complete.", mood = "focus", fx = "flash" },
+  { who = "the_spell", line = "Survival condition met without victory. No Aspirant on record has attempted this.", mood = "focus" },
+  { who = "the_spell", line = "Title granted: [The Unmoving]. Attribute granted: [Unbroken Will] (Dormant)", mood = "focus" },
+  { who = "your_thoughts", line = "I didn't win. I just didn't leave. ...Turns out that counts.", mood = "smirk" },
 ]

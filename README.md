@@ -13,8 +13,8 @@ Written in Rust. One binary, nothing else to install.
 - **Screen Effects**: Screen shake for gunshots, glitches for drugs and static, white flashes for shocking reveals, drifting ash and neon in the background
 - **Scene Pictures**: Real images in Kitty, iTerm2, WezTerm and Sixel terminals, drawn in character cells everywhere else, with ASCII art as the fallback
 - **Mood Lighting**: Every scene is colored by its mood (noir, danger, alert, calm, mystery), and each story can recolor them
-- **Branching Narratives**: Flags, items and conditional choices make earlier decisions matter
-- **Multiple Endings**: 50 endings across three stories
+- **Branching Narratives**: Flags, items and counters (evidence, heat, trust, corruption…) change which choices, lines and endings you see
+- **Multiple Endings**: 54 endings across three stories
 - **Save System**: Autosave at every scene, 9 named slots per story, quick save/load, Continue, Load Game, export/import
 - **Reading Comfort**: History of everything read, auto-advance, and skip that races through text you've already read
 - **Endings Gallery**: See which endings you've found in each story, and how many are left
@@ -30,8 +30,8 @@ Written in Rust. One binary, nothing else to install.
 
 Play as Jack Malone, a private eye with a dead client and a smoking gun. Navigate corruption, mob bosses and conspiracies to clear your name.
 
-- **Scenes**: 80
-- **Endings**: 27
+- **Scenes**: 81
+- **Endings**: 28
 - **Cast**: Jack Malone, Castellano, Eddie, Captain Rodriguez, Morrison, Blackwood, Tony "The Fist", Agent Sarah Chen, Doc Stevens
 - **Genre**: Film noir detective mystery
 
@@ -41,9 +41,9 @@ Play as Jack Malone, a private eye with a dead client and a smoking gun. Navigat
 
 Play as Detective Marcus Kane, hunting a killer who poses victims as tarot cards. Seven victims. Seven sacrifices. A pharmaceutical conspiracy that reaches all the way up.
 
-- **Scenes**: 85
-- **Endings**: 13
-- **Decision Points**: 71
+- **Scenes**: 87
+- **Endings**: 15
+- **Decision Points**: 72
 - **Cast**: Kane (with a glowing cyber-eye), Sarah Vega, Cassandra Westmore, Elias, Selene, Captain Reeves, Riley, Dr. Helena Marsh, Madame Zora
 - **Genre**: Neon-soaked detective thriller
 
@@ -53,8 +53,8 @@ Play as Detective Marcus Kane, hunting a killer who poses victims as tarot cards
 
 Pulled into the Dream Realm, you must survive your First Nightmare: ancient ruins, shadow beasts, trapped spirits, and a Guardian who decides whether you awaken.
 
-- **Scenes**: 53
-- **Endings**: 10
+- **Scenes**: 55
+- **Endings**: 11
 - **Cast**: Sunny, The Spell (a watching rune-eye), and the ghosts of a fallen garrison
 - **Genre**: Dark fantasy survival
 
@@ -252,11 +252,11 @@ Every bundled story is checked on each run: it must load, every scene must be re
 ## 📊 Statistics
 
 - **Stories**: 3
-- **Total Scenes**: 218
-- **Unique Endings**: 50
+- **Total Scenes**: 223
+- **Unique Endings**: 54
 - **Animated Characters**: 27, with 8 expressions each (hand-made sprites have their own sets)
 - **Scene Pictures**: 31 hand-drawn SVG illustrations (10 The Last Case, 10 Blood and Neon, 11 Shadow Slave)
-- **Lines of Dialogue**: 587
+- **Lines of Dialogue**: 680
 - **Tests**: 78
 
 
@@ -264,10 +264,9 @@ Every bundled story is checked on each run: it must load, every scene must be re
 
 - [ ] Sound effects and music
 - [ ] More stories (sci-fi, horror)
-- [ ] Achievements and an endings gallery
+- [ ] Achievements
 - [ ] Timed choices
 - [ ] Portraits for the remaining minor characters
-- [ ] Real images in terminals that support them (Kitty, iTerm2, WezTerm)
 
 ## 📝 License
 

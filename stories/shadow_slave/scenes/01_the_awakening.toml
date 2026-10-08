@@ -40,6 +40,7 @@ dialogue = [
 [[nightmare_begins.choices]]
 text = "Try to stay calm and listen"
 goto = "spell_explanation"
+add = { resolve = 1 }
 [[nightmare_begins.choices]]
 text = "Panic and resist the Spell"
 goto = "resistance"
@@ -80,6 +81,7 @@ dialogue = [
 [[forced_entry.choices]]
 text = "Let go and fall into darkness"
 goto = "dream_realm_entry_rough"
+add = { corruption = 1 }
 [[forced_entry.choices]]
 text = "Scream your own name into the void"
 goto = "name_in_the_void"
@@ -94,6 +96,7 @@ The void shudders. For a heartbeat the burning letters stutter, as though the Sp
 
 You are still falling. But you are falling as yourself."""
 set_flags = ["held_onto_self"]
+add = { resolve = 2 }
 dialogue = [
   { who = "the_spell", line = "...Noted.", mood = "focus", fx = "glitch" },
   { who = "your_thoughts", line = "That's right. Remember me. I'm not going anywhere.", mood = "angry" },
@@ -176,6 +179,7 @@ dialogue = [
 [[survival_info.choices]]
 text = "Steel yourself for what's coming"
 goto = "dream_realm_entry_calm"
+add = { resolve = 1 }
 [[survival_info.choices]]
 text = "Ask what the Dream Realm actually is"
 goto = "dream_realm_info"
@@ -192,6 +196,7 @@ And then... you fall. Slowly at first, like a leaf, and then all at once."""
 dialogue = [
   { who = "the_spell", line = "Good luck, Aspirant.", mood = "focus" },
   { who = "your_thoughts", line = "Here goes nothing...", mood = "smirk" },
+  { who = "your_thoughts", line = "Breathe. Listen. Remember. I can hold on to that much.", if = "resolve >= 2" },
 ]
 [[dream_realm_entry_calm.choices]]
 text = "Open your eyes in the Dream Realm"
@@ -207,8 +212,28 @@ You crash into consciousness like a drowning man breaching water.
 Every nerve screams. Your head throbs with phantom pain, and your mouth tastes of blood that may or may not be yours. Stone, cold and gritty, presses against your cheek.
 
 But you're alive. For now."""
+variants = [
+  { if = "resolve >= 2", text = """
+You crash into consciousness like a drowning man breaching water.
+
+Every nerve screams. Your head throbs with phantom pain, and your mouth tastes of blood that may or may not be yours. Stone, cold and gritty, presses against your cheek.
+
+But the first thing you do - before you check for broken bones, before you even open your eyes - is say your name under your breath. It comes out cracked and whole. The fall took a great deal from you. It did not take that.
+
+You're alive. You're you. For now, that will have to be enough.""" },
+  { if = "corruption >= 1", text = """
+You crash into consciousness like a drowning man breaching water.
+
+Every nerve screams. Your head throbs with phantom pain, and your mouth tastes of blood that may or may not be yours. Stone, cold and gritty, presses against your cheek.
+
+You let go on the way down, and something noticed. You can feel it now - a cold little hollow behind your breastbone, the size of a thumbprint, where the dark got in while you weren't holding the door. Your shadow lies on the stone beside you and, for a moment, it doesn't quite match the shape of your body.
+
+But you're alive. For now.""" },
+]
 dialogue = [
   { who = "your_thoughts", line = "Ugh... that was... awful.", mood = "pained" },
+  { who = "your_thoughts", line = "Still me. Still here. Good.", mood = "smirk", if = "resolve >= 2" },
+  { who = "your_thoughts", line = "Something came down with me. I can feel it, just behind my eyes.", mood = "afraid", if = "corruption >= 1" },
 ]
 [[dream_realm_entry_rough.choices]]
 text = "Struggle to your feet"
@@ -229,6 +254,7 @@ And threaded through it all, so faint you might be imagining it, voices. Whisper
 
 You fix the rhythm of those hooves in your memory. Three steps. A pause. When you finally open your eyes, you open them already knowing more than you did."""
 set_flags = ["listened_first"]
+add = { resolve = 1 }
 dialogue = [
   { who = "your_thoughts", line = "Three steps, then a pause. Whatever's out there, it isn't hunting. Not yet." },
 ]

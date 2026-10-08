@@ -41,6 +41,7 @@ goto = "pier_nineteen"
 [[prologue.choices]]
 text = "Call your old partner first - you need someone you trust"
 goto = "call_sarah"
+add = { sarah_trust = 1 }
 [[prologue.choices]]
 text = "Review the case files one more time - you're missing something"
 goto = "review_files"
@@ -86,6 +87,12 @@ dialogue = [
 [[pier_nineteen.choices]]
 text = "Examine the tarot card carefully - it might have prints"
 goto = "examine_card"
+if = "!visited('examine_card')"
+add = { cards = 1 }
+[[pier_nineteen.choices]]
+text = "Look at the Queen of Swords again - and the number on its back"
+goto = "examine_card"
+if = "visited('examine_card')"
 [[pier_nineteen.choices]]
 text = "Question the forensic tech about similar patterns"
 goto = "question_forensics"
@@ -109,14 +116,23 @@ dialogue = [
   { who = "kane", line = "Lawyer. Judge. Pathologist. They're all connected to the Foster trial five years ago. The one where—" },
   { who = "sarah", line = "Where the evidence disappeared and the suspect walked. Marcus, that case was sealed. Classified. Someone high up buried it deep.", mood = "afraid" },
   { who = "kane", line = "And now someone's digging it back up. In blood.", mood = "angry" },
+  { who = "sarah", line = "And Marcus? Reeves called me before you did. Said you've been working this case like a man with no badge to lose.", mood = "angry", if = "lines_crossed >= 2" },
   { who = "sarah", line = "I'm coming in. Don't go to the pier alone.", mood = "afraid" },
 ]
 [[call_sarah.choices]]
+text = "Tell her everything you've found so far - then wait for her"
+goto = "sarah_arrives"
+if = "item('Queen of Swords') || item('Tolliver Sample') || item('Yacht Photograph')"
+add = { sarah_trust = 2 }
+set_flags = ["told_sarah_everything"]
+[[call_sarah.choices]]
 text = "Wait for Sarah - you work better together"
 goto = "sarah_arrives"
+add = { sarah_trust = 1 }
 [[call_sarah.choices]]
 text = "Can't wait - head to Pier 19 now"
 goto = "pier_nineteen"
+add = { sarah_trust = -1 }
 
 [review_files]
 text = """
@@ -167,6 +183,7 @@ dialogue = [
 [[examine_card.choices]]
 text = "Call the number now - take the bait"
 goto = "call_killer"
+add = { lines_crossed = 1 }
 [[examine_card.choices]]
 text = "Wait for the tech trace - do this right"
 goto = "tech_trace"
@@ -257,6 +274,7 @@ goto = "question_selene"
 [[crimson_hour_club.choices]]
 text = "Draw your weapon - arrest her as a material witness"
 goto = "arrest_selene"
+add = { lines_crossed = 1 }
 
 [cross_office]
 mood = "calm"
@@ -301,13 +319,17 @@ dialogue = [
   { who = "kane", line = "Cassandra Westmore. The wife?", mood = "shocked" },
   { who = "sarah", line = "More than that. The brilliant one. Alexander had the money, the vision. She had the genius. If anyone could continue the research, weaponize Nightshade, and orchestrate this—" },
   { who = "kane", line = "Then we're not looking for a dead man. We're looking for a woman with nothing to lose and everything to avenge.", mood = "angry" },
+  { who = "sarah", line = "You told me all of it. Over the phone, before I even asked. Six years and you never once did that. Don't stop now.", mood = "happy", if = "flag('told_sarah_everything') && sarah_trust >= 3" },
+  { who = "sarah", line = "One more thing. You called that number on the card, didn't you? I can smell it on you. Next time you call me first.", mood = "angry", if = "flag('contacted_killer')" },
 ]
 [[sarah_arrives.choices]]
 text = "Head to Pier 19 together - safety in numbers"
 goto = "pier_nineteen_with_sarah"
+add = { sarah_trust = 1 }
 [[sarah_arrives.choices]]
 text = "Split up - you take the pier, Sarah investigates Ouroboros"
 goto = "split_investigation"
+add = { sarah_trust = -1 }
 
 [prometheus_research]
 mood = "alert"
@@ -365,6 +387,7 @@ goto = "exhume_tolliver"
 [[yacht_explosion.choices]]
 text = "This is getting too deep - call Sarah"
 goto = "call_sarah"
+add = { sarah_trust = 1 }
 [[yacht_explosion.choices]]
 text = "Get to the pier before victim four appears"
 goto = "pier_nineteen"
@@ -391,6 +414,7 @@ dialogue = [
 [[call_killer.choices]]
 text = "'I'm coming for you' - make it personal"
 goto = "threat_cassandra"
+add = { lines_crossed = 1 }
 [[call_killer.choices]]
 text = "'Why the theatrics? Why not just vanish?' - keep her talking"
 goto = "question_cassandra"
@@ -409,6 +433,7 @@ dialogue = [
   { who = "reeves", line = "Kane. You're not going in first. We do this by the book. SWAT clears the building, then we investigate.", mood = "angry" },
   { who = "kane", line = "Captain, she's playing a game. If we follow procedure, she wins. She's always three moves ahead.", mood = "angry" },
   { who = "reeves", line = "And if you go in alone, you're dead. Your choice, Detective. Follow orders or turn in your badge.", mood = "angry" },
+  { who = "reeves", line = "And don't think I don't know you dialed that number against a direct order. One more stunt tonight and I'll take the badge myself.", mood = "angry", if = "lines_crossed >= 1" },
 ]
 [[tech_trace.choices]]
 text = "Follow orders - wait for SWAT"
@@ -416,6 +441,7 @@ goto = "swat_raid"
 [[tech_trace.choices]]
 text = "Turn in your badge - do this your way"
 goto = "go_rogue"
+add = { lines_crossed = 1 }
 
 [card_research]
 mood = "alert"
@@ -485,6 +511,7 @@ goto = "philosophy_game"
 [[meet_elias.choices]]
 text = "Threaten him - make him give up Cassandra's location"
 goto = "threaten_elias"
+add = { lines_crossed = 1 }
 
 [question_selene]
 text = """
@@ -530,3 +557,4 @@ goto = "retreat_from_club"
 [[arrest_selene.choices]]
 text = "Draw your weapon - make them take you seriously"
 goto = "shootout_club"
+add = { lines_crossed = 2 }

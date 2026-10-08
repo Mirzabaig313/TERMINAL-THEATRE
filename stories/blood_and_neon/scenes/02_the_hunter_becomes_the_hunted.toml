@@ -38,6 +38,7 @@ dialogue = [
 [[escape_office.choices]]
 text = "Find somewhere to analyze the files"
 goto = "safe_house"
+add = { sarah_trust = 1 }
 [[escape_office.choices]]
 text = "Go straight to Captain Reeves - need backup"
 goto = "precinct_return"
@@ -59,10 +60,19 @@ dialogue = [
   { who = "sarah", line = "We need to find the pattern. Seven connected people. All linked to the Westmore case. Who else was involved?" },
   { who = "kane", line = "The prosecutor. Damien Cross - Evelyn's husband. He led the case against Westmore. If she's targeting everyone involved—", mood = "shocked" },
   { who = "sarah", line = "Then he's next. We need to find him. Now.", mood = "afraid" },
+  { who = "sarah", line = "And Marcus - whatever we do with him, we do it together. You've already done enough tonight on your own.", mood = "sad", if = "lines_crossed >= 2" },
+  { who = "kane_thinking", line = "She's watching my back the way she used to. Without being asked. Without checking whether I deserve it.", if = "sarah_trust >= 4" },
 ]
 [[pier_nineteen_with_sarah.choices]]
 text = "Protect Damien Cross - stop victim four"
 goto = "protect_damien"
+if = "!visited('protect_damien')"
+add = { cards = 1 }
+[[pier_nineteen_with_sarah.choices]]
+text = "Back to Damien Cross's brownstone - the Four of Pentacles is still on his desk"
+goto = "protect_damien"
+if = "visited('protect_damien')"
 [[pier_nineteen_with_sarah.choices]]
 text = "Use Damien as bait - set a trap for Cassandra"
 goto = "bait_trap"
+add = { lines_crossed = 1 }

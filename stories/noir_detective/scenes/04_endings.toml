@@ -35,6 +35,7 @@ ENDING: THE EVIDENCE SPEAKS"""
 dialogue = [
   { who = "news_anchor", line = "In the biggest corruption scandal in city history...", fx = "glitch" },
   { who = "rodriguez", line = "Good work, Jack. You're cleared of all charges.", mood = "happy" },
+  { who = "rodriguez", line = "{evidence} separate pieces, all pointing the same way. There isn't a defence lawyer alive who can untangle that.", mood = "happy", if = "evidence >= 4" },
   { who = "jack_malone", line = "Just doing my job, Captain.", mood = "smirk" },
 ]
 ending = true
@@ -388,6 +389,7 @@ They never find enough of you to bury. The papers say you skipped town after mur
 ENDING: BAD BLUFF"""
 dialogue = [
   { who = "jack_malone", line = "Worth a shot...", mood = "afraid", fx = "flash" },
+  { who = "malone_thinking", line = "{evidence} real pieces in my coat, and I bet my life on a bluff. Stupid, Jack. Stupid.", mood = "sad", if = "evidence >= 3" },
 ]
 ending = true
 
@@ -425,6 +427,21 @@ A week later, Tony walks into the federal building with his hat in his hands and
 You get a postcard from Miami at Christmas. No signature. Just a picture of a bottle of rye, and the words: 'The whole bottle. Like you promised.'
 
 ENDING: HONOR AMONG THIEVES"""
+# the bottle was only ever promised on one road; the hat on another
+variants = [
+  { if = "trust_tony < 3", text = """
+Tony moves. Not much - half a step, his gun drifting down toward the floor, his body drifting into the line between you and everybody else's - but in that room, in that moment, it's like watching a wall come down.
+
+'Not him, boss,' Tony says. 'Not this one. Somebody put that job on our name, and it wasn't Malone.'
+
+Nobody moves. Nobody breathes. And in the space Tony has made, you put on your hat and walk out the door, and nobody stops you. Behind you, voices rise. You don't stay to hear what they settle on. The night has its own accounts to balance.
+
+A week later, Tony walks into the federal building with his hat in his hands and asks for whoever is working Nightfall. He talks for three days. Blackwood's network comes apart like wet paper. Castellano goes down with it - he trusted Tony with everything, which is the one mistake men like Castellano never live to make twice.
+
+You get a postcard from Miami at Christmas. No signature. Just a drawing of a fedora, the brim knocked crooked, and the words: 'Next time I keep my own hat on. We're square.'
+
+ENDING: HONOR AMONG THIEVES""" },
+]
 dialogue = [
   { who = "tony", line = "We're square now, Malone. Don't ever make me do that again.", mood = "angry" },
   { who = "jack_malone", line = "Tony, you're the only honest man I met all night.", mood = "smirk" },
@@ -519,4 +536,28 @@ Mexico first. Then further south. The dame's death goes unsolved. The conspiracy
 In your pocket, the photograph burns like a brand. Every night, you see her face. Every night, you wonder if you made the right choice.
 
 ENDING: THE COWARD'S EXIT"""
+ending = true
+
+[ending_checkmate]
+mood = "noir"
+text = """
+You don't bluff. You don't have to. You take the chess set off Castellano's table in your mind, and you start putting pieces down.
+
+The revolver that never fired. The photograph of Castellano and Morrison grinning outside this very door. The papers, the ledger, the briefcase, the rounds Doc dug out of Castellano's boys - whatever you carried in here tonight, you lay it out under the swinging lamp, one by one, and every piece you put down points a little further past the man in front of it and a little closer to the man at the head of the table.
+
+'He framed me for the girl,' you say to Castellano. 'And he signed your name to the job.' To Morrison: 'He kept your payoffs in a book with his own initials on it. You're not his partner, Chief. You're his insurance.' To Blackwood you don't say anything at all. You just let the other two do the arithmetic.
+
+It takes about four seconds. Morrison is the first to move - backwards, out of the light, hands up and shaking. Castellano's pearl-handled automatic comes out and settles, very gently, on the general's greatcoat.
+
+You walk out of Warehouse 47 with your hands in your pockets. Behind you nobody fires a shot. Men like these don't kill each other when there's still a deal to be made, and by dawn Castellano has made the best one of his life: Blackwood, gift-wrapped, on the steps of the federal building, with every piece of your case stacked on top of him.
+
+Morrison testifies. Castellano testifies. Blackwood hangs. And the dame's name goes on the front page, which is the right way round.
+
+ENDING: CHECKMATE"""
+dialogue = [
+  { who = "castellano", line = "You play chess, Malone?", mood = "smirk" },
+  { who = "jack_malone", line = "Never learned. I just count the pieces. Tonight I counted {evidence}.", mood = "smirk" },
+  { who = "blackwood", line = "Vincent. Think very carefully.", mood = "angry" },
+  { who = "castellano", line = "I am, General. For the first time in two years.", mood = "angry" },
+]
 ending = true

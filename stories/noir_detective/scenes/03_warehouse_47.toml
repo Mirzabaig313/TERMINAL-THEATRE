@@ -43,8 +43,30 @@ art = """
 ║                                                                 ║
 ╚═══════════════════════════════════════════════════════════════════╝
         """
+# the city's heat follows Malone to the pier
+variants = [
+  { if = "visited('theater_fight')", text = """
+Warehouse 47 sits at the end of Pier 9 like a rotting tooth in a black gum. You come at it with a dead woman's envelope inside your coat and her blood drying brown on your cuffs, and the rain doesn't seem in any hurry to wash it off.
+
+Four guards out front tonight, not two, cigarettes glowing in the rain like the eyes of something that lives under bridges. And at the head of the pier, a prowl car idling with its lights off, two uniforms inside drinking coffee and watching the street. Somebody heard a shot at the Ritz. In this city, news like that travels faster than the men who make it.
+
+You work your way along the pier in the shadow of the stacked crates until you're close enough to wipe a clean spot on a grimy window with your sleeve. Inside, under a single swinging lamp: Vincent Castellano. Chief Morrison, bald head shining with sweat. And a third man you don't recognise - straight-backed, grey-haired, standing like the floor owes him money. Military bearing. Cold eyes. The kind of man who's ordered other men to die and slept fine afterwards.
+
+There's a call box at the head of the pier, its little red light winking through the rain. You think about who you could call. You think about who'd come.""" },
+  { if = "heat >= 3", text = """
+Warehouse 47 sits at the end of Pier 9 like a rotting tooth in a black gum. Corrugated iron streaked with rust, windows soaped over, a loading door big enough to swallow a truck.
+
+Four guards out front tonight, not two, tommy guns under their raincoats. And at the head of the pier, a prowl car idling with its lights off, two uniforms inside drinking coffee and watching the street. Word travels fast in this city, and tonight the word is your name.
+
+You work your way along the pier in the shadow of the stacked crates until you're close enough to wipe a clean spot on a grimy window with your sleeve. Inside, under a single swinging lamp: Vincent Castellano. Chief Morrison, bald head shining with sweat. And a third man you don't recognise - straight-backed, grey-haired, standing like the floor owes him money. Military bearing. Cold eyes. The kind of man who's ordered other men to die and slept fine afterwards.
+
+There's a call box at the head of the pier, its little red light winking through the rain. You think about who you could call. You think about who'd come.""" },
+]
 dialogue = [
   { who = "jack_malone", line = "Whatever's happening in there, it's big enough to kill for.", mood = "afraid" },
+  { who = "malone_thinking", line = "{evidence} pieces of a puzzle and no picture on the box. Maybe the picture's in there.", if = "evidence >= 2" },
+  { who = "malone_thinking", line = "Nothing in my pockets but nerve and a bad feeling. Hope that's enough.", if = "evidence <= 1" },
+  { who = "malone_thinking", line = "Every cop on the take is looking for me tonight, and two of them are parked on this pier. No time to sit and watch.", mood = "afraid", if = "heat >= 3" },
 ]
 [[warehouse.choices]]
 text = "Sneak in through the roof - get close and listen"
@@ -55,6 +77,8 @@ goto = "warehouse_front"
 [[warehouse.choices]]
 text = "Wait and follow whoever leaves first"
 goto = "warehouse_wait"
+# with a prowl car on the pier there's no lingering
+if = "heat < 3"
 [[warehouse.choices]]
 text = "Ring Eddie from the call box - 'Pier 9. Bring the old .45.'"
 goto = "warehouse_with_eddie"
@@ -78,6 +102,8 @@ From up here you see the whole board. A trestle table. A map of the coast weight
 The voices come up through a broken pane, flattened and tinny. You listen as they discuss Project Nightfall like men discussing the weather: shipments, buyers, percentages. Bazookas to the docks in Havana. Rifles to anyone with cash. And something new, something they call 'the prototype', spoken about with a reverence that makes the hair stand up on your arms.
 
 The dead dame was an accountant. She found the numbers that didn't add up, and she followed them all the way here."""
+# overhearing the meeting is a lead
+add = { evidence = 1 }
 dialogue = [
   { who = "blackwood", line = "Malone will be eliminated before dawn. The evidence is in place.", mood = "smirk" },
   { who = "castellano", line = "What about the other copies?", mood = "afraid" },
@@ -105,6 +131,7 @@ The bigger guard has a face like a dropped pie and a flat cap pulled low. He loo
 Behind the door, the voices have gone quiet. Somebody inside is deciding whether you're a problem or an opportunity. You light a cigarette to show them you've got all night - even though you know for a fact that you don't."""
 dialogue = [
   { who = "guard", line = "You got a death wish, Malone?", mood = "shocked" },
+  { who = "guard", line = "Every flatfoot in town's out looking for you tonight, and you walk up and knock on my door.", mood = "shocked", if = "heat >= 3" },
   { who = "jack_malone", line = "Just good business sense. Your boss wants what I have. I want what he knows. Let's deal.", mood = "smirk" },
   { who = "guard", line = "Stay right there. You so much as scratch your nose, I'll paint the pier with you.", mood = "angry" },
 ]
@@ -172,6 +199,7 @@ Past the kitchen. Past a door marked PRIVATE that isn't locked, because nobody i
 
 And on the desk, a fat leather ledger. You flip it open. Names, ranks, badge numbers, sums. Every dirty cop in the city, with the price of his soul written next to it in a neat accountant's hand. On the inside cover, embossed in gold: M.B."""
 add_items = ["Blackwood's Ledger"]
+add = { evidence = 1 }
 dialogue = [
   { who = "eddie_radio", line = "Jack, we got company. Morrison just walked in. He's headed your way.", mood = "afraid", fx = "glitch" },
   { who = "jack_malone", line = "Copy that. I've got what we need. Meet at the back exit." },
@@ -244,6 +272,8 @@ dialogue = [
   { who = "jack_malone", line = "I've got evidence. Documentation of Project Nightfall. Every transaction, every weapons sale, every dirty cop. I want a deal." },
   { who = "blackwood", line = "What kind of deal?", mood = "smirk" },
   { who = "jack_malone", line = "I walk away clean. You let me disappear. The evidence disappears with me." },
+  { who = "malone_thinking", line = "And not a scrap of it in my pockets. Keep your voice steady, Jack.", mood = "afraid", if = "evidence <= 1" },
+  { who = "malone_thinking", line = "{evidence} pieces. Enough to make three crooks turn on each other, if I lay them down in the right order.", mood = "smirk", if = "evidence >= 4" },
 ]
 [[warehouse_negotiation.choices]]
 text = "Hold your bluff and wait for their answer"
@@ -255,6 +285,10 @@ goto = "warehouse_combat"
 text = "Lay the real evidence on the table - and tell them exactly where the other copies are waiting"
 goto = "ending_insurance_policy"
 any_items = ["Nightfall Papers", "Blackwood's Ledger", "Morrison's Briefcase"]
+[[warehouse_negotiation.choices]]
+text = "Don't bluff. Lay out the whole case piece by piece - and let each of them see what the others sold him"
+goto = "ending_checkmate"
+if = "evidence >= 4"
 
 [warehouse_combat]
 mood = "danger"
@@ -295,6 +329,8 @@ dialogue = [
   { who = "morrison", line = "Malone. You should be in custody by now.", mood = "shocked" },
   { who = "jack_malone", line = "Should be a lot of things. But here I am. What's in the briefcase?", mood = "smirk" },
   { who = "morrison", line = "Insurance. Same as you, I imagine. We're not so different.", mood = "smirk" },
+  { who = "malone_thinking", line = "{evidence} pieces in my pocket. Enough to break a man like this, if I hand them over in the right order.", mood = "smirk", if = "evidence >= 3" },
+  { who = "malone_thinking", line = "A photograph and a hunch. Not enough to break a man like this. I'd need more.", if = "evidence < 3 && item('Photograph')" },
 ]
 [[street_confrontation.choices]]
 text = "Take the briefcase"
@@ -306,6 +342,8 @@ goto = "let_morrison_go"
 text = "Show him the photograph - him and Castellano, grinning. Watch him break."
 goto = "morrison_cracks"
 any_items = ["Photograph"]
+# one photo won't break the Chief of Police; a whole case will
+if = "evidence >= 3"
 
 [morrison_cracks]
 mood = "noir"
@@ -319,6 +357,19 @@ The photograph - him and Castellano, grinning outside Warehouse 47, folded twice
 You watch it land. It's like watching a building come down in a newsreel - nothing for a second, then a shiver in the foundations, then the whole thing folding in on itself at once. Morrison's shoulders drop. His knees go. He sits down on the wet kerb in his three-hundred-dollar suit, holding the briefcase in his lap like a child holding a dead pet.
 
 'I'll talk,' he says. 'All of it. Just get me somewhere he can't reach.'"""
+# without the panel in the wall, it's the Ritz papers that do the talking
+variants = [
+  { if = "!flag('found_service_panel') && item('Nightfall Papers')", text = """
+You don't raise your voice. You don't have to. You tell him what you've got, piece by piece, laying each one down like a winning hand of cards.
+
+The photograph - him and Castellano, grinning outside Warehouse 47, folded twice and soft with rain. The dame's name. The envelope from Seat 13 at the Ritz, War Department letterhead and all. The revolver on your hip with six rounds in it that any ballistics man in the state can prove were never fired.
+
+'Your frame's dead, Chief. By breakfast every honest cop in this town knows what you are. And Blackwood? He's going to figure out real quick that you're the loose end now. Men like him don't leave loose ends. You taught me that, back when you still taught anybody anything.'
+
+You watch it land. It's like watching a building come down in a newsreel - nothing for a second, then a shiver in the foundations, then the whole thing folding in on itself at once. Morrison's shoulders drop. His knees go. He sits down on the wet kerb in his three-hundred-dollar suit, holding the briefcase in his lap like a child holding a dead pet.
+
+'I'll talk,' he says. 'All of it. Just get me somewhere he can't reach.'""" },
+]
 dialogue = [
   { who = "morrison", line = "Twenty-two years, Malone. I was a good cop once. You believe that?", mood = "sad" },
   { who = "jack_malone", line = "I believe you were. That's what makes it worse.", mood = "sad" },
@@ -341,6 +392,7 @@ When the train has pulled out, steam rolling down the platform like fog off a gr
 
 Inside: ledgers, photographs, carbon copies of War Department requisitions. And on top, a note in a shaky hand: 'For whoever comes looking - finish what I couldn't.'"""
 add_items = ["Morrison's Briefcase"]
+add = { evidence = 1 }
 dialogue = [
   { who = "jack_malone", line = "Morrison was trying to get out. They probably killed him before the train reached the next station.", mood = "sad" },
   { who = "malone_thinking", line = "A briefcase full of their own sins. I could mail it. Or I could carry it right into their meeting.", mood = "smirk" },
@@ -367,6 +419,7 @@ You snap the latches. Inside: enough evidence to bury everyone involved. Deposit
 
 He turns up his collar and walks away into the rain without looking back. His footsteps go on for a long time after you can't see him anymore. You never see him again."""
 add_items = ["Morrison's Briefcase"]
+add = { evidence = 1 }
 dialogue = [
   { who = "jack_malone", line = "Even bad men get tired of being bad. Sometimes.", mood = "sad" },
 ]
@@ -516,8 +569,25 @@ Castellano's eyebrows go up a quarter-inch. In his world, that's a scream.
 The silence after that is the loudest thing you've ever heard. Castellano sets his glass down very gently. Morrison takes a half-step back into the shadows. And Blackwood, for the first time all night, looks like a man doing arithmetic and not liking the answer.
 
 Tony catches your eye and jerks his head, very slightly, at the side door. It's open. Nobody's watching it. He's paying his debt, and he's offering you the change."""
+# how Tony tells it depends on how you treated him tonight
+variants = [
+  { if = "trust_tony >= 3", text = """
+Tony unfolds his arms and steps into the lamplight. Everybody turns, because Tony never steps into anything without being told.
+
+'Boss.' His voice is thick. 'I gotta say something.'
+
+Castellano's eyebrows go up a quarter-inch. In his world, that's a scream.
+
+'Malone showed me his piece tonight, boss. Six live rounds. I smelled the barrel myself. He could've run, and he didn't - he came and showed me. He played it straight with me - straighter than some.' Tony doesn't look at Blackwood when he says it. He doesn't have to. 'And that dame upstairs? Wasn't none of ours. Somebody put a job on our name, boss. Somebody who's standing in this room.'
+
+The silence after that is the loudest thing you've ever heard. Castellano sets his glass down very gently. Morrison takes a half-step back into the shadows. And Blackwood, for the first time all night, looks like a man doing arithmetic and not liking the answer.
+
+Tony catches your eye and jerks his head, very slightly, at the side door. It's open. Nobody's watching it. He's paying his debt, and he's offering you the change.""" },
+]
 dialogue = [
+  { who = "tony", line = "He broke my nose, boss. He could've broke my neck.", mood = "pained", if = "trust_tony <= 1" },
   { who = "tony", line = "Go on, Malone. This is family business now.", mood = "angry" },
+  { who = "tony", line = "And you still owe me a bottle. Don't think I forgot.", mood = "smirk", if = "trust_tony >= 3" },
   { who = "castellano", line = "Tony. Is that true?", mood = "shocked" },
   { who = "blackwood", line = "Vincent, think very carefully about your next words.", mood = "angry" },
 ]
@@ -605,6 +675,7 @@ By the back door, Eddie's wire recorder turns and turns. Every word. Every name.
 Then the meeting breaks up and you slip out the way you came, across the roof and down the ladder, and Eddie peels away from the back wall at the same moment. Neither of you runs. Running is what guilty men do.
 
 In Eddie's car, three blocks away, he plays back a stretch of it. Blackwood's voice comes out of the little speaker, cold and clear as ice water. Eddie switches it off and grins at you in the dark like a kid who just stole the answers to the final exam."""
+add = { evidence = 1 }
 dialogue = [
   { who = "eddie", line = "We got 'em, Jack. Every word.", mood = "happy" },
   { who = "jack_malone", line = "Now we decide who gets to hear it.", mood = "smirk" },
@@ -633,6 +704,7 @@ dialogue = [
   { who = "jack_malone", line = "The dame is still dead.", mood = "sad" },
   { who = "chen", line = "Yes. But her death wasn't for nothing. We got them all.", mood = "sad" },
   { who = "blackwood", line = "You'll find, Agent Chen, that I have a great many friends.", mood = "smirk" },
+  { who = "chen", line = "Not after a jury sees Valentina's papers and the {evidence} pieces Malone dug up tonight. Friends are funny that way.", mood = "smirk", if = "evidence >= 4" },
 ]
 [[chen_partnership.choices]]
 text = "Walk Blackwood to the car yourself, side by side with Chen"

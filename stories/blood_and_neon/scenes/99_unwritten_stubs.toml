@@ -8,6 +8,16 @@
 #   flags  elias_exposed (Kane knows Elias = Col. Vane, who ordered the yacht
 #          charge switched) -> gates true_ending inside the_pattern_revealed
 #          sarah_partnered -> gates conspiracy_victory_ending
+#   counters (all start at 0)
+#     lines_crossed  threats, defied orders, guns drawn, deals with Cassandra.
+#                    Reeves and Sarah react; 4+ closes true_ending and opens
+#                    seventh_card_ending; colours the Executioner ending.
+#     sarah_trust    calling her, sharing what you know, staying with her (+);
+#                    going alone, splitting up (-). 2+ needed for
+#                    conspiracy_victory_ending; 4+ at the flashlight standoff
+#                    turns partner_sacrifice_ending into back_to_back_ending.
+#     cards          tarot cards Kane recovers and keeps; read aloud in
+#                    final_confrontation, find_real_location, the_pattern_revealed.
 
 # ─────────────────────────────────────────────────────────────
 #  THE DEAD MAN'S GRAVE
@@ -15,6 +25,7 @@
 
 [exhume_tolliver]
 mood = "mystery"
+add = { cards = 1 }
 text = """
 Getting a dead man out of the ground at four in the morning takes either a judge's signature or a groundskeeper who likes cash more than sleep. Judges are dying in this city. You go with the groundskeeper.
 
@@ -31,6 +42,7 @@ dialogue = [
   { who = "riley", line = "That's Nightshade. Saturation dose. It doesn't stop the heart so much as convince it to quit. A coroner who wanted to would call it a heart attack.", mood = "afraid" },
   { who = "kane", line = "Cross was the coroner who wanted to.", mood = "angry" },
   { who = "kane_thinking", line = "Before all. Tolliver isn't one of the seven. He's the reason for the seven. The first domino somebody tipped to keep a secret in the dark." },
+  { who = "kane_thinking", line = "I slip the Hanged Man into my coat. Her first card, five years before the first body. If she wants me collecting her cards, I'll collect every one." },
 ]
 [[exhume_tolliver.choices]]
 text = "Take the sample to Ouroboros - their lab 'processed' the yacht DNA"
@@ -38,6 +50,7 @@ goto = "ouroboros_pharma"
 [[exhume_tolliver.choices]]
 text = "Call Sarah - you need someone who'll believe this"
 goto = "call_sarah"
+add = { sarah_trust = 1 }
 [[exhume_tolliver.choices]]
 text = "Get to Pier 19 - Cross's body will confirm it"
 goto = "pier_nineteen"
@@ -121,6 +134,7 @@ goto = "swat_raid"
 [[trace_cassandra.choices]]
 text = "Go now, alone, before she's ready"
 goto = "warehouse_district_early"
+add = { lines_crossed = 1 }
 
 # ─────────────────────────────────────────────────────────────
 #  THE CARD SHOP AND THE WAREHOUSES
@@ -192,6 +206,7 @@ dialogue = [
   { who = "reeves", line = "Kane. Hallway. That was a deputy director of something with no name. He walks. Tonight. I've been told to apologize.", mood = "pained" },
   { who = "kane", line = "Who the hell is he, Captain?", mood = "angry" },
   { who = "reeves", line = "Military, once. Everything else is blacked out. The only word I could read in his file was a company. Ouroboros Pharmaceuticals." },
+  { who = "reeves", line = "And his lawyer's already filed a complaint about a detective waving a gun around his club. Give me one reason not to believe it, Kane.", mood = "angry", if = "lines_crossed >= 2" },
   { who = "elias", line = "Do give Cassandra my regards when you find her. Tell her I'm still waiting for my card.", mood = "smirk" },
 ]
 [[arrest_elias.choices]]
@@ -245,6 +260,7 @@ dialogue = [
 [[search_crimson_hour.choices]]
 text = "Go upstairs and put the photograph in Elias's face"
 goto = "threaten_elias"
+add = { lines_crossed = 1 }
 [[search_crimson_hour.choices]]
 text = "Follow Cassandra out through the service tunnel"
 goto = "follow_cassandra_from_club"
@@ -270,6 +286,7 @@ goto = "ouroboros_pharma"
 [[follow_cassandra_from_club.choices]]
 text = "Call Sarah - you can't keep chasing ghosts alone"
 goto = "call_sarah"
+add = { sarah_trust = 1 }
 
 [call_backup_club]
 mood = "alert"
@@ -320,6 +337,7 @@ goto = "follow_cassandra_from_club"
 [[retreat_from_club.choices]]
 text = "Call Sarah - you need backup you can trust"
 goto = "call_sarah"
+add = { sarah_trust = 1 }
 
 [shootout_club]
 mood = "danger"
@@ -411,6 +429,7 @@ dialogue = [
 [[negotiate_cassandra.choices]]
 text = "Let her leave - take the files somewhere safe"
 goto = "safe_house"
+add = { lines_crossed = 1, sarah_trust = 1 }
 [[negotiate_cassandra.choices]]
 text = "She's lowered the syringe - rush her now"
 goto = "tackle_cassandra"
@@ -429,14 +448,17 @@ Seven flights down. The emergency lights flicker and die between floors three an
 
 Your car is where you left it. All four tires slashed. Under the wiper, a tarot card already soaked through. The Chariot. Victory through will. Written across the bottom: 'Run, Fool. It's how you get where you're going.'"""
 add_items = ["Cross's Files"]
+add = { cards = 1 }
 dialogue = [
   { who = "cassandra", line = "Run, Marcus. The Fool always runs. It's how he gets where he's going.", mood = "smirk" },
   { who = "kane_thinking", line = "She let me go. She let me take the drive. Either she wants me to read it, or she already knows there's nothing on it that can stop her." },
   { who = "kane_thinking", line = "Seven victims. I know four names now. Foster. Hartley. Cross. Tolliver. Three to go. And one of them is me.", mood = "afraid" },
+  { who = "kane_thinking", line = "I peel the Chariot off the windshield and keep it. {cards} of her cards now. Every one a signpost." , if = "cards >= 2" },
 ]
 [[flee_office.choices]]
 text = "Go to ground - find somewhere to read what you stole"
 goto = "safe_house"
+add = { sarah_trust = 1 }
 [[flee_office.choices]]
 text = "Get the drive to Captain Reeves"
 goto = "precinct_return"
@@ -457,10 +479,13 @@ dialogue = [
   { who = "sarah", line = "Then we find who E.V. is. Helena Marsh, CEO of Ouroboros, her name is on half of these memos. She'll know." },
   { who = "kane", line = "Or Prometheus. That's where Lethe was born. She keeps circling back to it." },
   { who = "sarah", line = "Whichever. We go together this time. I'm not reading about you on page nine.", mood = "smirk" },
+  { who = "sarah", line = "Before we go anywhere. Did you do anything tonight I'm going to have to testify about? Don't answer. I can see it on you.", mood = "sad", if = "lines_crossed >= 2" },
+  { who = "sarah", line = "And you called me. Not Reeves, not a bottle. Me. I'm keeping score, Marcus.", mood = "happy", if = "sarah_trust >= 2" },
 ]
 [[safe_house.choices]]
 text = "Go to Ouroboros with Sarah - make Marsh name E.V."
 goto = "ouroboros_pharma"
+add = { sarah_trust = 1 }
 [[safe_house.choices]]
 text = "Go to the Prometheus plant - where Lethe was born"
 goto = "prometheus_facility"
@@ -481,11 +506,13 @@ dialogue = [
   { who = "reeves", line = "A man from Washington came with a letter. Said Tolliver was compromising national security. I moved him to records. Two months later he was dead, and I told myself hearts just quit sometimes.", mood = "pained" },
   { who = "kane", line = "You buried him, Captain. Same as the rest of them.", mood = "angry" },
   { who = "riley", line = "Captain, the metadata. The last time these files were opened was from a warehouse address. Warehouse 14, by the old Prometheus plant. That's where she's working." },
+  { who = "reeves", line = "Don't look at me like that. I've heard about your week. Threats. Guns. Calls you were ordered not to make. We're neither of us clean tonight.", mood = "angry", if = "lines_crossed >= 2" },
   { who = "reeves", line = "Then make a choice, Kane. Take it and run, and I'll say I never saw you. Or log it into evidence and we do this the right way. I owe Tolliver at least that much honesty.", mood = "sad" },
 ]
 [[precinct_return.choices]]
 text = "Take the drive and run before the feds arrive - Ouroboros next"
 goto = "ouroboros_pharma"
+add = { lines_crossed = 1 }
 [[precinct_return.choices]]
 text = "Let Reeves hit Warehouse 14 with SWAT at dawn"
 goto = "swat_raid"
@@ -533,9 +560,11 @@ dialogue = [
 [[search_damien_house.choices]]
 text = "Go after the figure - she's heading for the old Prometheus plant"
 goto = "prometheus_facility"
+add = { sarah_trust = -1 }
 [[search_damien_house.choices]]
 text = "Go through Damien's case files with Sarah"
 goto = "damien_files"
+add = { sarah_trust = 1 }
 
 [damien_files]
 mood = "noir"
@@ -554,6 +583,7 @@ dialogue = [
   { who = "sarah", line = "Marcus, this man. Vane. Vice has a file on a club owner in the meat-packing district. Silver hair. Calls himself Elias. Runs a place called the Crimson Hour." },
   { who = "kane", line = "Then the man who gave the order is pouring drinks for the woman who's killing his accomplices.", mood = "angry" },
   { who = "sarah", line = "Marsh is fifth. She's still alive. For now.", mood = "afraid" },
+  { who = "sarah", line = "And when we find Vane, we do it right. No more of whatever you've been doing out there alone. I want him in a courtroom, not a ditch.", mood = "angry", if = "lines_crossed >= 2" },
 ]
 [[damien_files.choices]]
 text = "Marsh is the fifth card - get to Ouroboros"
@@ -581,13 +611,21 @@ dialogue = [
   { who = "sarah", line = "Drop it, Westmore! Now!", mood = "angry" },
   { who = "cassandra", line = "Lieutenant Vega. You weren't supposed to be in this story. I'm sorry. Stories are cruel to the people who wander into them.", mood = "sad" },
   { who = "damien_raving", line = "She's in my head... she's in my head and she's singing...", mood = "pained" },
+  { who = "sarah", line = "Marcus, don't. Whatever you're about to do, don't make it something I can't put in a report.", mood = "afraid", if = "lines_crossed >= 2" },
+  { who = "kane_thinking", line = "Sarah's eyes find mine over Cassandra's shoulder. Six years of nights like this. She's waiting for the signal. She knows I'll give it.", if = "sarah_trust >= 4" },
 ]
 [[flashlight_confrontation.choices]]
 text = "Charge her - Sarah has your back"
 goto = "partner_sacrifice_ending"
+if = "sarah_trust < 4"
+[[flashlight_confrontation.choices]]
+text = "Two taps on the radio - the old signal. Kill your light and let Sarah move"
+goto = "back_to_back_ending"
+if = "sarah_trust >= 4"
 [[flashlight_confrontation.choices]]
 text = "Lower your gun - let her leave Damien and name the place"
 goto = "prometheus_facility"
+add = { lines_crossed = 1 }
 
 [dark_hunt]
 mood = "danger"
@@ -603,6 +641,7 @@ dialogue = [
   { who = "cassandra_from_darkness", line = "You hunt by sound, Marcus. So do I. Isn't it lovely? Two blind animals in the same dark." },
   { who = "sarah_radio", line = "Marcus... lost visual... moving to the... stairs...", mood = "afraid", fx = "glitch" },
   { who = "kane_thinking", line = "If Sarah's on the stairs, the breathing is Cassandra. If the radio's lying, or Sarah's wrong, I'm about to put my hands on my partner.", mood = "afraid" },
+  { who = "kane_thinking", line = "Six years. I know how Sarah breathes when she's scared. That isn't it. But I'm not betting her life on a guess. Not tonight.", if = "sarah_trust >= 4" },
 ]
 [[dark_hunt.choices]]
 text = "Lunge for the breathing in the dark"
@@ -610,6 +649,7 @@ goto = "nightshade_ending"
 [[dark_hunt.choices]]
 text = "Enough - hit your light and force it into the open"
 goto = "flashlight_confrontation"
+add = { sarah_trust = 1 }
 
 # ─────────────────────────────────────────────────────────────
 #  UNDER THE DRUG
@@ -626,12 +666,14 @@ You crouch behind a rusted chemical tank and listen, your heartbeat loud as a dr
 
 The Devil. Sextus ex septem."""
 set_flags = ["saw_the_devil"]
+add = { cards = 1 }
 dialogue = [
   { who = "kane_thinking", line = "The streetlights are breathing. Focus. Follow the coat. Follow the coat.", mood = "pained", fx = "glitch" },
   { who = "elias", line = "And the detective?" },
   { who = "cassandra", line = "Dreaming of me, I expect. Shall we go in, Colonel? I've built something in your honor.", mood = "smirk" },
   { who = "elias", line = "In my honor. You always did have a sense of occasion.", mood = "smirk" },
   { who = "kane_thinking", line = "Colonel. The sixth card. He walked in carrying his own death sentence and never looked at it." },
+  { who = "kane_thinking", line = "I fish the Devil out of the puddle. {cards} of her cards, wet in my coat. Only the Fool left to draw.", mood = "pained", if = "cards >= 2" },
 ]
 [[track_cassandra.choices]]
 text = "Follow them inside"
@@ -682,6 +724,7 @@ dialogue = [
 [[demand_antidote.choices]]
 text = "Accept her terms - Sarah lives, you go alone"
 goto = "prometheus_facility"
+add = { lines_crossed = 1 }
 [[demand_antidote.choices]]
 text = "No deals - shoot her and take the vial"
 goto = "shoot_cassandra_save_sarah"
@@ -757,6 +800,7 @@ dialogue = [
   { who = "kane_thinking", line = "Good girl. Good cop. Even going under, she left me a map.", mood = "sad" },
   { who = "kane", line = "Captain. Sarah's in a sublevel under Ouroboros that doesn't exist on paper. I need people I trust." },
   { who = "reeves", line = "I can get you six men who'd walk into fire for her in twenty minutes. Or you can do whatever crazy thing you're about to do.", mood = "afraid" },
+  { who = "reeves", line = "They'll walk into fire for her, Kane. Not for you. Not after this week. Remember that when you're giving orders.", mood = "angry", if = "lines_crossed >= 3" },
   { who = "kane_thinking", line = "And on the back of the Tower card, in silver ink, a phone number. She wants to bargain." },
 ]
 [[stay_calm_sarah.choices]]
@@ -794,6 +838,14 @@ goto = "find_real_location"
 
 [find_real_location]
 mood = "mystery"
+variants = [
+  { if = "cards >= 2", text = """
+Cassandra always shows you the stage and never the dressing room. So you stop looking where she points and start looking at what she touches.
+
+Every card you've handled smelled faintly of diesel and salt. The silver ink never runs in the rain. You lay them out on the hood of your car under a streetlight, all {cards} of the cards you've kept, plus the photographs from the warehouse wall. Every one carries the same faint grit in the creases. Sand. Harbor sand.
+
+You call Riley. She calls you back in eleven minutes.""" },
+]
 text = """
 Cassandra always shows you the stage and never the dressing room. So you stop looking where she points and start looking at what she touches.
 
@@ -877,6 +929,7 @@ You flip the ledger open. Project LETHE. Payments to Foster, Hartley, both Cross
 Then she opens her desk drawer and sets a tarot card on the blotter. The Hierophant. Written across it, in her own dried blood: Quintus ex septem."""
 set_flags = ["elias_exposed"]
 add_items = ["Marsh Ledger"]
+add = { cards = 1 }
 dialogue = [
   { who = "dr_marsh", line = "Vane told us the yacht would be staged. Smoke and an empty cabin. I learned it wasn't from the evening news, like everyone else.", mood = "sad" },
   { who = "kane", line = "Where's Vane now?" },
@@ -893,6 +946,7 @@ goto = "hide_marsh"
 [[marsh_evidence.choices]]
 text = "Use Marsh as bait - trap Cassandra"
 goto = "marsh_bait"
+add = { lines_crossed = 1 }
 
 [protective_custody]
 mood = "alert"
@@ -904,6 +958,7 @@ At 3:10 AM, a knock. Two men in dark suits with federal identification and paper
 The officers on the door look at you. Marsh looks at the taller man, and every drop of color leaves her face."""
 dialogue = [
   { who = "reeves", line = "Kane, I checked. The order's signed by a federal judge. It's legal. I can't stop it, and neither can you.", mood = "pained" },
+  { who = "reeves", line = "And don't you dare. I know that look. You've been breaking things all week, and this is the one thing that would actually put you in a cell.", mood = "afraid", if = "lines_crossed >= 3" },
   { who = "dr_marsh", line = "Detective. The tall one. He was on the marina that night. He carried the charge onto Alexander's boat.", mood = "afraid" },
   { who = "kane_thinking", line = "Legal. Perfect paperwork. The same perfect paperwork that buried Tolliver and burned a man alive.", mood = "angry" },
 ]
@@ -913,6 +968,7 @@ goto = "custody_ending"
 [[protective_custody.choices]]
 text = "Draw on the feds and take Marsh down the service stairs"
 goto = "hide_marsh"
+add = { lines_crossed = 2 }
 
 [custody_ending]
 mood = "noir"
@@ -975,6 +1031,7 @@ dialogue = [
 [[marsh_bait.choices]]
 text = "Fight beside Cassandra - then follow her out"
 goto = "prometheus_facility"
+add = { lines_crossed = 1 }
 [[marsh_bait.choices]]
 text = "Grab Marsh and run while the monsters fight"
 goto = "hide_marsh"
@@ -1018,6 +1075,16 @@ You don't let her. You walk to the steel table and lay it down, piece by piece. 
 Cassandra listens. Halfway through, her hand with the Fool card begins to tremble. By the end she has set it down on the table beside the evidence, face up, and she is looking at you like a woman who's been shouting into a well for five years and finally heard an answer.
 
 Behind the glass across the hall, the hooded man has gone quiet. Listening too."""
+variants = [
+  { if = "cards >= 3", text = """
+She's waiting at the center of the laboratory, surrounded by a hundred amber vials glowing like votive candles. The Fool is in her hand. She opens her mouth to begin.
+
+You don't let her. You empty your coat onto the steel table first: {cards} of her own tarot cards, creased and rain-stained, laid out in the order she dealt them. Then the rest, piece by piece. What you dug up. What you were handed. What you stole. Tolliver's crystallized veins. Cross's signatures. The payments. The charge that was switched. You tell it the way she's been telling it in blood for five years, except you tell it in daylight words, the kind a jury could hear.
+
+Cassandra listens. Halfway through, her hand with the Fool card begins to tremble. By the end she has set it down beside the others, completing the row, and she is looking at you like a woman who's been shouting into a well for five years and finally heard an answer.
+
+Behind the glass across the hall, the hooded man has gone quiet. Listening too.""" },
+]
 dialogue = [
   { who = "kane", line = "Tolliver was murdered with your husband's drug. Cross covered it. The others were paid to forget. And someone ordered the charge on that yacht changed." },
   { who = "cassandra", line = "You actually did it. You walked the whole path.", mood = "shocked" },
@@ -1025,18 +1092,71 @@ dialogue = [
   { who = "cassandra", line = "And if I stop? If I hand you the last card? Who makes them answer?", mood = "sad" },
   { who = "kane", line = "I do. With all of it. In daylight." },
   { who = "cassandra", line = "Daylight. Alexander used to say that. Before they burned him.", mood = "pained" },
+  { who = "cassandra", line = "You kept every card I left you. Most people throw them away. You read them.", mood = "sad", if = "cards >= 3" },
+  { who = "cassandra", line = "But who would believe you in daylight, Marcus? Threats. Guns. Orders you tore up. They'll bury your evidence under your own record. Look what you've let yourself become.", mood = "smirk", if = "lines_crossed >= 4" },
+  { who = "kane_thinking", line = "I could call Sarah. After the way I've treated her this week, I don't know if she'd pick up.", mood = "sad", if = "flag('sarah_partnered') && sarah_trust < 2" },
 ]
 [[the_pattern_revealed.choices]]
 text = "Name the man in the glass - Colonel Elias Vane - and take them both in alive"
 goto = "true_ending"
 any_flags = ["elias_exposed"]
+if = "lines_crossed < 4"
 [[the_pattern_revealed.choices]]
 text = "Call Sarah in - you built this case together, finish it together"
 goto = "conspiracy_victory_ending"
 any_flags = ["sarah_partnered"]
+if = "sarah_trust >= 2"
+[[the_pattern_revealed.choices]]
+text = "Walk across the hall, open the glass, and finish the sixth card yourself"
+goto = "seventh_card_ending"
+if = "lines_crossed >= 4"
 [[the_pattern_revealed.choices]]
 text = "Offer her twelve hours in exchange for the rest of the names"
 goto = "negotiate_ending"
 [[the_pattern_revealed.choices]]
 text = "She's still a killer - end it now"
 goto = "shoot_cassandra"
+
+# ─────────────────────────────────────────────────────────────
+#  ENDINGS THE COUNTERS EARN
+# ─────────────────────────────────────────────────────────────
+
+[back_to_back_ending]
+mood = "alert"
+text = """
+Two taps on the radio clipped to your collar. The old signal from the old nights: I've got the light, you've got the shot.
+
+You kill the flashlight. In the half-second of black, Cassandra's eyes are still full of white glare and blind. Sarah is already moving. You hear the syringe hit the floorboards, the pistol skitter down the stairs, and then Sarah's voice, very calm, very close to Cassandra's ear: 'Lieutenant Vega. You're under arrest.'
+
+When you hit the light again, Damien is curled at the top of the stairs, alive and weeping. Cassandra is on her knees with Sarah's cuffs on her wrists. She is laughing softly, not at you. At herself.
+
+'Two of you,' she says. 'I planned for one Fool. I never planned for two people who trust each other. That isn't in any deck.'
+
+The trial runs a year. Damien testifies from a hospital bed. Cassandra gives up every name she holds, one by one, on the condition that you and Sarah are the officers who hear them. The case files go out under both your signatures.
+
+Sarah doesn't take the bullet. Nobody takes a bullet. On the last night of the trial, you split a bottle of bad scotch on the hood of her car in the rain, and neither of you says anything for a long time, because neither of you needs to.
+
+ENDING: BACK TO BACK"""
+ending = true
+
+[seventh_card_ending]
+mood = "danger"
+text = """
+You leave her standing over the evidence and walk across the hall. The decontamination door hisses open. Inside, the hooded man lifts his head at the sound of your footsteps.
+
+You pull off the hood. Colonel Elias Vane blinks up at you, silver hair plastered to his skull, and he smiles, because he still thinks a policeman with a gun is an instrument he can play.
+
+'Detective. Thank God. Get me out of here and I'll make you a very rich—'
+
+You've crossed every other line this week. This one is just the next step. The shot is very loud in the tiled room.
+
+When you come back, Cassandra is standing exactly where you left her. She doesn't look afraid. She looks sad, the way a teacher looks at a student who learned the lesson too well. She takes the Fool from the table and presses it into your hand.
+
+'Septimus ex septem,' she says. 'I always knew the seventh card wasn't a death, Marcus. It was a successor.'
+
+She walks out into the rain and you don't stop her. The evidence on the table burns with the rest of the lab before dawn. Somebody saw to that. You never ask yourself who.
+
+A year later, a judge who took money to bury a case is found kneeling in a parking garage with a card between his hands. The newspapers say the tarot killer is back. Only one person in the city knows the handwriting is different.
+
+ENDING: THE SEVENTH CARD"""
+ending = true
