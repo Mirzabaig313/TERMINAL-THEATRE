@@ -188,6 +188,7 @@ text = "Release the shadows and finish this yourself"
 goto = "final_battle"
 
 [echo_released]
+image = "images/echo_released.svg"
 ending = true
 text = """
 ✦ NOT ONE STEP BACK ✦
@@ -213,6 +214,7 @@ dialogue = [
 ]
 
 [consumed_by_shadow]
+image = "images/consumed_by_shadow.svg"
 ending = true
 text = """
 You stop holding on.

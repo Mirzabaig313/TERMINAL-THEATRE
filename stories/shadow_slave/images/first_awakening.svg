@@ -1,0 +1,154 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 360">
+  <!-- First sight of the Dream Realm: a lone Aspirant on basalt before a colossal ruined city under a bleeding sky. -->
+  <defs>
+    <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#080512"/>
+      <stop offset="0.45" stop-color="#24103a"/>
+      <stop offset="0.75" stop-color="#5a1840"/>
+      <stop offset="1" stop-color="#8a2a40"/>
+    </linearGradient>
+    <linearGradient id="far" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#2c1438"/>
+      <stop offset="1" stop-color="#45193e"/>
+    </linearGradient>
+    <linearGradient id="mid" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#2a1230"/>
+      <stop offset="0.3" stop-color="#170b22"/>
+      <stop offset="1" stop-color="#0f0818"/>
+    </linearGradient>
+    <linearGradient id="ground" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#140a1e"/>
+      <stop offset="1" stop-color="#05030a"/>
+    </linearGradient>
+    <linearGradient id="mist" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#c8a0d0" stop-opacity="0"/>
+      <stop offset="0.55" stop-color="#c8a0d0" stop-opacity="0.22"/>
+      <stop offset="1" stop-color="#c8a0d0" stop-opacity="0"/>
+    </linearGradient>
+    <radialGradient id="moon" cx="0.5" cy="0.5" r="0.5">
+      <stop offset="0" stop-color="#e8e0f4" stop-opacity="0.85"/>
+      <stop offset="0.3" stop-color="#c8b8e8" stop-opacity="0.3"/>
+      <stop offset="1" stop-color="#c8b8e8" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="drum" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#2e1a3a"/>
+      <stop offset="0.4" stop-color="#1a0f24"/>
+      <stop offset="1" stop-color="#0a0610"/>
+    </linearGradient>
+    <filter id="soft" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="4"/>
+    </filter>
+  </defs>
+
+  <rect width="640" height="360" fill="url(#sky)"/>
+
+  <!-- cold moon behind the wound-clouds -->
+  <circle cx="470" cy="70" r="80" fill="url(#moon)"/>
+  <circle cx="470" cy="70" r="19" fill="#ece6f6"/>
+
+  <!-- clouds of coagulated darkness -->
+  <g fill="#0a0612">
+    <path d="M0,40 C60,20 120,50 190,34 C250,20 300,48 360,38 C410,30 440,62 520,50 C580,40 610,58 640,52 V0 H0 Z" opacity="0.9"/>
+    <path d="M400,84 C440,72 480,92 520,82 C560,72 600,90 640,84 V100 C600,108 560,96 520,104 C480,112 440,98 400,100 Z" opacity="0.65"/>
+    <path d="M0,100 C40,90 90,108 140,96 C180,88 220,104 260,100 V112 C210,120 170,106 130,116 C80,126 40,110 0,118 Z" opacity="0.5"/>
+  </g>
+  <g stroke="#0a0612" stroke-width="1.5" opacity="0.45">
+    <line x1="60" y1="40" x2="56" y2="80"/><line x1="140" y1="44" x2="136" y2="96"/>
+    <line x1="230" y1="40" x2="226" y2="74"/><line x1="320" y1="44" x2="316" y2="92"/>
+    <line x1="560" y1="56" x2="556" y2="100"/><line x1="610" y1="60" x2="606" y2="88"/>
+  </g>
+
+  <!-- distant colossal ruins: a broken arch taller than towers -->
+  <g fill="url(#far)">
+    <path d="M150,240 V120 Q150,40 250,36 Q330,34 352,90 L340,96 Q318,62 252,64 Q186,68 184,130 V240 Z"/>
+    <rect x="140" y="112" width="54" height="10"/>
+    <path d="M330,240 V108 L344,96 L356,112 V240 Z"/>
+    <path d="M0,240 V170 H18 V140 H30 V170 H54 V120 L64,104 L74,120 V240 Z"/>
+    <path d="M96,240 V150 H104 V100 H120 V150 H128 V240 Z"/>
+    <path d="M384,240 V120 L396,104 L408,120 V150 H424 V136 H436 V240 Z"/>
+    <path d="M520,240 V140 H530 V84 L542,72 L554,84 V140 H564 V240 Z"/>
+    <path d="M590,240 V160 H604 V130 H616 V160 H640 V240 Z"/>
+  </g>
+  <rect y="190" width="640" height="70" fill="url(#mist)"/>
+
+  <!-- the herd: horse-sized shadow beasts drifting through the ruins -->
+  <g fill="#0b0612">
+    <g transform="translate(232,214)">
+      <path d="M0,0 C6,-14 26,-16 40,-12 C48,-22 56,-30 62,-28 C66,-26 64,-18 58,-14 C60,-6 56,0 50,2 L52,22 H47 L43,6 H14 L10,22 H5 L6,4 C-6,4 -14,-2 -24,4 C-16,-4 -8,-2 0,0 Z"/>
+    </g>
+    <g transform="translate(316,220) scale(0.85)">
+      <path d="M0,0 C6,-14 26,-16 40,-12 C48,-22 56,-30 62,-28 C66,-26 64,-18 58,-14 C60,-6 56,0 50,2 L52,22 H47 L43,6 H14 L10,22 H5 L6,4 C-6,4 -14,-2 -24,4 C-16,-4 -8,-2 0,0 Z"/>
+    </g>
+    <g transform="translate(392,212) scale(-1,1) translate(-60,0)">
+      <path d="M0,0 C6,-14 26,-16 40,-12 C48,-22 56,-30 62,-28 C66,-26 64,-18 58,-14 C60,-6 56,0 50,2 L52,22 H47 L43,6 H14 L10,22 H5 L6,4 C-6,4 -14,-2 -24,4 C-16,-4 -8,-2 0,0 Z"/>
+    </g>
+    <g transform="translate(470,222) scale(0.7)">
+      <path d="M0,0 C6,-14 26,-16 40,-12 C48,-22 56,-30 62,-28 C66,-26 64,-18 58,-14 C60,-6 56,0 50,2 L52,22 H47 L43,6 H14 L10,22 H5 L6,4 C-6,4 -14,-2 -24,4 C-16,-4 -8,-2 0,0 Z"/>
+    </g>
+  </g>
+  <!-- smeared ink trailing off their backs -->
+  <g stroke="#0b0612" stroke-width="2" fill="none" stroke-linecap="round" opacity="0.6">
+    <path d="M238,202 q-10,-6 -22,-4"/><path d="M252,198 q-6,-10 -18,-12"/>
+    <path d="M322,208 q-10,-6 -20,-2"/><path d="M430,200 q10,-8 22,-6"/>
+  </g>
+  <g fill="#f08a4a">
+    <circle cx="292" cy="190" r="1.4"/><circle cx="367" cy="200" r="1.2"/>
+    <circle cx="511" cy="205" r="1.1"/><circle cx="394" cy="189" r="1.3"/>
+  </g>
+
+  <!-- mid ruins: broken pillars of obsidian and bone, rim-lit by the sky -->
+  <g fill="url(#mid)">
+    <path d="M24,300 V150 L36,138 L46,152 L56,134 L64,150 V300 Z"/>
+    <path d="M520,300 V100 L532,110 L542,92 L554,106 L562,98 V300 Z"/>
+    <path d="M592,300 V170 L604,158 L616,176 L626,164 V300 Z"/>
+  </g>
+  <g stroke="#7a2a50" stroke-width="2" opacity="0.7">
+    <line x1="25" y1="150" x2="25" y2="300"/>
+    <line x1="521" y1="102" x2="521" y2="300"/>
+    <line x1="593" y1="172" x2="593" y2="300"/>
+  </g>
+  <!-- carved glyphs with a faint inner light -->
+  <g fill="#c77dff" opacity="0.5" filter="url(#soft)">
+    <circle cx="44" cy="200" r="8"/><circle cx="541" cy="150" r="10"/><circle cx="541" cy="210" r="8"/>
+  </g>
+  <g stroke="#c77dff" stroke-width="2" stroke-linecap="round" fill="none">
+    <path d="M38,194 l6,6 l6,-6 m-6,6 v8"/>
+    <path d="M536,142 v14 l8,-6"/>
+    <path d="M534,210 h14 m-7,-7 v14"/>
+    <path d="M604,220 v10 h6"/>
+  </g>
+
+  <!-- a fallen column, drums split apart -->
+  <g>
+    <path d="M330,300 L344,268 H430 L440,300 Z" fill="url(#drum)"/>
+    <ellipse cx="434" cy="284" rx="8" ry="16" fill="#241430"/>
+    <path d="M440,302 L450,276 H500 L506,302 Z" fill="url(#drum)"/>
+    <g stroke="#0a0610" stroke-width="2">
+      <line x1="364" y1="270" x2="360" y2="300"/><line x1="398" y1="270" x2="396" y2="300"/>
+    </g>
+  </g>
+
+  <!-- basalt foreground -->
+  <path d="M0,300 C80,290 160,298 240,292 C330,286 420,296 520,290 C580,286 620,292 640,290 V360 H0 Z" fill="url(#ground)"/>
+  <g stroke="#2a1838" stroke-width="1.5" fill="none" opacity="0.8">
+    <path d="M80,320 l40,-6 l30,10"/>
+    <path d="M420,330 l50,-10 l40,6"/>
+    <path d="M250,340 l40,-4"/>
+  </g>
+
+  <!-- the Aspirant, pushing up from the stone, looking out -->
+  <g fill="#030207">
+    <ellipse cx="236" cy="306" rx="40" ry="5" opacity="0.6"/>
+    <circle cx="226" cy="266" r="8.5"/>
+    <path d="M219,275 Q232,272 239,281 L247,299 L268,301 Q272,306 265,308 L234,308 Q221,306 217,295 Z"/>
+    <path d="M219,279 L208,300 L215,302 L226,287 Z"/>
+  </g>
+  <path d="M220,261 Q226,255 233,261" stroke="#c77dff" stroke-width="1.2" fill="none" opacity="0.5"/>
+
+  <!-- drifting ash -->
+  <g fill="#d8c8e8" opacity="0.55">
+    <circle cx="90" cy="250" r="1.2"/><circle cx="210" cy="180" r="1"/><circle cx="360" cy="150" r="1.3"/>
+    <circle cx="500" cy="240" r="1"/><circle cx="610" cy="120" r="1.2"/><circle cx="400" cy="320" r="1"/>
+    <circle cx="120" cy="330" r="1.1"/><circle cx="560" cy="320" r="1"/><circle cx="290" cy="130" r="1"/>
+  </g>
+</svg>

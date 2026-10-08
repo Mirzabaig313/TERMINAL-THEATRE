@@ -1,0 +1,155 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 360">
+  <!-- Ouroboros Pharmaceuticals: a mirrored glass tower crowned by a holographic serpent eating its tail, Kane small at its base in the rain. -->
+  <defs>
+    <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#04030c"/>
+      <stop offset="0.7" stop-color="#160c2c"/>
+      <stop offset="1" stop-color="#2c1040"/>
+    </linearGradient>
+    <linearGradient id="glassL" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#0d1a2e"/>
+      <stop offset="1" stop-color="#1a2f4a"/>
+    </linearGradient>
+    <linearGradient id="glassR" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#0a0e1e"/>
+      <stop offset="1" stop-color="#05060f"/>
+    </linearGradient>
+    <linearGradient id="sheen" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#00e5ff" stop-opacity="0"/>
+      <stop offset="0.5" stop-color="#00e5ff" stop-opacity="0.22"/>
+      <stop offset="1" stop-color="#00e5ff" stop-opacity="0"/>
+    </linearGradient>
+    <radialGradient id="holo" cx="0.5" cy="0.5" r="0.5">
+      <stop offset="0" stop-color="#00e5ff" stop-opacity="0.35"/>
+      <stop offset="1" stop-color="#00e5ff" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="lobby" cx="0.5" cy="0.5" r="0.5">
+      <stop offset="0" stop-color="#bff8ff" stop-opacity="0.6"/>
+      <stop offset="1" stop-color="#00e5ff" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="street" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#140a22"/>
+      <stop offset="1" stop-color="#030208"/>
+    </linearGradient>
+    <linearGradient id="beam" x1="0" y1="1" x2="0" y2="0">
+      <stop offset="0" stop-color="#00e5ff" stop-opacity="0.3"/>
+      <stop offset="1" stop-color="#00e5ff" stop-opacity="0"/>
+    </linearGradient>
+    <pattern id="rain" width="30" height="44" patternUnits="userSpaceOnUse" patternTransform="rotate(9)">
+      <line x1="3" y1="0" x2="3" y2="15" stroke="#c4d8ff" stroke-width="1" stroke-opacity="0.38"/>
+      <line x1="17" y1="20" x2="17" y2="31" stroke="#c4d8ff" stroke-width="1" stroke-opacity="0.26"/>
+      <line x1="25" y1="6" x2="25" y2="14" stroke="#ffb6c8" stroke-width="1" stroke-opacity="0.22"/>
+    </pattern>
+    <pattern id="panes" width="16" height="12" patternUnits="userSpaceOnUse">
+      <rect width="16" height="12" fill="none" stroke="#2a4466" stroke-width="0.6" stroke-opacity="0.6"/>
+    </pattern>
+    <filter id="glow" x="-30%" y="-30%" width="160%" height="160%">
+      <feGaussianBlur stdDeviation="3"/>
+    </filter>
+  </defs>
+
+  <rect width="640" height="360" fill="url(#sky)"/>
+
+  <!-- neighbouring towers -->
+  <g fill="#120b22" stroke="#24183c" stroke-width="1">
+    <rect x="20" y="120" width="70" height="200"/><rect x="96" y="170" width="60" height="150"/>
+    <rect x="160" y="90" width="50" height="230"/>
+    <rect x="440" y="140" width="56" height="180"/><rect x="500" y="100" width="64" height="220"/>
+    <rect x="570" y="160" width="70" height="160"/>
+  </g>
+  <g fill="#ffd27a" opacity="0.45">
+    <rect x="30" y="140" width="4" height="5"/><rect x="60" y="180" width="4" height="5"/><rect x="110" y="190" width="4" height="5"/>
+    <rect x="176" y="120" width="4" height="5"/><rect x="190" y="200" width="4" height="5"/><rect x="456" y="170" width="4" height="5"/>
+    <rect x="520" y="130" width="4" height="5"/><rect x="540" y="220" width="4" height="5"/><rect x="590" y="190" width="4" height="5"/>
+  </g>
+  <!-- neon strips on the neighbours -->
+  <g>
+    <rect x="96" y="200" width="6" height="60" fill="#ff2a6d" filter="url(#glow)"/>
+    <rect x="97" y="202" width="4" height="56" fill="#ffc2d6"/>
+    <rect x="500" y="160" width="64" height="5" fill="#ff2a6d" filter="url(#glow)"/>
+    <rect x="502" y="161" width="60" height="3" fill="#ffc2d6"/>
+  </g>
+
+  <!-- searchlights -->
+  <polygon points="300,300 230,0 270,0" fill="url(#beam)"/>
+  <polygon points="340,300 410,0 370,0" fill="url(#beam)"/>
+
+  <!-- the tower: two mirrored faces, a sharp edge catching cyan -->
+  <polygon points="236,44 320,16 320,320 236,320" fill="url(#glassL)"/>
+  <polygon points="320,16 410,44 410,320 320,320" fill="url(#glassR)"/>
+  <polygon points="236,44 320,16 320,320 236,320" fill="url(#panes)"/>
+  <polygon points="320,16 410,44 410,320 320,320" fill="url(#panes)"/>
+  <!-- reflections of the city in the glass -->
+  <g opacity="0.55">
+    <rect x="240" y="210" width="8" height="40" fill="#ff2a6d" opacity="0.5"/>
+    <rect x="262" y="180" width="14" height="70" fill="#2c1a48"/>
+    <rect x="286" y="230" width="20" height="20" fill="#ff2a6d" opacity="0.35"/>
+    <rect x="340" y="190" width="40" height="4" fill="#ff2a6d" opacity="0.6"/>
+    <rect x="390" y="220" width="10" height="40" fill="#00e5ff" opacity="0.4"/>
+  </g>
+  <polygon points="236,44 320,16 320,170 236,250" fill="url(#sheen)"/>
+  <line x1="320" y1="16" x2="320" y2="-4" stroke="#7ff3ff" stroke-width="2"/>
+  <circle cx="320" cy="2" r="2.5" fill="#ff2a6d"/>
+  <line x1="320" y1="16" x2="320" y2="320" stroke="#7ff3ff" stroke-width="1.5" opacity="0.8"/>
+  <line x1="236" y1="44" x2="320" y2="16" stroke="#7ff3ff" stroke-width="1" opacity="0.6"/>
+  <line x1="320" y1="16" x2="410" y2="44" stroke="#2a5577" stroke-width="1" opacity="0.6"/>
+  <!-- the executive floor, one office still lit -->
+  <rect x="338" y="58" width="22" height="10" fill="#ffd27a" opacity="0.7"/>
+  <rect x="345" y="60" width="5" height="8" fill="#0a0812"/>
+
+  <!-- holographic ouroboros: a serpent ring biting its own tail, projected in front of the tower -->
+  <ellipse cx="322" cy="150" rx="110" ry="84" fill="url(#holo)"/>
+  <g transform="translate(322 150)">
+    <g fill="none" stroke-linecap="round">
+      <path d="M30 -38 A48 48 0 1 1 6 -48" stroke="#00e5ff" stroke-width="13" filter="url(#glow)" opacity="0.9"/>
+      <path d="M30 -38 A48 48 0 1 1 6 -48" stroke="#00e5ff" stroke-width="8"/>
+      <path d="M30 -38 A48 48 0 1 1 6 -48" stroke="#d9fdff" stroke-width="1.6" stroke-dasharray="3 6"/>
+    </g>
+    <!-- tail tapering into the jaws -->
+    <path d="M6 -48 Q0 -50 -6 -47" stroke="#00e5ff" stroke-width="4" stroke-linecap="round" fill="none"/>
+    <!-- serpent head -->
+    <path d="M4 -55 Q22 -60 36 -48 Q40 -40 32 -34 L22 -40 Q14 -44 6 -42 Z" fill="#00e5ff"/>
+    <path d="M10 -46 L22 -42" stroke="#06303a" stroke-width="1.5"/>
+    <circle cx="24" cy="-51" r="2" fill="#ff2a6d"/>
+    <!-- scanlines -->
+    <g stroke="#00e5ff" stroke-width="1" opacity="0.25">
+      <line x1="-70" y1="-20" x2="70" y2="-20"/><line x1="-70" y1="0" x2="70" y2="0"/><line x1="-70" y1="20" x2="70" y2="20"/>
+    </g>
+  </g>
+  <!-- projector beam from a ledge -->
+  <polygon points="322,236 262,180 382,180" fill="#00e5ff" opacity="0.08"/>
+  <rect x="314" y="234" width="16" height="4" fill="#7ff3ff"/>
+
+  <!-- lobby: bright cold doorway at the base -->
+  <ellipse cx="300" cy="310" rx="70" ry="24" fill="url(#lobby)"/>
+  <rect x="270" y="286" width="50" height="34" fill="#bff8ff" opacity="0.55"/>
+  <line x1="295" y1="286" x2="295" y2="320" stroke="#0d1a2e" stroke-width="2"/>
+  <!-- a security guard silhouetted in the lobby -->
+  <g fill="#0a1828">
+    <ellipse cx="308" cy="296" rx="3" ry="4"/>
+    <path d="M303 300 h10 l2 20 h-14 z"/>
+  </g>
+
+  <!-- wet street -->
+  <rect x="0" y="320" width="640" height="40" fill="url(#street)"/>
+  <!-- reflections in the puddles -->
+  <g opacity="0.55">
+    <rect x="270" y="322" width="50" height="22" fill="#bff8ff" opacity="0.4"/>
+    <rect x="300" y="324" width="44" height="2" fill="#00e5ff" opacity="0.5"/>
+    <rect x="96" y="324" width="6" height="26" fill="#ff2a6d" opacity="0.6"/>
+    <rect x="500" y="326" width="64" height="3" fill="#ff2a6d" opacity="0.6"/>
+  </g>
+  <line x1="0" y1="320" x2="640" y2="320" stroke="#2c1f44" stroke-width="1.5"/>
+
+  <!-- Kane at the curb, small against the tower -->
+  <g fill="#020105">
+    <ellipse cx="370" cy="291" rx="10" ry="2.2"/>
+    <path d="M364 291 L366 284 Q370 282 374 284 L376 291 Z"/>
+    <ellipse cx="370" cy="295" rx="4.2" ry="5"/>
+    <path d="M362 302 Q370 298 378 302 L382 334 L358 334 Z"/>
+  </g>
+  <path d="M362 302 L358 334" stroke="#00e5ff" stroke-width="1" opacity="0.7"/>
+  <path d="M358 334 L382 334 L376 350 L364 350 Z" fill="#000" opacity="0.35"/>
+
+  <rect width="640" height="360" fill="url(#rain)"/>
+</svg>

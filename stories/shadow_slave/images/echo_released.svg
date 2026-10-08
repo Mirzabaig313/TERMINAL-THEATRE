@@ -1,0 +1,110 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 360">
+  <!-- Echo released: the Guardian's obsidian plates fall away like leaves, the tired warrior beneath bows, and morning light pours through a crack in the sky. -->
+  <defs>
+    <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#0a0616"/>
+      <stop offset="0.55" stop-color="#2c1440"/>
+      <stop offset="1" stop-color="#6a2444"/>
+    </linearGradient>
+    <linearGradient id="dawn" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#fff6e0"/>
+      <stop offset="0.5" stop-color="#ffd8a8"/>
+      <stop offset="1" stop-color="#f0a888"/>
+    </linearGradient>
+    <linearGradient id="ray" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#ffe8c0" stop-opacity="0.55"/>
+      <stop offset="1" stop-color="#ffe8c0" stop-opacity="0"/>
+    </linearGradient>
+    <linearGradient id="ground" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#3a2030"/>
+      <stop offset="1" stop-color="#08050c"/>
+    </linearGradient>
+    <linearGradient id="spirit" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#e8eef8" stop-opacity="0.9"/>
+      <stop offset="0.7" stop-color="#a8b8d0" stop-opacity="0.6"/>
+      <stop offset="1" stop-color="#a8b8d0" stop-opacity="0.1"/>
+    </linearGradient>
+    <radialGradient id="halo" cx="0.5" cy="0.5" r="0.5">
+      <stop offset="0" stop-color="#fff0d8" stop-opacity="0.55"/>
+      <stop offset="1" stop-color="#fff0d8" stop-opacity="0"/>
+    </radialGradient>
+    <filter id="soft" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="5"/>
+    </filter>
+  </defs>
+
+  <rect width="640" height="360" fill="url(#sky)"/>
+
+  <!-- the sky cracks open: ordinary morning beyond -->
+  <path d="M270,0 H372 L360,18 L384,34 L356,48 L372,66 L342,78 L352,96 L326,112 L330,92 L304,80 L318,62 L290,48 L306,30 L280,16 Z" fill="url(#dawn)"/>
+  <path d="M270,0 H372 L360,18 L384,34 L356,48 L372,66 L342,78 L352,96 L326,112 L330,92 L304,80 L318,62 L290,48 L306,30 L280,16 Z" fill="#fff0d8" opacity="0.5" filter="url(#soft)"/>
+  <path d="M384,34 L430,20 L470,0 M372,66 L420,60 L460,70 M290,48 L240,40 L200,52 M280,16 L230,10" stroke="#ffe0b8" stroke-width="1.5" fill="none" opacity="0.7"/>
+  <polygon points="306,50 350,50 500,360 160,360" fill="url(#ray)"/>
+
+  <!-- ruins at the plaza rim, catching first light -->
+  <g fill="#1e0f24">
+    <path d="M0,270 V150 L14,136 L28,156 L44,140 V270 Z"/>
+    <path d="M590,270 V130 L604,118 L620,136 V270 Z"/>
+    <path d="M540,270 V200 H566 V270 Z"/>
+  </g>
+  <g stroke="#e8a888" stroke-width="1.5" opacity="0.5">
+    <line x1="44" y1="142" x2="44" y2="270"/><line x1="590" y1="132" x2="590" y2="270"/>
+  </g>
+
+  <path d="M0,266 C160,258 480,258 640,266 V360 H0 Z" fill="url(#ground)"/>
+  <ellipse cx="340" cy="300" rx="190" ry="24" fill="#ffd8a8" opacity="0.22" filter="url(#soft)"/>
+
+  <!-- the warrior beneath, bowing low, sword lowered at last -->
+  <circle cx="356" cy="210" r="96" fill="url(#halo)"/>
+  <g fill="url(#spirit)">
+    <path d="M340,168 C368,162 394,192 398,240 L404,288 L392,278 L388,292 L380,264 Z" opacity="0.6"/>
+    <path d="M352,214 L346,292 H360 L366,236 L372,292 H386 L382,214 Z"/>
+    <path d="M350,220 L386,216 C382,196 362,172 338,164 L326,176 C336,188 344,204 350,220 Z"/>
+    <ellipse cx="322" cy="180" rx="10" ry="11"/>
+    <path d="M334,170 L326,210 L333,212 L342,178 Z"/>
+    <path d="M352,178 L370,202 L376,198 L358,172 Z"/>
+  </g>
+  <path d="M372,196 L378,294" stroke="#f4f6ff" stroke-width="3" stroke-linecap="round"/>
+  <path d="M364,200 H382" stroke="#f4f6ff" stroke-width="3" stroke-linecap="round"/>
+  <path d="M338,164 C362,170 380,192 386,214" stroke="#ffffff" stroke-width="1.5" fill="none" opacity="0.7"/>
+
+  <!-- obsidian plates falling away like leaves -->
+  <g fill="#120c1c" stroke="#6a5a90" stroke-width="1">
+    <path d="M300,130 l18,-6 l6,14 l-16,8 Z"/>
+    <path d="M420,120 l22,4 l-4,16 l-20,-4 Z"/>
+    <path d="M282,190 l14,-10 l10,12 l-14,8 Z"/>
+    <path d="M440,180 l16,6 l-6,14 l-14,-8 Z"/>
+    <path d="M258,90 l12,-2 l2,10 l-12,4 Z"/>
+    <path d="M470,80 l14,2 l-2,12 l-12,-4 Z"/>
+    <path d="M300,250 l18,4 l-4,12 l-16,-4 Z"/>
+    <path d="M420,250 l14,-6 l6,12 l-14,6 Z"/>
+    <path d="M226,150 l10,-4 l4,10 l-10,4 Z"/>
+    <path d="M500,140 l10,2 l-2,10 l-10,-2 Z"/>
+    <path d="M330,96 l10,-4 l4,10 l-10,4 Z"/>
+  </g>
+  <!-- the horned helm, fallen, its fire gone out -->
+  <g transform="translate(270,286) rotate(-18)">
+    <path d="M-16,8 C-18,-8 -12,-20 0,-24 C12,-20 18,-8 16,8 Z" fill="#120c1c" stroke="#6a5a90" stroke-width="1"/>
+    <path d="M-10,-18 C-22,-26 -24,-38 -18,-48 C-16,-36 -10,-28 -4,-22 Z" fill="#120c1c"/>
+    <path d="M-10,-6 H10 L8,-1 H-8 Z" fill="#000"/>
+  </g>
+  <!-- particles scattering on a mountain wind -->
+  <g fill="#fff0d8" opacity="0.85">
+    <circle cx="400" cy="130" r="1.6"/><circle cx="430" cy="110" r="1.2"/><circle cx="460" cy="96" r="1.4"/>
+    <circle cx="492" cy="80" r="1"/><circle cx="520" cy="66" r="1.2"/><circle cx="410" cy="150" r="1"/>
+    <circle cx="448" cy="130" r="1"/><circle cx="480" cy="112" r="1.3"/><circle cx="540" cy="96" r="1"/>
+  </g>
+
+  <!-- the Aspirant, standing in the warrior's stance -->
+  <g fill="#030207">
+    <ellipse cx="150" cy="330" rx="40" ry="5" opacity="0.6"/>
+    <circle cx="150" cy="242" r="10"/>
+    <path d="M136,254 Q150,250 164,254 L166,290 L152,292 L148,290 L136,290 Z"/>
+    <path d="M138,288 L124,330 H138 L148,296 Z"/>
+    <path d="M154,288 L170,330 H184 L162,290 Z"/>
+    <path d="M136,256 L126,288 L132,290 L142,264 Z"/>
+    <path d="M164,256 L176,286 L170,288 L158,264 Z"/>
+  </g>
+  <path d="M156,236 Q162,240 160,250" stroke="#ffd8a8" stroke-width="1.5" fill="none" opacity="0.7"/>
+  <path d="M164,256 L166,290" stroke="#ffd8a8" stroke-width="1" opacity="0.5"/>
+</svg>

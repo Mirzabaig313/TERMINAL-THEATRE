@@ -1,0 +1,130 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 360">
+  <!-- The binding seal: a violet rune mandala on the chamber floor, chaining pleading ghosts to the stone. -->
+  <defs>
+    <radialGradient id="room" cx="0.5" cy="0.75" r="0.8">
+      <stop offset="0" stop-color="#241238"/>
+      <stop offset="0.5" stop-color="#100a1e"/>
+      <stop offset="1" stop-color="#04030a"/>
+    </radialGradient>
+    <radialGradient id="sealglow" cx="0.5" cy="0.5" r="0.5">
+      <stop offset="0" stop-color="#c77dff" stop-opacity="0.5"/>
+      <stop offset="0.6" stop-color="#7b2cbf" stop-opacity="0.2"/>
+      <stop offset="1" stop-color="#5a189a" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="ghost" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#c8d6e8" stop-opacity="0.62"/>
+      <stop offset="0.6" stop-color="#8aa0bc" stop-opacity="0.45"/>
+      <stop offset="1" stop-color="#8aa0bc" stop-opacity="0"/>
+    </linearGradient>
+    <filter id="haze" x="-30%" y="-30%" width="160%" height="160%">
+      <feGaussianBlur stdDeviation="3"/>
+    </filter>
+    <filter id="wide" x="-60%" y="-60%" width="220%" height="220%">
+      <feGaussianBlur stdDeviation="14"/>
+    </filter>
+    <g id="link">
+      <ellipse rx="3.2" ry="2" fill="none" stroke-width="1.4"/>
+    </g>
+  </defs>
+
+  <rect width="640" height="360" fill="url(#room)"/>
+
+  <!-- chamber walls: heavy blocks and columns -->
+  <g fill="#0a0714">
+    <rect x="0" y="0" width="70" height="250"/>
+    <rect x="570" y="0" width="70" height="250"/>
+    <rect x="70" y="0" width="500" height="34"/>
+  </g>
+  <g stroke="#1e1430" stroke-width="2" fill="none">
+    <path d="M90,250 V60 M150,240 V70 M490,240 V70 M550,250 V60"/>
+    <path d="M70,34 H570"/>
+  </g>
+  <g fill="#120c20">
+    <rect x="96" y="40" width="40" height="210"/>
+    <rect x="504" y="40" width="40" height="210"/>
+  </g>
+  <path d="M0,250 H640 V360 H0 Z" fill="#0b0716"/>
+  <path d="M0,250 H640" stroke="#241838" stroke-width="2"/>
+
+  <!-- the seal, laid flat on the floor -->
+  <ellipse cx="320" cy="292" rx="240" ry="70" fill="url(#sealglow)"/>
+  <g transform="translate(320,292) scale(1,0.32)" fill="none">
+    <circle r="190" stroke="#9d4edd" stroke-width="10" opacity="0.5" filter="url(#haze)"/>
+    <circle r="190" stroke="#c77dff" stroke-width="3"/>
+    <circle r="172" stroke="#9d4edd" stroke-width="10" stroke-dasharray="4 12 10 10" opacity="0.9"/>
+    <circle r="150" stroke="#c77dff" stroke-width="2"/>
+    <circle r="96" stroke="#9d4edd" stroke-width="3"/>
+    <circle r="60" stroke="#c77dff" stroke-width="2"/>
+    <!-- spiral spokes -->
+    <g stroke="#9d4edd" stroke-width="3">
+      <path d="M0,-96 C40,-120 60,-140 60,-150"/>
+      <path d="M96,0 C120,40 140,60 150,60"/>
+      <path d="M0,96 C-40,120 -60,140 -60,150"/>
+      <path d="M-96,0 C-120,-40 -140,-60 -150,-60"/>
+      <path d="M68,-68 C100,-70 120,-90 128,-100"/>
+      <path d="M68,68 C70,100 90,120 100,128"/>
+      <path d="M-68,68 C-100,70 -120,90 -128,100"/>
+      <path d="M-68,-68 C-70,-100 -90,-120 -100,-128"/>
+    </g>
+    <!-- central sigil: a hollow-eyed skull mark -->
+    <path d="M-30,-10 C-30,-44 30,-44 30,-10 C30,6 20,10 16,22 H-16 C-20,10 -30,6 -30,-10 Z" stroke="#e9d5ff" stroke-width="4"/>
+    <circle cx="-12" cy="-10" r="8" fill="#e9d5ff"/>
+    <circle cx="12" cy="-10" r="8" fill="#e9d5ff"/>
+    <path d="M-8,22 V30 M0,22 V30 M8,22 V30" stroke="#e9d5ff" stroke-width="3"/>
+  </g>
+
+  <!-- the ghosts, drifting above their chains -->
+  <g fill="#8aa8d0" opacity="0.22" filter="url(#wide)">
+    <ellipse cx="176" cy="220" rx="44" ry="80"/><ellipse cx="320" cy="200" rx="50" ry="92"/><ellipse cx="464" cy="224" rx="40" ry="74"/>
+  </g>
+  <g>
+    <!-- the old soldier -->
+    <g transform="translate(176,150)">
+      <path d="M0,0 C-10,0 -14,10 -12,20 C-26,26 -30,60 -24,96 C-16,120 -4,140 6,156 C10,130 22,110 26,90 C32,60 26,26 12,20 C14,10 10,0 0,0 Z" fill="url(#ghost)"/>
+      <path d="M-12,8 L-16,2 H16 L12,8" fill="#c8d6e8" opacity="0.6"/>
+      <path d="M-22,40 L-34,70 M24,40 L32,66" stroke="#c8d6e8" stroke-width="5" stroke-linecap="round" opacity="0.4"/>
+      <g fill="#1e2a40" opacity="0.8"><circle cx="-4" cy="14" r="2"/><circle cx="5" cy="14" r="2"/></g>
+    </g>
+    <!-- the woman with the basket -->
+    <g transform="translate(320,120)">
+      <path d="M0,0 C-11,0 -14,10 -12,20 C-28,30 -34,70 -30,110 C-24,140 -8,160 4,176 C10,150 26,130 30,104 C34,66 28,30 12,20 C14,10 11,0 0,0 Z" fill="url(#ghost)"/>
+      <path d="M-14,4 C-14,-8 14,-8 14,4 C12,16 18,30 22,36 C10,30 -10,30 -22,36 C-18,30 -12,16 -14,4 Z" fill="#a8bcd4" opacity="0.35"/>
+      <path d="M14,64 h26 l-4,18 h-18 Z M18,64 q9,-14 18,0" stroke="#c8d6e8" stroke-width="2" fill="none" opacity="0.55"/>
+      <g fill="#1e2a40" opacity="0.8"><circle cx="-4" cy="14" r="2"/><circle cx="5" cy="14" r="2"/></g>
+    </g>
+    <!-- the old man -->
+    <g transform="translate(464,160)">
+      <path d="M0,0 C-10,0 -13,10 -11,18 C-22,24 -26,56 -22,88 C-16,110 -6,126 4,140 C8,116 20,98 22,80 C26,52 22,24 10,18 C12,10 10,0 0,0 Z" fill="url(#ghost)"/>
+      <path d="M-6,22 Q0,40 6,22" fill="#c8d6e8" opacity="0.45"/>
+      <path d="M-26,40 L-34,120" stroke="#c8d6e8" stroke-width="3" stroke-linecap="round" opacity="0.4"/>
+      <g fill="#1e2a40" opacity="0.8"><circle cx="-4" cy="12" r="2"/><circle cx="5" cy="12" r="2"/></g>
+    </g>
+  </g>
+
+  <!-- violet leashes from the seal into each ghost -->
+  <g stroke="#c77dff" fill="none" stroke-linecap="round">
+    <path d="M182,300 C180,270 184,240 180,206" stroke-width="2.5" stroke-dasharray="5 4"/>
+    <path d="M320,268 C322,240 318,220 322,190" stroke-width="2.5" stroke-dasharray="5 4"/>
+    <path d="M462,300 C464,270 460,240 466,208" stroke-width="2.5" stroke-dasharray="5 4"/>
+    <g stroke-width="7" opacity="0.25" filter="url(#haze)">
+      <path d="M182,300 C180,270 184,240 180,206"/>
+      <path d="M320,268 C322,240 318,220 322,190"/>
+      <path d="M462,300 C464,270 460,240 466,208"/>
+    </g>
+  </g>
+
+  <!-- the Aspirant at the seal's rim, seen from behind -->
+  <g fill="#020105">
+    <ellipse cx="560" cy="350" rx="44" ry="6" opacity="0.5"/>
+    <circle cx="562" cy="262" r="12"/>
+    <path d="M544,276 Q562,268 580,276 L588,330 L582,360 H542 L536,330 Z"/>
+    <path d="M544,280 L530,318 L536,322 L550,296 Z"/>
+  </g>
+  <path d="M550,262 Q560,250 572,258" stroke="#c77dff" stroke-width="1.5" fill="none" opacity="0.6"/>
+
+  <!-- motes rising from the runes -->
+  <g fill="#e9d5ff" opacity="0.8">
+    <circle cx="250" cy="250" r="1.2"/><circle cx="400" cy="240" r="1.4"/><circle cx="300" cy="220" r="1"/>
+    <circle cx="210" cy="270" r="1"/><circle cx="430" cy="276" r="1"/><circle cx="350" cy="200" r="0.9"/>
+  </g>
+</svg>

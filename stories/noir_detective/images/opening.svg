@@ -1,0 +1,203 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 360">
+  <!-- 2 AM, 47th floor: a woman face-down on the carpet in blind-light, Malone standing over her with the gun, red neon outside. -->
+  <defs>
+    <linearGradient id="wall" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#060607"/>
+      <stop offset="0.55" stop-color="#151518"/>
+      <stop offset="1" stop-color="#1d1a1c"/>
+    </linearGradient>
+    <linearGradient id="floor" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#0f0e10"/>
+      <stop offset="1" stop-color="#050506"/>
+    </linearGradient>
+    <linearGradient id="night" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#0a0b10"/>
+      <stop offset="1" stop-color="#23181b"/>
+    </linearGradient>
+    <radialGradient id="neonGlow" cx="0.5" cy="0.5" r="0.5">
+      <stop offset="0" stop-color="#ff4a3a" stop-opacity="0.85"/>
+      <stop offset="0.4" stop-color="#c0202a" stop-opacity="0.35"/>
+      <stop offset="1" stop-color="#c0202a" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="beam" x1="1" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#ffd9cf" stop-opacity="0.75"/>
+      <stop offset="1" stop-color="#e2605a" stop-opacity="0.35"/>
+    </linearGradient>
+    <linearGradient id="dress" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#9a9a9e"/>
+      <stop offset="1" stop-color="#4a4a50"/>
+    </linearGradient>
+    <clipPath id="spillZone">
+      <polygon points="405,236 600,236 560,360 150,360"/>
+    </clipPath>
+    <clipPath id="wallZone">
+      <polygon points="392,200 610,200 610,236 392,236"/>
+    </clipPath>
+    <filter id="soft" x="-5%" y="-5%" width="110%" height="110%">
+      <feGaussianBlur stdDeviation="1.6"/>
+    </filter>
+    <clipPath id="dressClip">
+      <path d="M266 290 Q292 282 320 289 Q344 296 362 294 Q392 288 420 294 Q446 298 458 304 L462 326 Q438 330 410 327 Q380 324 360 326 Q330 328 300 324 Q272 322 262 314 Q258 300 266 290 Z"/>
+    </clipPath>
+  </defs>
+
+  <!-- back wall and floor -->
+  <rect width="640" height="360" fill="url(#wall)"/>
+  <rect y="236" width="640" height="124" fill="url(#floor)"/>
+  <line x1="0" y1="236" x2="640" y2="236" stroke="#1f1d21" stroke-width="2"/>
+
+  <!-- the window: wet night, the neon sign hanging outside -->
+  <rect x="400" y="34" width="204" height="166" fill="url(#night)"/>
+  <g fill="#0b0b0e">
+    <rect x="404" y="150" width="30" height="50"/>
+    <rect x="440" y="128" width="22" height="72"/>
+    <rect x="470" y="160" width="40" height="40"/>
+    <rect x="560" y="140" width="40" height="60"/>
+  </g>
+  <circle cx="530" cy="96" r="80" fill="url(#neonGlow)"/>
+  <!-- vertical neon sign bracket and tubes (no lettering, just bars of light) -->
+  <rect x="512" y="40" width="34" height="120" rx="3" fill="#1a0c0e" stroke="#3a1a1e" stroke-width="2"/>
+  <g stroke="#ff6a5a" stroke-width="3" stroke-linecap="round">
+    <line x1="520" y1="52" x2="538" y2="52"/>
+    <line x1="520" y1="68" x2="538" y2="68"/>
+    <line x1="529" y1="80" x2="529" y2="96"/>
+    <line x1="520" y1="108" x2="538" y2="108"/>
+    <line x1="520" y1="124" x2="533" y2="124"/>
+    <line x1="520" y1="140" x2="538" y2="140"/>
+  </g>
+  <!-- rain on the glass -->
+  <g stroke="#7c7f8c" stroke-width="1.2" opacity="0.55" stroke-linecap="round">
+    <line x1="414" y1="40" x2="408" y2="70"/>
+    <line x1="432" y1="80" x2="426" y2="112"/>
+    <line x1="456" y1="44" x2="450" y2="76"/>
+    <line x1="478" y1="100" x2="472" y2="132"/>
+    <line x1="500" y1="56" x2="494" y2="88"/>
+    <line x1="560" y1="40" x2="554" y2="72"/>
+    <line x1="578" y1="96" x2="572" y2="128"/>
+    <line x1="596" y1="60" x2="590" y2="92"/>
+    <line x1="548" y1="150" x2="542" y2="182"/>
+    <line x1="420" y1="140" x2="414" y2="172"/>
+    <line x1="590" y1="150" x2="584" y2="182"/>
+  </g>
+  <!-- venetian blinds: dark slats with gaps of light -->
+  <g fill="#0c0b0d">
+    <rect x="400" y="34" width="204" height="9"/>
+    <rect x="400" y="52" width="204" height="9"/>
+    <rect x="400" y="70" width="204" height="9"/>
+    <rect x="400" y="88" width="204" height="9"/>
+    <rect x="400" y="106" width="204" height="9"/>
+    <rect x="400" y="124" width="204" height="9"/>
+    <rect x="400" y="142" width="204" height="9"/>
+    <rect x="400" y="160" width="204" height="9"/>
+    <rect x="400" y="178" width="204" height="9"/>
+  </g>
+  <line x1="470" y1="34" x2="470" y2="200" stroke="#2a2629" stroke-width="1"/>
+  <line x1="540" y1="34" x2="540" y2="200" stroke="#2a2629" stroke-width="1"/>
+  <rect x="396" y="30" width="212" height="174" fill="none" stroke="#262326" stroke-width="8"/>
+  <rect x="390" y="200" width="224" height="8" fill="#2a2629"/>
+
+  <!-- desk, bottle, two glasses, dead lamp -->
+  <g fill="#09090b">
+    <rect x="196" y="180" width="160" height="12"/>
+    <rect x="204" y="192" width="40" height="52"/>
+    <rect x="310" y="192" width="40" height="52"/>
+    <rect x="248" y="192" width="58" height="22"/>
+    <path d="M214 180 L246 180 L242 175 L232 175 L232 150 L229 150 L229 175 L218 175 Z"/>
+    <path d="M208 152 Q230 132 252 152 Z"/>
+    <rect x="300" y="146" width="12" height="34" rx="3"/>
+    <rect x="303" y="134" width="6" height="14"/>
+    <rect x="318" y="166" width="10" height="14"/>
+    <rect x="334" y="168" width="10" height="12"/>
+  </g>
+  <g fill="none" stroke="#e2605a" stroke-width="1.2" opacity="0.6">
+    <line x1="356" y1="180" x2="356" y2="192"/>
+    <line x1="312" y1="146" x2="312" y2="180"/>
+    <line x1="344" y1="168" x2="344" y2="180"/>
+  </g>
+
+  <!-- coat rack throwing its hanged-man shadow -->
+  <g fill="#080709">
+    <rect x="372" y="96" width="5" height="140"/>
+    <path d="M362 238 L388 238 L378 230 L372 230 Z"/>
+    <path d="M374 98 L360 104 M376 98 L392 104" stroke="#080709" stroke-width="3"/>
+    <path d="M378 104 Q396 120 392 170 L382 170 Q386 124 378 112 Z"/>
+  </g>
+
+  <!-- blind-light striping the wall under the window -->
+  <g clip-path="url(#wallZone)" fill="#e2605a" opacity="0.18">
+    <rect x="392" y="208" width="230" height="4"/>
+    <rect x="392" y="218" width="230" height="5"/>
+    <rect x="392" y="229" width="230" height="5"/>
+  </g>
+
+  <!-- the blind-light spilling over the floor and across her -->
+  <g clip-path="url(#spillZone)" fill="url(#beam)" opacity="0.3" filter="url(#soft)">
+    <rect x="0" y="240" width="640" height="4"/>
+    <rect x="0" y="250" width="640" height="5"/>
+    <rect x="0" y="262" width="640" height="6"/>
+    <rect x="0" y="277" width="640" height="8"/>
+    <rect x="0" y="295" width="640" height="9"/>
+    <rect x="0" y="315" width="640" height="11"/>
+    <rect x="0" y="338" width="640" height="13"/>
+  </g>
+
+  <!-- the woman, face-down: dark hair, white dress, an arm flung out, one knee drawn up, one shoe off -->
+  <g>
+    <ellipse cx="380" cy="326" rx="180" ry="18" fill="#000" opacity="0.55"/>
+    <!-- arm flung out past her head, bent at the elbow -->
+    <path d="M250 300 Q232 292 218 296 Q206 300 200 312 L206 315 Q212 306 222 303 Q236 302 250 307 Z" fill="#8c8c92"/>
+    <path d="M200 312 Q194 318 196 322 Q202 322 206 315 Z" fill="#9a9aa0"/>
+    <!-- dark hair spilled on the carpet, the head turned away -->
+    <path d="M228 300 Q232 280 254 284 Q274 290 270 308 Q264 322 244 322 Q222 324 212 318 Q214 306 228 300 Z" fill="#050505"/>
+    <path d="M214 316 Q198 324 206 332 Q224 330 236 320 Z" fill="#050505"/>
+    <!-- white dress: shoulders, waist, hips -->
+    <path d="M266 290 Q292 282 320 289 Q344 296 362 294 Q392 288 420 294 Q446 298 458 304 L462 326 Q438 330 410 327 Q380 324 360 326 Q330 328 300 324 Q272 322 262 314 Q258 300 266 290 Z" fill="#c4c4c8"/>
+    <!-- shadowed underside of the dress -->
+    <path d="M262 314 Q300 324 360 326 Q410 324 462 326 L460 316 Q410 318 360 318 Q300 318 262 306 Z" fill="#5c5c62"/>
+    <!-- blind-shadows across her -->
+    <g fill="#141416" opacity="0.55" clip-path="url(#dressClip)">
+      <rect x="250" y="295" width="220" height="5"/>
+      <rect x="250" y="307" width="220" height="5"/>
+    </g>
+    <!-- the red rose on her back -->
+    <path d="M310 293 Q316 289 324 291 Q331 293 328 296 Q320 298 310 296 Z" fill="#5e0a12"/>
+    <path d="M316 292.5 Q320 291 324 292.5" stroke="#9a1620" stroke-width="1.2" fill="none"/>
+    <!-- other arm along her side -->
+    <path d="M296 322 Q326 332 350 330 L350 335 Q324 338 294 328 Z" fill="#7a7a80"/>
+    <!-- straight leg -->
+    <path d="M458 306 Q500 302 536 306 L536 313 Q500 311 460 318 Z" fill="#8a8a90"/>
+    <path d="M534 304 L552 305 Q557 310 550 314 L535 313 Z" fill="#050505"/>
+    <!-- other knee drawn up toward us -->
+    <path d="M456 318 Q478 326 492 340 L486 345 Q470 334 452 326 Z" fill="#76767c"/>
+    <path d="M488 341 Q514 340 540 346 L538 351 Q512 348 486 346 Z" fill="#6a6a70"/>
+    <!-- the shoe that came off -->
+    <path d="M474 350 L496 346 Q503 348 498 354 L478 356 Z" fill="#050505" stroke="#e2605a" stroke-width="0.8" stroke-opacity="0.6"/>
+    <line x1="480" y1="355" x2="478" y2="360" stroke="#050505" stroke-width="3"/>
+  </g>
+  <!-- Malone: foreground silhouette, hat low, gun hanging at his side -->
+  <g fill="#020203">
+    <path d="M50 97 Q68 89 104 89 Q142 89 164 97 Q142 104 104 104 Q68 104 50 97 Z"/>
+    <path d="M80 92 L86 64 Q96 58 104 63 Q112 58 122 64 L128 92 Z"/>
+    <path d="M86 98 Q86 132 104 136 Q122 132 122 98 Z"/>
+    <path d="M58 150 Q66 136 104 132 Q144 136 154 150 L172 360 L36 360 Z"/>
+    <!-- right arm down, hand with revolver -->
+    <path d="M150 150 Q170 190 176 250 L162 254 Q156 200 140 168 Z"/>
+    <path d="M160 250 L180 248 L184 262 L166 266 Z"/>
+    <path d="M168 258 L200 256 L202 264 L170 268 Z"/>
+    <path d="M174 262 L172 276 L180 276 L182 264 Z"/>
+  </g>
+  <!-- red rim light along his right side and the barrel -->
+  <g fill="none" stroke="#ff5a4a" stroke-width="1.6" opacity="0.75" stroke-linecap="round">
+    <path d="M128 90 Q150 91 163 97"/>
+    <path d="M122 65 L128 90"/>
+    <path d="M122 102 Q122 128 110 135"/>
+    <path d="M154 152 Q170 192 175 248"/>
+    <path d="M172 258 L200 256"/>
+  </g>
+  <g fill="none" stroke="#1c1b1f" stroke-width="2">
+    <path d="M78 142 L104 196 L130 142"/>
+    <path d="M62 236 L152 232"/>
+  </g>
+  <!-- a thin curl of smoke from the barrel -->
+  <path d="M200 254 Q206 240 198 228 Q190 214 200 200 Q208 188 202 174" fill="none" stroke="#bdbdc4" stroke-width="1.5" opacity="0.35"/>
+</svg>

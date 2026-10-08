@@ -25,6 +25,7 @@ USAGE:
     theatre --skip-intro            go straight to the main menu
     theatre stories                 list installed stories
     theatre saves                   list saved games
+    theatre graphics                how this terminal can show scene pictures
     theatre export <story-id> <slot> <file>
                                     copy a save to a file (slot 0 = autosave)
     theatre import <file> <slot>    put a save file into a slot of its story
@@ -57,6 +58,7 @@ fn main() -> Result<()> {
         ["--skip-intro"] => Start::MainMenu,
         ["stories"] => return list_stories(&ctx),
         ["saves"] => return list_saves(&ctx),
+        ["graphics"] => return graphics_info(),
         ["export", story, slot, file] => {
             ctx.store.export(
                 story,
@@ -148,6 +150,49 @@ fn list_saves(ctx: &Ctx) -> Result<()> {
             m.scene_description,
             m.time_label(),
             format_playtime(m.playtime_ms)
+        );
+    }
+    Ok(())
+}
+
+/// Ask the terminal how it can show pictures and explain the result.
+fn graphics_info() -> Result<()> {
+    use ratatui::crossterm::terminal;
+    use ratatui_image::picker::ProtocolType;
+
+    terminal::enable_raw_mode()?;
+    let picker = terminal_theatre::render::image::detect_picker();
+    terminal::disable_raw_mode()?;
+
+    let env = |k: &str| std::env::var(k).unwrap_or_else(|_| "-".into());
+    let font = picker.font_size();
+    println!(
+        "Terminal:       TERM_PROGRAM={}  TERM={}  COLORTERM={}",
+        env("TERM_PROGRAM"),
+        env("TERM"),
+        env("COLORTERM")
+    );
+    println!("Font cell:      {}x{} px", font.width, font.height);
+    let (name, sharp) = match picker.protocol_type() {
+        ProtocolType::Kitty => ("Kitty graphics", true),
+        ProtocolType::Iterm2 => ("iTerm2 inline images", true),
+        ProtocolType::Sixel => ("Sixel", true),
+        ProtocolType::Halfblocks => ("half-block characters (fallback)", false),
+    };
+    println!("Scene pictures: {name}");
+    if sharp {
+        println!("\nPictures are shown at full resolution.");
+    } else {
+        println!(
+            "\nThis terminal didn't report image support, so pictures are drawn with
+character cells (2 pixels per cell) and look soft and blocky.
+
+For full-resolution pictures:
+  - VS Code, Cursor, Kiro and other VS Code-based editors: turn on the setting
+    \"terminal.integrated.enableImages\": true, then open a new terminal and
+    run `theatre graphics` again.
+  - Or play in a terminal with image support: Kitty, WezTerm, iTerm2, Ghostty
+    or Windows Terminal (Sixel)."
         );
     }
     Ok(())

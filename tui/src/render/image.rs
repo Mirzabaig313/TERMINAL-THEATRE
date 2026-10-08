@@ -18,9 +18,10 @@ use ratatui_image::picker::{Picker, ProtocolType};
 use ratatui_image::protocol::StatefulProtocol;
 use ratatui_image::{FilterType, Resize, StatefulImage};
 
-/// Fill the stage (enlarging small pictures), keeping proportions, with smooth scaling.
+/// Fill the stage (enlarging small pictures), keeping proportions. Lanczos keeps
+/// edges crisp when a picture is shrunk to the half-block cell grid.
 fn fit() -> Resize {
-    Resize::Scale(Some(FilterType::Triangle))
+    Resize::Scale(Some(FilterType::Lanczos3))
 }
 
 /// How the terminal can show pictures, detected once at startup.
@@ -118,7 +119,11 @@ fn rasterize_svg(path: &Path) -> Result<DynamicImage> {
     let data = std::fs::read(path).with_context(|| format!("reading {}", path.display()))?;
     // scanning system fonts is slow; only SVGs with text need them
     let has_text = data.windows(5).any(|w| w == b"<text");
-    let fontdb = if has_text { fonts() } else { Arc::new(Database::new()) };
+    let fontdb = if has_text {
+        fonts()
+    } else {
+        Arc::new(Database::new())
+    };
     let options = Options {
         resources_dir: path.parent().map(Path::to_path_buf),
         fontdb,

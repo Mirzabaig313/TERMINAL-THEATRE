@@ -2,6 +2,7 @@
 # 2 AM, forty-seventh floor. A dead woman, a warm gun, and three ways out.
 
 [opening]
+image = "images/opening.svg"
 mood = "mystery"
 text = """
 The neon sign outside your window stutters on and off like a bad heart - MALONE INVESTIGATIONS, then nothing, then MALONE INVESTIGATIONS again, painting the office the colour of a fresh wound. It's 2 AM. The rain has been coming down for three days, and it slides down the glass in long grey ropes, as if the whole city is trying to wash its hands.
@@ -207,6 +208,7 @@ goto = "theater"
 any_items = ["Ritz Ticket"]
 
 [run_away]
+image = "images/run_away.svg"
 mood = "danger"
 text = """
 You grab your coat and hat and leave her there. It's the worst thing you've done in years, and you do it in four seconds flat.

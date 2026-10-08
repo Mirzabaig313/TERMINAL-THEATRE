@@ -1,0 +1,139 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 360">
+  <!-- The Weight of Angels: Kane kneels in the rain cradling Sarah under a streetlamp, a half-dead neon sign of angel wings burning behind them. -->
+  <defs>
+    <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#04030b"/>
+      <stop offset="0.8" stop-color="#170b28"/>
+      <stop offset="1" stop-color="#24102e"/>
+    </linearGradient>
+    <linearGradient id="street" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#180c24"/>
+      <stop offset="1" stop-color="#030206"/>
+    </linearGradient>
+    <linearGradient id="cone" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#d6f6ff" stop-opacity="0.35"/>
+      <stop offset="1" stop-color="#00e5ff" stop-opacity="0.06"/>
+    </linearGradient>
+    <radialGradient id="pool" cx="0.5" cy="0.5" r="0.5">
+      <stop offset="0" stop-color="#d6f6ff" stop-opacity="0.4"/>
+      <stop offset="1" stop-color="#00e5ff" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="wingGlow" cx="0.5" cy="0.5" r="0.5">
+      <stop offset="0" stop-color="#ff2a6d" stop-opacity="0.4"/>
+      <stop offset="1" stop-color="#ff2a6d" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="red" cx="0.5" cy="0.5" r="0.5">
+      <stop offset="0" stop-color="#ff2a3d" stop-opacity="0.6"/>
+      <stop offset="1" stop-color="#ff2a3d" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="blue" cx="0.5" cy="0.5" r="0.5">
+      <stop offset="0" stop-color="#2a6bff" stop-opacity="0.6"/>
+      <stop offset="1" stop-color="#2a6bff" stop-opacity="0"/>
+    </radialGradient>
+    <pattern id="rain" width="28" height="42" patternUnits="userSpaceOnUse" patternTransform="rotate(7)">
+      <line x1="3" y1="0" x2="3" y2="16" stroke="#c4d8ff" stroke-width="1" stroke-opacity="0.42"/>
+      <line x1="16" y1="20" x2="16" y2="32" stroke="#c4d8ff" stroke-width="1" stroke-opacity="0.3"/>
+      <line x1="23" y1="6" x2="23" y2="13" stroke="#ffb6c8" stroke-width="1" stroke-opacity="0.24"/>
+    </pattern>
+    <filter id="glow" x="-30%" y="-30%" width="160%" height="160%">
+      <feGaussianBlur stdDeviation="3"/>
+    </filter>
+    <g id="wings" fill="none" stroke-linecap="round" stroke-linejoin="round">
+      <!-- right wing -->
+      <path d="M330 150 Q370 100 440 92 Q420 108 430 112 Q404 120 414 128 Q388 134 396 142 Q366 146 330 150"/>
+      <path d="M352 132 Q380 120 410 112 M346 142 Q372 134 396 130"/>
+    </g>
+    <g id="wingL" fill="none" stroke-linecap="round" stroke-linejoin="round">
+      <!-- left wing -->
+      <path d="M310 150 Q270 100 200 92 Q220 108 210 112 Q236 120 226 128 Q252 134 244 142 Q274 146 310 150"/>
+      <path d="M288 132 Q260 120 230 112 M294 142 Q268 134 244 130"/>
+    </g>
+  </defs>
+
+  <rect width="640" height="360" fill="url(#sky)"/>
+  <!-- building wall with the sign -->
+  <rect x="120" y="40" width="400" height="230" fill="#0e0818"/>
+  <g stroke="#1c1228" stroke-width="1">
+    <line x1="120" y1="90" x2="520" y2="90"/><line x1="120" y1="190" x2="520" y2="190"/>
+    <line x1="220" y1="40" x2="220" y2="270"/><line x1="420" y1="40" x2="420" y2="270"/>
+  </g>
+  <g fill="#0a0612">
+    <rect x="0" y="80" width="116" height="190"/><rect x="524" y="60" width="116" height="210"/>
+  </g>
+  <g fill="#ffd27a" opacity="0.4">
+    <rect x="20" y="110" width="5" height="6"/><rect x="70" y="160" width="5" height="6"/>
+    <rect x="560" y="100" width="5" height="6"/><rect x="600" y="180" width="5" height="6"/>
+  </g>
+
+  <!-- the neon wings, one burning, one dead -->
+  <ellipse cx="380" cy="122" rx="110" ry="60" fill="url(#wingGlow)"/>
+  <use href="#wings" stroke="#ff2a6d" stroke-width="7" filter="url(#glow)"/>
+  <use href="#wings" stroke="#ffd0de" stroke-width="2"/>
+  <use href="#wingL" stroke="#3a2a48" stroke-width="3"/>
+  <use href="#wingL" stroke="#ff2a6d" stroke-width="2" stroke-dasharray="6 40" opacity="0.7"/>
+  <!-- halo ring -->
+  <ellipse cx="320" cy="78" rx="26" ry="7" fill="none" stroke="#00e5ff" stroke-width="5" filter="url(#glow)"/>
+  <ellipse cx="320" cy="78" rx="26" ry="7" fill="none" stroke="#c8fbff" stroke-width="1.5"/>
+
+  <!-- distant police lights at the end of the street -->
+  <circle cx="60" cy="250" r="40" fill="url(#red)"/>
+  <circle cx="96" cy="254" r="40" fill="url(#blue)"/>
+
+  <!-- the street -->
+  <rect x="0" y="270" width="640" height="90" fill="url(#street)"/>
+  <line x1="0" y1="270" x2="640" y2="270" stroke="#2a1a3a" stroke-width="2"/>
+  <!-- reflections of the wing sign and halo in the wet street -->
+  <g opacity="0.35" transform="translate(0 365) scale(1 -0.5)">
+    <use href="#wings" stroke="#ff2a6d" stroke-width="4"/>
+  </g>
+  <rect x="356" y="300" width="80" height="2" fill="#ff2a6d" opacity="0.5"/>
+  <rect x="40" y="290" width="70" height="3" fill="#ff2a3d" opacity="0.5"/>
+  <rect x="80" y="300" width="60" height="3" fill="#2a6bff" opacity="0.5"/>
+
+  <!-- the streetlamp -->
+  <path d="M560 360 L560 30 Q560 14 540 14 L340 14" stroke="#0a0612" stroke-width="7" fill="none"/>
+  <path d="M326 12 h28 l-4 8 h-20 z" fill="#1a1228"/>
+  <rect x="330" y="20" width="20" height="3" fill="#e8fbff"/>
+  <polygon points="330,22 350,22 430,290 230,290" fill="url(#cone)"/>
+  <ellipse cx="330" cy="286" rx="120" ry="20" fill="url(#pool)"/>
+
+  <!-- Kane kneeling, Sarah across his lap -->
+  <g fill="#030107">
+    <!-- his coat spreading on the ground -->
+    <path d="M296 262 L372 262 L396 286 L282 286 Z"/>
+    <!-- his body, hunched over her -->
+    <path d="M292 210 Q318 194 350 200 Q368 230 364 266 L306 266 Q296 236 292 210 Z"/>
+    <!-- neck and bowed head, leaning toward her face -->
+    <path d="M296 204 L310 200 L306 214 L294 216 Z"/>
+    <ellipse cx="292" cy="200" rx="12" ry="14" transform="rotate(-40 292 200)"/>
+    <!-- his arm cradling her shoulders -->
+    <path d="M300 216 Q280 228 270 248 L280 252 Q290 236 306 226 Z"/>
+    <!-- Sarah: across his knees, head fallen back, hair to the street -->
+    <path d="M270 250 Q284 242 300 244 Q320 246 340 252 Q356 248 372 252 L412 264 L458 274 L460 282 L412 278 L370 274 Q350 270 338 268 Q310 266 286 264 Q276 262 270 258 Z"/>
+    <ellipse cx="260" cy="256" rx="10" ry="9"/>
+    <path d="M252 256 Q244 270 248 286 L262 286 Q258 272 264 262 Z"/>
+    <!-- his other hand over her heart -->
+    <path d="M346 210 Q350 232 326 246 L320 240 Q336 230 336 212 Z"/>
+    <!-- her hand fallen to the street -->
+    <path d="M300 262 Q296 274 300 286 L307 286 Q304 274 307 264 Z"/>
+  </g>
+  <!-- streetlamp rim light on the figures -->
+  <path d="M296 206 Q318 194 350 200" stroke="#c8fbff" stroke-width="1.6" fill="none"/>
+  <path d="M282 190 Q292 184 302 190" stroke="#c8fbff" stroke-width="1.4" fill="none"/>
+  <path d="M270 250 Q284 242 300 244 Q320 246 340 252 Q356 248 372 252 L412 264 L458 274" stroke="#c8fbff" stroke-width="1.4" fill="none" opacity="0.9"/>
+  <path d="M251 252 Q258 245 268 249" stroke="#c8fbff" stroke-width="1.2" fill="none"/>
+  <path d="M252 258 Q245 270 248 286" stroke="#ff2a6d" stroke-width="1" fill="none" opacity="0.7"/>
+  <path d="M350 200 Q368 230 364 266" stroke="#ff2a6d" stroke-width="1.4" fill="none" opacity="0.7"/>
+  <!-- his hat, fallen in the street -->
+  <ellipse cx="484" cy="282" rx="20" ry="4" fill="#030107"/>
+  <path d="M472 282 L474 272 Q484 268 494 272 L496 282 Z" fill="#030107"/>
+  <path d="M474 272 Q484 268 494 272" stroke="#ff2a6d" stroke-width="1" fill="none" opacity="0.6"/>
+
+  <!-- rain, heavier in the lamplight -->
+  <rect width="640" height="360" fill="url(#rain)"/>
+  <polygon points="330,22 350,22 430,290 230,290" fill="url(#rain)" opacity="0.8"/>
+  <!-- splashes -->
+  <g stroke="#d6f6ff" stroke-width="1" opacity="0.6" fill="none">
+    <path d="M250 292 q4 -4 8 0"/><path d="M400 296 q4 -4 8 0"/><path d="M330 300 q4 -4 8 0"/><path d="M290 310 q4 -4 8 0"/>
+  </g>
+</svg>

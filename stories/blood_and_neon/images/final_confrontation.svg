@@ -1,0 +1,146 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 360">
+  <!-- The central lab: Cassandra among a hundred glowing amber vials holds up the Fool card while Kane levels his gun; rain falls through the broken skylight. -->
+  <defs>
+    <linearGradient id="room" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#06040c"/>
+      <stop offset="0.7" stop-color="#140a1c"/>
+      <stop offset="1" stop-color="#0a0610"/>
+    </linearGradient>
+    <linearGradient id="floor" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#1e1222"/>
+      <stop offset="1" stop-color="#040208"/>
+    </linearGradient>
+    <linearGradient id="cone" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#9fd8ff" stop-opacity="0.3"/>
+      <stop offset="1" stop-color="#9fd8ff" stop-opacity="0.04"/>
+    </linearGradient>
+    <radialGradient id="vial" cx="0.5" cy="0.5" r="0.5">
+      <stop offset="0" stop-color="#ffb347" stop-opacity="0.7"/>
+      <stop offset="1" stop-color="#ff7a1a" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="liquid" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#ffd27a"/>
+      <stop offset="1" stop-color="#d9640e"/>
+    </linearGradient>
+    <radialGradient id="card" cx="0.5" cy="0.5" r="0.5">
+      <stop offset="0" stop-color="#ffffff" stop-opacity="0.8"/>
+      <stop offset="0.35" stop-color="#ff2a6d" stop-opacity="0.45"/>
+      <stop offset="1" stop-color="#ff2a6d" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="pool" cx="0.5" cy="0.5" r="0.5">
+      <stop offset="0" stop-color="#9fd8ff" stop-opacity="0.35"/>
+      <stop offset="1" stop-color="#9fd8ff" stop-opacity="0"/>
+    </radialGradient>
+    <pattern id="vials" width="20" height="40" patternUnits="userSpaceOnUse">
+      <rect x="7" y="14" width="6" height="18" rx="2" fill="url(#liquid)" opacity="0.85"/>
+      <rect x="7" y="10" width="6" height="4" fill="#3a2a30"/>
+      <rect x="0" y="32" width="20" height="3" fill="#1a1020"/>
+    </pattern>
+    <pattern id="rain" width="26" height="40" patternUnits="userSpaceOnUse" patternTransform="rotate(6)">
+      <line x1="3" y1="0" x2="3" y2="14" stroke="#c4e4ff" stroke-width="1" stroke-opacity="0.5"/>
+      <line x1="15" y1="18" x2="15" y2="30" stroke="#c4e4ff" stroke-width="1" stroke-opacity="0.35"/>
+    </pattern>
+    <filter id="glow" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="3"/>
+    </filter>
+  </defs>
+
+  <rect width="640" height="360" fill="url(#room)"/>
+
+  <!-- shelves of Nightshade, left and right, receding -->
+  <g>
+    <ellipse cx="110" cy="160" rx="140" ry="110" fill="url(#vial)" opacity="0.6"/>
+    <ellipse cx="530" cy="160" rx="140" ry="110" fill="url(#vial)" opacity="0.6"/>
+    <polygon points="0,40 200,90 200,250 0,280" fill="url(#vials)"/>
+    <polygon points="640,40 440,90 440,250 640,280" fill="url(#vials)"/>
+    <!-- shelf frames give the perspective -->
+    <g stroke="#2a1a2e" stroke-width="3">
+      <line x1="0" y1="40" x2="200" y2="90"/><line x1="0" y1="280" x2="200" y2="250"/>
+      <line x1="640" y1="40" x2="440" y2="90"/><line x1="640" y1="280" x2="440" y2="250"/>
+      <line x1="200" y1="90" x2="200" y2="250"/><line x1="440" y1="90" x2="440" y2="250"/>
+    </g>
+  </g>
+  <!-- back wall: the lab doors and a dead ouroboros ring etched in steel -->
+  <rect x="200" y="90" width="240" height="160" fill="#0c0814"/>
+  <circle cx="320" cy="150" r="46" fill="none" stroke="#2a2040" stroke-width="6"/>
+  <circle cx="320" cy="150" r="46" fill="none" stroke="#00e5ff" stroke-width="1" stroke-dasharray="6 10" opacity="0.5"/>
+  <path d="M352 118 l12 -6 l-2 12 z" fill="#2a2040"/>
+
+  <!-- broken skylight, rain falling in a column of cold light -->
+  <polygon points="270,0 370,0 400,300 240,300" fill="url(#cone)"/>
+  <g clip-path="none">
+    <polygon points="270,0 370,0 400,300 240,300" fill="url(#rain)"/>
+  </g>
+  <path d="M270 0 L290 14 L300 0 M340 0 L348 10 L362 0" stroke="#3a3050" stroke-width="2" fill="none"/>
+
+  <!-- floor -->
+  <rect x="0" y="250" width="640" height="110" fill="url(#floor)"/>
+  <ellipse cx="320" cy="296" rx="110" ry="18" fill="url(#pool)"/>
+  <!-- amber reflections -->
+  <g opacity="0.35">
+    <polygon points="0,290 200,256 200,270 0,320" fill="#ffb347" opacity="0.4"/>
+    <polygon points="640,290 440,256 440,270 640,320" fill="#ffb347" opacity="0.4"/>
+  </g>
+  <!-- steel table with more vials -->
+  <rect x="380" y="250" width="110" height="6" fill="#2a2236"/>
+  <rect x="386" y="256" width="4" height="40" fill="#1a1424"/><rect x="480" y="256" width="4" height="40" fill="#1a1424"/>
+  <g>
+    <ellipse cx="434" cy="240" rx="50" ry="22" fill="url(#vial)"/>
+    <rect x="398" y="232" width="6" height="18" rx="2" fill="url(#liquid)"/>
+    <rect x="410" y="228" width="6" height="22" rx="2" fill="url(#liquid)"/>
+    <rect x="422" y="234" width="6" height="16" rx="2" fill="url(#liquid)"/>
+    <rect x="446" y="230" width="6" height="20" rx="2" fill="url(#liquid)"/>
+    <rect x="458" y="234" width="6" height="16" rx="2" fill="url(#liquid)"/>
+    <rect x="470" y="232" width="6" height="18" rx="2" fill="url(#liquid)"/>
+  </g>
+
+  <!-- Cassandra: in the light, the Fool card raised -->
+  <ellipse cx="350" cy="122" rx="40" ry="40" fill="url(#card)"/>
+  <g fill="#050208">
+    <!-- hair and head -->
+    <path d="M308 160 Q312 140 322 138 Q334 138 336 156 Q338 178 334 196 L312 196 Q306 178 308 160 Z"/>
+    <ellipse cx="322" cy="152" rx="9" ry="12"/>
+    <!-- body: long dress, flaring at the floor -->
+    <path d="M310 176 Q322 170 334 176 L338 222 Q344 260 356 298 L290 298 Q302 260 308 222 Z"/>
+    <!-- raised arm holding the card -->
+    <path d="M332 178 Q342 160 348 136 L354 138 Q350 164 338 186 Z"/>
+    <!-- other arm at her side -->
+    <path d="M310 180 Q302 204 304 232 L310 232 Q310 206 316 188 Z"/>
+  </g>
+  <!-- rim light from the skylight -->
+  <path d="M308 160 Q306 178 312 196" stroke="#9fd8ff" stroke-width="1.4" fill="none" opacity="0.8"/>
+  <path d="M308 222 Q302 260 290 298" stroke="#9fd8ff" stroke-width="1.2" fill="none" opacity="0.7"/>
+  <path d="M338 222 Q344 260 356 298" stroke="#ffb347" stroke-width="1.4" fill="none" opacity="0.8"/>
+  <path d="M290 298 L356 298 L344 330 L302 330 Z" fill="#000" opacity="0.35"/>
+  <!-- the Fool -->
+  <g transform="rotate(8 352 120)">
+    <rect x="342" y="104" width="20" height="32" rx="2" fill="#fff6f0" stroke="#ff2a6d" stroke-width="1.2"/>
+    <rect x="345" y="107" width="14" height="22" fill="#2a3a6a"/>
+    <!-- tiny wanderer at a cliff edge with a sun -->
+    <circle cx="355" cy="110" r="2.2" fill="#ffd27a"/>
+    <path d="M345 129 L353 122 L359 129 Z" fill="#1a1028"/>
+    <path d="M350 125 l0 -6 m-2 2 l4 0 m-2 4 l-2 3 m2 -3 l2 3" stroke="#fff6f0" stroke-width="0.8"/>
+    <circle cx="350" cy="118" r="1.2" fill="#fff6f0"/>
+    <circle cx="352" cy="132.5" r="1.3" fill="#ff2a6d"/>
+  </g>
+
+  <!-- Kane in the foreground, over the shoulder, gun leveled -->
+  <g fill="#020104">
+    <ellipse cx="96" cy="200" rx="40" ry="8"/>
+    <path d="M76 198 L80 178 Q96 170 112 178 L116 198 Z"/>
+    <ellipse cx="98" cy="214" rx="17" ry="20"/>
+    <path d="M40 246 Q98 226 150 240 L190 360 L0 360 L0 300 Z"/>
+    <!-- extended arm and pistol -->
+    <path d="M130 238 L232 214 L236 226 L140 258 Z"/>
+    <path d="M226 210 L254 204 L256 212 L238 216 L240 226 L232 228 Z"/>
+  </g>
+  <path d="M138 236 L232 213" stroke="#ffb347" stroke-width="1.4" opacity="0.7"/>
+  <path d="M112 178 Q118 200 116 222" stroke="#9fd8ff" stroke-width="1.2" fill="none" opacity="0.6"/>
+  <path d="M150 240 L190 360" stroke="#ff2a6d" stroke-width="1.4" opacity="0.6"/>
+
+  <!-- dust/rain motes in the light -->
+  <g fill="#cfe8ff" opacity="0.6">
+    <circle cx="280" cy="60" r="1"/><circle cx="350" cy="40" r="1"/><circle cx="300" cy="210" r="1"/>
+    <circle cx="372" cy="200" r="1"/><circle cx="262" cy="150" r="1"/>
+  </g>
+</svg>

@@ -984,6 +984,7 @@ goto = "hide_marsh"
 # ─────────────────────────────────────────────────────────────
 
 [prometheus_facility]
+image = "images/prometheus_facility.svg"
 mood = "danger"
 text = """
 The old Prometheus Industries plant rises out of the rain like a tombstone for an idea. Twelve stories of black glass and rust. Over the gate, the company logo still hangs: a titan holding a torch, half its neon tubes dead, so he seems to be burning. At the curb, a black town car idles with its driver's door open and nobody inside.

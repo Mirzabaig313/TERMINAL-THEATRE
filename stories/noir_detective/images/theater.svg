@@ -1,0 +1,124 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 360">
+  <!-- The dark Ritz Theater: Malone in the aisle by lighter-flame, rain threading down into the pit, someone waiting by a pillar. -->
+  <defs>
+    <linearGradient id="curtain" x1="0" y1="0" x2="22" y2="0" gradientUnits="userSpaceOnUse" spreadMethod="repeat">
+      <stop offset="0" stop-color="#060606"/>
+      <stop offset="0.5" stop-color="#2a2828"/>
+      <stop offset="1" stop-color="#060606"/>
+    </linearGradient>
+    <linearGradient id="curtainFade" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#000" stop-opacity="0.85"/>
+      <stop offset="0.5" stop-color="#000" stop-opacity="0.3"/>
+      <stop offset="1" stop-color="#000" stop-opacity="0.8"/>
+    </linearGradient>
+    <radialGradient id="flame" cx="0.5" cy="0.5" r="0.5">
+      <stop offset="0" stop-color="#ffd98a" stop-opacity="0.75"/>
+      <stop offset="0.25" stop-color="#d4a040" stop-opacity="0.35"/>
+      <stop offset="1" stop-color="#d4a040" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="exitGlow" cx="0.5" cy="0.5" r="0.5">
+      <stop offset="0" stop-color="#a8c4ae" stop-opacity="0.5"/>
+      <stop offset="1" stop-color="#a8c4ae" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="thread" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#c8ccd4" stop-opacity="0"/>
+      <stop offset="0.3" stop-color="#c8ccd4" stop-opacity="0.7"/>
+      <stop offset="1" stop-color="#e8ecf0" stop-opacity="0.9"/>
+    </linearGradient>
+    <linearGradient id="gilt" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#3a3020"/>
+      <stop offset="0.6" stop-color="#5e4c2c"/>
+      <stop offset="1" stop-color="#8a6e3a"/>
+    </linearGradient>
+  </defs>
+
+  <rect width="640" height="360" fill="#050505"/>
+
+  <!-- proscenium arch, its gilt just touched by the flame -->
+  <path d="M40 210 L40 70 Q40 22 230 18 Q420 22 420 70 L420 210 L400 210 L400 76 Q400 40 230 38 Q60 40 60 76 L60 210 Z" fill="url(#gilt)" opacity="0.8"/>
+  <path d="M60 210 L60 76 Q60 40 230 38 Q400 40 400 76 L400 210 Z" fill="url(#curtain)"/>
+  <path d="M60 210 L60 76 Q60 40 230 38 Q400 40 400 76 L400 210 Z" fill="url(#curtainFade)"/>
+  <!-- swag of the valance -->
+  <path d="M60 76 Q60 40 230 38 Q400 40 400 76 Q350 70 310 92 Q270 70 230 92 Q190 70 150 92 Q110 70 60 76 Z" fill="#141313"/>
+  <!-- stage lip and the dark orchestra pit -->
+  <rect x="40" y="208" width="380" height="6" fill="#2a241a"/>
+  <rect x="40" y="214" width="380" height="14" fill="#020202"/>
+
+  <!-- the single thread of rain falling from the roof into the pit, ticking on a timpani -->
+  <line x1="246" y1="0" x2="246" y2="214" stroke="url(#thread)" stroke-width="1.8"/>
+  <ellipse cx="246" cy="216" rx="18" ry="4" fill="#3a3630"/>
+  <ellipse cx="246" cy="215" rx="16" ry="3" fill="#5e584c"/>
+  <g stroke="#dfe3ea" stroke-width="1" opacity="0.8" stroke-linecap="round">
+    <line x1="246" y1="213" x2="240" y2="207"/><line x1="246" y1="213" x2="252" y2="206"/><line x1="246" y1="213" x2="246" y2="205"/>
+  </g>
+
+  <!-- balcony sweeping in from the right, a gilt rail -->
+  <path d="M430 40 Q540 70 640 70 L640 118 Q540 120 436 84 Z" fill="#0c0b0a"/>
+  <path d="M430 40 Q540 70 640 70" fill="none" stroke="#8a6e3a" stroke-width="2" opacity="0.6"/>
+  <g fill="#1a1712">
+    <circle cx="470" cy="70" r="5"/><circle cx="520" cy="84" r="5"/><circle cx="570" cy="92" r="5"/><circle cx="620" cy="96" r="5"/>
+  </g>
+
+  <!-- exit signs glowing like cat's eyes -->
+  <circle cx="16" cy="120" r="40" fill="url(#exitGlow)"/>
+  <rect x="6" y="114" width="22" height="10" rx="1" fill="#b6d0ba" opacity="0.8"/>
+  <circle cx="610" cy="150" r="44" fill="url(#exitGlow)"/>
+  <rect x="598" y="144" width="24" height="10" rx="1" fill="#b6d0ba" opacity="0.8"/>
+
+  <!-- pillar on the right, and someone waiting in its shadow -->
+  <rect x="556" y="118" width="34" height="242" fill="#0f0e0d"/>
+  <rect x="586" y="118" width="4" height="242" fill="#3a443c" opacity="0.6"/>
+  <g fill="#000">
+    <ellipse cx="596" cy="186" rx="8" ry="10"/>
+    <path d="M588 198 Q596 194 608 200 L612 300 L590 300 Z"/>
+  </g>
+  <path d="M604 180 Q608 188 604 196 M608 202 L612 296" stroke="#a8c4ae" stroke-width="1.2" opacity="0.55" fill="none"/>
+
+  <!-- the lighter's halo over the seats -->
+  <circle cx="470" cy="200" r="150" fill="url(#flame)"/>
+
+  <!-- rows of velvet seats curving back toward the stage -->
+  <g>
+    <path d="M150 360 L150 228 Q156 216 162 227 L164 227 Q170 216 176 227 L178 227 Q184 216 190 227 L192 227 Q198 216 204 227 L206 227 Q212 215 218 227 L220 226 Q226 215 232 226 L234 226 Q240 215 246 226 L248 226 Q254 215 260 226 L262 226 Q268 215 274 226 L276 226 Q282 215 288 226 L290 226 Q296 215 302 226 L304 226 Q310 215 316 226 L318 226 Q324 215 330 226 L332 226 Q338 215 344 226 L346 226 Q352 215 358 226 L360 226 Q366 215 372 226 L374 226 Q380 215 386 227 L388 227 Q394 215 400 227 L402 227 Q408 216 414 227 L416 227 Q422 216 428 227 L430 227 Q436 216 442 228 L444 360 Z" fill="#1a1714" stroke="#2c261d" stroke-width="1"/>
+    <path d="M120 360 L120 243 Q127 228 134 243 L136 242 Q143 228 150 242 L152 242 Q159 227 166 242 L168 242 Q175 227 182 241 L184 241 Q191 227 198 241 L200 241 Q207 226 214 241 L216 241 Q223 226 230 240 L232 240 Q239 226 246 240 L248 240 Q255 226 262 240 L264 240 Q271 226 278 240 L280 240 Q287 226 294 240 L296 240 Q303 226 310 240 L312 240 Q319 226 326 240 L328 240 Q335 226 342 240 L344 240 Q351 226 358 240 L360 240 Q367 226 374 241 L376 241 Q383 226 390 241 L392 241 Q399 227 406 241 L408 241 Q415 227 422 241 L424 241 Q431 227 438 242 L440 242 Q447 228 454 242 L456 242 Q463 228 470 243 L472 360 Z" fill="#171411" stroke="#2c261d" stroke-width="1"/>
+    <path d="M80 360 L80 264 Q88 246 97 263 L99 263 Q108 245 116 262 L118 262 Q126 244 135 261 L137 261 Q146 243 154 260 L156 260 Q164 243 173 260 L175 260 Q184 242 192 259 L194 259 Q202 242 211 259 L213 259 Q222 241 230 259 L232 259 Q240 241 249 258 L251 258 Q260 241 268 258 L270 258 Q278 240 287 258 L289 258 Q298 240 306 258 L308 258 Q316 240 325 258 L327 258 Q336 241 344 258 L346 258 Q354 241 363 258 L365 258 Q374 241 382 259 L384 259 Q392 241 401 259 L403 259 Q412 242 420 260 L422 260 Q430 242 439 260 L441 260 Q450 243 458 261 L460 261 Q468 244 477 262 L479 262 Q488 244 496 262 L498 263 Q506 245 515 263 L517 360 Z" fill="#13110e" stroke="#2c261d" stroke-width="1"/>
+    <path d="M40 360 L40 290 Q50 268 61 288 L63 288 Q74 267 84 287 L86 287 Q96 265 107 285 L109 285 Q120 264 130 284 L132 284 Q142 263 153 283 L155 283 Q166 262 176 282 L178 282 Q188 261 199 281 L201 281 Q212 260 222 281 L224 281 Q234 260 245 280 L247 280 Q258 259 268 280 L270 280 Q280 259 291 280 L293 280 Q304 259 314 280 L316 280 Q326 259 337 280 L339 280 Q350 260 360 281 L362 281 Q372 260 383 281 L385 281 Q396 261 406 282 L408 282 Q418 261 429 282 L431 283 Q442 262 452 283 L454 283 Q464 263 475 284 L477 285 Q488 264 498 286 L500 286 Q510 266 521 287 L523 287 Q534 267 544 289 L546 360 Z" fill="#100e0c" stroke="#2c261d" stroke-width="1"/>
+    <path d="M0 360 L0 325 Q13 298 26 322 L28 322 Q41 295 54 319 L56 319 Q69 292 82 317 L84 317 Q97 290 110 315 L112 315 Q125 288 138 313 L140 313 Q153 286 166 311 L168 311 Q181 285 194 310 L196 310 Q209 284 222 309 L224 309 Q237 283 250 308 L252 308 Q265 283 278 308 L280 308 Q293 282 306 308 L308 308 Q321 283 334 308 L336 308 Q349 283 362 309 L364 309 Q377 284 390 310 L392 310 Q405 284 418 311 L420 311 Q433 286 446 312 L448 312 Q461 287 474 314 L476 314 Q489 289 502 316 L504 316 Q517 291 530 318 L532 318 Q545 294 558 320 L560 321 Q573 296 586 323 L588 323 Q601 299 614 326 L616 360 Z" fill="#0c0b09" stroke="#2c261d" stroke-width="1"/>
+    <path d="M-20 360 L-20 366 Q-4 331 12 361 L14 361 Q30 327 46 357 L48 357 Q64 323 80 353 L82 353 Q98 320 114 350 L116 350 Q132 317 148 347 L150 347 Q166 314 182 345 L184 345 Q200 312 216 344 L218 344 Q234 311 250 343 L252 343 Q268 310 284 342 L286 342 Q302 310 318 342 L320 342 Q336 310 352 343 L354 343 Q370 311 386 344 L388 344 Q404 313 420 345 L422 345 Q438 314 454 347 L456 348 Q472 317 488 350 L490 350 Q506 320 522 353 L524 354 Q540 323 556 357 L558 357 Q574 327 590 361 L592 362 Q608 332 624 366 L626 367 Q642 337 658 372 L640 360 Z" fill="#080706" stroke="#2c261d" stroke-width="1"/>
+  </g>
+  <!-- seat-back highlights near the flame -->
+  <g fill="none" stroke="#c89a48" stroke-width="1.2" opacity="0.4">
+    <path d="M396 270 Q420 262 440 272 M420 296 Q446 286 470 296 M440 330 Q470 318 500 330"/>
+    <path d="M520 296 Q546 286 570 298 M530 330 Q560 320 590 334"/>
+  </g>
+
+  <!-- the aisle running up between the rows -->
+  <polygon points="462,226 484,226 566,360 440,360" fill="#241c12"/>
+  <g stroke="#4a3a22" stroke-width="2">
+    <line x1="458" y1="250" x2="498" y2="250"/><line x1="454" y1="280" x2="516" y2="280"/><line x1="448" y1="316" x2="538" y2="316"/>
+  </g>
+
+  <!-- Malone in the aisle, lighter held high -->
+  <g fill="#020202">
+    <path d="M478 330 L486 360 L498 360 L492 328 Z"/>
+    <path d="M500 328 L510 360 L522 360 L512 326 Z"/>
+    <path d="M472 206 Q484 196 498 196 Q514 198 524 210 L530 300 L520 336 L476 336 L468 300 Z"/>
+    <ellipse cx="498" cy="184" rx="13" ry="15"/>
+    <ellipse cx="498" cy="168" rx="28" ry="5"/>
+    <path d="M484 168 L487 148 Q498 142 509 148 L512 168 Z"/>
+    <!-- raised arm with the lighter -->
+    <path d="M474 212 Q456 204 448 186 L456 180 Q466 196 482 202 Z"/>
+    <rect x="446" y="176" width="9" height="9" rx="2"/>
+    <!-- other arm -->
+    <path d="M524 214 L536 270 L526 272 L516 230 Z"/>
+  </g>
+  <!-- the flame and warm rim along face, hat and coat -->
+  <path d="M450 176 Q446 168 450 160 Q455 168 450 176 Z" fill="#ffe7a0"/>
+  <circle cx="450" cy="170" r="6" fill="#ffd27a" opacity="0.5"/>
+  <g fill="none" stroke="#e8b85a" stroke-width="1.5" opacity="0.85" stroke-linecap="round">
+    <path d="M470 168 Q480 165 490 165"/>
+    <path d="M486 176 Q484 188 492 197"/>
+    <path d="M472 208 L466 298"/>
+    <path d="M458 186 Q464 196 478 202"/>
+  </g>
+</svg>

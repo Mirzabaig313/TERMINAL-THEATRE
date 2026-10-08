@@ -1,0 +1,126 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 360">
+  <!-- Unlikely allies: the rain has stopped; at dawn Malone and Agent Chen share her last cigarette at the end of Pier 9 while agents haul crates out of Warehouse 47. -->
+  <defs>
+    <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#141518"/>
+      <stop offset="0.3" stop-color="#3a3936"/>
+      <stop offset="0.5" stop-color="#857658"/>
+      <stop offset="0.59" stop-color="#d9b46a"/>
+      <stop offset="1" stop-color="#d9b46a"/>
+    </linearGradient>
+    <linearGradient id="water" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#6e6450"/>
+      <stop offset="0.3" stop-color="#2c2a26"/>
+      <stop offset="1" stop-color="#0a0a0a"/>
+    </linearGradient>
+    <radialGradient id="sun" cx="0.5" cy="0.5" r="0.5">
+      <stop offset="0" stop-color="#fff2c8"/>
+      <stop offset="0.15" stop-color="#f6dc9a" stop-opacity="0.9"/>
+      <stop offset="0.5" stop-color="#d4af37" stop-opacity="0.25"/>
+      <stop offset="1" stop-color="#d4af37" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="streak" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#fbe2a0" stop-opacity="0.85"/>
+      <stop offset="1" stop-color="#fbe2a0" stop-opacity="0"/>
+    </linearGradient>
+    <linearGradient id="pier" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#2a2620"/>
+      <stop offset="1" stop-color="#050505"/>
+    </linearGradient>
+    <filter id="soft" x="-30%" y="-30%" width="160%" height="160%">
+      <feGaussianBlur stdDeviation="3"/>
+    </filter>
+  </defs>
+
+  <rect width="640" height="360" fill="url(#sky)"/>
+  <!-- the last of the clouds, breaking up -->
+  <g fill="#0e0f12" opacity="0.6" filter="url(#soft)">
+    <path d="M0 40 Q80 20 180 44 Q260 30 340 54 L340 70 Q240 60 160 66 Q80 70 0 64 Z"/>
+    <path d="M360 96 Q440 80 540 100 Q600 92 640 104 L640 116 Q560 112 480 118 Q420 116 360 110 Z"/>
+  </g>
+  <g fill="#e0bc72" opacity="0.5" filter="url(#soft)">
+    <path d="M360 110 Q420 116 480 118 Q560 112 640 116 L640 119 Q560 116 480 121 Q420 119 360 113 Z"/>
+  </g>
+  <!-- the sun just clearing the harbour -->
+  <circle cx="500" cy="212" r="90" fill="url(#sun)"/>
+  <path d="M478 212 A22 22 0 0 1 522 212 Z" fill="#fff4d0"/>
+  <!-- far breakwater -->
+  <rect x="300" y="206" width="340" height="6" fill="#3a352c"/>
+  <!-- harbour water and the sun's path across it -->
+  <rect y="212" width="640" height="148" fill="url(#water)"/>
+  <polygon points="486,212 514,212 560,360 440,360" fill="url(#streak)" opacity="0.6"/>
+  <g stroke="#fbe2a0" stroke-width="1.5" opacity="0.5" stroke-linecap="round">
+    <line x1="480" y1="222" x2="520" y2="222"/><line x1="470" y1="236" x2="530" y2="236"/>
+    <line x1="462" y1="254" x2="540" y2="254"/><line x1="452" y1="280" x2="548" y2="280"/>
+    <line x1="560" y1="230" x2="590" y2="230"/><line x1="410" y1="244" x2="436" y2="244"/>
+  </g>
+  <g stroke="#8a7a58" stroke-width="1" opacity="0.4">
+    <line x1="340" y1="230" x2="380" y2="230"/><line x1="600" y1="262" x2="636" y2="262"/><line x1="320" y1="300" x2="370" y2="300"/>
+  </g>
+
+  <!-- Warehouse 47, door rolled up, agents carrying out the crates -->
+  <path d="M0 212 L0 108 L90 82 L210 108 L210 212 Z" fill="#0e0d0c"/>
+  <rect x="96" y="150" width="70" height="62" fill="#5a4e38"/>
+  <g fill="#0a0908">
+    <!-- two agents with a crate between them -->
+    <path d="M110 212 L112 186 Q116 180 120 186 L122 212 Z"/><circle cx="116" cy="178" r="4"/>
+    <path d="M144 212 L146 186 Q150 180 154 186 L156 212 Z"/><circle cx="150" cy="178" r="4"/>
+    <rect x="118" y="188" width="30" height="16"/>
+    <!-- one more coming out with a crate on his shoulder -->
+    <path d="M182 212 L184 188 Q188 182 192 188 L194 212 Z"/><circle cx="188" cy="180" r="4"/>
+    <rect x="180" y="168" width="20" height="12"/>
+  </g>
+  <!-- a bureau sedan waiting -->
+  <path d="M220 212 L222 198 L236 196 L244 186 L270 186 L280 196 L292 198 L294 212 Z" fill="#0a0908"/>
+  <circle cx="236" cy="212" r="5" fill="#000"/><circle cx="280" cy="212" r="5" fill="#000"/>
+
+  <!-- the pier running out from us toward the light -->
+  <polygon points="0,360 0,300 360,238 470,238 300,360" fill="url(#pier)"/>
+  <polygon points="360,238 470,238 470,244 360,244" fill="#9a845a" opacity="0.6"/>
+  <g stroke="#050505" stroke-width="1.2">
+    <line x1="380" y1="238" x2="60" y2="360"/><line x1="400" y1="238" x2="140" y2="360"/>
+    <line x1="420" y1="238" x2="210" y2="360"/><line x1="440" y1="238" x2="260" y2="360"/>
+  </g>
+  <g fill="#060606">
+    <rect x="372" y="240" width="5" height="24"/><rect x="462" y="240" width="5" height="22"/>
+    <rect x="300" y="256" width="7" height="34"/><rect x="200" y="276" width="9" height="44"/>
+  </g>
+  <!-- a mooring post and coiled rope -->
+  <rect x="120" y="290" width="16" height="30" fill="#080808"/>
+  <ellipse cx="128" cy="290" rx="10" ry="3" fill="#1a1712"/>
+
+  <!-- Malone and Chen at the end of the pier, side by side -->
+  <g fill="#060606">
+    <!-- Malone: fedora, trench coat open, leaning on the rail post -->
+    <ellipse cx="412" cy="148" rx="17" ry="3"/>
+    <path d="M403 148 L405 134 Q412 130 419 134 L421 148 Z"/>
+    <ellipse cx="412" cy="156" rx="7" ry="8.5"/>
+    <path d="M400 166 Q412 162 424 166 L430 214 L432 238 L394 238 L396 214 Z"/>
+    <path d="M424 168 L436 196 L432 198 L420 178 Z"/>
+    <path d="M400 168 L392 204 L397 206 L404 182 Z"/>
+    <!-- Chen: sharp black bob, tailored jacket, skirt, the cigarette passed to him -->
+    <path d="M444 152 Q444 140 452 139 Q461 140 461 152 L461 160 L455 158 L449 158 L444 160 Z"/>
+    <ellipse cx="452.5" cy="153" rx="6" ry="7.5"/>
+    <path d="M444 166 Q452 162 462 166 L464 200 L458 204 L446 204 L440 200 Z"/>
+    <path d="M444 202 L462 202 L464 222 L442 222 Z"/>
+    <path d="M446 222 L450 222 L450 238 L447 238 Z M456 222 L460 222 L461 238 L457 238 Z"/>
+    <path d="M444 168 L432 184 L435 187 L447 176 Z"/>
+    <path d="M462 168 L468 196 L464 198 L458 178 Z"/>
+  </g>
+  <!-- warm rim of dawn on their right edges -->
+  <g fill="none" stroke="#f6d48a" stroke-width="1.2" opacity="0.85" stroke-linecap="round">
+    <path d="M419 134 L421 148 L429 148"/><path d="M418 152 Q421 158 417 164"/><path d="M424 168 L430 214"/>
+    <path d="M461 145 L461 160"/><path d="M462 168 L464 200"/><path d="M462 204 L464 222"/>
+  </g>
+  <!-- the shared cigarette and its smoke -->
+  <circle cx="433" cy="184" r="1.8" fill="#ff8a3a"/>
+  <path d="M433 182 Q428 170 436 160 Q444 150 438 136 Q432 122 442 110" fill="none" stroke="#e8e0d0" stroke-width="2.5" opacity="0.35" filter="url(#soft)"/>
+  <!-- their long shadow toward us -->
+  <polygon points="398,238 462,238 380,300 330,300" fill="#000" opacity="0.35"/>
+
+  <!-- gulls -->
+  <g fill="none" stroke="#141414" stroke-width="1.5" stroke-linecap="round">
+    <path d="M300 130 Q306 124 312 130 Q318 124 324 130"/>
+    <path d="M560 150 Q564 146 568 150 Q572 146 576 150"/>
+  </g>
+</svg>

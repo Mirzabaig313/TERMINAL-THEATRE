@@ -2,6 +2,7 @@
 # Pier 9. Every thread in the city ties off here. Who you bring - and what you carry - decides how you leave.
 
 [warehouse]
+image = "images/warehouse.svg"
 mood = "mystery"
 text = """
 Warehouse 47 sits at the end of Pier 9 like a rotting tooth in a black gum. Corrugated iron streaked with rust, windows soaped over, a loading door big enough to swallow a truck. The harbour slaps at the pilings underneath with a sound like somebody being patiently, rhythmically slapped awake.
@@ -228,6 +229,7 @@ text = "Turn around and knock on the front door - make them deal with you"
 goto = "warehouse_front"
 
 [warehouse_negotiation]
+image = "images/warehouse_negotiation.svg"
 mood = "alert"
 text = """
 They let you in. The loading door rolls up on screaming wheels and the guard walks you in with his gun in your kidney.

@@ -1,0 +1,126 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 360">
+  <!-- Close-up: a gloved hand holds the hand-painted Queen of Swords up to the police lights, rain and neon bokeh behind. -->
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#0a0718"/>
+      <stop offset="0.6" stop-color="#170b2a"/>
+      <stop offset="1" stop-color="#2a0c2c"/>
+    </linearGradient>
+    <radialGradient id="bokehR" cx="0.5" cy="0.5" r="0.5">
+      <stop offset="0" stop-color="#ff2a3d" stop-opacity="0.55"/>
+      <stop offset="0.8" stop-color="#ff2a3d" stop-opacity="0.25"/>
+      <stop offset="1" stop-color="#ff2a3d" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="bokehB" cx="0.5" cy="0.5" r="0.5">
+      <stop offset="0" stop-color="#2a6bff" stop-opacity="0.55"/>
+      <stop offset="0.8" stop-color="#2a6bff" stop-opacity="0.25"/>
+      <stop offset="1" stop-color="#2a6bff" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="bokehM" cx="0.5" cy="0.5" r="0.5">
+      <stop offset="0" stop-color="#ff2a6d" stop-opacity="0.5"/>
+      <stop offset="0.8" stop-color="#ff2a6d" stop-opacity="0.2"/>
+      <stop offset="1" stop-color="#ff2a6d" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="bokehC" cx="0.5" cy="0.5" r="0.5">
+      <stop offset="0" stop-color="#00e5ff" stop-opacity="0.5"/>
+      <stop offset="0.8" stop-color="#00e5ff" stop-opacity="0.2"/>
+      <stop offset="1" stop-color="#00e5ff" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="halo" cx="0.5" cy="0.5" r="0.5">
+      <stop offset="0" stop-color="#ff2a6d" stop-opacity="0.45"/>
+      <stop offset="1" stop-color="#ff2a6d" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="face" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#1b2a4a"/>
+      <stop offset="0.55" stop-color="#3b1a4f"/>
+      <stop offset="1" stop-color="#140a22"/>
+    </linearGradient>
+    <linearGradient id="paper" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#f3e6d0"/>
+      <stop offset="1" stop-color="#c9b48f"/>
+    </linearGradient>
+    <linearGradient id="blade" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#9fefff"/>
+      <stop offset="0.5" stop-color="#ffffff"/>
+      <stop offset="1" stop-color="#6fc9e0"/>
+    </linearGradient>
+    <linearGradient id="glove" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#4a3f66"/>
+      <stop offset="1" stop-color="#1b1530"/>
+    </linearGradient>
+    <pattern id="rain" width="28" height="40" patternUnits="userSpaceOnUse" patternTransform="rotate(10)">
+      <line x1="3" y1="0" x2="3" y2="14" stroke="#c4d8ff" stroke-width="1" stroke-opacity="0.3"/>
+      <line x1="16" y1="18" x2="16" y2="28" stroke="#ffb6c8" stroke-width="1" stroke-opacity="0.22"/>
+    </pattern>
+    <filter id="soft" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="4"/>
+    </filter>
+  </defs>
+
+  <rect width="640" height="360" fill="url(#bg)"/>
+  <!-- out-of-focus police lights and neon -->
+  <circle cx="80" cy="90" r="60" fill="url(#bokehR)"/>
+  <circle cx="160" cy="250" r="44" fill="url(#bokehB)"/>
+  <circle cx="540" cy="80" r="56" fill="url(#bokehB)"/>
+  <circle cx="590" cy="250" r="70" fill="url(#bokehM)"/>
+  <circle cx="470" cy="300" r="34" fill="url(#bokehC)"/>
+  <circle cx="60" cy="320" r="30" fill="url(#bokehC)"/>
+  <circle cx="200" cy="50" r="22" fill="url(#bokehM)"/>
+  <circle cx="460" cy="40" r="18" fill="url(#bokehR)"/>
+  <rect width="640" height="360" fill="url(#rain)"/>
+
+  <!-- halo behind the card -->
+  <ellipse cx="320" cy="180" rx="170" ry="150" fill="url(#halo)"/>
+
+  <g transform="rotate(-7 320 180)">
+    <!-- card shadow -->
+    <rect x="252" y="66" width="144" height="236" rx="8" fill="#000" opacity="0.5" filter="url(#soft)"/>
+    <!-- the card -->
+    <rect x="246" y="56" width="144" height="236" rx="8" fill="url(#paper)"/>
+    <rect x="254" y="64" width="128" height="220" rx="4" fill="none" stroke="#b8862e" stroke-width="2"/>
+    <rect x="260" y="70" width="116" height="180" fill="url(#face)"/>
+    <!-- painted sky: a crescent moon and storm clouds -->
+    <path d="M352 92 a12 12 0 1 0 6 20 a9 9 0 1 1 -6 -20 z" fill="#ffe9c4"/>
+    <ellipse cx="290" cy="150" rx="40" ry="8" fill="#5a3a7a" opacity="0.7"/>
+    <ellipse cx="350" cy="166" rx="30" ry="6" fill="#5a3a7a" opacity="0.6"/>
+    <!-- the queen on her throne, in profile, sword raised -->
+    <path d="M286 250 L290 196 Q292 180 304 176 L320 176 Q330 180 332 196 L340 250 Z" fill="#0d0716"/>
+    <path d="M292 250 L294 214 L336 214 L338 250 Z" fill="#2a1240"/>
+    <ellipse cx="312" cy="164" rx="10" ry="12" fill="#0d0716"/>
+    <!-- crown -->
+    <path d="M302 154 l3 -10 l4 7 l3 -10 l3 10 l4 -7 l3 10 z" fill="#e8b84a"/>
+    <!-- arm and sword -->
+    <path d="M324 186 L344 172 L348 178 L330 194 Z" fill="#0d0716"/>
+    <rect x="343" y="84" width="6" height="92" fill="url(#blade)"/>
+    <path d="M343 84 l3 -10 l3 10 z" fill="#ffffff"/>
+    <rect x="335" y="174" width="22" height="4" rx="1" fill="#e8b84a"/>
+    <rect x="344" y="178" width="4" height="12" fill="#e8b84a"/>
+    <line x1="346" y1="80" x2="346" y2="174" stroke="#00e5ff" stroke-width="5" opacity="0.35" filter="url(#soft)"/>
+    <!-- butterflies on the throne -->
+    <path d="M300 230 l-6 -5 l0 10 z M300 230 l6 -5 l0 10 z" fill="#ff2a6d" opacity="0.8"/>
+    <!-- title plate (wordless): two crossed swords -->
+    <rect x="270" y="256" width="96" height="20" rx="2" fill="#efe0c4" stroke="#b8862e" stroke-width="1"/>
+    <path d="M302 272 L334 260 M302 260 L334 272" stroke="#2a1240" stroke-width="2"/>
+    <circle cx="318" cy="266" r="3" fill="#ff2a6d"/>
+    <!-- a smear of something dark on the corner. implication only -->
+    <path d="M378 70 q8 6 4 18 q-4 -6 -10 -6 z" fill="#6a0a24" opacity="0.7"/>
+  </g>
+
+  <!-- latex-gloved hand holding the card's lower edge -->
+  <g>
+    <path d="M190 360 L216 288 Q226 262 252 262 L276 268 Q288 272 286 284 L262 296 L292 296 Q304 298 302 310 Q300 320 288 320 L270 322 L246 360 Z" fill="url(#glove)"/>
+    <path d="M252 262 Q244 252 252 244 L270 238 Q282 236 284 246 Q286 256 276 260 L262 266 Z" fill="#3c3356"/>
+    <path d="M262 296 Q274 300 288 298" stroke="#16112a" stroke-width="1.5" fill="none"/>
+    <path d="M226 280 Q236 270 250 268" stroke="#8a7ab0" stroke-width="1.5" fill="none" opacity="0.6"/>
+    <path d="M256 246 Q266 240 278 242" stroke="#a796d0" stroke-width="1" fill="none" opacity="0.6"/>
+    <!-- coat cuff -->
+    <path d="M176 360 L196 300 L232 316 L222 360 Z" fill="#07050c"/>
+    <path d="M196 300 L232 316" stroke="#ff2a6d" stroke-width="1.2" opacity="0.6"/>
+  </g>
+
+  <!-- raindrops beading on the card -->
+  <g fill="#ffffff" opacity="0.7">
+    <circle cx="276" cy="110" r="1.6"/><circle cx="364" cy="230" r="1.4"/><circle cx="300" cy="78" r="1.2"/>
+    <circle cx="330" cy="204" r="1.3"/>
+  </g>
+</svg>

@@ -12,3 +12,8 @@ ratatui = "0.30"
 serde = { version = "1", features = ["derive"] }
 toml = "1.1"
 theatre-engine = { path = "engine" }
+
+# Dependencies (SVG and image decoding especially) are slow unoptimized; build them
+# optimized even in dev so `cargo run` and tests stay quick. Our own code stays debug.
+[profile.dev.package."*"]
+opt-level = 2

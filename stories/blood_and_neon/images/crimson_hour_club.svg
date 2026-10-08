@@ -1,0 +1,148 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 360">
+  <!-- Inside the Crimson Hour: velvet booths and red candles under a neon hourglass, a woman in black gliding toward Kane, stairs rising to the proprietor. -->
+  <defs>
+    <linearGradient id="wall" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#0c0410"/>
+      <stop offset="0.6" stop-color="#2a0718"/>
+      <stop offset="1" stop-color="#14040c"/>
+    </linearGradient>
+    <linearGradient id="floor" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#2a0614"/>
+      <stop offset="1" stop-color="#070208"/>
+    </linearGradient>
+    <linearGradient id="curtain" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#3a0616"/>
+      <stop offset="0.5" stop-color="#7a0f2c"/>
+      <stop offset="1" stop-color="#3a0616"/>
+    </linearGradient>
+    <linearGradient id="booth" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#8a0e30"/>
+      <stop offset="1" stop-color="#3a0414"/>
+    </linearGradient>
+    <radialGradient id="neon" cx="0.5" cy="0.5" r="0.5">
+      <stop offset="0" stop-color="#ff2a6d" stop-opacity="0.55"/>
+      <stop offset="1" stop-color="#ff2a6d" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="candle" cx="0.5" cy="0.5" r="0.5">
+      <stop offset="0" stop-color="#ffb36b" stop-opacity="0.85"/>
+      <stop offset="0.4" stop-color="#ff3b3b" stop-opacity="0.35"/>
+      <stop offset="1" stop-color="#ff3b3b" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="landing" cx="0.5" cy="0.5" r="0.5">
+      <stop offset="0" stop-color="#00e5ff" stop-opacity="0.45"/>
+      <stop offset="1" stop-color="#00e5ff" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="haze" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#ff2a6d" stop-opacity="0"/>
+      <stop offset="1" stop-color="#ff2a6d" stop-opacity="0.12"/>
+    </linearGradient>
+    <filter id="glow" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="3"/>
+    </filter>
+  </defs>
+
+  <rect width="640" height="360" fill="url(#wall)"/>
+  <!-- floor -->
+  <polygon points="0,270 640,270 640,360 0,360" fill="url(#floor)"/>
+
+  <!-- velvet curtains framing the room -->
+  <path d="M0 0 L70 0 Q60 120 84 270 L0 270 Z" fill="url(#curtain)"/>
+  <path d="M20 0 Q14 140 30 270 M46 0 Q40 140 58 270" stroke="#2a0410" stroke-width="3" fill="none" opacity="0.7"/>
+  <path d="M640 0 L572 0 Q584 120 560 270 L640 270 Z" fill="url(#curtain)"/>
+  <path d="M600 0 Q610 140 590 270 M624 0 Q630 140 616 270" stroke="#2a0410" stroke-width="3" fill="none" opacity="0.7"/>
+
+  <!-- staircase rising to the proprietor's floor, upper left -->
+  <polygon points="96,270 210,130 250,130 150,270" fill="#12030a"/>
+  <g stroke="#3a0a1e" stroke-width="2">
+    <line x1="110" y1="252" x2="162" y2="252"/><line x1="125" y1="234" x2="175" y2="234"/>
+    <line x1="140" y1="216" x2="188" y2="216"/><line x1="154" y1="198" x2="200" y2="198"/>
+    <line x1="168" y1="180" x2="213" y2="180"/><line x1="182" y1="162" x2="226" y2="162"/>
+    <line x1="196" y1="146" x2="238" y2="146"/>
+  </g>
+  <path d="M96 240 L210 100" stroke="#5a1028" stroke-width="2"/>
+  <!-- the landing, a cold light behind a door -->
+  <ellipse cx="236" cy="100" rx="50" ry="40" fill="url(#landing)"/>
+  <rect x="222" y="66" width="28" height="64" fill="#0a2a33"/>
+  <rect x="226" y="70" width="20" height="60" fill="#6af0ff" opacity="0.4"/>
+  <!-- a figure watching from the top of the stairs -->
+  <g fill="#05020a">
+    <ellipse cx="236" cy="96" rx="5" ry="6"/>
+    <path d="M228 104 L244 104 L248 130 L224 130 Z"/>
+  </g>
+
+  <!-- the neon hourglass on the back wall -->
+  <ellipse cx="400" cy="88" rx="90" ry="64" fill="url(#neon)"/>
+  <g fill="none" stroke-linejoin="round">
+    <path d="M374 46 L426 46 L404 88 L426 130 L374 130 L396 88 Z" stroke="#ff2a6d" stroke-width="6" filter="url(#glow)"/>
+    <path d="M374 46 L426 46 L404 88 L426 130 L374 130 L396 88 Z" stroke="#ffd0de" stroke-width="2"/>
+    <circle cx="400" cy="88" r="56" stroke="#ff2a6d" stroke-width="3" filter="url(#glow)" opacity="0.8"/>
+    <circle cx="400" cy="88" r="56" stroke="#ff9ab8" stroke-width="1" stroke-dasharray="40 8"/>
+  </g>
+  <path d="M388 120 L412 120 L400 108 Z" fill="#ff2a6d"/>
+
+  <!-- the long velvet booth on the right -->
+  <path d="M300 270 L300 196 Q300 176 330 176 L540 176 Q560 176 560 196 L560 270 Z" fill="url(#booth)"/>
+  <g stroke="#4a0618" stroke-width="2">
+    <line x1="350" y1="180" x2="350" y2="232"/><line x1="400" y1="180" x2="400" y2="232"/>
+    <line x1="450" y1="180" x2="450" y2="232"/><line x1="500" y1="180" x2="500" y2="232"/>
+  </g>
+  <!-- patrons: sharks in deep water -->
+  <g fill="#0a0208">
+    <ellipse cx="352" cy="202" rx="9" ry="11"/><path d="M336 216 Q352 210 368 216 L372 248 L332 248 Z"/>
+    <ellipse cx="380" cy="206" rx="8" ry="10"/><path d="M366 218 Q380 213 394 218 L396 248 L364 248 Z"/>
+    <ellipse cx="508" cy="200" rx="9" ry="11"/><path d="M492 214 Q508 208 524 214 L528 248 L488 248 Z"/>
+    <path d="M500 192 Q510 182 520 196 L522 214 L516 214 Z"/>
+  </g>
+  <!-- table and candles -->
+  <rect x="320" y="236" width="220" height="8" fill="#1a0308"/>
+  <rect x="420" y="244" width="10" height="26" fill="#12030a"/>
+  <g>
+    <ellipse cx="360" cy="226" rx="26" ry="24" fill="url(#candle)"/>
+    <ellipse cx="440" cy="226" rx="26" ry="24" fill="url(#candle)"/>
+    <ellipse cx="510" cy="226" rx="26" ry="24" fill="url(#candle)"/>
+    <rect x="356" y="224" width="8" height="12" fill="#c4102e"/><path d="M360 216 q-3 5 0 8 q3 -3 0 -8 z" fill="#ffd27a"/>
+    <rect x="436" y="222" width="8" height="14" fill="#c4102e"/><path d="M440 214 q-3 5 0 8 q3 -3 0 -8 z" fill="#ffd27a"/>
+    <rect x="506" y="226" width="8" height="10" fill="#c4102e"/><path d="M510 218 q-3 5 0 8 q3 -3 0 -8 z" fill="#ffd27a"/>
+    <!-- glasses -->
+    <path d="M396 224 l10 0 l-5 8 z M401 232 v4" stroke="#ffb3c6" stroke-width="1" fill="#ff2a6d" fill-opacity="0.35"/>
+    <path d="M470 224 l10 0 l-5 8 z M475 232 v4" stroke="#ffb3c6" stroke-width="1" fill="#ff2a6d" fill-opacity="0.35"/>
+  </g>
+
+  <!-- haze over everything -->
+  <rect width="640" height="360" fill="url(#haze)"/>
+  <!-- reflections on the polished floor -->
+  <g opacity="0.35">
+    <path d="M384 280 L416 280 L408 300 L392 300 Z" fill="#ff2a6d" opacity="0.6"/>
+    <rect x="350" y="276" width="20" height="40" fill="url(#candle)"/>
+    <rect x="430" y="276" width="20" height="40" fill="url(#candle)"/>
+  </g>
+
+  <!-- the woman: smoke given form, black dress, long black hair -->
+  <g fill="#050108">
+    <path d="M232 152 Q246 140 258 152 Q264 172 258 196 L252 214 L238 214 Q228 186 232 152 Z"/>
+    <ellipse cx="246" cy="160" rx="10" ry="13"/>
+    <path d="M240 172 L252 172 L256 186 L236 186 Z"/>
+    <path d="M234 184 Q246 178 260 184 L262 226 Q270 262 280 300 L212 300 Q226 262 230 226 Z"/>
+    <path d="M258 188 Q272 206 268 232 L262 232 Q262 212 254 198 Z"/>
+    <path d="M234 188 Q224 208 228 230 L234 230 Q234 210 240 198 Z"/>
+  </g>
+  <!-- rim light on her: red from the candles, cyan from the stair -->
+  <path d="M258 152 Q264 172 258 196" stroke="#ff2a6d" stroke-width="1.5" fill="none"/>
+  <path d="M262 226 Q270 262 280 300" stroke="#ff2a6d" stroke-width="1.5" fill="none"/>
+  <path d="M232 152 Q228 186 238 214" stroke="#00e5ff" stroke-width="1" fill="none" opacity="0.6"/>
+  <!-- green eyes -->
+  <circle cx="251" cy="159" r="1.3" fill="#3dff8a"/>
+  <!-- her reflection -->
+  <path d="M212 300 L280 300 L268 340 L224 340 Z" fill="#000" opacity="0.4"/>
+
+  <!-- Kane in the foreground, right edge, hat brim low -->
+  <g fill="#020004">
+    <ellipse cx="560" cy="182" rx="27" ry="5.5"/>
+    <path d="M545 181 L548 166 Q560 160 572 166 L575 181 Z"/>
+    <ellipse cx="560" cy="196" rx="14" ry="16"/>
+    <path d="M524 220 Q560 206 596 220 L622 360 L500 360 Z"/>
+    <path d="M524 222 L506 320 L522 322 L540 244 Z"/>
+  </g>
+  <path d="M542 180 Q546 196 554 210" stroke="#ff2a6d" stroke-width="1.4" fill="none" opacity="0.8"/>
+  <path d="M524 220 L506 320" stroke="#ff2a6d" stroke-width="1.4" fill="none" opacity="0.7"/>
+</svg>

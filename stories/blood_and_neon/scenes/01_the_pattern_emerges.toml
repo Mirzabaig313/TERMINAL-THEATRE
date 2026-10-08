@@ -1,4 +1,5 @@
 [prologue]
+image = "images/prologue.svg"
 text = """
 Rain hammers the windows of your apartment like bullets seeking flesh. Three AM. The phone screams. You already know what it means.
 
@@ -45,6 +46,7 @@ text = "Review the case files one more time - you're missing something"
 goto = "review_files"
 
 [pier_nineteen]
+image = "images/pier_nineteen.svg"
 text = """
 The pier stretches into darkness like a dead man's finger pointing at eternity. Police lights strobe the scene in arterial reds and blues. The rain mixes with seawater, washing away evidence, washing away truth.
 
@@ -146,6 +148,7 @@ text = "Enough theory - get to Pier 19"
 goto = "pier_nineteen"
 
 [examine_card]
+image = "images/examine_card.svg"
 text = """
 The Queen of Swords. In tarot, she represents clarity through pain, truth through loss. Someone who has suffered and emerged with wisdom.
 
@@ -201,6 +204,7 @@ text = "Search Dr. Cross's office for more research"
 goto = "cross_office"
 
 [crimson_hour_club]
+image = "images/crimson_hour_club.svg"
 mood = "mystery"
 text = """
 The Crimson Hour sits in the meat-packing district like a jewel in a wound. No sign outside. Just a red door and a doorman built like mythology.

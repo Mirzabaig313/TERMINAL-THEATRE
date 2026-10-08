@@ -129,6 +129,7 @@ dialogue = [
 ending = true
 
 [ending_partnership_success]
+image = "images/ending_partnership_success.svg"
 mood = "calm"
 text = """
 You walk Blackwood to the car yourself, one hand on his elbow, Chen on his other side. He doesn't say another word. He doesn't need to; his smile says he'll be out in six months. He's wrong. Chen has the papers from Seat 13, and she has you, and between the two of you there isn't a friend in Washington who'll pick up his calls.
@@ -147,6 +148,7 @@ dialogue = [
 ending = true
 
 [ending_by_the_book]
+image = "images/ending_by_the_book.svg"
 mood = "calm"
 text = """
 They fish you out of the harbour with a boathook and wrap you in a blanket on the back of an ambulance, and you sit there shivering and watching Warehouse 47 burn down to the waterline while the sun comes up behind it.
@@ -219,6 +221,7 @@ dialogue = [
 ending = true
 
 [ending_died_with_honor]
+image = "images/ending_died_with_honor.svg"
 mood = "noir"
 text = """
 You don't reach for your gun. You don't run. You don't beg. You stand up straight in the red light of the Velvet Room, settle your hat on your head, and look Vincent Castellano right in the eye.

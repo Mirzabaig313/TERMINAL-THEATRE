@@ -1,4 +1,5 @@
 [first_awakening]
+image = "images/first_awakening.svg"
 text = """
 ⚠ REALITY SHIFTS ⚠
 
@@ -77,6 +78,7 @@ text = "Change your mind and explore elsewhere"
 goto = "first_awakening"
 
 [investigate_shadow]
+image = "images/investigate_shadow.svg"
 text = """
 Curiosity wars with fear. You need to understand this place, and you can't understand what you refuse to look at.
 
@@ -139,6 +141,7 @@ text = "Ignore it and keep searching"
 goto = "find_weapon"
 
 [dark_archway]
+image = "images/dark_archway.svg"
 text = """
 ⛧ TEMPLE OF THE FORGOTTEN ⛧
 
@@ -355,6 +358,7 @@ text = "Follow the whispers after all"
 goto = "mysterious_whispers"
 
 [first_memory]
+image = "images/first_memory.svg"
 text = """
 ≋ MEMORY ABSORBED ≋
 
@@ -548,6 +552,7 @@ text = "Stand and fight with whatever you have"
 goto = "hopeless_battle"
 
 [find_seal]
+image = "images/find_seal.svg"
 text = """
 ◈ THE BINDING SEAL ◈
 
@@ -652,6 +657,7 @@ text = "Ask the freed spirits what waits ahead"
 goto = "ghost_counsel"
 
 [trial_encounter]
+image = "images/trial_encounter.svg"
 text = """
 ⚠ FINAL TRIAL BEGINS ⚠
 
@@ -953,6 +959,7 @@ dialogue = [
 ]
 
 [spirit_aid]
+image = "images/spirit_aid.svg"
 ending = true
 text = """
 ☆ THE SPIRITS ANSWER YOUR CALL ☆
@@ -1012,6 +1019,7 @@ dialogue = [
 ]
 
 [shadow_victory]
+image = "images/shadow_victory.svg"
 ending = true
 text = """
 ◈◈◈ THE SHADOWS OBEY ◈◈◈

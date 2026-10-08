@@ -1,0 +1,114 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 360">
+  <!-- Consumed by shadow: a faceless new shape of smeared ink walks across the rubble toward a herd of shadow beasts as the Spell's circle fades. -->
+  <defs>
+    <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#05030a"/>
+      <stop offset="0.55" stop-color="#160c26"/>
+      <stop offset="1" stop-color="#3a1438"/>
+    </linearGradient>
+    <linearGradient id="ground" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#2a1430"/>
+      <stop offset="1" stop-color="#05030a"/>
+    </linearGradient>
+    <linearGradient id="mist" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#9a7ab0" stop-opacity="0"/>
+      <stop offset="0.6" stop-color="#9a7ab0" stop-opacity="0.2"/>
+      <stop offset="1" stop-color="#9a7ab0" stop-opacity="0"/>
+    </linearGradient>
+    <radialGradient id="moon" cx="0.5" cy="0.5" r="0.5">
+      <stop offset="0" stop-color="#d8d0ec" stop-opacity="0.5"/>
+      <stop offset="1" stop-color="#d8d0ec" stop-opacity="0"/>
+    </radialGradient>
+    <filter id="ink" x="-60%" y="-30%" width="220%" height="160%">
+      <feGaussianBlur stdDeviation="6"/>
+    </filter>
+    <filter id="wide" x="-50%" y="-100%" width="200%" height="300%">
+      <feGaussianBlur stdDeviation="22"/>
+    </filter>
+    <filter id="soft" x="-30%" y="-30%" width="160%" height="160%">
+      <feGaussianBlur stdDeviation="2"/>
+    </filter>
+    <path id="beast" d="M0,0 C10,-30 70,-36 100,-22 C112,-26 120,-44 126,-58 C132,-66 144,-64 146,-56 C148,-46 140,-40 132,-34 C122,-20 114,-10 104,-2 L106,62 H98 L92,8 C70,14 40,14 22,12 L18,62 H10 L8,10 C0,10 -14,6 -24,16 C-16,2 -8,0 0,0 Z"/>
+  </defs>
+
+  <rect width="640" height="360" fill="url(#sky)"/>
+  <circle cx="520" cy="60" r="70" fill="url(#moon)"/>
+  <circle cx="520" cy="60" r="12" fill="#cfc6e4" opacity="0.8"/>
+
+  <!-- the Spell's circle, broken and fading, very small and very far away -->
+  <g transform="translate(150,70)" fill="none" opacity="0.45">
+    <path d="M-40,0 A40,40 0 0,1 28,-28" stroke="#9d4edd" stroke-width="2"/>
+    <path d="M36,-16 A40,40 0 0,1 30,26" stroke="#9d4edd" stroke-width="2" opacity="0.6"/>
+    <path d="M-30,26 A40,40 0 0,1 -40,6" stroke="#9d4edd" stroke-width="2" opacity="0.4"/>
+    <path d="M-28,0 A28,28 0 0,1 20,-20" stroke="#c77dff" stroke-width="1" stroke-dasharray="3 5"/>
+    <path d="M-14,0 Q0,-9 14,0 Q0,9 -14,0 Z" stroke="#c77dff" stroke-width="1.2"/>
+    <circle r="3" fill="#e9d5ff" opacity="0.6"/>
+  </g>
+  <g fill="#9d4edd" opacity="0.4">
+    <rect x="196" y="60" width="3" height="3" transform="rotate(20 197 61)"/>
+    <rect x="206" y="80" width="2" height="2"/>
+    <rect x="186" y="96" width="2" height="2"/>
+  </g>
+
+  <!-- outer-ring ruins -->
+  <g fill="#1c0e26">
+    <path d="M260,250 V150 L272,138 L284,152 V250 Z"/>
+    <path d="M330,250 V170 Q350,140 370,170 V250 Z"/>
+    <path d="M580,250 V120 L594,108 L608,124 V250 Z"/>
+    <path d="M0,250 V160 L16,150 L30,170 V250 Z"/>
+  </g>
+  <path d="M0,246 C160,238 420,240 640,246 V360 H0 Z" fill="url(#ground)"/>
+  <rect y="220" width="640" height="60" fill="url(#mist)"/>
+  <!-- rubble -->
+  <g fill="#0e0816">
+    <path d="M40,330 l20,-14 l26,4 l8,14 Z"/>
+    <path d="M300,300 l14,-10 l20,2 l6,10 Z"/>
+    <path d="M520,340 l22,-16 l30,6 l6,12 Z"/>
+    <path d="M200,350 l12,-8 l18,2 l4,8 Z"/>
+  </g>
+
+  <!-- the herd, lifting faceless heads as one -->
+  <g fill="#06030b">
+    <g transform="translate(420,236) scale(0.55)"><use href="#beast" filter="url(#ink)" opacity="0.7"/><use href="#beast"/></g>
+    <g transform="translate(500,246) scale(0.7)"><use href="#beast" filter="url(#ink)" opacity="0.7"/><use href="#beast"/></g>
+    <g transform="translate(600,238) scale(-0.6,0.6)"><use href="#beast" filter="url(#ink)" opacity="0.7"/><use href="#beast"/></g>
+    <g transform="translate(560,262) scale(0.8)"><use href="#beast" filter="url(#ink)" opacity="0.7"/><use href="#beast"/></g>
+  </g>
+  <!-- a gap in the herd, left open -->
+  <ellipse cx="470" cy="300" rx="40" ry="5" fill="#000" opacity="0.4"/>
+
+  <!-- a sickly glow on the horizon behind it -->
+  <ellipse cx="240" cy="246" rx="160" ry="40" fill="#7a2a64" opacity="0.5" filter="url(#wide)"/>
+
+  <!-- the new shape: smeared ink in a person's outline, three steps and a pause -->
+  <g fill="#020106">
+    <path d="M220,150 C206,150 200,162 202,176 C186,184 178,214 182,250 C176,270 178,290 184,312 L196,306 L200,320 L210,300 L222,316 L228,298 L240,312 L242,290 C252,270 252,240 246,210 C252,190 244,172 236,166 C238,156 232,150 220,150 Z" filter="url(#ink)" opacity="0.85"/>
+    <!-- core silhouette, mid-stride -->
+    <ellipse cx="220" cy="166" rx="13" ry="15"/>
+    <path d="M204,184 Q220,178 238,184 L244,240 L236,252 L240,300 L248,320 H236 L226,268 L216,300 L206,322 H194 L206,294 L204,250 L198,240 Z"/>
+    <path d="M204,188 L190,240 L194,262 L200,240 L210,206 Z"/>
+    <path d="M238,188 L250,236 L252,262 L244,240 L234,206 Z"/>
+  </g>
+  <!-- edges smearing away like ink in water, trailing behind as it walks -->
+  <g stroke="#020106" stroke-linecap="round" fill="none">
+    <path d="M206,160 C186,150 170,156 150,146 C136,140 126,144 112,136" stroke-width="10" opacity="0.5" filter="url(#ink)"/>
+    <path d="M200,200 C180,196 166,206 146,200" stroke-width="12" opacity="0.45" filter="url(#ink)"/>
+    <path d="M196,260 C176,262 160,272 136,268" stroke-width="10" opacity="0.4" filter="url(#ink)"/>
+    <path d="M206,164 C192,156 180,160 168,152" stroke-width="3" opacity="0.8"/>
+    <path d="M202,206 C190,204 180,210 170,206" stroke-width="2.5" opacity="0.7"/>
+    <path d="M198,262 C188,264 180,270 170,268" stroke-width="2.5" opacity="0.6"/>
+  </g>
+  <!-- ink dripping where it walks -->
+  <g fill="#020106">
+    <circle cx="196" cy="330" r="2.5"/><circle cx="240" cy="328" r="2"/><circle cx="180" cy="340" r="2"/>
+    <ellipse cx="160" cy="344" rx="10" ry="2.5"/><ellipse cx="120" cy="348" rx="10" ry="2.5" opacity="0.7"/><ellipse cx="84" cy="352" rx="10" ry="2.5" opacity="0.5"/>
+  </g>
+  <!-- the face, smoothed over: only a faint sheen remains -->
+  <path d="M211,160 C214,154 222,152 228,156" stroke="#7a6a98" stroke-width="1.5" fill="none" opacity="0.7"/>
+
+  <!-- drifting ash -->
+  <g fill="#c8b8d8" opacity="0.45">
+    <circle cx="320" cy="120" r="1.2"/><circle cx="400" cy="180" r="1"/><circle cx="90" cy="200" r="1.2"/>
+    <circle cx="460" cy="120" r="1"/><circle cx="620" cy="200" r="1"/><circle cx="360" cy="320" r="1.1"/>
+  </g>
+</svg>

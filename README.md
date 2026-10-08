@@ -67,13 +67,14 @@ Pulled into the Dream Realm, you must survive your First Nightmare: ancient ruin
 cargo run --release
 ```
 
-Best in a truecolor terminal around **120×48** or larger (iTerm2, WezTerm, Kitty, Ghostty, Windows Terminal, the VS Code terminal…). Scene pictures appear as real images in Kitty, iTerm2, WezTerm and Sixel terminals and as character cells elsewhere (`THEATRE_GRAPHICS=halfblocks` forces the latter). Other terminals get the 256-color palette automatically (`THEATRE_COLOR=256` or `THEATRE_COLOR=truecolor` overrides the guess), and smaller windows still work.
+Best in a truecolor terminal around **120×48** or larger (iTerm2, WezTerm, Kitty, Ghostty, Windows Terminal, the VS Code terminal…). Scene pictures appear as real images in Kitty, iTerm2, WezTerm, Ghostty and Sixel terminals and as character cells elsewhere, which look soft and blocky. Run `theatre graphics` to see what your terminal supports; in VS Code-based editors (VS Code, Cursor, Kiro) turn on `"terminal.integrated.enableImages": true` for full-resolution pictures. `THEATRE_GRAPHICS=halfblocks` forces character cells. Other terminals get the 256-color palette automatically (`THEATRE_COLOR=256` or `THEATRE_COLOR=truecolor` overrides the guess), and smaller windows still work.
 
 ```bash
 cargo run --release -- --skip-intro     # straight to the main menu
 cargo run --release -- noir_detective   # straight into one story
 cargo run --release -- stories          # list installed stories
 cargo run --release -- saves            # list saved games
+cargo run --release -- graphics         # can this terminal show real pictures?
 cargo run --release -- --help           # every command
 ```
 
@@ -225,8 +226,9 @@ Every bundled story is checked on each run: it must load, every scene must be re
 - **Total Scenes**: 218
 - **Unique Endings**: 50
 - **Animated Characters**: 27, with 8 expressions each (hand-made sprites have their own sets)
+- **Scene Pictures**: 31 hand-drawn SVG illustrations (10 The Last Case, 10 Blood and Neon, 11 Shadow Slave)
 - **Lines of Dialogue**: 587
-- **Tests**: 68
+- **Tests**: 70
 
 
 ## 🔮 Future Plans

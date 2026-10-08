@@ -1,0 +1,127 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 360">
+  <!-- Eyes Wide Open: dawn breaks over the city as the rain thins; Kane on a rooftop, the Fool card in his hand, neon signs going dark one by one. -->
+  <defs>
+    <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#0a0a24"/>
+      <stop offset="0.45" stop-color="#3a1a4e"/>
+      <stop offset="0.72" stop-color="#b8466e"/>
+      <stop offset="0.86" stop-color="#ffb07a"/>
+      <stop offset="1" stop-color="#ffe2b0"/>
+    </linearGradient>
+    <radialGradient id="sun" cx="0.5" cy="0.5" r="0.5">
+      <stop offset="0" stop-color="#fff4d6" stop-opacity="1"/>
+      <stop offset="0.25" stop-color="#ffd08a" stop-opacity="0.8"/>
+      <stop offset="1" stop-color="#ff7a5a" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="far" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#4a2a5e"/>
+      <stop offset="1" stop-color="#2a1640"/>
+    </linearGradient>
+    <linearGradient id="near" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#1c0f2e"/>
+      <stop offset="1" stop-color="#0c0618"/>
+    </linearGradient>
+    <linearGradient id="roof" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#1a1028"/>
+      <stop offset="1" stop-color="#05030a"/>
+    </linearGradient>
+    <linearGradient id="ray" x1="0" y1="1" x2="0" y2="0">
+      <stop offset="0" stop-color="#ffd08a" stop-opacity="0.35"/>
+      <stop offset="1" stop-color="#ffd08a" stop-opacity="0"/>
+    </linearGradient>
+    <pattern id="rain" width="40" height="60" patternUnits="userSpaceOnUse" patternTransform="rotate(8)">
+      <line x1="5" y1="0" x2="5" y2="12" stroke="#ffe8d6" stroke-width="1" stroke-opacity="0.3"/>
+      <line x1="27" y1="30" x2="27" y2="38" stroke="#ffe8d6" stroke-width="1" stroke-opacity="0.2"/>
+    </pattern>
+    <filter id="glow" x="-40%" y="-40%" width="180%" height="180%">
+      <feGaussianBlur stdDeviation="2.5"/>
+    </filter>
+  </defs>
+
+  <rect width="640" height="360" fill="url(#sky)"/>
+  <!-- rays through the breaking clouds -->
+  <polygon points="400,210 300,0 350,0" fill="url(#ray)"/>
+  <polygon points="400,210 430,0 480,0" fill="url(#ray)"/>
+  <polygon points="400,210 540,0 600,0" fill="url(#ray)"/>
+  <!-- the sun on the horizon -->
+  <circle cx="400" cy="214" r="90" fill="url(#sun)"/>
+  <!-- clouds breaking apart, lit underneath -->
+  <g>
+    <path d="M0 60 Q80 40 170 62 Q240 48 300 70 L300 84 Q200 92 120 82 Q60 90 0 80 Z" fill="#241238"/>
+    <path d="M0 80 Q60 90 120 82 Q200 92 300 84" stroke="#ff7aa0" stroke-width="2" fill="none" opacity="0.7"/>
+    <path d="M360 40 Q450 22 560 44 Q610 36 640 46 L640 62 Q560 70 470 60 Q410 66 360 56 Z" fill="#2c1640"/>
+    <path d="M360 56 Q410 66 470 60 Q560 70 640 62" stroke="#ffb07a" stroke-width="2" fill="none" opacity="0.8"/>
+    <path d="M140 130 Q220 116 300 134 L296 142 Q220 146 150 140 Z" fill="#5a2a5e" opacity="0.8"/>
+    <path d="M150 140 Q220 146 296 142" stroke="#ffc49a" stroke-width="1.5" fill="none" opacity="0.8"/>
+  </g>
+
+  <!-- far skyline, softened by morning haze -->
+  <g fill="url(#far)">
+    <rect x="0" y="170" width="40" height="70"/><rect x="44" y="150" width="30" height="90"/><rect x="78" y="186" width="44" height="54"/>
+    <rect x="126" y="140" width="24" height="100"/><rect x="154" y="176" width="40" height="64"/><rect x="198" y="160" width="28" height="80"/>
+    <rect x="232" y="190" width="50" height="50"/><rect x="480" y="176" width="36" height="64"/><rect x="520" y="150" width="26" height="90"/>
+    <rect x="550" y="184" width="44" height="56"/><rect x="598" y="164" width="42" height="76"/>
+    <!-- the Ouroboros tower, its ring gone dark -->
+    <polygon points="300,240 300,120 330,108 360,120 360,240"/>
+  </g>
+  <circle cx="330" cy="150" r="14" fill="none" stroke="#6a4a7a" stroke-width="3"/>
+  <!-- near skyline -->
+  <g fill="url(#near)">
+    <rect x="0" y="210" width="70" height="70"/><rect x="74" y="196" width="40" height="84"/><rect x="118" y="222" width="60" height="58"/>
+    <rect x="182" y="204" width="34" height="76"/><rect x="430" y="214" width="50" height="66"/><rect x="484" y="198" width="38" height="82"/>
+    <rect x="526" y="220" width="60" height="60"/><rect x="590" y="206" width="50" height="74"/>
+  </g>
+  <!-- the last neon, dimming: one sign flickers out, one still on -->
+  <rect x="80" y="210" width="6" height="40" fill="#ff2a6d" filter="url(#glow)" opacity="0.7"/>
+  <rect x="81" y="212" width="4" height="36" fill="#ffc2d6" opacity="0.8"/>
+  <rect x="490" y="212" width="26" height="4" fill="#3a2a4a"/>
+  <rect x="490" y="220" width="18" height="4" fill="#00e5ff" opacity="0.4"/>
+  <!-- warm windows waking up -->
+  <g fill="#ffd27a" opacity="0.7">
+    <rect x="12" y="226" width="4" height="5"/><rect x="40" y="240" width="4" height="5"/><rect x="130" y="236" width="4" height="5"/>
+    <rect x="196" y="220" width="4" height="5"/><rect x="444" y="232" width="4" height="5"/><rect x="540" y="236" width="4" height="5"/>
+    <rect x="606" y="222" width="4" height="5"/>
+  </g>
+
+  <!-- the rooftop -->
+  <polygon points="0,280 640,268 640,360 0,360" fill="url(#roof)"/>
+  <line x1="0" y1="280" x2="640" y2="268" stroke="#ff9a7a" stroke-width="1.5" opacity="0.6"/>
+  <!-- puddles catching the dawn -->
+  <ellipse cx="400" cy="310" rx="110" ry="8" fill="#ffc49a" opacity="0.35"/>
+  <ellipse cx="400" cy="310" rx="50" ry="4" fill="#fff0d6" opacity="0.6"/>
+  <ellipse cx="420" cy="332" rx="60" ry="4" fill="#ffc49a" opacity="0.25"/>
+  <ellipse cx="160" cy="320" rx="50" ry="4" fill="#b8466e" opacity="0.3"/>
+  <!-- water tower / vent silhouettes -->
+  <g fill="#07040e">
+    <rect x="560" y="230" width="40" height="44"/><polygon points="556,230 580,214 604,230"/>
+    <rect x="566" y="274" width="4" height="10"/><rect x="590" y="274" width="4" height="10"/>
+    <rect x="30" y="260" width="30" height="24"/>
+  </g>
+
+  <!-- Kane, coat open, hat in hand, facing the light -->
+  <g fill="#05030a">
+    <ellipse cx="300" cy="186" rx="13" ry="16"/>
+    <path d="M292 200 h16 v8 h-16 z"/>
+    <path d="M276 210 Q300 200 324 210 L332 268 L322 300 L278 300 L268 268 Z"/>
+    <!-- coat tails stirring in the wind -->
+    <path d="M268 268 L256 300 L280 300 Z"/>
+    <!-- arm hanging, holding the card -->
+    <path d="M320 212 Q332 236 334 258 L326 260 Q322 238 314 222 Z"/>
+    <!-- other arm, hat in hand -->
+    <path d="M280 212 Q268 236 268 256 L276 258 Q278 238 286 222 Z"/>
+    <ellipse cx="270" cy="262" rx="14" ry="4"/>
+    <path d="M262 262 L264 252 Q270 248 276 252 L278 262 Z"/>
+    <!-- legs -->
+    <rect x="286" y="298" width="10" height="16"/><rect x="304" y="298" width="10" height="16"/>
+  </g>
+  <!-- dawn rim light on the side facing the sun -->
+  <path d="M311 178 Q314 190 308 200 M324 210 L332 268 L322 300" stroke="#ffc49a" stroke-width="1.8" fill="none"/>
+  <path d="M324 214 Q334 236 336 258" stroke="#ffc49a" stroke-width="1.2" fill="none"/>
+  <!-- the Fool card between his fingers, catching the sun -->
+  <rect x="330" y="258" width="9" height="14" rx="1" fill="#fff6e8" stroke="#ff2a6d" stroke-width="1" transform="rotate(14 334 265)"/>
+  <!-- long shadow behind him -->
+  <polygon points="278,314 322,314 180,350 120,350" fill="#000" opacity="0.4"/>
+
+  <!-- the last of the rain -->
+  <rect width="640" height="360" fill="url(#rain)"/>
+</svg>

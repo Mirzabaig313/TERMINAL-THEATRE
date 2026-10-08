@@ -151,6 +151,7 @@ goto = "velvet_room"
 # ---------------------------------------------------------------- castellano
 
 [castellano_meeting]
+image = "images/castellano_meeting.svg"
 mood = "mystery"
 text = """
 They put you in the back of a black Packard with a goon on either side, close enough that you can smell their hair oil. Nobody talks. The wipers keep time like a metronome at a funeral.
@@ -305,6 +306,7 @@ any_flags = ["tony_owes_you"]
 # ---------------------------------------------------------------- rodriguez
 
 [rodriguez]
+image = "images/rodriguez.svg"
 mood = "calm"
 text = """
 The 9th Precinct at 3 AM is a cathedral of bad coffee and worse lighting. A drunk sings in the holding cells. Somebody's typewriter goes clack-clack-ding with the patience of a man filling out a form for the thousandth time.
@@ -409,6 +411,7 @@ any_flags = ["name_cleared"]
 # ---------------------------------------------------------------- the ritz
 
 [theater]
+image = "images/theater.svg"
 mood = "mystery"
 text = """
 The Ritz Theater is dark except for the green exit signs, glowing like cat's eyes in a cellar. Rain finds its way through the roof somewhere high above the balcony and falls in a single thin thread into the orchestra pit, ticking on the timpani like a clock.

@@ -1,0 +1,117 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 360">
+  <!-- Died with honor: Malone stands straight in the Velvet Room's red light, hat on, facing three guns as they flash like a neon sign switching on. -->
+  <defs>
+    <linearGradient id="folds" x1="0" y1="0" x2="36" y2="0" gradientUnits="userSpaceOnUse" spreadMethod="repeat">
+      <stop offset="0" stop-color="#140305"/>
+      <stop offset="0.45" stop-color="#4a0c12"/>
+      <stop offset="0.6" stop-color="#36080d"/>
+      <stop offset="1" stop-color="#140305"/>
+    </linearGradient>
+    <radialGradient id="redWash" cx="0.62" cy="0.3" r="0.7">
+      <stop offset="0" stop-color="#d0202a" stop-opacity="0.45"/>
+      <stop offset="1" stop-color="#000" stop-opacity="0.85"/>
+    </radialGradient>
+    <linearGradient id="floor" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#2a080b"/>
+      <stop offset="1" stop-color="#040203"/>
+    </linearGradient>
+    <radialGradient id="flash" cx="0.5" cy="0.5" r="0.5">
+      <stop offset="0" stop-color="#ffffff"/>
+      <stop offset="0.25" stop-color="#ffe7a0" stop-opacity="0.95"/>
+      <stop offset="0.6" stop-color="#d4af37" stop-opacity="0.35"/>
+      <stop offset="1" stop-color="#d4af37" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="pool" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#ffd27a" stop-opacity="0.35"/>
+      <stop offset="1" stop-color="#ffd27a" stop-opacity="0"/>
+    </linearGradient>
+    <!-- a gunman in profile facing left, arm out, feet at 0,0, 100 units tall -->
+    <g id="gunman">
+      <ellipse cx="0" cy="-88" rx="15" ry="2.4"/>
+      <path d="M-7 -88 L-6 -96 Q0 -98.5 6 -96 L7 -88 Z"/>
+      <ellipse cx="0.5" cy="-82" rx="6" ry="7"/>
+      <path d="M-5.5 -83.5 L-7.6 -80.5 L-5.5 -79.5 Z"/>
+      <path d="M-8 -74 Q0 -76 9 -73 Q13 -50 13 -14 L-11 -14 Q-12 -48 -8 -74 Z"/>
+      <path d="M-6 -72 L-40 -70.5 L-40 -66.5 L-5 -64 Z"/>
+      <path d="M-40 -71.5 L-50 -71.5 L-50 -68.5 L-40 -68.5 Z M-43 -69 L-41 -63 L-38 -63 L-39 -69 Z"/>
+      <path d="M-7 -15 L-2 -15 L-4 0 L-11 0 Z M2 -15 L7 -15 L8 0 L1 0 Z"/>
+    </g>
+    <g id="burst">
+      <circle r="22" fill="url(#flash)"/>
+      <path d="M0 -14 L3 -3 L16 0 L3 3 L0 14 L-3 3 L-20 0 L-3 -3 Z" fill="#fff8e0"/>
+    </g>
+  </defs>
+
+  <!-- red velvet drapes, washed in red light -->
+  <rect width="640" height="360" fill="url(#folds)"/>
+  <rect width="640" height="360" fill="url(#redWash)"/>
+
+  <!-- the bandstand glow far back -->
+  <ellipse cx="70" cy="170" rx="90" ry="50" fill="#d4af37" opacity="0.05"/>
+
+  <!-- floor: polished boards running away in hard diagonals -->
+  <polygon points="0,280 640,250 640,360 0,360" fill="url(#floor)"/>
+  <g stroke="#000" stroke-width="1.5" opacity="0.7">
+    <line x1="0" y1="300" x2="640" y2="262"/><line x1="0" y1="326" x2="640" y2="282"/><line x1="0" y1="356" x2="640" y2="308"/>
+  </g>
+  <g stroke="#7a1a20" stroke-width="1" opacity="0.5">
+    <line x1="80" y1="360" x2="180" y2="276"/><line x1="240" y1="360" x2="300" y2="268"/><line x1="420" y1="360" x2="440" y2="258"/><line x1="580" y1="360" x2="570" y2="252"/>
+  </g>
+
+  <!-- Castellano in the booth beyond, already looking away -->
+  <path d="M230 260 Q230 196 300 192 Q370 196 370 260 Z" fill="#100204"/>
+  <g fill="#050102">
+    <path d="M278 258 Q276 226 288 216 Q302 210 316 218 Q326 230 324 258 Z"/>
+    <ellipse cx="304" cy="206" rx="10" ry="12"/>
+  </g>
+  <path d="M312 198 Q316 206 312 214" stroke="#d0202a" stroke-width="1.2" fill="none" opacity="0.8"/>
+  <circle cx="292" cy="212" r="1.6" fill="#ff8a3a"/>
+
+  <!-- Malone: upright, hat settled, hands empty at his sides -->
+  <g fill="#000">
+    <ellipse cx="174" cy="114" rx="38" ry="5" transform="rotate(-3 174 114)"/>
+    <path d="M156 114 L159 88 Q172 82 186 86 L192 112 Z"/>
+    <path d="M164 118 L190 118 Q193 126 193 132 L200 140 L194 143 Q194 152 186 156 L170 156 Q160 140 164 118 Z"/>
+    <path d="M166 152 L188 152 L214 168 Q220 230 218 300 L210 332 L138 332 L134 300 Q132 220 146 172 Z"/>
+    <path d="M150 330 L170 330 L172 342 L146 342 Z M184 330 L204 330 L210 342 L184 342 Z"/>
+  </g>
+  <!-- red rim light along his face, coat, hat brim -->
+  <g fill="none" stroke="#ff4a40" stroke-width="1.6" opacity="0.85" stroke-linecap="round">
+    <path d="M190 112 L212 110"/>
+    <path d="M191 120 Q194 128 193 132 L200 140 L194 143 Q194 152 187 156"/>
+    <path d="M214 170 Q220 230 218 298"/>
+    <path d="M186 88 L191 110"/>
+  </g>
+  <!-- his shadow -->
+  <ellipse cx="176" cy="342" rx="70" ry="6" fill="#000" opacity="0.6"/>
+
+  <!-- the first gunman in profile, arm out -->
+  <use href="#gunman" transform="translate(430,336) scale(2.25)" fill="#000"/>
+  <path d="M446 172 Q458 220 456 304 M416 177 L328 178" fill="none" stroke="#ff4a40" stroke-width="1.3" opacity="0.7"/>
+
+  <!-- two more guns reaching in from the dark at the right edge -->
+  <g fill="#000">
+    <path d="M640 40 L640 84 L476 108 L470 92 Z"/>
+    <ellipse cx="466" cy="100" rx="11" ry="9"/>
+    <path d="M460 93 L426 98 L427 104 L462 100 Z"/>
+    <path d="M452 100 L455 114 L462 113 L460 99 Z"/>
+    <path d="M640 228 L640 280 L548 254 L552 236 Z"/>
+    <ellipse cx="544" cy="244" rx="11" ry="9"/>
+    <path d="M538 238 L500 236 L500 242 L538 246 Z"/>
+    <path d="M520 244 L518 258 L525 259 L528 245 Z"/>
+  </g>
+  <g fill="none" stroke="#ff4a40" stroke-width="1.4" opacity="0.8" stroke-linecap="round">
+    <path d="M640 40 L470 92 M460 93 L428 98"/>
+    <path d="M640 228 L552 236 M538 238 L502 236"/>
+  </g>
+
+  <!-- three muzzle flashes, close together -->
+  <use href="#burst" transform="translate(320 179)"/>
+  <use href="#burst" transform="translate(420 100) scale(0.95)"/>
+  <use href="#burst" transform="translate(494 238) scale(1.05)"/>
+
+  <!-- smoke drifting in the red -->
+  <g fill="#e0c8c0" opacity="0.08">
+    <ellipse cx="420" cy="150" rx="140" ry="10"/><ellipse cx="300" cy="100" rx="180" ry="8"/>
+  </g>
+</svg>

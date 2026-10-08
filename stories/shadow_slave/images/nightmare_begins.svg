@@ -1,0 +1,110 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 360">
+  <!-- The Nightmare Spell arrives: a burning violet rune circle with a pale eye opens above a small figure in the void. -->
+  <defs>
+    <radialGradient id="void" cx="0.5" cy="0.38" r="0.75">
+      <stop offset="0" stop-color="#2a1250"/>
+      <stop offset="0.45" stop-color="#120926"/>
+      <stop offset="1" stop-color="#05030b"/>
+    </radialGradient>
+    <radialGradient id="halo" cx="0.5" cy="0.5" r="0.5">
+      <stop offset="0" stop-color="#c77dff" stop-opacity="0.55"/>
+      <stop offset="0.5" stop-color="#9d4edd" stop-opacity="0.18"/>
+      <stop offset="1" stop-color="#5a189a" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="iris" cx="0.5" cy="0.5" r="0.5">
+      <stop offset="0" stop-color="#ffffff"/>
+      <stop offset="0.35" stop-color="#efe3ff"/>
+      <stop offset="0.8" stop-color="#c77dff"/>
+      <stop offset="1" stop-color="#7b2cbf"/>
+    </radialGradient>
+    <linearGradient id="beam" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#c77dff" stop-opacity="0.45"/>
+      <stop offset="1" stop-color="#c77dff" stop-opacity="0"/>
+    </linearGradient>
+    <filter id="glow" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="3"/>
+    </filter>
+  </defs>
+
+  <rect width="640" height="360" fill="url(#void)"/>
+
+  <!-- writhing shadows crawling toward the light -->
+  <g fill="#04020a" opacity="0.9">
+    <path d="M0,0 H640 V40 C590,70 560,30 520,62 C490,86 470,50 440,70 C410,92 380,58 350,40 C320,60 300,30 270,52 C240,80 210,44 180,66 C150,90 120,50 90,70 C60,92 30,60 0,80 Z"/>
+    <path d="M0,0 V200 C20,170 14,140 40,120 C60,100 50,70 80,40 L60,0 Z"/>
+    <path d="M640,0 V210 C618,180 628,150 600,126 C578,106 590,72 560,40 L590,0 Z"/>
+  </g>
+  <g fill="none" stroke="#04020a" stroke-width="7" stroke-linecap="round" opacity="0.85">
+    <path d="M150,60 C170,90 160,110 190,130"/>
+    <path d="M480,64 C460,92 476,112 448,134"/>
+    <path d="M62,120 C90,140 86,160 120,170"/>
+    <path d="M590,128 C560,146 566,168 530,176"/>
+  </g>
+
+  <!-- halo and the rune circle -->
+  <circle cx="320" cy="140" r="170" fill="url(#halo)"/>
+  <g transform="translate(320,140)" fill="none">
+    <g stroke="#9d4edd" stroke-width="5" filter="url(#glow)" opacity="0.8">
+      <circle r="108"/>
+      <circle r="72"/>
+    </g>
+    <circle r="108" stroke="#c77dff" stroke-width="2"/>
+    <circle r="98" stroke="#9d4edd" stroke-width="1.5" stroke-dasharray="3 6"/>
+    <circle r="88" stroke="#c77dff" stroke-width="7" stroke-dasharray="2 9 6 7" opacity="0.85"/>
+    <circle r="72" stroke="#c77dff" stroke-width="1.6"/>
+    <circle r="126" stroke="#5a189a" stroke-width="1.2" stroke-dasharray="20 8 4 8"/>
+    <!-- interlaced squares -->
+    <rect x="-76" y="-76" width="152" height="152" stroke="#9d4edd" stroke-width="1.6"/>
+    <rect x="-76" y="-76" width="152" height="152" stroke="#9d4edd" stroke-width="1.6" transform="rotate(45)"/>
+    <!-- carved glyph strokes around the ring -->
+    <g stroke="#e9d5ff" stroke-width="2" stroke-linecap="round">
+      <path d="M-6,-120 v-14 l8,6"/>
+      <path d="M44,-112 l6,-12 l6,10"/>
+      <path d="M86,-84 l12,-8 m-6,-4 v14"/>
+      <path d="M112,-38 h12 m-6,-6 v12 l6,4"/>
+      <path d="M116,20 l12,4 l-8,8"/>
+      <path d="M98,66 l10,8 m0,-10 l-6,14"/>
+      <path d="M58,104 l4,14 l8,-8"/>
+      <path d="M2,120 v14 m-6,-6 h12"/>
+      <path d="M-50,108 l-4,14 l-8,-6"/>
+      <path d="M-92,74 l-10,8 l2,-12"/>
+      <path d="M-118,26 h-12 l4,8"/>
+      <path d="M-116,-30 l-12,-4 m4,-6 v14"/>
+      <path d="M-90,-80 l-10,-10 l10,-2"/>
+      <path d="M-46,-110 l-6,-12 h8"/>
+    </g>
+    <!-- the pale eye -->
+    <path d="M-60,0 Q0,-44 60,0 Q0,44 -60,0 Z" fill="#0b0618" stroke="#c77dff" stroke-width="2.5"/>
+    <circle r="24" fill="url(#iris)"/>
+    <ellipse rx="5" ry="18" fill="#1a0b30"/>
+    <circle cx="-8" cy="-9" r="4" fill="#ffffff" opacity="0.9"/>
+  </g>
+
+  <!-- light falling from the eye -->
+  <polygon points="300,180 340,180 400,330 240,330" fill="url(#beam)"/>
+
+  <!-- burning letters drifting down -->
+  <g stroke="#c77dff" stroke-width="2" stroke-linecap="round" fill="none" opacity="0.85">
+    <path d="M232,206 v10 l6,-4"/>
+    <path d="M410,214 l6,8 l6,-8"/>
+    <path d="M196,250 h8 m-4,-4 v10"/>
+    <path d="M448,262 l-6,8 h8"/>
+    <path d="M268,290 l4,-8 l4,8"/>
+    <path d="M378,284 v8 m-4,-4 h8"/>
+  </g>
+  <g fill="#e9d5ff">
+    <circle cx="150" cy="230" r="1.5"/><circle cx="500" cy="200" r="1.5"/>
+    <circle cx="210" cy="320" r="1.2"/><circle cx="440" cy="310" r="1.2"/>
+    <circle cx="120" cy="290" r="1"/><circle cx="530" cy="280" r="1"/>
+  </g>
+
+  <!-- the Aspirant, small, staring up -->
+  <ellipse cx="320" cy="338" rx="70" ry="6" fill="#c77dff" opacity="0.25"/>
+  <g fill="#05030a">
+    <circle cx="320" cy="282" r="8"/>
+    <path d="M309,292 Q320,288 331,292 L334,318 L328,338 H323 L320,320 L317,338 H312 L306,318 Z"/>
+    <path d="M309,294 L298,318 L302,320 L312,302 Z"/>
+    <path d="M331,294 L342,318 L338,320 L328,302 Z"/>
+  </g>
+  <path d="M313,280 Q320,272 327,280" stroke="#c77dff" stroke-width="1.5" fill="none" opacity="0.7"/>
+</svg>

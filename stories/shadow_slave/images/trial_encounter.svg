@@ -1,0 +1,146 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 360">
+  <!-- The Guardian emerges: a towering obsidian-armored colossus with burning eyes raises one arm over a small Aspirant in a dead plaza. -->
+  <defs>
+    <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#07040e"/>
+      <stop offset="0.5" stop-color="#2a1038"/>
+      <stop offset="0.85" stop-color="#7a1e3a"/>
+      <stop offset="1" stop-color="#962c3a"/>
+    </linearGradient>
+    <linearGradient id="obs" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#2a2340"/>
+      <stop offset="0.45" stop-color="#110d1c"/>
+      <stop offset="1" stop-color="#050309"/>
+    </linearGradient>
+    <linearGradient id="obs2" x1="1" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#3a2848"/>
+      <stop offset="0.5" stop-color="#120d1e"/>
+      <stop offset="1" stop-color="#050309"/>
+    </linearGradient>
+    <linearGradient id="ground" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#2a1426"/>
+      <stop offset="1" stop-color="#06040a"/>
+    </linearGradient>
+    <radialGradient id="eye" cx="0.5" cy="0.5" r="0.5">
+      <stop offset="0" stop-color="#fff4c8"/>
+      <stop offset="0.35" stop-color="#ffb040"/>
+      <stop offset="1" stop-color="#ff5a1a" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="fireglow" cx="0.5" cy="0.5" r="0.5">
+      <stop offset="0" stop-color="#ff7a2a" stop-opacity="0.45"/>
+      <stop offset="1" stop-color="#ff7a2a" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="dust" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#c890a8" stop-opacity="0"/>
+      <stop offset="0.6" stop-color="#c890a8" stop-opacity="0.2"/>
+      <stop offset="1" stop-color="#c890a8" stop-opacity="0"/>
+    </linearGradient>
+  </defs>
+
+  <rect width="640" height="360" fill="url(#sky)"/>
+  <!-- roiling storm -->
+  <g fill="#06030c" opacity="0.85">
+    <path d="M0,0 H640 V50 C590,70 540,40 480,62 C420,84 380,50 320,66 C260,82 220,48 160,66 C100,84 50,56 0,70 Z"/>
+  </g>
+  <path d="M0,96 C80,84 140,104 220,92 C260,86 280,98 300,96 V104 C240,110 160,100 80,112 C40,118 20,108 0,112 Z" fill="#06030c" opacity="0.45"/>
+
+  <!-- ruined plaza edges -->
+  <g fill="#1c0d22">
+    <path d="M0,280 V140 L14,128 L26,146 L40,132 V280 Z"/>
+    <path d="M70,280 V180 H96 V280 Z"/>
+    <path d="M560,280 V120 L574,108 L590,124 V280 Z"/>
+    <path d="M604,280 V170 L620,160 L640,176 V280 Z"/>
+  </g>
+
+  <!-- the ground, cracking under its weight -->
+  <path d="M0,276 C160,268 480,268 640,276 V360 H0 Z" fill="url(#ground)"/>
+  <g stroke="#ff7a2a" stroke-width="1.5" fill="none" opacity="0.55">
+    <path d="M320,300 L280,320 L240,316 L190,340 L150,336"/>
+    <path d="M330,300 L380,322 L420,318 L470,346"/>
+    <path d="M320,300 L318,330 L332,360"/>
+    <path d="M280,320 L272,352"/>
+  </g>
+  <g stroke="#06030a" stroke-width="3" fill="none">
+    <path d="M320,300 L280,320 L240,316 L190,340 L150,336"/>
+    <path d="M330,300 L380,322 L420,318 L470,346"/>
+  </g>
+  <rect y="250" width="640" height="60" fill="url(#dust)"/>
+
+  <!-- THE GUARDIAN -->
+  <ellipse cx="330" cy="300" rx="130" ry="10" fill="#000" opacity="0.55"/>
+  <!-- tattered cape behind -->
+  <path d="M258,110 C230,170 222,240 214,300 L232,288 L240,304 L256,286 L270,300 L284,280 L300,296 L360,296 L376,280 L390,300 L404,286 L420,304 L428,288 L446,300 C438,240 430,170 402,110 Z" fill="#07040c"/>
+  <!-- legs: armored greaves -->
+  <path d="M296,196 C284,220 276,250 270,298 H310 C312,260 318,230 326,206 Z" fill="url(#obs)"/>
+  <path d="M334,206 C342,230 348,260 350,298 H392 C386,250 378,220 366,196 Z" fill="url(#obs2)"/>
+  <path d="M276,248 Q292,240 314,248 L312,262 Q292,254 274,262 Z M346,248 Q368,240 386,248 L388,262 Q368,254 348,262 Z" fill="#1c1630"/>
+  <!-- layered faulds -->
+  <path d="M278,178 Q330,170 382,178 L392,212 Q362,204 330,222 Q298,204 268,212 Z" fill="#0b0814"/>
+  <path d="M286,190 Q330,184 374,190" stroke="#2c2444" stroke-width="2" fill="none"/>
+  <!-- torso: broad chest, narrow waist -->
+  <path d="M252,108 C270,100 390,100 408,108 C404,140 392,166 378,182 H282 C268,166 256,140 252,108 Z" fill="url(#obs)"/>
+  <path d="M276,120 Q330,138 384,120" stroke="#04020a" stroke-width="2" fill="none"/>
+  <path d="M330,128 V182" stroke="#04020a" stroke-width="2"/>
+  <!-- exposed bone where plates have parted -->
+  <g stroke="#d8cbb0" stroke-width="2.5" stroke-linecap="round" opacity="0.8">
+    <path d="M290,156 Q302,162 314,156"/><path d="M292,168 Q302,173 312,168"/>
+  </g>
+  <!-- the crack across its chest -->
+  <path d="M292,122 L302,130 L311,128 L320,140 L333,143 L339,154 L351,157 L364,170 M320,140 L315,153 M339,154 L345,166" stroke="#ff6a1a" stroke-width="5" fill="none" opacity="0.35"/>
+  <path d="M292,122 L302,130 L311,128 L320,140 L333,143 L339,154 L351,157 L364,170 M320,140 L315,153 M339,154 L345,166" stroke="#ffb060" stroke-width="1.8" fill="none"/>
+  <!-- hanging arm with a great gauntlet -->
+  <path d="M236,130 C226,160 220,190 220,214 L240,216 C244,190 250,160 256,136 Z" fill="url(#obs)"/>
+  <path d="M212,210 C214,204 246,204 248,212 L246,240 C240,250 220,250 214,242 Z" fill="#0a0812"/>
+  <path d="M216,226 H244" stroke="#2c2444" stroke-width="2"/>
+  <!-- raised arm, fist lifted to strike -->
+  <path d="M398,120 C420,112 444,106 468,104 L472,124 C450,128 428,134 406,140 Z" fill="url(#obs2)"/>
+  <path d="M456,110 C458,90 462,70 468,52 L488,56 C484,76 480,96 478,118 Z" fill="url(#obs2)"/>
+  <path d="M462,54 C460,40 468,28 480,28 C492,30 496,42 492,56 Z" fill="#0a0812"/>
+  <path d="M466,40 H492 M464,48 H492" stroke="#2c2444" stroke-width="1.5"/>
+  <!-- pauldrons: stacked curved plates with spikes -->
+  <path d="M256,104 C236,98 214,108 206,134 C220,128 236,128 254,134 Z" fill="#14101f"/>
+  <path d="M258,118 C240,114 222,122 214,142 C228,138 242,138 258,144 Z" fill="#0b0814"/>
+  <path d="M222,108 L204,84 L230,104 Z M240,102 L232,76 L248,100 Z" fill="#0b0814"/>
+  <path d="M404,104 C424,98 446,108 454,134 C440,128 424,128 406,134 Z" fill="#14101f"/>
+  <path d="M402,118 C420,114 438,122 446,142 C432,138 418,138 402,144 Z" fill="#0b0814"/>
+  <path d="M438,108 L456,84 L430,104 Z M420,102 L428,76 L412,100 Z" fill="#0b0814"/>
+  <!-- helm with swept horns -->
+  <path d="M310,104 C304,80 306,58 318,46 L330,40 L342,46 C354,58 356,80 350,104 Z" fill="url(#obs)"/>
+  <path d="M316,52 C300,40 296,22 304,6 C306,24 314,36 324,44 Z" fill="#0b0814"/>
+  <path d="M344,52 C360,40 364,22 356,6 C354,24 346,36 336,44 Z" fill="#0b0814"/>
+  <path d="M314,72 Q330,66 346,72 L342,80 Q330,76 318,80 Z" fill="#000"/>
+  <path d="M330,82 V102" stroke="#04020a" stroke-width="2"/>
+  <!-- fire in its eyes -->
+  <circle cx="330" cy="74" r="44" fill="url(#fireglow)"/>
+  <ellipse cx="322" cy="74" rx="6.5" ry="3.5" fill="url(#eye)"/>
+  <ellipse cx="338" cy="74" rx="6.5" ry="3.5" fill="url(#eye)"/>
+  <!-- cold rim light on the edges facing the sky -->
+  <g stroke="#a898d0" stroke-width="1.4" fill="none" opacity="0.55">
+    <path d="M306,58 C306,54 312,48 318,46 L330,40"/><path d="M206,134 C214,108 236,98 256,104"/>
+    <path d="M252,108 C256,140 268,166 282,182"/><path d="M296,196 C284,220 276,250 270,298"/>
+    <path d="M462,54 C460,40 468,28 480,28"/><path d="M316,52 C300,40 296,22 304,6"/><path d="M344,52 C360,40 364,22 356,6" opacity="0.5"/><path d="M236,130 C226,160 220,190 220,214"/>
+  </g>
+  <!-- shadow-mist coiling at its feet -->
+  <g fill="#07040c" opacity="0.8">
+    <path d="M200,300 C230,286 260,296 290,288 C320,282 350,294 380,286 C410,280 440,292 470,298 C420,306 260,308 200,300 Z"/>
+  </g>
+
+  <!-- the Aspirant, small, facing it -->
+  <g fill="#020105">
+    <ellipse cx="128" cy="346" rx="30" ry="4" opacity="0.6"/>
+    <circle cx="128" cy="292" r="8"/>
+    <path d="M117,302 Q128,298 139,302 L142,326 L138,346 H132 L128,328 L124,346 H118 L114,326 Z"/>
+    <path d="M117,304 L106,326 L111,329 L121,312 Z"/>
+    <path d="M139,304 L150,326 L145,329 L135,312 Z"/>
+  </g>
+  <path d="M132,288 Q136,284 136,292" stroke="#ff9a5a" stroke-width="1.2" fill="none" opacity="0.7"/>
+
+  <!-- ash and embers -->
+  <g fill="#ffb070" opacity="0.8">
+    <circle cx="200" cy="120" r="1.3"/><circle cx="480" cy="150" r="1.2"/><circle cx="420" cy="230" r="1"/>
+    <circle cx="240" cy="230" r="1"/><circle cx="520" cy="80" r="1"/>
+  </g>
+  <g fill="#d8c8e8" opacity="0.5">
+    <circle cx="100" cy="160" r="1.2"/><circle cx="560" cy="250" r="1"/><circle cx="160" cy="80" r="1"/><circle cx="600" cy="110" r="1.2"/>
+  </g>
+</svg>

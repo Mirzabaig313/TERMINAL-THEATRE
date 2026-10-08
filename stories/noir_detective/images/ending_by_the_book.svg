@@ -1,0 +1,138 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 360">
+  <!-- Proper procedure: fished out of the harbour, Malone sits wrapped in a blanket on the back of an ambulance, watching Warehouse 47 burn to the waterline at sunrise. -->
+  <defs>
+    <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#0c0c0e"/>
+      <stop offset="0.45" stop-color="#2e2c2a"/>
+      <stop offset="0.62" stop-color="#6a5a44"/>
+      <stop offset="1" stop-color="#6a5a44"/>
+    </linearGradient>
+    <radialGradient id="fireGlow" cx="0.5" cy="0.5" r="0.5">
+      <stop offset="0" stop-color="#ffcf6a" stop-opacity="0.9"/>
+      <stop offset="0.35" stop-color="#e07a24" stop-opacity="0.45"/>
+      <stop offset="1" stop-color="#a03a14" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="flame" x1="0" y1="1" x2="0" y2="0">
+      <stop offset="0" stop-color="#fff0b0"/>
+      <stop offset="0.35" stop-color="#f2a640"/>
+      <stop offset="0.75" stop-color="#d0601e" stop-opacity="0.9"/>
+      <stop offset="1" stop-color="#a03a14" stop-opacity="0.7"/>
+    </linearGradient>
+    <linearGradient id="water" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#2a221a"/>
+      <stop offset="1" stop-color="#060606"/>
+    </linearGradient>
+    <linearGradient id="reflect" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#f2a640" stop-opacity="0.7"/>
+      <stop offset="1" stop-color="#f2a640" stop-opacity="0"/>
+    </linearGradient>
+    <linearGradient id="truck" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#2a2622"/>
+      <stop offset="1" stop-color="#0c0b0a"/>
+    </linearGradient>
+    <linearGradient id="blanket" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#8a7a62"/>
+      <stop offset="0.4" stop-color="#3a3530"/>
+      <stop offset="1" stop-color="#141312"/>
+    </linearGradient>
+    <filter id="lick" x="-10%" y="-10%" width="120%" height="120%">
+      <feGaussianBlur stdDeviation="2"/>
+    </filter>
+    <filter id="smoke" x="-30%" y="-30%" width="160%" height="160%">
+      <feGaussianBlur stdDeviation="9"/>
+    </filter>
+  </defs>
+
+  <rect width="640" height="360" fill="url(#sky)"/>
+  <!-- grey dawn line on the horizon -->
+  <rect x="0" y="212" width="640" height="10" fill="#9a8a6a" opacity="0.5"/>
+
+  <!-- the smoke column leaning across the sky -->
+  <g filter="url(#smoke)">
+    <ellipse cx="170" cy="150" rx="50" ry="36" fill="#0a0908" opacity="0.9"/>
+    <ellipse cx="220" cy="104" rx="70" ry="40" fill="#0a0908" opacity="0.85"/>
+    <ellipse cx="300" cy="66" rx="96" ry="40" fill="#0c0b0a" opacity="0.8"/>
+    <ellipse cx="420" cy="34" rx="140" ry="36" fill="#0e0d0c" opacity="0.75"/>
+    <ellipse cx="560" cy="14" rx="140" ry="30" fill="#100f0e" opacity="0.7"/>
+    <ellipse cx="190" cy="140" rx="40" ry="16" fill="#8a4a1c" opacity="0.5"/>
+    <ellipse cx="250" cy="110" rx="50" ry="14" fill="#6a3a18" opacity="0.4"/>
+  </g>
+
+  <!-- the fire's glow -->
+  <circle cx="175" cy="196" r="160" fill="url(#fireGlow)"/>
+  <!-- flames, soft and tall -->
+  <g fill="url(#flame)">
+    <path d="M56 228 Q62 200 72 186 Q76 204 86 196 Q88 162 104 140 Q110 176 120 168 Q124 128 142 100 Q148 150 160 140 Q166 112 178 96 Q184 140 196 134 Q204 160 214 150 Q220 172 232 166 Q240 188 254 186 Q262 204 276 206 Q284 218 296 228 Z"/>
+    <path d="M100 228 Q108 196 120 184 Q124 200 134 194 Q140 164 156 148 Q160 184 172 178 Q180 160 190 152 Q194 186 206 186 Q214 204 228 228 Z" fill="#fff2c0" opacity="0.75"/>
+  </g>
+  <!-- Warehouse 47: a black skeleton of ribs and a half-fallen roof against the blaze -->
+  <g fill="none" stroke="#050403" stroke-width="5" stroke-linecap="round">
+    <path d="M70 228 L70 130 L150 104 L230 120"/>
+    <path d="M110 228 L110 118 M150 228 L150 106 M190 228 L190 150 M230 228 L230 170 M270 228 L270 196"/>
+    <path d="M230 120 L258 176 L284 228"/>
+    <path d="M70 160 L150 140 M90 202 L240 198"/>
+  </g>
+  <path d="M190 150 L214 136 L230 170" fill="none" stroke="#050403" stroke-width="4"/>
+  <!-- sparks -->
+  <g fill="#ffd27a">
+    <circle cx="140" cy="86" r="1.5"/><circle cx="176" cy="74" r="1.2"/><circle cx="208" cy="100" r="1.4"/>
+    <circle cx="120" cy="64" r="1"/><circle cx="236" cy="84" r="1"/><circle cx="196" cy="52" r="1.2"/><circle cx="160" cy="44" r="1"/>
+  </g>
+
+  <!-- harbour water with the fire's reflection broken in the swell -->
+  <rect x="0" y="226" width="400" height="60" fill="url(#water)"/>
+  <ellipse cx="176" cy="240" rx="120" ry="16" fill="#f2a640" opacity="0.3" filter="url(#lick)"/>
+  <g stroke="#ffd27a" stroke-width="2" opacity="0.5" stroke-linecap="round">
+    <line x1="110" y1="236" x2="160" y2="236"/><line x1="180" y1="240" x2="240" y2="240"/>
+    <line x1="120" y1="252" x2="200" y2="252"/><line x1="140" y1="266" x2="230" y2="266"/><line x1="160" y1="280" x2="200" y2="280"/>
+  </g>
+
+  <!-- the quay in the foreground -->
+  <polygon points="0,286 640,262 640,360 0,360" fill="#080807"/>
+  <g stroke="#1a1612" stroke-width="1.5">
+    <line x1="0" y1="310" x2="640" y2="292"/><line x1="0" y1="340" x2="640" y2="326"/>
+  </g>
+  <!-- a puddle catching the fire -->
+  <ellipse cx="240" cy="318" rx="70" ry="6" fill="#f2a640" opacity="0.18"/>
+  <!-- a soggy ledger drying on the quay -->
+  <path d="M300 306 L344 300 L350 312 L306 318 Z" fill="#6a5a3c"/>
+  <path d="M322 303 L328 315" stroke="#2a2216" stroke-width="1.5"/>
+
+  <!-- the ambulance, rear doors open -->
+  <g>
+    <path d="M430 300 L430 128 Q430 116 442 116 L640 116 L640 300 Z" fill="url(#truck)"/>
+    <rect x="470" y="140" width="130" height="138" fill="#1c1a16"/>
+    <rect x="470" y="140" width="130" height="10" fill="#4a4238" opacity="0.6"/>
+    <!-- the doors swung open -->
+    <polygon points="430,130 400,140 400,290 430,296" fill="#14120f"/>
+    <rect x="410" y="160" width="12" height="40" fill="#3a352c" opacity="0.7"/>
+    <!-- red lamp on the roof -->
+    <rect x="450" y="104" width="14" height="12" rx="3" fill="#8a1018"/>
+    <circle cx="457" cy="108" r="10" fill="#d0202a" opacity="0.25"/>
+    <!-- rear step and wheel -->
+    <rect x="440" y="290" width="200" height="12" fill="#0a0908"/>
+    <circle cx="610" cy="304" r="22" fill="#030303"/>
+    <circle cx="610" cy="304" r="8" fill="#1a1814"/>
+  </g>
+  <!-- fire-light along the ambulance's near edge -->
+  <path d="M430 300 L430 128 Q430 116 442 116" fill="none" stroke="#f2a640" stroke-width="1.5" opacity="0.7"/>
+
+  <!-- Malone on the rear step: hatless, hair plastered, wrapped in a blanket, a cup in his hands -->
+  <g>
+    <path d="M478 290 L486 244 Q492 220 520 216 Q548 220 554 244 L562 290 Z" fill="url(#blanket)"/>
+    <path d="M500 220 Q520 212 540 220 L536 232 Q520 226 504 232 Z" fill="#2a2622"/>
+    <ellipse cx="520" cy="200" rx="13" ry="15" fill="#0c0b0a"/>
+    <path d="M507 196 Q508 182 520 182 Q534 182 533 196 Q528 188 520 188 Q512 188 507 196 Z" fill="#050505"/>
+    <path d="M508 194 Q505 204 510 212" stroke="#f2a640" stroke-width="1.4" fill="none" opacity="0.9"/>
+    <!-- legs and shoes in front of the step -->
+    <path d="M496 288 L494 320 L506 320 L508 288 Z M528 288 L534 320 L546 320 L540 288 Z" fill="#0a0908"/>
+    <path d="M488 320 L508 320 L508 326 L486 326 Z M530 320 L552 320 L552 326 L530 326 Z" fill="#030303"/>
+    <!-- hands and a paper cup, steam rising -->
+    <ellipse cx="514" cy="256" rx="9" ry="6" fill="#6a5a44"/>
+    <path d="M506 244 L520 244 L518 258 L508 258 Z" fill="#d8d0c0"/>
+    <path d="M512 240 Q508 230 514 222 Q520 214 514 204" fill="none" stroke="#d8d0c0" stroke-width="2" opacity="0.35"/>
+    <!-- blanket edge lit by the fire -->
+    <path d="M486 244 Q492 220 520 216" fill="none" stroke="#f2a640" stroke-width="1.6" opacity="0.8"/>
+    <path d="M478 290 L486 244" fill="none" stroke="#f2a640" stroke-width="1.4" opacity="0.6"/>
+  </g>
+</svg>

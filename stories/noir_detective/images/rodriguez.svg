@@ -1,0 +1,169 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 360">
+  <!-- 9th Precinct, 3 AM: Captain Rodriguez studies the photograph under his desk lamp, blind-light slashing the wall, rye and two glasses waiting. -->
+  <defs>
+    <linearGradient id="wall" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#121214"/>
+      <stop offset="1" stop-color="#1e1e20"/>
+    </linearGradient>
+    <linearGradient id="night" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#2c2e34"/>
+      <stop offset="1" stop-color="#55575c"/>
+    </linearGradient>
+    <linearGradient id="desk" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#2a241a"/>
+      <stop offset="1" stop-color="#050505"/>
+    </linearGradient>
+    <radialGradient id="pool" cx="0.5" cy="0.5" r="0.5">
+      <stop offset="0" stop-color="#f3d488" stop-opacity="0.85"/>
+      <stop offset="0.5" stop-color="#c79a3c" stop-opacity="0.35"/>
+      <stop offset="1" stop-color="#c79a3c" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="face" x1="0" y1="1" x2="0" y2="0">
+      <stop offset="0" stop-color="#d8b878"/>
+      <stop offset="0.7" stop-color="#6a5638"/>
+      <stop offset="1" stop-color="#1a1610"/>
+    </linearGradient>
+    <linearGradient id="shirt" x1="0" y1="1" x2="0" y2="0">
+      <stop offset="0" stop-color="#a49c8a"/>
+      <stop offset="1" stop-color="#3a3834"/>
+    </linearGradient>
+    <clipPath id="wallClip">
+      <rect x="0" y="0" width="640" height="232"/>
+    </clipPath>
+    <filter id="haze" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="4"/>
+    </filter>
+  </defs>
+
+  <rect width="640" height="360" fill="url(#wall)"/>
+  <!-- wainscot line -->
+  <rect x="0" y="196" width="640" height="3" fill="#0a0a0b"/>
+
+  <!-- the window behind him: blinds half-open on a wet street -->
+  <rect x="420" y="30" width="170" height="150" fill="url(#night)"/>
+  <g fill="#0b0b0c">
+    <rect x="420" y="30" width="170" height="8"/><rect x="420" y="46" width="170" height="8"/>
+    <rect x="420" y="62" width="170" height="8"/><rect x="420" y="78" width="170" height="8"/>
+    <rect x="420" y="94" width="170" height="8"/><rect x="420" y="110" width="170" height="8"/>
+    <rect x="420" y="126" width="170" height="8"/><rect x="420" y="142" width="170" height="8"/>
+    <rect x="420" y="158" width="170" height="8"/><rect x="420" y="174" width="170" height="6"/>
+  </g>
+  <rect x="414" y="24" width="182" height="162" fill="none" stroke="#0a0a0b" stroke-width="8"/>
+  <line x1="505" y1="24" x2="505" y2="186" stroke="#0a0a0b" stroke-width="3"/>
+
+  <!-- blind-light thrown across the wall in long diagonals -->
+  <g clip-path="url(#wallClip)" fill="#9a9ca4" opacity="0.16">
+    <polygon points="414,40 414,46 40,170 40,160"/>
+    <polygon points="414,56 414,62 40,190 40,180"/>
+    <polygon points="414,72 414,78 40,210 40,200"/>
+    <polygon points="414,88 414,94 40,230 40,220"/>
+    <polygon points="414,104 414,110 40,250 40,240"/>
+    <polygon points="414,120 414,126 40,270 40,260"/>
+  </g>
+
+  <!-- filing cabinet and coat stand with a police cap -->
+  <rect x="40" y="96" width="70" height="140" fill="#0c0c0d"/>
+  <g stroke="#262628" stroke-width="2"><line x1="40" y1="142" x2="110" y2="142"/><line x1="40" y1="188" x2="110" y2="188"/></g>
+  <g fill="#3a3a3c"><rect x="68" y="116" width="14" height="4"/><rect x="68" y="162" width="14" height="4"/><rect x="68" y="208" width="14" height="4"/></g>
+  <rect x="604" y="60" width="4" height="176" fill="#0a0a0b"/>
+  <path d="M588 64 Q606 50 624 64 L620 70 L592 70 Z" fill="#0a0a0b"/>
+  <rect x="590" y="70" width="32" height="4" fill="#0a0a0b"/>
+  <circle cx="606" cy="60" r="2.5" fill="#d4af37"/>
+
+  <!-- Captain Rodriguez: shirt-sleeves, loosened tie, suspenders, moustache -->
+  <g>
+    <!-- chair back -->
+    <path d="M230 236 L236 110 Q300 92 364 110 L370 236 Z" fill="#0a0908"/>
+    <!-- torso -->
+    <path d="M236 236 Q238 176 268 162 Q300 152 332 162 Q362 176 364 236 Z" fill="url(#shirt)"/>
+    <path d="M262 170 L270 236 M338 170 L330 236" stroke="#141210" stroke-width="5"/>
+    <path d="M297 164 L303 164 L306 206 L300 214 L294 206 Z" fill="#1a1816"/>
+    <!-- neck, head -->
+    <rect x="290" y="140" width="20" height="24" fill="#4a3c28"/>
+    <ellipse cx="300" cy="122" rx="22" ry="27" fill="url(#face)"/>
+    <!-- dark hair, receding -->
+    <path d="M278 120 Q276 94 300 94 Q324 94 322 120 Q318 104 300 104 Q284 104 278 120 Z" fill="#0a0908"/>
+    <!-- brows, eyes cast down at the photo -->
+    <path d="M286 115 L296 117 M304 117 L314 115" stroke="#0e0c08" stroke-width="3" stroke-linecap="round"/>
+    <ellipse cx="291" cy="121" rx="5" ry="2.6" fill="#1e170e"/>
+    <ellipse cx="309" cy="121" rx="5" ry="2.6" fill="#1e170e"/>
+    <path d="M288 122.5 L294 122.5 M306 122.5 L312 122.5" stroke="#000" stroke-width="1.2"/>
+    <!-- the moustache that doesn't move -->
+    <path d="M288 138 Q300 132 312 138 Q306 141 300 139 Q294 141 288 138 Z" fill="#0a0806"/>
+    <path d="M298 126 L296 134 L301 135" stroke="#3a2e1c" stroke-width="1.2" fill="none"/>
+    <!-- forearms and hands holding the photograph -->
+    <path d="M244 230 Q252 206 276 204 L276 214 Q258 218 256 236 Z" fill="#8c8474"/>
+    <path d="M356 230 Q348 206 324 204 L324 214 Q342 218 344 236 Z" fill="#7a7466"/>
+    <!-- the photograph: two small figures shaking hands before a warehouse door -->
+    <g transform="rotate(-4 300 206)">
+      <rect x="268" y="186" width="64" height="44" fill="#e6e0d0"/>
+      <rect x="272" y="190" width="56" height="36" fill="#8a867c"/>
+      <rect x="300" y="194" width="24" height="32" fill="#6a665e"/>
+      <g fill="#1a1a1a">
+        <circle cx="288" cy="203" r="3"/><path d="M283 207 L293 207 L294 226 L282 226 Z"/>
+        <circle cx="304" cy="202" r="3.2"/><path d="M298 206 L310 206 L312 226 L297 226 Z"/>
+        <path d="M292 212 L299 212 L299 215 L292 215 Z"/>
+      </g>
+      <line x1="300" y1="186" x2="300" y2="230" stroke="#bdb6a4" stroke-width="0.8"/>
+      <rect x="270" y="222" width="4" height="4" fill="#e6e0d0"/>
+    </g>
+    <ellipse cx="270" cy="210" rx="8" ry="6" fill="#b8a07a"/>
+    <ellipse cx="330" cy="210" rx="8" ry="6" fill="#a89070"/>
+  </g>
+
+  <!-- blind-light also falls across him -->
+  <g fill="#c8c8cc" opacity="0.1">
+    <polygon points="414,88 414,94 236,153 236,147"/>
+    <polygon points="414,104 414,110 236,169 236,163"/>
+  </g>
+
+  <!-- the desk -->
+  <rect x="0" y="232" width="640" height="128" fill="url(#desk)"/>
+  <rect x="0" y="232" width="640" height="4" fill="#4a3e28"/>
+  <!-- pool of lamplight on the blotter -->
+  <ellipse cx="250" cy="250" rx="190" ry="34" fill="url(#pool)"/>
+  <polygon points="216,240 384,240 396,266 204,266" fill="#14110d" opacity="0.45"/>
+  <!-- the desk lamp, banker's style -->
+  <path d="M150 240 L196 240 L190 234 L176 234 L176 200 L170 200 L170 234 L156 234 Z" fill="#0a0907"/>
+  <path d="M146 204 Q173 178 200 204 Z" fill="#0d0c09"/>
+  <path d="M148 204 L198 204" stroke="#f7e0a0" stroke-width="2"/>
+  <!-- six rounds tipped out on the blotter -->
+  <g fill="#d4af37">
+    <ellipse cx="238" cy="252" rx="3.5" ry="2"/><ellipse cx="248" cy="255" rx="3.5" ry="2"/>
+    <ellipse cx="256" cy="250" rx="3.5" ry="2"/><ellipse cx="262" cy="256" rx="3.5" ry="2"/>
+    <ellipse cx="244" cy="259" rx="3.5" ry="2"/><ellipse cx="270" cy="252" rx="3.5" ry="2"/>
+  </g>
+  <!-- the revolver beside them, cylinder open -->
+  <path d="M190 262 L232 258 L234 264 L196 268 Z M196 266 L190 280 L198 282 L204 268 Z" fill="#050505"/>
+  <circle cx="214" cy="270" r="5" fill="none" stroke="#050505" stroke-width="3"/>
+  <!-- rye and two glasses with the precinct crest -->
+  <g>
+    <rect x="426" y="196" width="22" height="46" rx="4" fill="#3a2a12"/>
+    <rect x="432" y="180" width="10" height="18" fill="#2a1e0c"/>
+    <rect x="429" y="212" width="16" height="14" fill="#c8b890"/>
+    <path d="M426 200 L426 238" stroke="#e8c070" stroke-width="1.5" opacity="0.7"/>
+    <path d="M460 222 L478 222 L476 242 L462 242 Z" fill="#c9b98a" opacity="0.55"/>
+    <path d="M462 232 L476 232 L476 242 L462 242 Z" fill="#b07a24"/>
+    <path d="M486 222 L504 222 L502 242 L488 242 Z" fill="#c9b98a" opacity="0.55"/>
+    <circle cx="469" cy="228" r="2" fill="#d4af37"/><circle cx="495" cy="228" r="2" fill="#d4af37"/>
+  </g>
+  <!-- ashtray and rising smoke -->
+  <ellipse cx="540" cy="244" rx="20" ry="5" fill="#1a1814"/>
+  <line x1="530" y1="241" x2="548" y2="236" stroke="#d8d0c0" stroke-width="2"/>
+  <circle cx="548" cy="236" r="1.6" fill="#ff8a3a"/>
+  <path d="M548 232 Q540 210 552 190 Q564 170 548 140 Q540 120 552 96" fill="none" stroke="#bcb8b0" stroke-width="4" opacity="0.25" filter="url(#haze)"/>
+  <!-- the yellow pad of names -->
+  <polygon points="340,268 420,262 428,300 346,306" fill="#b8a050"/>
+  <g stroke="#2a2410" stroke-width="1" opacity="0.6">
+    <line x1="350" y1="276" x2="414" y2="271"/><line x1="351" y1="284" x2="416" y2="279"/><line x1="352" y1="292" x2="380" y2="290"/>
+  </g>
+
+  <!-- Malone in the visitor's chair, a hat and a shoulder in the dark -->
+  <g fill="#020202">
+    <path d="M0 360 L0 270 Q30 250 70 252 Q104 256 120 280 L130 360 Z"/>
+    <ellipse cx="62" cy="232" rx="54" ry="8"/>
+    <path d="M36 232 L42 198 Q62 190 82 198 L88 232 Z"/>
+    <path d="M40 236 Q44 262 62 264 Q80 262 84 236 Z"/>
+  </g>
+  <path d="M90 230 Q108 232 116 234" stroke="#d4af37" stroke-width="1.2" opacity="0.6" fill="none"/>
+</svg>

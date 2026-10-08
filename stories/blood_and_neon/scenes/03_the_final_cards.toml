@@ -62,6 +62,7 @@ text = "Let it take you - maybe she'll think you're done"
 goto = "fake_unconscious"
 
 [final_confrontation]
+image = "images/final_confrontation.svg"
 text = """
 You track Cassandra to the old Prometheus facility. The place where it all began. Where Nightshade was created. Where the conspiracy was born. Where it ends.
 
@@ -116,6 +117,7 @@ text = "'There's another way' - negotiate a truce"
 goto = "negotiate_ending"
 
 [shoot_cassandra]
+image = "images/shoot_cassandra.svg"
 mood = "danger"
 text = """
 You pull the trigger. The shot echoes in the abandoned laboratory.
@@ -207,6 +209,7 @@ ENDING: LOST IN THE PATTERN"""
 ending = true
 
 [partner_sacrifice_ending]
+image = "images/partner_sacrifice_ending.svg"
 mood = "calm"
 text = """
 Sarah takes the bullet meant for you. Falls in slow motion. Like angels descending. Like everything good leaving the world.
@@ -247,6 +250,7 @@ ENDING: THE FOOL'S JOURNEY COMPLETE"""
 ending = true
 
 [ouroboros_pharma]
+image = "images/ouroboros_pharma.svg"
 text = """
 Ouroboros Pharmaceuticals occupies a glass tower that reflects the city like a mirror showing you the ugliness you'd rather not see.
 
@@ -507,6 +511,7 @@ ENDING: INCOMPLETE PATTERNS"""
 ending = true
 
 [true_ending]
+image = "images/true_ending.svg"
 text = """
 In the final confrontation at the old Prometheus facility, you realize the truth. The terrible truth that Cassandra has been guiding you toward.
 

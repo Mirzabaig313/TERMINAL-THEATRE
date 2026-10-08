@@ -146,3 +146,55 @@ fn a_broken_svg_falls_back_without_crashing() {
     );
     std::fs::remove_dir_all(data).ok();
 }
+
+/// Every picture of every story (and the template) loads through the game's own
+/// decoder: PNG/JPEG via `image`, SVG via resvg. Catches art that renders in a
+/// browser but not here.
+#[test]
+fn every_story_picture_loads() {
+    use ratatui_image::picker::Picker;
+    use terminal_theatre::render::image::SceneImage;
+    use theatre_engine::StoryPack;
+    use theatre_engine::library::discover;
+
+    let mut dirs: Vec<_> = discover(&common::stories())
+        .unwrap()
+        .0
+        .into_iter()
+        .map(|e| e.dir)
+        .collect();
+    dirs.push(common::stories().join("_template"));
+    let picker = Picker::halfblocks();
+    let mut count = 0;
+    for dir in dirs {
+        let pack = StoryPack::load(&dir).unwrap();
+        for id in pack.scenes.keys() {
+            if let Some(path) = pack.image_path(id) {
+                let t = std::time::Instant::now();
+                SceneImage::load(&picker, &path, false)
+                    .unwrap_or_else(|e| panic!("{}: {e:#}", path.display()));
+                if std::env::var("TIME_PICTURES").is_ok() {
+                    eprintln!("{:>6} ms  {}", t.elapsed().as_millis(), path.display());
+                }
+                count += 1;
+            }
+        }
+    }
+    assert!(count >= 2, "at least the template's two pictures");
+}
+
+/// Each story's opening picture on screen, for a visual check with SNAP_DIR.
+#[test]
+fn story_openings_with_pictures() {
+    for id in ["noir_detective", "blood_and_neon", "shadow_slave"] {
+        let mut h = Harness::new(&format!("img-open-{id}"), Start::Story(id.into()));
+        h.wait(20_000);
+        h.press(KeyCode::Enter);
+        h.wait(1500);
+        h.snap(&format!("opening_{id}"));
+        assert!(
+            sprite_cells(h.draw()) > 1000,
+            "{id}: the opening picture should fill the stage"
+        );
+    }
+}
