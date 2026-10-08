@@ -5,8 +5,10 @@ use std::time::{Duration, Instant};
 
 use anyhow::{Context, Result, bail};
 use ratatui::crossterm::event::{self, Event, KeyEventKind};
+use theatre_engine::map::Format;
 use theatre_engine::save::format_playtime;
 use theatre_engine::settings::data_dir;
+use theatre_engine::walk::Walk;
 
 use terminal_theatre::app::{self, App, Start};
 use terminal_theatre::audio::Audio;
@@ -28,7 +30,18 @@ USAGE:
     theatre saves                   list saved games
     theatre graphics                how this terminal can show scene pictures
     theatre sound                   play every built-in sound (checks your audio)
-    theatre check [story-id]        validate stories (all of them, or one; _template too)
+    theatre check [story-id]        validate stories and play every route through them
+                                    (all stories, or one; _template too)
+    theatre route <story-id> <scene>
+                                    the shortest way to reach a scene
+    theatre map <story-id> [--dot]  the scene graph as a Mermaid diagram (or Graphviz)
+    theatre new <story-id> [title]  start a new story from the template
+    theatre rehearse <story-id> [--scene <id>] [--set <x>]...
+                                    try out a story while writing it: start at any
+                                    scene, with counters/flags/items set (--set trust=3,
+                                    --set flag:met_chen, --set item:Photograph); story
+                                    files reload when saved, `d` shows the state, and
+                                    nothing is saved
     theatre export <story-id> <slot> <file>
                                     copy a save to a file (slot 0 = autosave)
     theatre import <file> <slot>    put a save file into a slot of its story
@@ -66,6 +79,11 @@ fn main() -> Result<()> {
         ["sound"] => return sound_demo(&ctx),
         ["check"] => return check_stories(&ctx, None),
         ["check", story] => return check_stories(&ctx, Some(story)),
+        ["route", story, scene] => return route(&ctx, story, scene),
+        ["map", story] => return map(&ctx, story, Format::Mermaid),
+        ["map", story, "--dot"] => return map(&ctx, story, Format::Dot),
+        ["new", id, title @ ..] => return new_story(&ctx, id, &title.join(" ")),
+        ["rehearse", story, rest @ ..] => rehearsal(&ctx, story, rest)?,
         ["export", story, slot, file] => {
             ctx.store.export(
                 story,
@@ -244,6 +262,117 @@ fn sound_demo(ctx: &Ctx) -> Result<()> {
     Ok(())
 }
 
+/// Most story states `check` and `route` explore before giving up.
+const WALK_LIMIT: usize = 2_000_000;
+
+fn load(ctx: &Ctx, story: &str) -> Result<theatre_engine::StoryPack> {
+    theatre_engine::StoryPack::load(&ctx.stories.join(story))
+        .with_context(|| format!("story '{story}'"))
+}
+
+/// Print the shortest way to reach a scene.
+fn route(ctx: &Ctx, story: &str, scene: &str) -> Result<()> {
+    let pack = load(ctx, story)?;
+    if !pack.scenes.contains_key(scene) {
+        bail!("story '{story}' has no scene '{scene}'");
+    }
+    let walk = Walk::run(&pack, WALK_LIMIT);
+    let Some(route) = walk.route(scene) else {
+        bail!("'{scene}' can't be reached from the start");
+    };
+    println!("{} → {scene}  ({} choices)\n", pack.meta.start, route.len());
+    for (n, step) in route.iter().enumerate() {
+        println!(
+            "{:>3}. {:<28} choose \"{}\"",
+            n + 1,
+            step.scene,
+            step.choice
+        );
+    }
+    println!("{:>3}. {scene}", route.len() + 1);
+    Ok(())
+}
+
+fn map(ctx: &Ctx, story: &str, format: Format) -> Result<()> {
+    print!(
+        "{}",
+        theatre_engine::map::render(&load(ctx, story)?, format)
+    );
+    Ok(())
+}
+
+/// Copy the template into a new story folder and give it a title.
+fn new_story(ctx: &Ctx, id: &str, title: &str) -> Result<()> {
+    if id.is_empty()
+        || !id
+            .chars()
+            .all(|c| c.is_ascii_lowercase() || c.is_ascii_digit() || c == '_')
+    {
+        bail!("story ids use lowercase letters, digits and _ (like my_story)");
+    }
+    let from = ctx.stories.join("_template");
+    let to = ctx.stories.join(id);
+    if to.exists() {
+        bail!("{} already exists", to.display());
+    }
+    copy_dir(&from, &to)?;
+    let title = if title.is_empty() {
+        id.replace('_', " ").to_uppercase()
+    } else {
+        title.to_string()
+    };
+    let meta = to.join("story.toml");
+    let text = std::fs::read_to_string(&meta)?
+        .replace("title = \"MY NEW STORY\"", &format!("title = {title:?}"));
+    std::fs::write(&meta, text)?;
+    println!("Created {} (\"{title}\")\n", to.display());
+    println!("Next:");
+    println!("  edit  {}/scenes/*.toml and story.toml", to.display());
+    println!("  try   theatre rehearse {id}        (reloads as you save)");
+    println!("  check theatre check {id}");
+    Ok(())
+}
+
+fn copy_dir(from: &std::path::Path, to: &std::path::Path) -> Result<()> {
+    std::fs::create_dir_all(to)?;
+    for entry in std::fs::read_dir(from)? {
+        let entry = entry?;
+        let target = to.join(entry.file_name());
+        if entry.file_type()?.is_dir() {
+            copy_dir(&entry.path(), &target)?;
+        } else {
+            std::fs::copy(entry.path(), target)?;
+        }
+    }
+    Ok(())
+}
+
+/// Parse `rehearse` options into a starting point.
+fn rehearsal(ctx: &Ctx, story: &str, rest: &[&str]) -> Result<Start> {
+    let pack = load(ctx, story)?;
+    let mut state = theatre_engine::state::State::default();
+    let mut scene = pack.meta.start.clone();
+    let mut args = rest.iter();
+    while let Some(a) = args.next() {
+        match *a {
+            "--scene" => {
+                let id = args.next().context("--scene needs a scene id")?;
+                if !pack.scenes.contains_key(*id) {
+                    bail!("story '{story}' has no scene '{id}'");
+                }
+                scene = id.to_string();
+            }
+            "--set" => {
+                let spec = args.next().context("--set needs a value, like trust=3")?;
+                state.set_from(spec).map_err(anyhow::Error::msg)?;
+            }
+            other => bail!("unknown option for rehearse: {other}"),
+        }
+    }
+    state.current_scene = scene;
+    Ok(Start::Rehearse(story.to_string(), Box::new(state)))
+}
+
 /// Load and validate stories, reporting problems the way `cargo test` would.
 fn check_stories(ctx: &Ctx, only: Option<&str>) -> Result<()> {
     use theatre_engine::StoryPack;
@@ -265,6 +394,9 @@ fn check_stories(ctx: &Ctx, only: Option<&str>) -> Result<()> {
             .unwrap_or_default();
         match StoryPack::load(&dir) {
             Ok(pack) => {
+                let started = Instant::now();
+                let walk = Walk::run(&pack, WALK_LIMIT);
+                let problems = walk.problems(&pack);
                 let unreachable = pack.unreachable();
                 let pictures = pack.scenes.values().filter(|s| s.image.is_some()).count();
                 println!(
@@ -276,6 +408,26 @@ fn check_stories(ctx: &Ctx, only: Option<&str>) -> Result<()> {
                 );
                 if !unreachable.is_empty() {
                     println!("  ⚠ unreachable scenes: {}", unreachable.join(", "));
+                }
+                println!(
+                    "  {} every route: {} states in {:.1}s, {} of {} endings reachable",
+                    if problems.is_empty() { "✓" } else { "✗" },
+                    walk.states,
+                    started.elapsed().as_secs_f32(),
+                    pack.ending_ids()
+                        .iter()
+                        .filter(|e| walk.reached.contains(**e))
+                        .count(),
+                    pack.ending_ids().len()
+                );
+                for p in &problems {
+                    println!("    ✗ {p}");
+                }
+                for w in walk.warnings(&pack) {
+                    println!("    ⚠ {w}");
+                }
+                if !problems.is_empty() {
+                    failed += 1;
                 }
             }
             Err(e) => {

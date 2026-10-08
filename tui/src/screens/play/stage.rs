@@ -81,6 +81,7 @@ impl Play {
             img.draw(f, stage_inner(still_stage));
         }
         self.draw_overlay(f, &th, now);
+        self.draw_state_panel(f, &th);
         if let Some(t) = &self.toast {
             t.draw(f, full, &th, now);
         }
@@ -133,6 +134,16 @@ impl Play {
         ]);
         f.render_widget(Paragraph::new(line), area);
         let mut right = Vec::new();
+        if self.rehearsing() {
+            right.push(Span::styled(
+                " REHEARSAL · d state ",
+                Style::new()
+                    .fg(rgb(th.bg))
+                    .bg(rgb((255, 176, 0)))
+                    .add_modifier(Modifier::BOLD),
+            ));
+            right.push(Span::raw("  "));
+        }
         let badge = match self.mode {
             Mode::Normal => None,
             Mode::Auto => Some(" AUTO ▶ "),

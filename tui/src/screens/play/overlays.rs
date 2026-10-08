@@ -21,6 +21,7 @@ const P_MENU: usize = 3;
 impl Play {
     /// Keys while an overlay is open. `None` when no overlay took the key.
     pub(super) fn overlay_key(&mut self, k: KeyEvent, ctx: &Ctx, now: u64) -> Option<Action> {
+        let rehearsing = self.rehearsing();
         match &mut self.overlay {
             Overlay::None => None,
             Overlay::Intro { .. } => {
@@ -43,6 +44,10 @@ impl Play {
                     KeyCode::Esc => self.overlay = Overlay::None,
                     KeyCode::Enter | KeyCode::Char(' ') => match *selected {
                         P_RESUME => self.overlay = Overlay::None,
+                        P_SAVE if rehearsing => {
+                            self.overlay = Overlay::None;
+                            self.no_saving(now);
+                        }
                         P_SAVE => {
                             // read once: drawing must not query the database every frame
                             self.slots = ctx.store.slots(&self.runner.pack.id);

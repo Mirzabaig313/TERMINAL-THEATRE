@@ -61,6 +61,29 @@ impl State {
         }
     }
 
+    /// Set something from text, for starting a story mid-way while testing:
+    /// `trust=3` (a counter), `flag:met_chen`, `item:Photograph`.
+    pub fn set_from(&mut self, spec: &str) -> Result<(), String> {
+        let spec = spec.trim();
+        if let Some(f) = spec.strip_prefix("flag:") {
+            self.flags.insert(f.trim().to_string());
+        } else if let Some(i) = spec.strip_prefix("item:") {
+            let i = i.trim().to_string();
+            if !self.items.contains(&i) {
+                self.items.push(i);
+            }
+        } else if let Some((k, v)) = spec.split_once('=') {
+            let n = v
+                .trim()
+                .parse()
+                .map_err(|_| format!("'{spec}': {v:?} is not a whole number"))?;
+            self.vars.insert(k.trim().to_string(), n);
+        } else {
+            return Err(format!("'{spec}': use counter=3, flag:name or item:Name"));
+        }
+        Ok(())
+    }
+
     /// May the player see this choice now?
     pub fn allows(&self, c: &Choice) -> bool {
         let listed = (c.any_flags.is_empty() && c.any_items.is_empty())

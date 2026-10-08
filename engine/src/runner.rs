@@ -216,6 +216,20 @@ impl Runner {
         Some(next)
     }
 
+    /// Swap in a freshly loaded copy of the story (live reload while writing):
+    /// the state stays as it is and the current scene starts over without
+    /// applying its effects again. Fails when the scene no longer exists.
+    pub fn reload(&mut self, pack: StoryPack, now: u64) -> Result<(), String> {
+        if !pack.scenes.contains_key(&self.scene) {
+            return Err(format!("scene '{}' is gone", self.scene));
+        }
+        self.pack = pack;
+        self.choice = 0;
+        self.scene_start = now;
+        self.set_phase(Phase::Narration, now);
+        Ok(())
+    }
+
     pub fn goto(&mut self, id: &str, now: u64) {
         self.scene = id.to_string();
         self.state.enter(id, &self.pack.scenes[id]);

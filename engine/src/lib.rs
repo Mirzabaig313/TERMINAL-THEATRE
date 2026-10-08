@@ -15,6 +15,7 @@
 pub mod color;
 pub mod library;
 pub mod logic;
+pub mod map;
 pub mod pack;
 pub mod progress;
 pub mod rng;
@@ -26,6 +27,7 @@ pub mod sound;
 pub mod sprite;
 pub mod state;
 pub mod store;
+pub mod walk;
 
 pub use color::Rgb;
 pub use pack::StoryPack;

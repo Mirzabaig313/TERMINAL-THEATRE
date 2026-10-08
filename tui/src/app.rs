@@ -35,6 +35,8 @@ pub enum Start {
     Opening,
     MainMenu,
     Story(String),
+    /// try out a story while writing it, from this state (`theatre rehearse`)
+    Rehearse(String, Box<theatre_engine::state::State>),
 }
 
 pub struct App {
@@ -62,6 +64,13 @@ impl App {
             Start::Story(id) => {
                 let dir = app.ctx.stories.join(id);
                 app.go(Go::NewGame(dir));
+            }
+            Start::Rehearse(id, state) => {
+                let dir = app.ctx.stories.join(id);
+                app.screen = match app.open(&dir, Some((*state, "Rehearsal".into()))) {
+                    Screen::Play(p) => Screen::Play(Box::new(p.rehearse(dir))),
+                    other => other,
+                };
             }
         }
         app

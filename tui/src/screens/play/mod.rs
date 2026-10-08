@@ -6,9 +6,11 @@
 //! - `modes.rs`: auto and skip, read-text tracking, quick save/load
 //! - `overlays.rs`: intro card, pause menu, save dialog, history (keys and drawing)
 //! - `stage.rs`: drawing the scene itself
+//! - `rehearsal.rs`: live reload and the state panel for `theatre rehearse`
 
 mod modes;
 mod overlays;
+mod rehearsal;
 mod stage;
 
 use std::path::PathBuf;
@@ -93,6 +95,8 @@ pub struct Play {
     scene_fx_for: Option<u64>,
     /// sounds to play at the next tick
     sounds: Vec<SoundRef>,
+    /// set while rehearsing a story (`theatre rehearse`)
+    rehearsal: Option<rehearsal::Rehearsal>,
     glitch_until: u64,
     toast: Option<Toast>,
     rng: Rng,
@@ -140,6 +144,7 @@ impl Play {
             transition_for: None,
             scene_fx_for: None,
             sounds: Vec::new(),
+            rehearsal: None,
             glitch_until: 0,
             toast: None,
             rng,
@@ -177,6 +182,7 @@ impl Play {
     }
 
     pub fn tick(&mut self, now: u64, dt: f32, ctx: &Ctx) {
+        self.watch(now);
         // pictures load once the scene is on screen (not behind the title card)
         if !matches!(self.overlay, Overlay::Intro { .. }) {
             self.sync_image(ctx, now);
@@ -252,8 +258,10 @@ impl Play {
             KeyCode::Char('h') | KeyCode::PageUp => self.overlay = Overlay::Backlog { scroll: 0 },
             KeyCode::Char('a') => self.toggle_mode(Mode::Auto, now),
             KeyCode::Char('s') => self.toggle_mode(Mode::Skip, now),
+            KeyCode::F(5) | KeyCode::F(9) if self.rehearsing() => self.no_saving(now),
             KeyCode::F(5) => self.quick_save(ctx, now),
             KeyCode::F(9) => self.quick_load(ctx, now),
+            KeyCode::Char('d') if let Some(r) = &mut self.rehearsal => r.panel = !r.panel,
             KeyCode::Up | KeyCode::Char('k') if choosing => self.runner.select_prev(),
             KeyCode::Down | KeyCode::Char('j') if choosing => self.runner.select_next(),
             KeyCode::Char(c @ '1'..='9') if choosing => {
@@ -368,7 +376,7 @@ impl Play {
 
     /// Slot 0 follows the player into every scene (except endings).
     fn autosave(&mut self, ctx: &Ctx, now: u64) {
-        if self.runner.scene().ending {
+        if self.runner.scene().ending || self.rehearsing() {
             return;
         }
         if let Err(e) = ctx
@@ -435,10 +443,12 @@ impl Play {
 
     fn reach_ending(&mut self, ctx: &Ctx) {
         let id = self.runner.pack.id.clone();
-        let new = ctx
-            .store
-            .record_ending(&id, self.runner.scene_id())
-            .unwrap_or(false);
+        // a rehearsal doesn't count towards the endings found
+        let new = !self.rehearsing()
+            && ctx
+                .store
+                .record_ending(&id, self.runner.scene_id())
+                .unwrap_or(false);
         let found = ctx.store.endings(&id).len();
         self.ending = Some((new, found, self.runner.pack.ending_ids().len()));
         if new {

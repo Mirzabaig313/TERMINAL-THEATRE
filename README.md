@@ -80,7 +80,7 @@ cargo run --release -- stories          # list installed stories
 cargo run --release -- saves            # list saved games
 cargo run --release -- graphics         # can this terminal show real pictures?
 cargo run --release -- sound            # play every built-in sound (checks your audio)
-cargo run --release -- check            # validate every story
+cargo run --release -- check            # validate every story and play every route through it
 cargo run --release -- --help           # every command
 ```
 
@@ -132,7 +132,7 @@ stories/my_story/
 └── characters/*.toml the pixel-art portraits
 ```
 
-1. `cp -r stories/_template stories/my_story`. The template has a commented example of every feature.
+1. `cargo run --release -- new my_story "My Story"` copies the template into `stories/my_story`. The template has a commented example of every feature.
 2. Write your scenes in `scenes/*.toml`. Split them however you like, for example one file per chapter.
 3. Describe your characters in `cast.toml` and let the generator draw them:
 
@@ -149,13 +149,23 @@ stories/my_story/
    ```
 
    Hair styles, hats, outfits, scars, glasses, earrings, neon streaks, tattoos and cyber-eyes are all available, in any colors.
-4. Check and play it:
+4. Try it while you write. Rehearsal reloads the story every time you save a file, starts at any scene with any state, and saves nothing:
 
    ```bash
-   cargo run --release -- check my_story           # validate one story (conditions, links, art…)
-   cargo test                                      # full validation of every story
-   cargo run --release -- my_story
+   cargo run --release -- rehearse my_story
+   cargo run --release -- rehearse my_story --scene warehouse --set evidence=4 --set flag:met_chen --set item:Photograph
    ```
+
+   Press `d` to see the scene, counters, flags and items. A broken edit keeps the last good version running and shows what's wrong.
+5. Check it:
+
+   ```bash
+   cargo run --release -- check my_story           # validate, then play every route through it
+   cargo run --release -- route my_story warehouse # the shortest way to reach a scene
+   cargo run --release -- map my_story > map.md    # the scene graph as a Mermaid diagram (--dot for Graphviz)
+   ```
+
+   `check` plays every possible route through the story, carrying flags, items and counters. It reports endings or scenes that can't be reached, places where the player is left with no choice, choices that never open, and lines or openings that are never shown. It also warns about conditions that are always true. Wrap the map in a ```` ```mermaid ```` block and GitHub draws it.
 
 Give a scene a picture (PNG, JPEG or SVG inside the story folder; SVGs are drawn sharp at any size). Terminals with image support show it as a real image; others draw it in character cells; players who turn Scene Images off see the scene's ASCII art instead:
 
@@ -262,6 +272,8 @@ A broken story never crashes the game: it shows up on the menu with its error.
 | `runner` | Plays a story: narration → dialogue → choices → next scene |
 | `state` | Flags, items, counters, visited scenes, choice history, playtime |
 | `sound` | Sound and ambience names, audio files, and the sound each effect makes |
+| `walk` | Plays every route through a story for `check` and `route` |
+| `map` | The scene graph as Mermaid or Graphviz |
 | `logic` | Conditions (`if = "trust >= 2 && flag('x')"`) and `{counter}` text |
 | `store` | The SQLite database and its schema migrations |
 | `save` | Save slots, autosave, quick save, export/import, Python save import |
@@ -274,7 +286,7 @@ A broken story never crashes the game: it shows up on the menu with its error.
 | `app` | Switches between screens; monochrome mode |
 | `screens/opening`, `main_menu`, `cinematic` | Title sequence, main menu, pre-show |
 | `screens/menu` | Story select with animated covers |
-| `screens/play/` | Playing a story: `mod.rs` (state, keys, story flow), `stage.rs` (drawing the scene), `overlays.rs` (intro, pause menu, save dialog, history), `modes.rs` (auto, skip, quick save/load) |
+| `screens/play/` | Playing a story: `mod.rs` (state, keys, story flow), `stage.rs` (drawing the scene), `overlays.rs` (intro, pause menu, save dialog, history), `modes.rs` (auto, skip, quick save/load), `rehearsal.rs` (live reload, state panel) |
 | `screens/backlog` | The history of everything read |
 | `screens/load`, `settings`, `credits` | The other menu screens |
 | `audio` | Sound on its own thread (rodio); `audio/synth` makes every built-in sound and loop from noise and sine waves |
@@ -288,8 +300,8 @@ The engine never names a story or a character, so adding a story never touches c
 Tests live in their own folders, separate from the code:
 
 ```
-engine/tests/   stories, runner, saves, progress, logic, effects, sound, images, scene_state, sprite, store_settings
-tui/tests/      flow (the whole game driven by key presses), comfort, effects, sound, images, performance, screens
+engine/tests/   stories, runner, saves, progress, logic, effects, sound, authoring, images, scene_state, sprite, store_settings
+tui/tests/      flow (the whole game driven by key presses), comfort, effects, sound, rehearsal, images, performance, screens
 ```
 
 ```bash
@@ -298,7 +310,7 @@ cargo test -p theatre-engine --test saves    # one file
 SNAP_DIR=/tmp/frames cargo test --test flow  # also save each step of the flow as a picture
 ```
 
-Every bundled story is checked on each run: it must load, every scene must be reachable, and always picking the first choice must reach an ending.
+Every bundled story is checked on each run: it must load, every scene must be reachable, and every route through it is played: all endings reachable, no player left without a choice, every gated choice able to open, every conditional line and opening shown somewhere.
 
 ## 📊 Statistics
 
@@ -308,7 +320,7 @@ Every bundled story is checked on each run: it must load, every scene must be re
 - **Animated Characters**: 27, with 8 expressions each (hand-made sprites have their own sets)
 - **Scene Pictures**: 31 hand-drawn SVG illustrations (10 The Last Case, 10 Blood and Neon, 11 Shadow Slave)
 - **Lines of Dialogue**: 680
-- **Tests**: 96
+- **Tests**: 108
 
 
 ## 🔮 Future Plans

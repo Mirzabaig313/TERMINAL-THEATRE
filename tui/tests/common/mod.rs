@@ -37,8 +37,13 @@ impl Harness {
     }
 
     pub fn with_size(name: &str, start: Start, w: u16, h: u16) -> Self {
+        Self::with_stories(name, &stories(), start, w, h)
+    }
+
+    /// The app reading stories from another folder.
+    pub fn with_stories(name: &str, stories: &Path, start: Start, w: u16, h: u16) -> Self {
         let data = temp_dir(name);
-        let mut ctx = Ctx::new(stories(), data.clone()).unwrap();
+        let mut ctx = Ctx::new(stories.to_path_buf(), data.clone()).unwrap();
         ctx.truecolor = true;
         Harness {
             app: App::new(ctx, start),

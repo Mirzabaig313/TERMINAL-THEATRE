@@ -39,7 +39,9 @@ impl Play {
             }
         };
         self.backlog.push(entry);
-        let _ = ctx.store.mark_seen(&self.runner.pack.id, &key.0, key.1);
+        if !self.rehearsing() {
+            let _ = ctx.store.mark_seen(&self.runner.pack.id, &key.0, key.1);
+        }
         self.seen.insert(key);
     }
 
