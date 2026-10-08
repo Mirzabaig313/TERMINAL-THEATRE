@@ -4,5 +4,6 @@
 
 pub mod app;
 pub mod audio;
+pub mod bundled;
 pub mod render;
 pub mod screens;

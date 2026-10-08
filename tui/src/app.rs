@@ -251,5 +251,13 @@ pub fn default_stories_dir() -> PathBuf {
     {
         return dir;
     }
-    PathBuf::from(env!("CARGO_MANIFEST_DIR")).join("../stories")
+    // a source checkout (cargo run)
+    let source = PathBuf::from(env!("CARGO_MANIFEST_DIR")).join("../stories");
+    if source.is_dir() {
+        return source;
+    }
+    // an installed binary: the stories built into it, unpacked once
+    let home = theatre_engine::settings::data_dir().join("stories");
+    let _ = crate::bundled::install(&home);
+    home
 }

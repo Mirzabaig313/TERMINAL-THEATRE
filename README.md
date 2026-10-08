@@ -60,7 +60,23 @@ Pulled into the Dream Realm, you must survive your First Nightmare: ancient ruin
 - **Cast**: Sunny, The Spell (a watching rune-eye), and the ghosts of a fallen garrison
 - **Genre**: Dark fantasy survival
 
-## 🚀 Quick Start
+## 📦 Install
+
+**macOS / Linux**
+
+```sh
+curl -fsSL https://raw.githubusercontent.com/Mirzabaig313/TERMINAL-THEATRE/main/install.sh | sh
+```
+
+**Windows** (PowerShell)
+
+```powershell
+irm https://raw.githubusercontent.com/Mirzabaig313/TERMINAL-THEATRE/main/install.ps1 | iex
+```
+
+Then run `theatre`. The installer picks the build for your system from [GitHub Releases](https://github.com/Mirzabaig313/TERMINAL-THEATRE/releases), checks its SHA-256 checksum, and puts `theatre` in `~/.local/bin` (on Windows, `%LOCALAPPDATA%\Programs\TerminalTheatre`). It's one file with the stories built in: on first run they're unpacked into `~/.terminal_theatre/stories/`, and you can add your own story folders there. On Linux without the ALSA sound library, the installer picks the silent build. You can also download a build from the releases page and unpack it yourself.
+
+## 🚀 Play from Source
 
 ```bash
 # Install Rust (once): https://rustup.rs
@@ -262,7 +278,16 @@ A broken story never crashes the game: it shows up on the menu with its error.
 ├── tui/        terminal-theatre: the `theatre` binary, screens, drawing, effects
 ├── stories/    one self-contained folder per story, found automatically
 ├── tools/      portrait.py (character generator), check_story.py (quick checks)
+├── install.sh, install.ps1   one-line installers (download from GitHub Releases)
+└── .github/workflows         CI (tests on macOS, Linux, Windows) and releases
 ```
+
+## 🚢 Releasing
+
+1. Set the version in `Cargo.toml` (`[workspace.package] version = "0.2.0"`) and commit.
+2. `git tag v0.2.0 && git push origin v0.2.0`
+
+GitHub Actions builds for macOS (Apple Silicon and Intel), Linux (x86_64 and ARM, each with and without sound) and Windows, then publishes the release with checksums and the install scripts. The tag has to match the version in `Cargo.toml`. The stories are built into the binary (`tui/build.rs`).
 
 | Engine module | What it does |
 |---|---|
@@ -301,7 +326,7 @@ Tests live in their own folders, separate from the code:
 
 ```
 engine/tests/   stories, runner, saves, progress, logic, effects, sound, authoring, images, scene_state, sprite, store_settings
-tui/tests/      flow (the whole game driven by key presses), comfort, effects, sound, rehearsal, images, performance, screens
+tui/tests/      flow (the whole game driven by key presses), comfort, effects, sound, rehearsal, bundled, images, performance, screens
 ```
 
 ```bash
@@ -320,7 +345,7 @@ Every bundled story is checked on each run: it must load, every scene must be re
 - **Animated Characters**: 27, with 8 expressions each (hand-made sprites have their own sets)
 - **Scene Pictures**: 31 hand-drawn SVG illustrations (10 The Last Case, 10 Blood and Neon, 11 Shadow Slave)
 - **Lines of Dialogue**: 680
-- **Tests**: 108
+- **Tests**: 110
 
 
 ## 🔮 Future Plans

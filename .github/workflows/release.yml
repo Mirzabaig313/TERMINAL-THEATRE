@@ -1,0 +1,105 @@
+# Pushing a version tag (git tag v0.1.0 && git push origin v0.1.0) builds the
+# game for every system and publishes a GitHub Release with the downloads,
+# their SHA-256 checksums and the install scripts.
+name: Release
+
+on:
+  push:
+    tags: ["v*"]
+
+permissions:
+  contents: write
+
+env:
+  CARGO_TERM_COLOR: always
+
+jobs:
+  build:
+    name: build (${{ matrix.target }}${{ matrix.silent && ', silent' || '' }})
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - { target: aarch64-apple-darwin, os: macos-latest }
+          - { target: x86_64-apple-darwin, os: macos-latest }
+          # Ubuntu 22.04: builds that also run on older Linux (glibc 2.35)
+          - { target: x86_64-unknown-linux-gnu, os: ubuntu-22.04 }
+          - { target: x86_64-unknown-linux-gnu, os: ubuntu-22.04, silent: true }
+          - { target: aarch64-unknown-linux-gnu, os: ubuntu-22.04-arm }
+          - { target: aarch64-unknown-linux-gnu, os: ubuntu-22.04-arm, silent: true }
+          - { target: x86_64-pc-windows-msvc, os: windows-latest }
+    runs-on: ${{ matrix.os }}
+    env:
+      NAME: theatre-${{ matrix.target }}${{ matrix.silent && '-silent' || '' }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: dtolnay/rust-toolchain@stable
+        with:
+          targets: ${{ matrix.target }}
+      - uses: Swatinem/rust-cache@v2
+        with:
+          key: ${{ matrix.target }}-${{ matrix.silent }}
+      - name: Tag matches the version in Cargo.toml
+        shell: bash
+        run: |
+          version=$(grep -m1 '^version' Cargo.toml | cut -d'"' -f2)
+          [ "v$version" = "$GITHUB_REF_NAME" ] || { echo "tag $GITHUB_REF_NAME but Cargo.toml says $version"; exit 1; }
+      - name: Install ALSA headers (sound)
+        if: runner.os == 'Linux' && !matrix.silent
+        run: sudo apt-get update && sudo apt-get install -y libasound2-dev
+      - name: Build
+        shell: bash
+        run: |
+          cargo build --release --locked -p terminal-theatre --target ${{ matrix.target }} \
+            ${{ matrix.silent && '--no-default-features' || '' }}
+      - name: Package
+        shell: bash
+        run: |
+          mkdir dist
+          bin=target/${{ matrix.target }}/release/theatre
+          cp README.md LICENSE dist/
+          if [ "$RUNNER_OS" = Windows ]; then
+            cp "$bin.exe" dist/
+            (cd dist && 7z a "../$NAME.zip" .)
+            certutil -hashfile "$NAME.zip" SHA256 | sed -n 2p | tr -d ' \r' > "$NAME.zip.sha256"
+          else
+            cp "$bin" dist/
+            tar -czf "$NAME.tar.gz" -C dist .
+            shasum -a 256 "$NAME.tar.gz" | cut -d' ' -f1 > "$NAME.tar.gz.sha256"
+          fi
+      - uses: actions/upload-artifact@v4
+        with:
+          name: ${{ env.NAME }}
+          path: ${{ env.NAME }}.*
+
+  publish:
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/download-artifact@v4
+        with:
+          path: artifacts
+          merge-multiple: true
+      - name: Publish the release
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          cat > notes.md <<EOF
+          ## Install
+
+          **macOS / Linux**
+          \`\`\`sh
+          curl -fsSL https://raw.githubusercontent.com/${{ github.repository }}/main/install.sh | sh
+          \`\`\`
+
+          **Windows** (PowerShell)
+          \`\`\`powershell
+          irm https://raw.githubusercontent.com/${{ github.repository }}/main/install.ps1 | iex
+          \`\`\`
+
+          Or download the file for your system below, unpack it, and run \`theatre\`.
+          Linux \`-silent\` builds work without the ALSA sound library.
+          EOF
+          gh release create "$GITHUB_REF_NAME" artifacts/* install.sh install.ps1 \
+            --title "Terminal Theatre $GITHUB_REF_NAME" --notes-file notes.md --verify-tag
