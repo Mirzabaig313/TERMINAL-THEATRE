@@ -28,10 +28,14 @@ dialogue = [
 [[opening.choices]]
 text = "Open the door"
 goto = "door_open"
+# counters: any name you like, they start at 0. `add` changes, `set` replaces.
+# Choices (and scenes) can also set_flags / add_items when taken.
+add = { courage = 1 }
 
 [[opening.choices]]
 text = "Stay silent"
 goto = "silence"
+add = { caution = 1 }
 
 [door_open]
 text = "The stranger stumbles inside, soaked and shaking."
@@ -69,6 +73,24 @@ dialogue = [
 text = "Go back to sleep"
 goto = "ending_letter"
 
+[[silence.choices]]
+text = "Open the door after all"
+goto = "door_open"
+# a condition: counters, flag("x"), item("x"), visited("scene"),
+# + - == != < <= > >= ! && || and parentheses
+if = "caution >= 1 && !visited('door_open')"
+add = { courage = 1 }
+
 [ending_letter]
 text = "Whatever happens next, it starts here."
+# other openings: the first variant whose condition holds replaces `text`.
+# {name} puts a counter's value into any text; {{ and }} are literal braces.
+variants = [
+  { if = "caution >= 1 && courage >= 1", text = "You hesitated, then opened the door anyway. Courage: {courage}. Whatever happens next, it starts here." },
+  { if = "item('Wet Letter')", text = "The letter is damp in your hands. Whatever happens next, it starts here." },
+]
+dialogue = [
+  # a line can have a condition too: it is skipped when the condition fails
+  { who = "hero_thinking", line = "Should have kept the door shut.", if = "caution >= 1 && courage == 0" },
+]
 ending = true

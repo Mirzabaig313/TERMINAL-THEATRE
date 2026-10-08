@@ -7,6 +7,7 @@ use anyhow::{Context, Result, bail};
 use serde::Deserialize;
 
 use crate::color::{Rgb, parse_hex};
+use crate::logic;
 use crate::scene::{Mood, Scene};
 use crate::sprite::Sprite;
 
@@ -192,6 +193,26 @@ impl StoryPack {
                     .to_lowercase();
                 if !matches!(ext.as_str(), "png" | "jpg" | "jpeg" | "svg") {
                     bail!("scene '{id}': image '{img}' must be a .png, .jpg or .svg");
+                }
+            }
+            // story logic: conditions must parse and {placeholders} be well formed
+            let ctx = |what: String| {
+                move |e: anyhow::Error| anyhow::anyhow!("scene '{id}': {what}: {e:#}")
+            };
+            logic::check_text(&scene.text).map_err(ctx("text".into()))?;
+            for (n, v) in scene.variants.iter().enumerate() {
+                logic::parse(&v.cond).map_err(ctx(format!("variant {}", n + 1)))?;
+                logic::check_text(&v.text).map_err(ctx(format!("variant {} text", n + 1)))?;
+            }
+            for (n, line) in scene.dialogue.iter().enumerate() {
+                if let Some(c) = &line.cond {
+                    logic::parse(c).map_err(ctx(format!("line {}", n + 1)))?;
+                }
+                logic::check_text(&line.line).map_err(ctx(format!("line {}", n + 1)))?;
+            }
+            for c in &scene.choices {
+                if let Some(cond) = &c.cond {
+                    logic::parse(cond).map_err(ctx(format!("choice '{}'", c.text)))?;
                 }
             }
             for c in &scene.choices {

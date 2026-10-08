@@ -75,6 +75,7 @@ cargo run --release -- noir_detective   # straight into one story
 cargo run --release -- stories          # list installed stories
 cargo run --release -- saves            # list saved games
 cargo run --release -- graphics         # can this terminal show real pictures?
+cargo run --release -- check            # validate every story
 cargo run --release -- --help           # every command
 ```
 
@@ -146,7 +147,7 @@ stories/my_story/
 4. Check and play it:
 
    ```bash
-   python3 tools/check_story.py stories/my_story   # quick check while writing
+   cargo run --release -- check my_story           # validate one story (conditions, links, art…)
    cargo test                                      # full validation of every story
    cargo run --release -- my_story
    ```
@@ -158,6 +159,33 @@ Give a scene a picture (PNG, JPEG or SVG inside the story folder; SVGs are drawn
 image = "images/rain.png"
 art = """ ...ASCII fallback... """
 ```
+
+Make choices matter with counters and conditions:
+
+```toml
+[[alley.choices]]
+text = "Spare Tony"
+goto = "tony_message"
+add = { trust = 1 }                      # counters start at 0; `set = {...}` replaces
+set_flags = ["spared_tony"]
+
+[[warehouse.choices]]
+text = "Call in the favour"
+goto = "tony_vouches"
+if = "trust >= 2 && flag('spared_tony') && !item('Badge')"
+
+[warehouse]
+text = "Rain on the corrugated roof."
+variants = [                             # the first matching opening replaces `text`
+  { if = "visited('rodriguez')", text = "Rodriguez's flare is heavy in your pocket." },
+]
+dialogue = [
+  { who = "tony", line = "I owe you one, Malone.", if = "flag('spared_tony')" },
+  { who = "jack_malone", line = "Evidence so far: {evidence} pieces." },
+]
+```
+
+Conditions understand counters, `flag("x")`, `item("x")`, `visited("scene")`, `+ -`, comparisons, `!`, `&&`, `||` and parentheses. A line whose condition fails is skipped; `{counter}` puts a value into any text. Mistakes in conditions are reported when the story loads.
 
 Give a line an expression and an effect right in the dialogue:
 
@@ -184,7 +212,8 @@ A broken story never crashes the game: it shows up on the menu with its error.
 | `pack` | Loads one story and validates scene links, speakers and expressions |
 | `scene` | Scene, dialogue line and choice data |
 | `runner` | Plays a story: narration → dialogue → choices → next scene |
-| `state` | Flags, items, visited scenes, choice history, playtime |
+| `state` | Flags, items, counters, visited scenes, choice history, playtime |
+| `logic` | Conditions (`if = "trust >= 2 && flag('x')"`) and `{counter}` text |
 | `store` | The SQLite database and its schema migrations |
 | `save` | Save slots, autosave, quick save, export/import, Python save import |
 | `progress` | Lines already read (for skip) and endings found (for the gallery) |
@@ -208,8 +237,8 @@ The engine never names a story or a character, so adding a story never touches c
 Tests live in their own folders, separate from the code:
 
 ```
-engine/tests/   stories, runner, saves, progress, scene_state, sprite, store_settings
-tui/tests/      flow (the whole game driven by key presses), comfort, screens
+engine/tests/   stories, runner, saves, progress, logic, images, scene_state, sprite, store_settings
+tui/tests/      flow (the whole game driven by key presses), comfort, images, performance, screens
 ```
 
 ```bash
@@ -228,7 +257,7 @@ Every bundled story is checked on each run: it must load, every scene must be re
 - **Animated Characters**: 27, with 8 expressions each (hand-made sprites have their own sets)
 - **Scene Pictures**: 31 hand-drawn SVG illustrations (10 The Last Case, 10 Blood and Neon, 11 Shadow Slave)
 - **Lines of Dialogue**: 587
-- **Tests**: 70
+- **Tests**: 78
 
 
 ## 🔮 Future Plans

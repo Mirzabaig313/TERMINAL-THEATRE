@@ -22,7 +22,7 @@ impl Play {
         let entry = if key.1 == NARRATION {
             Entry {
                 who: None,
-                text: scene.text.clone(),
+                text: self.runner.narration(),
                 thought: false,
                 color: None,
             }
@@ -31,7 +31,7 @@ impl Play {
             let speaker = self.runner.pack.speaker(&line.who);
             Entry {
                 who: Some(self.runner.pack.speaker_name(&line.who).to_string()),
-                text: line.line.clone(),
+                text: self.runner.line_text(key.1 as usize),
                 thought: speaker.is_some_and(|s| s.thought),
                 color: speaker
                     .and_then(|s| s.color.as_deref())
@@ -95,12 +95,12 @@ impl Play {
     }
 
     pub(super) fn text_len(&self, key: &(String, i64)) -> usize {
-        let scene = &self.runner.pack.scenes[&key.0];
-        if key.1 == NARRATION {
-            scene.text.chars().count()
+        let text = if key.1 == NARRATION {
+            self.runner.narration()
         } else {
-            scene.dialogue[key.1 as usize].line.chars().count()
-        }
+            self.runner.line_text(key.1 as usize)
+        };
+        text.chars().count()
     }
 
     pub(super) fn quick_save(&mut self, ctx: &Ctx, now: u64) {

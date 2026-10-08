@@ -2,6 +2,7 @@
 //! the front-end (milliseconds), so this runs the same headless or on screen.
 
 use crate::StoryPack;
+use crate::logic;
 use crate::scene::{Choice, Line, Mood, Scene};
 use crate::state::{ChoiceRecord, State};
 
@@ -88,6 +89,31 @@ impl Runner {
         self.pack.mood_of(&self.scene)
     }
 
+    /// The scene's opening text as the player sees it: the first variant whose
+    /// condition holds (or the plain text), with counters filled in.
+    pub fn narration(&self) -> String {
+        let scene = self.scene();
+        let text = scene
+            .variants
+            .iter()
+            .find(|v| logic::check(Some(&v.cond), &self.state))
+            .map(|v| v.text.as_str())
+            .unwrap_or(&scene.text);
+        logic::fill(text, &self.state)
+    }
+
+    /// A dialogue line of the current scene as the player sees it.
+    pub fn line_text(&self, i: usize) -> String {
+        logic::fill(&self.scene().dialogue[i].line, &self.state)
+    }
+
+    /// The next dialogue line whose condition holds, after `after` (or from the start).
+    fn next_line(&self, after: Option<usize>) -> Option<usize> {
+        let start = after.map_or(0, |i| i + 1);
+        let lines = &self.scene().dialogue;
+        (start..lines.len()).find(|&i| logic::check(lines[i].cond.as_deref(), &self.state))
+    }
+
     pub fn line(&self) -> Option<&Line> {
         match self.phase {
             Phase::Line(i) => self.scene().dialogue.get(i),
@@ -110,10 +136,10 @@ impl Runner {
         self.choice
     }
 
-    fn current_text(&self) -> Option<(&str, u64)> {
+    fn current_text(&self) -> Option<(String, u64)> {
         match self.phase {
-            Phase::Narration => Some((self.scene().text.as_str(), NARRATION_MS_PER_CHAR)),
-            Phase::Line(i) => Some((self.scene().dialogue[i].line.as_str(), DIALOGUE_MS_PER_CHAR)),
+            Phase::Narration => Some((self.narration(), NARRATION_MS_PER_CHAR)),
+            Phase::Line(i) => Some((self.line_text(i), DIALOGUE_MS_PER_CHAR)),
             _ => None,
         }
     }
@@ -125,7 +151,7 @@ impl Runner {
             Some(_) if self.speed <= 0.0 => usize::MAX,
             Some((text, ms)) => {
                 let ms = ((ms as f32 * self.speed).round() as u64).max(1);
-                revealed(text, now.saturating_sub(self.phase_start), ms)
+                revealed(&text, now.saturating_sub(self.phase_start), ms)
             }
             None => usize::MAX,
         }
@@ -163,21 +189,25 @@ impl Runner {
             Phase::Choose
         };
         let next = match self.phase {
-            Phase::Narration if !scene.dialogue.is_empty() => Phase::Line(0),
-            Phase::Narration => after_lines,
-            Phase::Line(i) if i + 1 < scene.dialogue.len() => Phase::Line(i + 1),
-            Phase::Line(_) => after_lines,
+            // dialogue lines whose condition fails are skipped
+            Phase::Narration => self.next_line(None).map_or(after_lines, Phase::Line),
+            Phase::Line(i) => self.next_line(Some(i)).map_or(after_lines, Phase::Line),
             Phase::Choose => {
-                let choice = self
-                    .choices()
-                    .get(self.choice)
-                    .map(|c| (c.goto.clone(), c.text.clone()))?;
+                let c = *self.choices().get(self.choice)?;
+                let (goto, text) = (c.goto.clone(), c.text.clone());
+                let (flags, items, add, set) = (
+                    c.set_flags.clone(),
+                    c.add_items.clone(),
+                    c.add.clone(),
+                    c.set.clone(),
+                );
+                self.state.apply(&flags, &items, &add, &set);
                 self.state.choices.push(ChoiceRecord {
                     scene: self.scene.clone(),
                     index: self.choice,
-                    text: choice.1,
+                    text,
                 });
-                self.goto(&choice.0, now);
+                self.goto(&goto, now);
                 return Some(self.phase);
             }
             Phase::End => return None,

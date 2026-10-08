@@ -1,9 +1,10 @@
 //! The player's progress through one story.
 
-use std::collections::BTreeSet;
+use std::collections::{BTreeMap, BTreeSet};
 
 use serde::{Deserialize, Serialize};
 
+use crate::logic;
 use crate::scene::{Choice, Scene};
 
 #[derive(Debug, Default, Clone, Serialize, Deserialize)]
@@ -17,6 +18,8 @@ pub struct State {
     pub choices: Vec<ChoiceRecord>,
     /// time spent playing, in milliseconds
     pub playtime_ms: u64,
+    /// story counters (trust, evidence…); missing ones are 0
+    pub vars: BTreeMap<String, i64>,
 }
 
 #[derive(Debug, Clone, Serialize, Deserialize)]
@@ -29,22 +32,40 @@ pub struct ChoiceRecord {
 impl State {
     pub fn enter(&mut self, id: &str, scene: &Scene) {
         self.current_scene = id.to_string();
-        self.flags.extend(scene.set_flags.iter().cloned());
-        for item in &scene.add_items {
-            if !self.items.contains(item) {
-                self.items.push(item.clone());
-            }
-        }
+        self.apply(&scene.set_flags, &scene.add_items, &scene.add, &scene.set);
         if !self.visited.iter().any(|v| v == id) {
             self.visited.push(id.to_string());
         }
     }
 
-    pub fn allows(&self, c: &Choice) -> bool {
-        if c.any_flags.is_empty() && c.any_items.is_empty() {
-            return true;
+    /// Flags, items and counter changes from a scene or a choice.
+    pub fn apply(
+        &mut self,
+        flags: &[String],
+        items: &[String],
+        add: &BTreeMap<String, i64>,
+        set: &BTreeMap<String, i64>,
+    ) {
+        self.flags.extend(flags.iter().cloned());
+        for item in items {
+            if !self.items.contains(item) {
+                self.items.push(item.clone());
+            }
         }
-        c.any_flags.iter().any(|f| self.flags.contains(f))
-            || c.any_items.iter().any(|i| self.items.contains(i))
+        for (k, v) in set {
+            self.vars.insert(k.clone(), *v);
+        }
+        for (k, v) in add {
+            let e = self.vars.entry(k.clone()).or_insert(0);
+            *e = e.saturating_add(*v);
+        }
+    }
+
+    /// May the player see this choice now?
+    pub fn allows(&self, c: &Choice) -> bool {
+        let listed = (c.any_flags.is_empty() && c.any_items.is_empty())
+            || c.any_flags.iter().any(|f| self.flags.contains(f))
+            || c.any_items.iter().any(|i| self.items.contains(i));
+        listed && logic::check(c.cond.as_deref(), self)
     }
 }

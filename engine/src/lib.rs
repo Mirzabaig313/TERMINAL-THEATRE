@@ -14,6 +14,7 @@
 
 pub mod color;
 pub mod library;
+pub mod logic;
 pub mod pack;
 pub mod progress;
 pub mod rng;

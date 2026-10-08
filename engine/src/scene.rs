@@ -1,5 +1,7 @@
 //! Scene data, as written in `scenes/*.toml`.
 
+use std::collections::BTreeMap;
+
 use serde::Deserialize;
 
 #[derive(Debug, Deserialize)]
@@ -29,6 +31,15 @@ pub struct Scene {
     pub set_flags: Vec<String>,
     #[serde(default)]
     pub add_items: Vec<String>,
+    /// change counters on entering: `add = { trust = 1, suspicion = -2 }`
+    #[serde(default)]
+    pub add: BTreeMap<String, i64>,
+    /// set counters on entering: `set = { chapter = 2 }`
+    #[serde(default)]
+    pub set: BTreeMap<String, i64>,
+    /// other openings: the first whose condition holds replaces `text`
+    #[serde(default)]
+    pub variants: Vec<Variant>,
     #[serde(default)]
     pub dialogue: Vec<Line>,
     #[serde(default)]
@@ -66,6 +77,9 @@ pub struct Line {
     /// speaker id from story.toml `[speakers]`
     pub who: String,
     pub line: String,
+    /// only said when this holds (see [`crate::logic`])
+    #[serde(default, rename = "if")]
+    pub cond: Option<String>,
     /// expression from the speaker's sprite (e.g. "afraid")
     #[serde(default)]
     pub mood: Option<String>,
@@ -82,7 +96,7 @@ pub enum LineFx {
     Flash,
 }
 
-#[derive(Debug, Deserialize)]
+#[derive(Debug, Default, Deserialize)]
 #[serde(deny_unknown_fields)]
 pub struct Choice {
     pub text: String,
@@ -92,6 +106,27 @@ pub struct Choice {
     pub any_flags: Vec<String>,
     #[serde(default)]
     pub any_items: Vec<String>,
+    /// shown only when this holds (see [`crate::logic`]); combines with the above
+    #[serde(default, rename = "if")]
+    pub cond: Option<String>,
+    /// applied when the player takes this choice
+    #[serde(default)]
+    pub set_flags: Vec<String>,
+    #[serde(default)]
+    pub add_items: Vec<String>,
+    #[serde(default)]
+    pub add: BTreeMap<String, i64>,
+    #[serde(default)]
+    pub set: BTreeMap<String, i64>,
+}
+
+/// An alternative opening for a scene.
+#[derive(Debug, Deserialize)]
+#[serde(deny_unknown_fields)]
+pub struct Variant {
+    #[serde(rename = "if")]
+    pub cond: String,
+    pub text: String,
 }
 
 #[derive(Debug, Clone, Copy, Deserialize, PartialEq, Eq, PartialOrd, Ord)]

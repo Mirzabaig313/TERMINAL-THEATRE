@@ -33,6 +33,7 @@ fn conditional_choice() {
         goto: "y".into(),
         any_flags: vec![],
         any_items: vec!["Rusty Blade".into()],
+        ..Choice::default()
     };
     let mut s = State::default();
     assert!(!s.allows(&c));

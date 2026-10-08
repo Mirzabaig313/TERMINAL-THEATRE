@@ -26,6 +26,7 @@ USAGE:
     theatre stories                 list installed stories
     theatre saves                   list saved games
     theatre graphics                how this terminal can show scene pictures
+    theatre check [story-id]        validate stories (all of them, or one; _template too)
     theatre export <story-id> <slot> <file>
                                     copy a save to a file (slot 0 = autosave)
     theatre import <file> <slot>    put a save file into a slot of its story
@@ -59,6 +60,8 @@ fn main() -> Result<()> {
         ["stories"] => return list_stories(&ctx),
         ["saves"] => return list_saves(&ctx),
         ["graphics"] => return graphics_info(),
+        ["check"] => return check_stories(&ctx, None),
+        ["check", story] => return check_stories(&ctx, Some(story)),
         ["export", story, slot, file] => {
             ctx.store.export(
                 story,
@@ -194,6 +197,52 @@ For full-resolution pictures:
   - Or play in a terminal with image support: Kitty, WezTerm, iTerm2, Ghostty
     or Windows Terminal (Sixel)."
         );
+    }
+    Ok(())
+}
+
+/// Load and validate stories, reporting problems the way `cargo test` would.
+fn check_stories(ctx: &Ctx, only: Option<&str>) -> Result<()> {
+    use theatre_engine::StoryPack;
+    let dirs: Vec<PathBuf> = match only {
+        Some(id) => vec![ctx.stories.join(id)],
+        None => {
+            let (entries, errors) = theatre_engine::library::discover(&ctx.stories)?;
+            for e in &errors {
+                println!("✗ {e:#}");
+            }
+            entries.into_iter().map(|e| e.dir).collect()
+        }
+    };
+    let mut failed = 0;
+    for dir in dirs {
+        let id = dir
+            .file_name()
+            .map(|n| n.to_string_lossy().into_owned())
+            .unwrap_or_default();
+        match StoryPack::load(&dir) {
+            Ok(pack) => {
+                let unreachable = pack.unreachable();
+                let pictures = pack.scenes.values().filter(|s| s.image.is_some()).count();
+                println!(
+                    "✓ {id}: {} scenes, {} endings, {} speakers, {} pictures",
+                    pack.scenes.len(),
+                    pack.ending_ids().len(),
+                    pack.meta.speakers.len(),
+                    pictures
+                );
+                if !unreachable.is_empty() {
+                    println!("  ⚠ unreachable scenes: {}", unreachable.join(", "));
+                }
+            }
+            Err(e) => {
+                failed += 1;
+                println!("✗ {id}: {e:#}");
+            }
+        }
+    }
+    if failed > 0 {
+        bail!("{failed} story folder(s) have problems");
     }
     Ok(())
 }

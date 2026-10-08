@@ -394,6 +394,7 @@ impl PySave {
                 .map(|(scene, index, text)| ChoiceRecord { scene, index, text })
                 .collect(),
             playtime_ms: (g.playtime * 1000.0) as u64,
+            vars: Default::default(),
         };
         let metadata = Metadata {
             slot: m.slot,

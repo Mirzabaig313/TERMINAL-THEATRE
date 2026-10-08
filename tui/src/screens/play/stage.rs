@@ -182,7 +182,8 @@ impl Play {
         let Some(art) = scene.art_at(now.saturating_sub(self.runner.scene_start())) else {
             // no art: the narration lives on the stage and stays (dimmed) during dialogue
             let w = inner.width.min(90);
-            let h = (wrapped_height(&scene.text, w as usize) as u16).min(inner.height);
+            let narration = self.runner.narration();
+            let h = (wrapped_height(&narration, w as usize) as u16).min(inner.height);
             let r = Rect {
                 x: inner.x + (inner.width - w) / 2,
                 y: inner.y + (inner.height - h) / 2,
@@ -194,7 +195,7 @@ impl Play {
                 _ => (usize::MAX, lerp(th.text, th.panel, 0.45)),
             };
             let text = typed(
-                &scene.text,
+                &narration,
                 shown,
                 Style::new().fg(rgb(col)),
                 Style::new().fg(rgb(th.panel)),
@@ -271,7 +272,6 @@ impl Play {
 
     /// Narration box at the bottom, used when the stage is showing art.
     pub(super) fn draw_narration(&self, f: &mut Frame, area: Rect, th: &Theme, now: u64) {
-        let scene = self.runner.scene();
         let block = Block::new()
             .borders(Borders::ALL)
             .border_type(BorderType::Rounded)
@@ -279,7 +279,8 @@ impl Play {
             .style(Style::new().bg(rgb(th.panel)))
             .padding(Padding::new(3, 3, 1, 1));
         let w = block.inner(area).width as usize;
-        let h = (wrapped_height(&scene.text, w) as u16 + 4).min(area.height);
+        let narration = self.runner.narration();
+        let h = (wrapped_height(&narration, w) as u16 + 4).min(area.height);
         let area = Rect {
             y: area.bottom() - h,
             height: h,
@@ -288,7 +289,7 @@ impl Play {
         let inner = block.inner(area);
         f.render_widget(block, area);
         let text = typed(
-            &scene.text,
+            &narration,
             self.runner.shown_chars(now),
             Style::new().fg(rgb(th.text)),
             Style::new().fg(rgb(th.panel)),
@@ -334,10 +335,14 @@ impl Play {
         if thought {
             style = style.add_modifier(Modifier::ITALIC);
         }
+        let said = match self.runner.phase() {
+            Phase::Line(i) => self.runner.line_text(i),
+            _ => line.line.clone(),
+        };
         let quoted = if thought {
-            format!("({})", line.line)
+            format!("({said})")
         } else {
-            format!("“{}”", line.line)
+            format!("“{said}”")
         };
         // +1 for the opening quote/paren
         let shown = self.runner.shown_chars(now).saturating_add(1);
