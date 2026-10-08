@@ -104,7 +104,7 @@ fn main() -> Result<()> {
             );
             return Ok(());
         }
-        [story] if !story.starts_with('-') => Start::Story(story.to_string()),
+        [story] if !story.starts_with('-') => Start::Story(known_story(&ctx, story)?),
         _ => bail!("unknown arguments: {}\n\n{HELP}", args.join(" ")),
     };
 
@@ -260,6 +260,58 @@ fn sound_demo(ctx: &Ctx) -> Result<()> {
         println!("\nSound is off in the game. Turn it on in Settings → Sound.");
     }
     Ok(())
+}
+
+/// Words `theatre` understands as its first argument, besides story ids.
+const COMMANDS: [&str; 12] = [
+    "stories", "saves", "graphics", "sound", "check", "route", "map", "new", "rehearse", "export",
+    "import", "help",
+];
+
+/// A story to start straight away, or a helpful error (a typo shouldn't
+/// silently open the story list).
+fn known_story(ctx: &Ctx, arg: &str) -> Result<String> {
+    if ctx.stories.join(arg).join("story.toml").is_file() {
+        return Ok(arg.to_string());
+    }
+    let ids: Vec<String> = theatre_engine::library::discover(&ctx.stories)
+        .map(|(entries, _)| entries.into_iter().map(|e| e.id).collect())
+        .unwrap_or_default();
+    let candidates = COMMANDS
+        .iter()
+        .map(|c| c.to_string())
+        .chain(ids.iter().cloned());
+    let close = candidates
+        .map(|c| (distance(&arg.to_lowercase(), &c), c))
+        .filter(|(d, c)| *d <= 2.max(c.len() / 4))
+        .min();
+    let mut msg = format!("'{arg}' is not a command or a story.");
+    if let Some((_, c)) = close {
+        msg += &format!(" Did you mean `theatre {c}`?");
+    }
+    msg += &format!(
+        "\n\nStories: {}\nRun `theatre` for the title screen, or `theatre --help` for every command.",
+        ids.join(", ")
+    );
+    bail!(msg)
+}
+
+/// How many single-letter edits turn `a` into `b`.
+fn distance(a: &str, b: &str) -> usize {
+    let b: Vec<char> = b.chars().collect();
+    let mut row: Vec<usize> = (0..=b.len()).collect();
+    for (i, ca) in a.chars().enumerate() {
+        let mut prev = row[0];
+        row[0] = i + 1;
+        for j in 0..b.len() {
+            let cur = row[j + 1];
+            row[j + 1] = (prev + usize::from(ca != b[j]))
+                .min(row[j] + 1)
+                .min(cur + 1);
+            prev = cur;
+        }
+    }
+    row[b.len()]
 }
 
 /// Most story states `check` and `route` explore before giving up.

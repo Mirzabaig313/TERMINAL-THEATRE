@@ -1,0 +1,5 @@
+# The Rust version this project is built and tested with, here and in CI.
+# rustup installs it automatically on first build.
+[toolchain]
+channel = "1.99.0"
+components = ["clippy", "rustfmt"]
