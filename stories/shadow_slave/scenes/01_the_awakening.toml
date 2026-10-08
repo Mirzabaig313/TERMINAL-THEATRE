@@ -1,4 +1,5 @@
 [nightmare_begins]
+ambience = "dream"
 image = "images/nightmare_begins.svg"
 text = """
 Your eyes snap open. But this isn't your bed. This isn't your room.
@@ -35,7 +36,7 @@ dialogue = [
   { who = "the_spell", line = "Aspirant! Welcome to the Nightmare Spell.", mood = "focus", fx = "flash" },
   { who = "the_spell", line = "You have been infected with the Nightmare Seed.", mood = "focus" },
   { who = "your_thoughts", line = "No... this can't be real. Wake up. WAKE UP!", mood = "afraid", fx = "shake" },
-  { who = "the_spell", line = "Prepare to enter your First Nightmare...", mood = "wrath", fx = "glitch" },
+  { who = "the_spell", line = "Prepare to enter your First Nightmare...", mood = "wrath", fx = "glitch", sound = "sting" },
 ]
 [[nightmare_begins.choices]]
 text = "Try to stay calm and listen"
@@ -46,6 +47,7 @@ text = "Panic and resist the Spell"
 goto = "resistance"
 
 [resistance]
+ambience = "dream"
 text = """
 You thrash against the invisible bonds holding your consciousness. You claw at the dark, kick at nothing, scream until your throat is raw - and the dark simply tightens, patient as a closing fist.
 
@@ -66,6 +68,7 @@ text = "Keep fighting despite the pain"
 goto = "forced_entry"
 
 [forced_entry]
+ambience = "dream"
 transition = "cut"
 text = """
 The pain becomes unbearable. Your consciousness fractures under the strain, splintering into a hundred bright, useless pieces.
@@ -76,7 +79,7 @@ With a violent wrench, you're torn from reality and hurled into the abyss. Wind 
 
 You are falling, and you can feel yourself coming apart as you fall."""
 dialogue = [
-  { who = "the_spell", line = "So be it.", mood = "wrath", fx = "glitch" },
+  { who = "the_spell", line = "So be it.", mood = "wrath", fx = "glitch", sound = "whoosh" },
   { who = "your_thoughts", line = "I'm... unravelling. I can't even remember my own face...", mood = "pained" },
 ]
 [[forced_entry.choices]]
@@ -88,6 +91,7 @@ text = "Scream your own name into the void"
 goto = "name_in_the_void"
 
 [name_in_the_void]
+ambience = "dream"
 text = """
 You will not arrive as nothing.
 
@@ -99,7 +103,7 @@ You are still falling. But you are falling as yourself."""
 set_flags = ["held_onto_self"]
 add = { resolve = 2 }
 dialogue = [
-  { who = "the_spell", line = "...Noted.", mood = "focus", fx = "glitch" },
+  { who = "the_spell", line = "...Noted.", mood = "focus", fx = "glitch", sound = "chime" },
   { who = "your_thoughts", line = "That's right. Remember me. I'm not going anywhere.", mood = "angry" },
 ]
 [[name_in_the_void.choices]]
@@ -133,7 +137,7 @@ art = """
         """
 set_flags = ["learned_spell_basics"]
 dialogue = [
-  { who = "the_spell", line = "Wise choice, Aspirant.", mood = "focus" },
+  { who = "the_spell", line = "Wise choice, Aspirant.", mood = "focus", sound = "chime" },
   { who = "the_spell", line = "You will now be transported to the Dream Realm to face your First Nightmare." },
   { who = "the_spell", line = "Survive, and you will awaken with power beyond mortal limits.", mood = "focus" },
   { who = "the_spell", line = "Fail, and you will be lost forever in the darkness.", mood = "wrath" },
@@ -168,6 +172,7 @@ text = "Ask how to survive it, too"
 goto = "survival_info"
 
 [survival_info]
+ambience = "dream"
 text = """
 You need to know. Need to understand what you're walking into. Knowledge is the only weapon you can carry through a door like this one."""
 set_flags = ["learned_survival_tips"]
@@ -186,6 +191,7 @@ text = "Ask what the Dream Realm actually is"
 goto = "dream_realm_info"
 
 [dream_realm_entry_calm]
+sound = "whoosh"
 text = """
 You take a deep breath and center yourself.
 
@@ -207,6 +213,8 @@ text = "Keep your eyes shut and listen first"
 goto = "listen_before_waking"
 
 [dream_realm_entry_rough]
+ambience = "wind"
+sound = "impact"
 transition = "fade"
 text = """
 You crash into consciousness like a drowning man breaching water.
@@ -245,6 +253,7 @@ text = "Stay down, catch your breath, and listen"
 goto = "listen_before_waking"
 
 [listen_before_waking]
+sound = "footsteps"
 text = """
 You lie still and let your ears do the work.
 

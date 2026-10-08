@@ -18,6 +18,12 @@ art = """
 # character cells; players who turn Scene Images off see the ASCII art above.
 image = "images/rain.png"
 mood = "mystery"
+# a sound once the scene is on screen: gunshot | thunder | knock | phone | siren |
+# glass | heartbeat | impact | static | sting | whoosh | warble | chill | chime |
+# footsteps | silence, or an audio file in the story folder ("sounds/x.ogg").
+# Lines take `sound` too. Effects make a fitting sound of their own unless a
+# sound is given (`sound = "silence"` keeps an effect quiet).
+sound = "knock"
 set_flags = ["heard_knock"]
 dialogue = [
   { who = "hero_thinking", line = "Who knocks at this hour?" },
@@ -73,6 +79,8 @@ any_items = ["Wet Letter"]
 [silence]
 text = "The knocking stops. Footsteps fade into the rain."
 transition = "fade"
+# this scene's own background sound
+ambience = "wind"
 dialogue = [
   { who = "narrator_voice", line = "Some doors should stay closed.", fx = "chill" },
 ]

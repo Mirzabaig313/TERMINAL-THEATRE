@@ -1,4 +1,6 @@
 [prologue]
+ambience = "rain"
+sound = "phone"
 image = "images/prologue.svg"
 transition = "fade"
 text = """
@@ -48,6 +50,7 @@ text = "Review the case files one more time - you're missing something"
 goto = "review_files"
 
 [pier_nineteen]
+ambience = "wind"
 image = "images/pier_nineteen.svg"
 transition = "sweep"
 fx = "chill"
@@ -107,6 +110,7 @@ text = "Search Dr. Cross's office - she was investigating something"
 goto = "cross_office"
 
 [call_sarah]
+sound = "phone"
 text = """
 Sarah Vega. Your partner for six years before she made Lieutenant and you made a career of burning bridges. She answers on the second ring.
 
@@ -167,6 +171,7 @@ text = "Enough theory - get to Pier 19"
 goto = "pier_nineteen"
 
 [examine_card]
+ambience = "wind"
 image = "images/examine_card.svg"
 text = """
 The Queen of Swords. In tarot, she represents clarity through pain, truth through loss. Someone who has suffered and emerged with wisdom.
@@ -195,6 +200,7 @@ text = "Research the card deck instead - find the source"
 goto = "card_research"
 
 [question_forensics]
+ambience = "wind"
 text = """
 The forensic tech is young. Too young for this much death. Her name is Riley Chen. She's seen the pattern too.
 
@@ -224,6 +230,7 @@ text = "Search Dr. Cross's office for more research"
 goto = "cross_office"
 
 [crimson_hour_club]
+ambience = "neon"
 image = "images/crimson_hour_club.svg"
 mood = "mystery"
 text = """
@@ -396,6 +403,7 @@ text = "Get to the pier before victim four appears"
 goto = "pier_nineteen"
 
 [call_killer]
+sound = "phone"
 mood = "danger"
 text = """
 You dial the number. It rings once. Twice.
@@ -470,6 +478,7 @@ text = "That's all you need - head to the warehouse district"
 goto = "warehouse_district_early"
 
 [meet_elias]
+ambience = "neon"
 text = """
 The private room at the top of the Crimson Hour is decorated in themes of mortality. Baroque paintings of death. Sculptures of endings.
 
@@ -517,6 +526,7 @@ goto = "threaten_elias"
 add = { lines_crossed = 1 }
 
 [question_selene]
+ambience = "neon"
 text = """
 You keep Selene in public view. Smart. But she doesn't seem concerned.
 
@@ -539,6 +549,7 @@ text = "Where did she go? - follow the trail"
 goto = "follow_cassandra_from_club"
 
 [arrest_selene]
+ambience = "neon"
 text = """
 You pull your weapon and badge. 'Selene, you're under arrest as a material witness. You have the right—'
 

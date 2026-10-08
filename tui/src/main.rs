@@ -9,6 +9,7 @@ use theatre_engine::save::format_playtime;
 use theatre_engine::settings::data_dir;
 
 use terminal_theatre::app::{self, App, Start};
+use terminal_theatre::audio::Audio;
 use terminal_theatre::screens::Ctx;
 
 /// Frame time while something moves quickly (typing, transitions, effects).
@@ -26,6 +27,7 @@ USAGE:
     theatre stories                 list installed stories
     theatre saves                   list saved games
     theatre graphics                how this terminal can show scene pictures
+    theatre sound                   play every built-in sound (checks your audio)
     theatre check [story-id]        validate stories (all of them, or one; _template too)
     theatre export <story-id> <slot> <file>
                                     copy a save to a file (slot 0 = autosave)
@@ -36,6 +38,7 @@ ENVIRONMENT:
     THEATRE_HOME      where the database (saves, settings) lives (default: ~/.terminal_theatre)
     THEATRE_COLOR     256 or truecolor, to override the terminal color detection
     THEATRE_GRAPHICS  halfblocks, to draw scene pictures in character cells only
+    THEATRE_SOUND     off, to never use the audio device (sound is off until turned on in Settings)
 
 KEYS:
     Enter/Space continue · ↑/↓ or 1-9 choose · h history · a auto · s skip
@@ -60,6 +63,7 @@ fn main() -> Result<()> {
         ["stories"] => return list_stories(&ctx),
         ["saves"] => return list_saves(&ctx),
         ["graphics"] => return graphics_info(),
+        ["sound"] => return sound_demo(&ctx),
         ["check"] => return check_stories(&ctx, None),
         ["check", story] => return check_stories(&ctx, Some(story)),
         ["export", story, slot, file] => {
@@ -90,6 +94,7 @@ fn main() -> Result<()> {
     // ask the terminal how it can show pictures (needs the alternate screen, before events)
     let mut ctx = ctx;
     ctx.picker = terminal_theatre::render::image::detect_picker();
+    ctx.audio = Audio::new();
     let mut app = App::new(ctx, start);
     let begin = Instant::now();
     let result = (|| -> Result<()> {
@@ -197,6 +202,44 @@ For full-resolution pictures:
   - Or play in a terminal with image support: Kitty, WezTerm, iTerm2, Ghostty
     or Windows Terminal (Sixel)."
         );
+    }
+    Ok(())
+}
+
+/// Play every built-in sound and loop once, naming each.
+fn sound_demo(ctx: &Ctx) -> Result<()> {
+    use std::io::Write;
+    use terminal_theatre::audio::synth::{self, RATE};
+    use terminal_theatre::audio::{Cue, Loop, Status};
+    use theatre_engine::sound::{Ambient, Sfx};
+
+    let audio = Audio::new();
+    let volume = ctx.settings.volume.max(30);
+    audio.set_gain(volume as f32 / 100.0);
+    if let Status::Unavailable(why) = audio.status() {
+        bail!("no sound: {why}");
+    }
+    let wait = |secs: f32| std::thread::sleep(Duration::from_secs_f32(secs));
+    println!("Playing at {volume}% volume (Ctrl+C to stop).\n\nSounds:");
+    for s in Sfx::ALL.into_iter().filter(|s| *s != Sfx::Silence) {
+        print!("  {:<10}", s.name());
+        std::io::stdout().flush().ok();
+        audio.play(Cue::Builtin(s));
+        wait(synth::sfx(s).len() as f32 / RATE as f32 + 0.4);
+        println!("✓");
+    }
+    println!("\nAmbience (a few seconds of each):");
+    for a in Ambient::ALL.into_iter().filter(|a| *a != Ambient::Silence) {
+        print!("  {:<10}", a.name());
+        std::io::stdout().flush().ok();
+        audio.set_ambience(Some(Loop::Builtin(a)));
+        wait(5.0);
+        println!("✓");
+    }
+    audio.set_ambience(None);
+    wait(1.8);
+    if !ctx.settings.sound {
+        println!("\nSound is off in the game. Turn it on in Settings → Sound.");
     }
     Ok(())
 }

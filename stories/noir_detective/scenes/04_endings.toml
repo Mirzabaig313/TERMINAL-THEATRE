@@ -3,6 +3,7 @@
 
 [ending_killed_by_castellano]
 mood = "danger"
+sound = "gunshot"
 transition = "cut"
 text = """
 You make your move. It's a good move - fast, clean, the kind of thing that would have worked ten years and ten thousand cigarettes ago.
@@ -117,6 +118,7 @@ ending = true
 
 [ending_fbi_victory]
 mood = "calm"
+sound = "gunshot"
 fx = "flash"
 text = """
 Chen drops her hand, and the night comes apart.
@@ -137,6 +139,7 @@ ending = true
 [ending_partnership_success]
 image = "images/ending_partnership_success.svg"
 mood = "calm"
+ambience = "wind"
 text = """
 You walk Blackwood to the car yourself, one hand on his elbow, Chen on his other side. He doesn't say another word. He doesn't need to; his smile says he'll be out in six months. He's wrong. Chen has the papers from Seat 13, and she has you, and between the two of you there isn't a friend in Washington who'll pick up his calls.
 
@@ -245,12 +248,13 @@ Some would call it stupid. Others would call it heroic. You'd call it Tuesday.
 
 ENDING: DIED WITH HONOR"""
 dialogue = [
-  { who = "castellano", line = "Shame. We could've done great things together.", mood = "sad", fx = "lightning" },
+  { who = "castellano", line = "Shame. We could've done great things together.", mood = "sad", fx = "lightning", sound = "gunshot" },
 ]
 ending = true
 
 [ending_tactical_victory]
 mood = "calm"
+sound = "gunshot"
 text = """
 'Now,' Eddie says, and you move together like two halves of the same thought.
 
@@ -272,6 +276,7 @@ ending = true
 
 [ending_heroic_victory]
 mood = "danger"
+sound = "gunshot"
 text = """
 You charge. No plan. No cover. Just your legs and your gun and twenty yards of open concrete.
 
@@ -315,6 +320,7 @@ ending = true
 
 [ending_dark_justice]
 mood = "mystery"
+sound = "gunshot"
 transition = "cut"
 text = """
 You pull the trigger.
@@ -339,6 +345,7 @@ ending = true
 
 [ending_survivor]
 mood = "danger"
+sound = "gunshot"
 text = """
 You dive. The beam passes over your head with a sound like tearing silk and takes the top off the crate behind you, which bursts into flame.
 
@@ -352,7 +359,7 @@ Through skill and luck - mostly luck - you survived impossible odds. The conspir
 
 ENDING: THE SURVIVOR"""
 dialogue = [
-  { who = "jack_malone", line = "Sometimes you get lucky. Sometimes you get even. Tonight, I got both.", mood = "smirk", fx = "flash" },
+  { who = "jack_malone", line = "Sometimes you get lucky. Sometimes you get even. Tonight, I got both.", mood = "smirk", fx = "flash", sound = "siren" },
 ]
 ending = true
 
@@ -371,7 +378,7 @@ Clean. Quick. Effective. Just like you, on your best day. You only get a few of 
 
 ENDING: THE QUICK DRAW"""
 dialogue = [
-  { who = "jack_malone", line = "It's over.", fx = "flash" },
+  { who = "jack_malone", line = "It's over.", fx = "flash", sound = "gunshot" },
   { who = "castellano", line = "Easy, Malone. Easy. I'm a businessman.", mood = "afraid" },
 ]
 ending = true
@@ -534,6 +541,7 @@ ending = true
 
 [leave_town]
 mood = "noir"
+ambience = "city"
 transition = "fade"
 text = """
 You pack a bag. One suitcase, one gun, and all the cash you can carry from the coffee can behind the filing cabinet. You leave the lights on and the neon buzzing and the dame on the carpet, and you don't look at her on your way out. That's the part you'll remember.

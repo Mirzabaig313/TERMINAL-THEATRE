@@ -22,6 +22,7 @@ pub mod runner;
 pub mod save;
 pub mod scene;
 pub mod settings;
+pub mod sound;
 pub mod sprite;
 pub mod state;
 pub mod store;

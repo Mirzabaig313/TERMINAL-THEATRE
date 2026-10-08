@@ -7,6 +7,7 @@ use ratatui::Frame;
 use ratatui::crossterm::event::{KeyCode, KeyEvent, KeyModifiers};
 use theatre_engine::StoryPack;
 
+use crate::audio::{Cue, menu_sound};
 use crate::render::fx;
 use crate::screens::cinematic::Cinematic;
 use crate::screens::credits::Credits;
@@ -112,6 +113,11 @@ impl App {
             }
             Screen::Settings(_) | Screen::Credits(_) | Screen::Load(_) => Action::Stay,
         };
+        // sound follows the settings; background loops only play in a story
+        self.ctx.audio.set_gain(self.ctx.settings.gain());
+        if !matches!(self.screen, Screen::Play(_)) {
+            self.ctx.audio.set_ambience(None);
+        }
         self.apply(action);
     }
 
@@ -122,6 +128,7 @@ impl App {
         }
         let now = self.t;
         self.last_input = now;
+        self.menu_sound(k);
         let action = match &mut self.screen {
             Screen::Opening(s) => s.key(k, now),
             Screen::MainMenu(s) => s.key(k, &self.ctx, now),
@@ -133,6 +140,21 @@ impl App {
             Screen::Play(p) => p.key(k, &self.ctx, now),
         };
         self.apply(action);
+    }
+
+    /// Soft clicks for moving through menus, choosing and going back. Stories
+    /// make their own sounds; the title sequence and cinematic stay silent.
+    fn menu_sound(&self, k: KeyEvent) {
+        if matches!(
+            self.screen,
+            Screen::Opening(_) | Screen::Cinematic(_) | Screen::Play(_)
+        ) {
+            return;
+        }
+        let Some(ui) = menu_sound(k.code) else {
+            return;
+        };
+        self.ctx.audio.play(Cue::Ui(ui));
     }
 
     fn apply(&mut self, action: Action) {

@@ -2,6 +2,7 @@
 # learned, kept and chose earlier in the Nightmare.
 
 [spell_answers]
+ambience = "drone"
 text = """
 You don't take your eyes off the Guardian, but you ask the question anyway - out loud, to the burning letters behind your eyes.
 
@@ -25,6 +26,7 @@ text = "Face it head-on anyway"
 goto = "trial_encounter"
 
 [guardian_recognition]
+ambience = "drone"
 text = """
 The Guardian plants its left foot, squares its shoulders, and raises one arm like a blade - and the world stops.
 
@@ -36,7 +38,7 @@ The thing in front of you is not a monster that killed that warrior. It IS that 
 
 Behind the burning eyes, something flickers. Not hunger. Something older and much more tired. Its raised arm hangs in the air, and for the first time since it emerged, the Guardian does not advance."""
 dialogue = [
-  { who = "your_thoughts", line = "It's you. The warrior from the memory. You never stopped fighting...", mood = "pained", fx = "static" },
+  { who = "your_thoughts", line = "It's you. The warrior from the memory. You never stopped fighting...", mood = "pained", fx = "static", sound = "sting" },
   { who = "the_spell", line = "Anomaly detected. The Guardian's oath is... wavering.", mood = "focus", fx = "glitch" },
 ]
 [[guardian_recognition.choices]]
@@ -51,6 +53,8 @@ goto = "spirit_aid"
 any_flags = ["freed_ghosts"]
 
 [unarmed_stand]
+ambience = "drone"
+sound = "heartbeat"
 text = """
 You plant your feet. Your hands are empty, or as good as. Your heart is trying to climb out through your throat.
 
@@ -86,6 +90,8 @@ text = "Break and run"
 goto = "flight_from_guardian"
 
 [flight_from_guardian]
+ambience = "drone"
+sound = "footsteps"
 transition = "cut"
 text = """
 You run.
@@ -119,6 +125,7 @@ text = "Stop. Turn around. Face it"
 goto = "trial_encounter"
 
 [hiding_place]
+sound = "impact"
 text = """
 You know exactly where to go. That's the only reason you live.
 
@@ -143,6 +150,7 @@ text = "Stay hidden and wait for the Dream Realm to forget you"
 goto = "coward_ending"
 
 [stampede]
+ambience = "drone"
 transition = "sweep"
 fx = "shake"
 text = """
@@ -263,7 +271,7 @@ Then all of them are gone together, scattered on a wind that smells, impossibly,
 dialogue = [
   { who = "the_spell", line = "Your First Nightmare is complete.", mood = "focus", fx = "flash" },
   { who = "the_spell", line = "The Guardian was not defeated. It was relieved of duty. This is... unprecedented.", mood = "focus" },
-  { who = "the_spell", line = "Title granted: [Oathbreaker of the Fallen]. Attribute granted: [Echo of the Last Stand] (Dormant)", mood = "focus" },
+  { who = "the_spell", line = "Title granted: [Oathbreaker of the Fallen]. Attribute granted: [Echo of the Last Stand] (Dormant)", mood = "focus", sound = "chime" },
   { who = "ghost_captain", line = "Stand down, champion. The pass is held. Come home.", mood = "happy", if = "mercy >= 2" },
   { who = "your_thoughts", line = "Rest well, warrior. I'll carry the rest of it from here.", mood = "pained" },
 ]
@@ -307,6 +315,7 @@ dialogue = [
 ]
 
 [bound_in_their_place]
+ambience = "dream"
 fx = "chill"
 ending = true
 text = """
@@ -338,10 +347,11 @@ Years later - or perhaps only minutes; it's hard to say down here - another frig
 dialogue = [
   { who = "ghost", line = "Thank you, brave one. We will not forget this kindness.", mood = "smirk" },
   { who = "your_thoughts", line = "No - wait - I didn't mean - please...!", mood = "afraid", fx = "shake" },
-  { who = "the_spell", line = "Aspirant bound. Your First Nightmare will not end.", mood = "wrath", fx = "glitch" },
+  { who = "the_spell", line = "Aspirant bound. Your First Nightmare will not end.", mood = "wrath", fx = "glitch", sound = "sting" },
 ]
 
 [fallen_aspirant]
+ambience = "drone"
 fx = "blood"
 ending = true
 text = """
@@ -363,6 +373,7 @@ dialogue = [
 ]
 
 [unbroken_stand]
+ambience = "drone"
 fx = "heartbeat"
 text = """
 You don't reach for a weapon. You don't look for an exit. You plant your feet on the cracked basalt of the dead plaza, and you say your name - out loud, to the Guardian, to the Spell, to the whole bleeding sky.
@@ -412,6 +423,7 @@ goto = "the_unmoving"
 if = "resolve >= 5 && corruption <= 0"
 
 [the_unmoving]
+sound = "heartbeat"
 ending = true
 text = """
 ◇ THE UNMOVING ◇
@@ -452,6 +464,6 @@ art = """
 dialogue = [
   { who = "the_spell", line = "Your First Nightmare is complete.", mood = "focus", fx = "flash" },
   { who = "the_spell", line = "Survival condition met without victory. No Aspirant on record has attempted this.", mood = "focus" },
-  { who = "the_spell", line = "Title granted: [The Unmoving]. Attribute granted: [Unbroken Will] (Dormant)", mood = "focus" },
+  { who = "the_spell", line = "Title granted: [The Unmoving]. Attribute granted: [Unbroken Will] (Dormant)", mood = "focus", sound = "chime" },
   { who = "your_thoughts", line = "I didn't win. I just didn't leave. ...Turns out that counts.", mood = "smirk" },
 ]

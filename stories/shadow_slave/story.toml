@@ -18,6 +18,15 @@ player = "your_thoughts"
 cover = "the_spell"
 # mood used for the story-select screen
 cover_mood = "mystery"
+# wind through the ruins by default; the Spell's void and the ghosts' chambers
+# use "dream", the beasts and the Guardian "drone" (see scene overrides)
+ambience = "wind"
+
+[ambience_moods]
+danger = "drone"
+mystery = "drone"
+alert = "dream"
+calm = "dream"
 
 [speakers.the_spell]
 name = "THE SPELL"

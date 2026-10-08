@@ -9,6 +9,7 @@ use serde::Deserialize;
 use crate::color::{Rgb, parse_hex};
 use crate::logic;
 use crate::scene::{Mood, Scene, Transition};
+use crate::sound::{AUDIO_EXTENSIONS, AmbienceRef, Audio};
 use crate::sprite::Sprite;
 
 /// Contents of `story.toml`.
@@ -39,6 +40,12 @@ pub struct Meta {
     /// how scenes come on screen when they don't say (dissolve, fade, sweep…)
     #[serde(default)]
     pub transition: Transition,
+    /// background loop for every scene that doesn't choose its own
+    #[serde(default)]
+    pub ambience: Option<AmbienceRef>,
+    /// background loop by mood: `[ambience_moods] danger = "drone"`
+    #[serde(default)]
+    pub ambience_moods: BTreeMap<Mood, AmbienceRef>,
     #[serde(default)]
     pub speakers: BTreeMap<String, Speaker>,
     /// per-mood color overrides: `[themes.danger] accent = "#ff2a6d"`
@@ -180,7 +187,45 @@ impl StoryPack {
         {
             bail!("player '{p}' is not a speaker");
         }
+        // audio files must exist and be a kind the game can play
+        let audio_file = |what: &str, file: &str| -> Result<()> {
+            let path = self.dir.join(file);
+            if !path.is_file() {
+                bail!("{what}: sound '{file}' not found at {}", path.display());
+            }
+            let ext = path
+                .extension()
+                .and_then(|e| e.to_str())
+                .unwrap_or("")
+                .to_lowercase();
+            if !AUDIO_EXTENSIONS.contains(&ext.as_str()) {
+                bail!(
+                    "{what}: sound '{file}' must be one of .{}",
+                    AUDIO_EXTENSIONS.join(", .")
+                );
+            }
+            Ok(())
+        };
+        if let Some(Audio::File(f)) = &m.ambience {
+            audio_file("story ambience", f)?;
+        }
+        for (mood, a) in &m.ambience_moods {
+            if let Audio::File(f) = a {
+                audio_file(&format!("ambience for {mood:?}"), f)?;
+            }
+        }
         for (id, scene) in &self.scenes {
+            if let Some(Audio::File(f)) = &scene.ambience {
+                audio_file(&format!("scene '{id}' ambience"), f)?;
+            }
+            if let Some(Audio::File(f)) = &scene.sound {
+                audio_file(&format!("scene '{id}'"), f)?;
+            }
+            for (n, line) in scene.dialogue.iter().enumerate() {
+                if let Some(Audio::File(f)) = &line.sound {
+                    audio_file(&format!("scene '{id}' line {}", n + 1), f)?;
+                }
+            }
             if let Some(img) = &scene.image {
                 let path = self.dir.join(img);
                 if !path.is_file() {
@@ -276,6 +321,20 @@ impl StoryPack {
         self.scenes[scene_id]
             .mood
             .unwrap_or_else(|| Mood::guess(scene_id, self.meta.default_mood))
+    }
+
+    /// The background loop for a scene: its own, else its mood's, else the story's.
+    pub fn ambience_of(&self, scene_id: &str) -> Option<&AmbienceRef> {
+        self.scenes[scene_id]
+            .ambience
+            .as_ref()
+            .or_else(|| self.meta.ambience_moods.get(&self.mood_of(scene_id)))
+            .or(self.meta.ambience.as_ref())
+    }
+
+    /// Where an audio file named in the story lives.
+    pub fn audio_path(&self, file: &str) -> PathBuf {
+        self.dir.join(file)
     }
 
     pub fn transition_of(&self, scene_id: &str) -> Transition {

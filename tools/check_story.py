@@ -3,7 +3,7 @@
 Usage: python3 tools/check_story.py stories/<id>
 
 Checks scene links, speakers, line moods (against the speaker's sprite
-expressions), effects, and reports unreachable scenes. `cargo test` runs the
+expressions), effects, sounds, and reports unreachable scenes. `cargo test` runs the
 full validation; this is a fast helper while writing.
 """
 
@@ -15,6 +15,22 @@ import tomllib
 FX = {"shake", "glitch", "flash", "blood", "blackout", "lightning", "heartbeat", "dizzy", "chill", "static", "reveal"}
 TRANSITIONS = {"dissolve", "fade", "sweep", "rise", "coalesce", "cut"}
 MOODS = {"noir", "danger", "alert", "calm", "mystery"}
+SOUNDS = {"gunshot", "thunder", "knock", "phone", "siren", "glass", "heartbeat", "impact",
+          "static", "sting", "whoosh", "warble", "chill", "chime", "footsteps", "silence"}
+AMBIENCE = {"rain", "storm", "city", "neon", "wind", "drone", "dream", "silence"}
+AUDIO_EXT = (".ogg", ".wav", ".mp3", ".flac")
+
+
+def check_audio(folder, where, value, names, kind, errors):
+    """A built-in name, or a playable audio file inside the story folder."""
+    if "/" in value or "." in value:
+        path = os.path.join(folder, value)
+        if not os.path.isfile(path):
+            errors.append(f"{where}: {kind} file '{value}' not found")
+        elif not value.lower().endswith(AUDIO_EXT):
+            errors.append(f"{where}: {kind} '{value}' must be one of {', '.join(AUDIO_EXT)}")
+    elif value not in names:
+        errors.append(f"{where}: {kind} '{value}' not in {sorted(names)}")
 
 
 def main(folder):
@@ -37,6 +53,21 @@ def main(folder):
                 errors.append(f"speaker {sid}: missing sprite file {path}")
                 continue
             expressions[sid] = set(tomllib.load(open(path, "rb"))["expressions"])
+
+    if "ambience" in meta:
+        check_audio(folder, "story", meta["ambience"], AMBIENCE, "ambience", errors)
+    for mood, value in meta.get("ambience_moods", {}).items():
+        if mood not in MOODS:
+            errors.append(f"ambience_moods: unknown mood '{mood}'")
+        check_audio(folder, f"ambience_moods.{mood}", value, AMBIENCE, "ambience", errors)
+    for sid, scene in scenes.items():
+        if "sound" in scene:
+            check_audio(folder, sid, scene["sound"], SOUNDS, "sound", errors)
+        if "ambience" in scene:
+            check_audio(folder, sid, scene["ambience"], AMBIENCE, "ambience", errors)
+        for line in scene.get("dialogue", []):
+            if "sound" in line:
+                check_audio(folder, sid, line["sound"], SOUNDS, "sound", errors)
 
     if meta["start"] not in scenes:
         errors.append(f"start scene '{meta['start']}' missing")

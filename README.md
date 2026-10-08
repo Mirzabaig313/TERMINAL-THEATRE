@@ -11,6 +11,7 @@ Written in Rust. One binary, nothing else to install.
 - **Living Characters**: Pixel-art portraits that blink, breathe and move their lips as they speak, with eight expressions each (happy, smirk, angry, afraid, sad, pained, shocked, neutral)
 - **Cinematic Presentation**: Animated neon title sequence, a skippable pre-show cinematic, scene dissolves and typewriter text
 - **Screen Effects**: Eleven effects built on [tachyonfx](https://github.com/ratatui/tachyonfx): shake, glitch, flash, blood, blackout, lightning, heartbeat, dizzy, chill, static and reveal, plus drifting ash and neon in the background
+- **Sound**: Gunshots, thunder, ringing phones, heartbeats and sirens, with rain, neon hum, wind or a low drone under each scene. Every sound is made by the game itself, so there are no audio files to install. Sound is off until you turn it on in Settings
 - **Scene Transitions**: Scenes dissolve, fade from black, sweep or rise into view, gather out of scattered cells, or cut straight in
 - **Scene Pictures**: Real images in Kitty, iTerm2, WezTerm and Sixel terminals, drawn in character cells everywhere else, with ASCII art as the fallback
 - **Mood Lighting**: Every scene is colored by its mood (noir, danger, alert, calm, mystery), and each story can recolor them
@@ -20,7 +21,7 @@ Written in Rust. One binary, nothing else to install.
 - **Reading Comfort**: History of everything read, auto-advance, and skip that races through text you've already read
 - **Endings Gallery**: See which endings you've found in each story, and how many are left
 - **Accessibility**: Screen effects can be made gentler or turned off
-- **Settings That Stick**: Color or monochrome, text speed, typewriter, cinematic intro, screen effects, skip mode, all remembered
+- **Settings That Stick**: Color or monochrome, text speed, typewriter, cinematic intro, screen effects, skip mode, sound and volume, all remembered
 - **Story Folders**: Every story is a self-contained folder; drop one in and it appears in the menu
 
 ## 📖 Current Stories
@@ -63,6 +64,8 @@ Pulled into the Dream Realm, you must survive your First Nightmare: ancient ruin
 
 ```bash
 # Install Rust (once): https://rustup.rs
+# Linux only: sound needs ALSA headers (Debian/Ubuntu: sudo apt install libasound2-dev),
+# or build a silent game with: cargo run --release --no-default-features
 
 # Play the game
 cargo run --release
@@ -76,6 +79,7 @@ cargo run --release -- noir_detective   # straight into one story
 cargo run --release -- stories          # list installed stories
 cargo run --release -- saves            # list saved games
 cargo run --release -- graphics         # can this terminal show real pictures?
+cargo run --release -- sound            # play every built-in sound (checks your audio)
 cargo run --release -- check            # validate every story
 cargo run --release -- --help           # every command
 ```
@@ -218,6 +222,25 @@ fx = "lightning"
 
 Set `transition = "fade"` in `story.toml` to change the default for a whole story. The Screen Effects setting makes every effect gentler (Reduced) or turns them off.
 
+Give scenes sound. Every effect already makes a fitting sound (lightning thunders, a heartbeat thumps); name one to choose your own:
+
+```toml
+# story.toml: a background loop for every scene, and per mood
+ambience = "rain"            # rain | storm | city | neon | wind | drone | dream | silence
+[ambience_moods]
+danger = "drone"
+
+# scenes/*.toml
+[warehouse]
+ambience = "wind"            # this scene's own loop
+sound = "siren"              # once the scene is on screen
+dialogue = [
+  { who = "tony", line = "Down!", fx = "shake", sound = "gunshot" },
+]
+```
+
+Sounds: `gunshot` `thunder` `knock` `phone` `siren` `glass` `heartbeat` `impact` `static` `sting` `whoosh` `warble` `chill` `chime` `footsteps` `silence`. You can also use your own audio file (`sound = "sounds/door.ogg"`; .ogg, .wav, .mp3 or .flac inside the story folder).
+
 A broken story never crashes the game: it shows up on the menu with its error.
 
 ## 🏗️ Architecture
@@ -238,6 +261,7 @@ A broken story never crashes the game: it shows up on the menu with its error.
 | `scene` | Scene, dialogue line and choice data |
 | `runner` | Plays a story: narration → dialogue → choices → next scene |
 | `state` | Flags, items, counters, visited scenes, choice history, playtime |
+| `sound` | Sound and ambience names, audio files, and the sound each effect makes |
 | `logic` | Conditions (`if = "trust >= 2 && flag('x')"`) and `{counter}` text |
 | `store` | The SQLite database and its schema migrations |
 | `save` | Save slots, autosave, quick save, export/import, Python save import |
@@ -253,6 +277,7 @@ A broken story never crashes the game: it shows up on the menu with its error.
 | `screens/play/` | Playing a story: `mod.rs` (state, keys, story flow), `stage.rs` (drawing the scene), `overlays.rs` (intro, pause menu, save dialog, history), `modes.rs` (auto, skip, quick save/load) |
 | `screens/backlog` | The history of everything read |
 | `screens/load`, `settings`, `credits` | The other menu screens |
+| `audio` | Sound on its own thread (rodio); `audio/synth` makes every built-in sound and loop from noise and sine waves |
 | `render/effects` | Screen effects and scene transitions (tachyonfx), scaled by the Screen Effects setting |
 | `render/*` | Sprite drawing, scene pictures, hand-drawn effects (shake, glitch), color themes, text helpers |
 
@@ -263,8 +288,8 @@ The engine never names a story or a character, so adding a story never touches c
 Tests live in their own folders, separate from the code:
 
 ```
-engine/tests/   stories, runner, saves, progress, logic, effects, images, scene_state, sprite, store_settings
-tui/tests/      flow (the whole game driven by key presses), comfort, effects, images, performance, screens
+engine/tests/   stories, runner, saves, progress, logic, effects, sound, images, scene_state, sprite, store_settings
+tui/tests/      flow (the whole game driven by key presses), comfort, effects, sound, images, performance, screens
 ```
 
 ```bash
@@ -283,12 +308,11 @@ Every bundled story is checked on each run: it must load, every scene must be re
 - **Animated Characters**: 27, with 8 expressions each (hand-made sprites have their own sets)
 - **Scene Pictures**: 31 hand-drawn SVG illustrations (10 The Last Case, 10 Blood and Neon, 11 Shadow Slave)
 - **Lines of Dialogue**: 680
-- **Tests**: 86
+- **Tests**: 96
 
 
 ## 🔮 Future Plans
 
-- [ ] Sound effects and music
 - [ ] More stories (sci-fi, horror)
 - [ ] Achievements
 - [ ] Timed choices

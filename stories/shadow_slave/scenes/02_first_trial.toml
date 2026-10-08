@@ -1,4 +1,5 @@
 [first_awakening]
+ambience = "wind"
 transition = "coalesce"
 image = "images/first_awakening.svg"
 text = """
@@ -133,7 +134,7 @@ Most of it is worthless debris, but then your hand closes around something solid
 As you pocket the shard, you hear something. A whisper in a language you shouldn't understand... but somehow do."""
 add_items = ["Metal Shard"]
 dialogue = [
-  { who = "whisper", line = "Lost... so lost... help us..." },
+  { who = "whisper", line = "Lost... so lost... help us...", sound = "chill" },
   { who = "your_thoughts", line = "What was that?!", mood = "afraid" },
 ]
 [[search_ruins.choices]]
@@ -144,6 +145,8 @@ text = "Ignore it and keep searching"
 goto = "find_weapon"
 
 [dark_archway]
+ambience = "dream"
+sound = "chill"
 transition = "sweep"
 image = "images/dark_archway.svg"
 text = """
@@ -195,6 +198,8 @@ text = "Leave it alone and exit"
 goto = "first_awakening"
 
 [mysterious_glow]
+ambience = "drone"
+sound = "heartbeat"
 text = """
 ≋ SHADOW ESSENCE ≋
 
@@ -310,6 +315,7 @@ goto = "stealth_success"
 any_flags = ["listened_first"]
 
 [mysterious_whispers]
+ambience = "dream"
 fx = "chill"
 text = """
 You follow the whispers deeper into the ruins, down a stairway slick with something that isn't water.
@@ -391,6 +397,7 @@ text = "Follow the whispers after all"
 goto = "mysterious_whispers"
 
 [first_memory]
+sound = "glass"
 transition = "coalesce"
 fx = "static"
 image = "images/first_memory.svg"
@@ -455,7 +462,7 @@ add_items = ["Warrior's Echo"]
 dialogue = [
   { who = "the_spell", line = "You have acquired a Memory: [Warrior's Echo - Rank: Dormant]", mood = "focus", fx = "flash" },
   { who = "the_spell", line = "Type: Tool. Description: The final stand of an unnamed warrior.", mood = "focus" },
-  { who = "the_spell", line = "Attribute granted: [Combat Proficiency] (Dormant)", mood = "focus" },
+  { who = "the_spell", line = "Attribute granted: [Combat Proficiency] (Dormant)", mood = "focus", sound = "chime" },
   { who = "your_thoughts", line = "I can... I can FIGHT now. I know how. It's like I've trained for years...", mood = "smirk" },
   { who = "your_thoughts", line = "Thank you, warrior. I'll make your sacrifice count.", mood = "pained" },
 ]
@@ -491,6 +498,7 @@ text = "Change your mind and take it"
 goto = "first_memory"
 
 [drink_essence]
+ambience = "drone"
 text = """
 You cup your hands and drink the glowing liquid.
 
@@ -510,7 +518,7 @@ Somewhere very deep, the hunger opens one eye, and it looks pleased with itself.
 set_flags = ["consumed_essence"]
 add = { corruption = 2 }
 dialogue = [
-  { who = "the_spell", line = "You have consumed Shadow Essence.", mood = "focus", fx = "glitch" },
+  { who = "the_spell", line = "You have consumed Shadow Essence.", mood = "focus", fx = "glitch", sound = "chime" },
   { who = "the_spell", line = "Attribute granted: Shadow Affinity (Dormant)", mood = "focus" },
   { who = "the_spell", line = "Shadow saturation: {corruption}. Monitor it, Aspirant.", mood = "wrath", if = "corruption >= 3" },
   { who = "your_thoughts", line = "What have I done to myself?", mood = "pained", fx = "dizzy" },
@@ -582,6 +590,7 @@ text = "Stay hidden and study them a while longer"
 goto = "observe_creatures"
 
 [alert_creatures]
+ambience = "drone"
 transition = "cut"
 fx = "heartbeat"
 text = """
@@ -607,6 +616,7 @@ text = "Stand and fight with whatever you have"
 goto = "hopeless_battle"
 
 [find_seal]
+ambience = "dream"
 image = "images/find_seal.svg"
 text = """
 ◈ THE BINDING SEAL ◈
@@ -702,6 +712,8 @@ goto = "find_weapon"
 if = "!item('Rusty Blade')"
 
 [break_seal]
+ambience = "dream"
+sound = "impact"
 text = """
 You bring everything you have down on the seal's weakest point.
 
@@ -725,7 +737,7 @@ add = { mercy = 2, corruption = -1 }
 dialogue = [
   { who = "ghost", line = "You came back. In all our years, no one ever came back for us.", mood = "shocked", if = "flag('abandoned_ghosts')" },
   { who = "ghost", line = "Thank you, brave one. We will not forget this kindness.", mood = "happy", fx = "flash" },
-  { who = "the_spell", line = "You have been granted: [Ghost's Blessing]", mood = "focus" },
+  { who = "the_spell", line = "You have been granted: [Ghost's Blessing]", mood = "focus", sound = "chime" },
   { who = "the_spell", line = "Attribute granted: Spirit Sight (Dormant)", mood = "focus" },
 ]
 [[break_seal.choices]]
@@ -736,6 +748,8 @@ text = "Ask the freed spirits what waits ahead"
 goto = "ghost_counsel"
 
 [trial_encounter]
+ambience = "drone"
+sound = "thunder"
 image = "images/trial_encounter.svg"
 text = """
 ⚠ FINAL TRIAL BEGINS ⚠
@@ -829,7 +843,7 @@ dialogue = [
   { who = "the_spell", line = "Before you stands the Guardian - Rank: Fallen Terror.", mood = "wrath" },
   { who = "the_spell", line = "Defeat it, and you will awaken as one of the Awakened.", mood = "focus" },
   { who = "the_spell", line = "Fail... and you will never leave the Dream Realm.", mood = "wrath" },
-  { who = "the_spell", line = "Note: Aspirant shadow saturation is {corruption}. The Guardian has noticed.", mood = "wrath", fx = "glitch", if = "corruption >= 2" },
+  { who = "the_spell", line = "Note: Aspirant shadow saturation is {corruption}. The Guardian has noticed.", mood = "wrath", fx = "glitch", if = "corruption >= 2", sound = "sting" },
   { who = "your_thoughts", line = "This is it. Everything comes down to this single moment.", mood = "afraid", if = "resolve < 4" },
   { who = "your_thoughts", line = "This is it. And I'm still me. Let's see what that's worth.", mood = "angry", if = "resolve >= 4" },
   { who = "your_thoughts", line = "I will NOT die here. I will NOT fail. I WILL survive!", mood = "angry" },
@@ -872,6 +886,7 @@ text = "Run - you're not ready for this"
 goto = "flight_from_guardian"
 
 [trial_encounter_empowered]
+ambience = "drone"
 text = """
 The Shadow Essence burns in your veins as the Guardian appears.
 
@@ -923,7 +938,7 @@ art_frames = [
 ]
 art_ms = 300
 dialogue = [
-  { who = "the_spell", line = "The Guardian recognizes your Shadow Affinity.", mood = "focus", fx = "glitch" },
+  { who = "the_spell", line = "The Guardian recognizes your Shadow Affinity.", mood = "focus", fx = "glitch", sound = "sting" },
   { who = "your_thoughts", line = "I can feel it... the shadows. They're mine to command.", mood = "smirk" },
   { who = "the_spell", line = "Warning. Shadow saturation {corruption}. Aspirant integrity declining.", mood = "wrath", fx = "glitch", if = "corruption >= 3" },
   { who = "your_thoughts", line = "...Or am I theirs?", mood = "afraid", if = "corruption >= 4" },
@@ -936,6 +951,7 @@ text = "Fight alongside the shadows"
 goto = "final_battle"
 
 [desperate_escape]
+ambience = "drone"
 text = """
 You run faster than you've ever run. Your lungs burn. Behind you, the shadow beasts give chase, and the sound of them is like a landslide that has learned to hunt.
 
@@ -1063,6 +1079,7 @@ dialogue = [
 ]
 
 [clever_victory]
+sound = "impact"
 ending = true
 text = """
 You don't fight the Guardian head-on. That would be suicide.
@@ -1099,11 +1116,12 @@ art = """
 dialogue = [
   { who = "the_spell", line = "Your First Nightmare is complete.", mood = "focus" },
   { who = "the_spell", line = "You have survived through wisdom. Impressive.", mood = "focus" },
-  { who = "the_spell", line = "Additional Attribute granted: Tactical Mind (Dormant)", mood = "focus", fx = "flash" },
+  { who = "the_spell", line = "Additional Attribute granted: Tactical Mind (Dormant)", mood = "focus", fx = "flash", sound = "chime" },
   { who = "your_thoughts", line = "Not bad for someone who can't lift a sword properly.", mood = "smirk" },
 ]
 
 [spirit_aid]
+ambience = "dream"
 image = "images/spirit_aid.svg"
 ending = true
 text = """
@@ -1199,7 +1217,7 @@ dialogue = [
   { who = "ghost_captain", line = "Keep the key. Somewhere, someday, there will be a door that needs it.", mood = "happy", if = "mercy >= 3" },
   { who = "the_spell", line = "Your First Nightmare is complete.", mood = "focus", fx = "flash" },
   { who = "the_spell", line = "You have proven that compassion can exist even in the darkest places." },
-  { who = "the_spell", line = "Additional Attribute granted: [Spirit Companion] (Dormant)", mood = "focus" },
+  { who = "the_spell", line = "Additional Attribute granted: [Spirit Companion] (Dormant)", mood = "focus", sound = "chime" },
   { who = "the_spell", line = "The ghosts' blessing will remain with you... always." },
 ]
 
@@ -1252,9 +1270,9 @@ art = """
         """
 dialogue = [
   { who = "the_spell", line = "Your First Nightmare is complete.", mood = "focus" },
-  { who = "the_spell", line = "You have consumed the Shadow Essence and claimed dominion over darkness itself.", mood = "wrath", fx = "glitch" },
+  { who = "the_spell", line = "You have consumed the Shadow Essence and claimed dominion over darkness itself.", mood = "wrath", fx = "glitch", sound = "sting" },
   { who = "the_spell", line = "Title granted: [Shadow Aspirant]", mood = "focus" },
-  { who = "the_spell", line = "Additional Attribute granted: [Shadow Legion] (Dormant)", mood = "focus" },
+  { who = "the_spell", line = "Additional Attribute granted: [Shadow Legion] (Dormant)", mood = "focus", sound = "chime" },
   { who = "your_thoughts", line = "I have power now. Incredible power. But I can feel it... changing me.", mood = "smirk" },
   { who = "your_thoughts", line = "Was it worth it? ...I hope so.", mood = "pained" },
   { who = "your_thoughts", line = "My fingertips are still black. They're not fading. ...They're not fading.", mood = "afraid", fx = "dizzy", if = "corruption >= 4" },
@@ -1262,6 +1280,8 @@ dialogue = [
 ]
 
 [coward_ending]
+ambience = "drone"
+sound = "footsteps"
 transition = "fade"
 ending = true
 text = """
@@ -1335,6 +1355,7 @@ text = "Go straight to the dead plaza"
 goto = "trial_encounter"
 
 [ghost_counsel]
+ambience = "dream"
 text = """
 The light thickens, and one figure does not fade.
 

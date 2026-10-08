@@ -4,6 +4,8 @@ use std::collections::BTreeMap;
 
 use serde::Deserialize;
 
+use crate::sound::{AmbienceRef, SoundRef};
+
 #[derive(Debug, Deserialize)]
 #[serde(deny_unknown_fields)]
 pub struct Scene {
@@ -31,6 +33,12 @@ pub struct Scene {
     /// screen effect played once the scene is on screen
     #[serde(default)]
     pub fx: Option<LineFx>,
+    /// sound played once the scene is on screen (the effect's own sound when missing)
+    #[serde(default)]
+    pub sound: Option<SoundRef>,
+    /// background loop for this scene (the story's when missing)
+    #[serde(default)]
+    pub ambience: Option<AmbienceRef>,
     #[serde(default)]
     pub ending: bool,
     #[serde(default)]
@@ -92,6 +100,9 @@ pub struct Line {
     /// screen effect played when the line starts
     #[serde(default)]
     pub fx: Option<LineFx>,
+    /// sound played when the line starts (the effect's own sound when missing)
+    #[serde(default)]
+    pub sound: Option<SoundRef>,
 }
 
 /// A screen effect, played when a line starts (`fx` on a line) or when a scene

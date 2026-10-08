@@ -116,6 +116,8 @@ goto = "call_eddie"
 
 [escape_run]
 mood = "danger"
+ambience = "storm"
+sound = "footsteps"
 text = """
 You bolt. Tony shouts something that the rain swallows whole, and you're already around the corner, coat flapping, shoes slapping through water that runs ankle-deep in the gutters.
 
@@ -138,6 +140,7 @@ goto = "warehouse"
 
 [doctor_visit]
 mood = "calm"
+ambience = "city"
 text = """
 Doc Stevens works out of the back of a laundromat on Delancey, behind a curtain that smells of starch and carbolic. He lost his licence in '38 for treating the wrong kind of patient, and he's been treating nothing but the wrong kind ever since.
 
@@ -193,6 +196,7 @@ if = "heat <= 2"
 [castellano_meeting]
 image = "images/castellano_meeting.svg"
 mood = "mystery"
+ambience = "neon"
 text = """
 They put you in the back of a black Packard with a goon on either side, close enough that you can smell their hair oil. Nobody talks. The wipers keep time like a metronome at a funeral.
 
@@ -248,6 +252,7 @@ goto = "ending_killed_by_castellano"
 
 [velvet_room]
 mood = "mystery"
+ambience = "neon"
 text = """
 The Velvet Room is all red velvet and low light, a jewel box for people who've stolen the jewels. A trumpet bleeds something slow from the bandstand. Smoke hangs under the chandeliers in flat blue sheets, and every table has a candle in a red glass that makes the customers look like they're already in hell and enjoying it.
 
@@ -272,6 +277,7 @@ goto = "ending_smart_escape"
 
 [castellano_reveal]
 mood = "noir"
+ambience = "neon"
 text = """
 Castellano leans back and lights a cigar, taking his time about it, turning it in the flame until the tip glows even all the way round. A man who does that is a man who likes you to know he can afford to wait.
 
@@ -295,6 +301,7 @@ goto = "refuse_castellano"
 
 [castellano_alliance]
 mood = "noir"
+ambience = "neon"
 text = """
 You shake hands with the devil. His palm is dry and warm and the grip is exactly as firm as it needs to be, not an ounce more.
 
@@ -350,6 +357,7 @@ any_flags = ["tony_owes_you"]
 [rodriguez]
 image = "images/rodriguez.svg"
 mood = "calm"
+ambience = "city"
 text = """
 The 9th Precinct at 3 AM is a cathedral of bad coffee and worse lighting. A drunk sings in the holding cells. Somebody's typewriter goes clack-clack-ding with the patience of a man filling out a form for the thousandth time.
 
@@ -398,6 +406,7 @@ any_flags = ["found_service_panel"]
 
 [rodriguez_ballistics]
 mood = "calm"
+ambience = "city"
 text = """
 Rodriguez breaks open your revolver with the care of a jeweller and tips the six rounds out onto his blotter. They roll, click together, and lie still. He picks one up, holds it to the lamp, turns it. Then he sniffs the barrel, just like you did.
 
@@ -427,6 +436,7 @@ goto = "solo_mission"
 
 [rodriguez_plan]
 mood = "alert"
+ambience = "city"
 text = """
 Rodriguez works the phones for an hour, chain-smoking, crossing names off a list on a yellow pad. When he's done there are nine names left. Nine cops in a city of four thousand that he'd trust with his life. It isn't many. It's enough.
 
@@ -448,6 +458,7 @@ goto = "solo_mission"
 
 [solo_mission]
 mood = "danger"
+ambience = "wind"
 text = """
 You take the evidence and walk out of Rodriguez's office. He doesn't stop you. He doesn't even look up. You both know this is personal now, and personal doesn't fit in a police report.
 
@@ -477,6 +488,7 @@ any_flags = ["name_cleared"]
 [theater]
 image = "images/theater.svg"
 mood = "mystery"
+ambience = "silence"
 transition = "sweep"
 text = """
 The Ritz Theater is dark except for the green exit signs, glowing like cat's eyes in a cellar. Rain finds its way through the roof somewhere high above the balcony and falls in a single thin thread into the orchestra pit, ticking on the timpani like a clock.
@@ -501,6 +513,7 @@ goto = "theater_reveal"
 
 [theater_fight]
 mood = "danger"
+sound = "gunshot"
 transition = "cut"
 fx = "lightning"
 text = """
@@ -544,6 +557,7 @@ goto = "warehouse"
 
 [theater_reveal]
 mood = "mystery"
+ambience = "silence"
 text = """
 You keep your hands still and your voice steady. 'Who's there?'
 
@@ -576,6 +590,7 @@ goto = "warehouse"
 
 [fbi_cooperation]
 mood = "calm"
+ambience = "wind"
 text = """
 You trust Agent Chen. It feels strange, like wearing someone else's coat. But she has a team, and you have a cracked rib and a dead woman's envelope, and arithmetic is arithmetic.
 

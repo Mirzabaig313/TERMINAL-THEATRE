@@ -3,5 +3,6 @@
 //! and runs the loop; tests drive [`app::App`] the same way.
 
 pub mod app;
+pub mod audio;
 pub mod render;
 pub mod screens;

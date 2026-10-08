@@ -8,7 +8,7 @@ He's been injected with something. His eyes are wide, pupils dilated. He's seein
 
 On his desk: the Four of Pentacles. And a note in elegant script: 'Too late, Detective. He'll live. But he'll never be sane again. This is what mercy looks like. Quartus ex septem.'"""
 dialogue = [
-  { who = "sarah", line = "Ambulance is on the way. But Marcus... look at him. Whatever she gave him, it's destroyed his mind.", mood = "afraid" },
+  { who = "sarah", line = "Ambulance is on the way. But Marcus... look at him. Whatever she gave him, it's destroyed his mind.", mood = "afraid", sound = "siren" },
   { who = "kane", line = "Nightshade. Advanced formula. She's not just killing. She's leaving some of them alive to suffer.", mood = "angry" },
   { who = "damien_raving", line = "The shadows! The shadows have teeth! Make them stop! Make them stop seeing me!", mood = "afraid", fx = "glitch" },
   { who = "kane_thinking", line = "I slide the Four of Pentacles into an evidence bag. {cards} of her cards in my pocket now. She's dealing me a hand one card at a time.", if = "cards >= 2" },
@@ -35,7 +35,7 @@ The lights go out. Emergency backup doesn't kick in. She cut the power.
 
 In the darkness, you hear it: footsteps. Soft. Measured. Coming closer."""
 dialogue = [
-  { who = "sarah_radio", line = "Marcus. Movement on the second floor. She's inside.", mood = "afraid" },
+  { who = "sarah_radio", line = "Marcus. Movement on the second floor. She's inside.", mood = "afraid", sound = "footsteps" },
   { who = "kane_radio", line = "Hold position. Let her get to Damien. Then we close the trap." },
   { who = "cassandra_from_darkness", line = "Oh, Detective. Did you really think I wouldn't know? I've been watching you. Since the beginning. I know how you think. How you move. How you hunt. Because we're the same, you and I.", fx = "heartbeat" },
 ]
@@ -47,6 +47,7 @@ text = "Stay silent - hunt her in the dark"
 goto = "dark_hunt"
 
 [tackle_cassandra]
+ambience = "dream"
 fx = "dizzy"
 text = """
 You rush her. Fast. Professional. The tackle is perfect.
@@ -66,6 +67,7 @@ text = "Let it take you - maybe she'll think you're done"
 goto = "fake_unconscious"
 
 [final_confrontation]
+ambience = "drone"
 image = "images/final_confrontation.svg"
 text = """
 You track Cassandra to the old Prometheus facility. The place where it all began. Where Nightshade was created. Where the conspiracy was born. Where it ends.
@@ -124,6 +126,7 @@ text = "'There's another way' - negotiate a truce"
 goto = "negotiate_ending"
 
 [shoot_cassandra]
+sound = "gunshot"
 image = "images/shoot_cassandra.svg"
 mood = "danger"
 transition = "cut"
@@ -182,6 +185,7 @@ ENDING: THE TRUTH IN DARKNESS"""
 ending = true
 
 [walk_away_ending]
+sound = "footsteps"
 transition = "fade"
 text = """
 You holster your weapon. You turn. You walk away.
@@ -218,6 +222,7 @@ ENDING: THE DEVIL'S BARGAIN"""
 ending = true
 
 [nightshade_ending]
+ambience = "dream"
 transition = "fade"
 fx = "static"
 text = """
@@ -237,6 +242,7 @@ ENDING: LOST IN THE PATTERN"""
 ending = true
 
 [partner_sacrifice_ending]
+sound = "gunshot"
 image = "images/partner_sacrifice_ending.svg"
 mood = "calm"
 transition = "fade"
@@ -399,6 +405,7 @@ text = "Confront this head-on - call her, arrange a meeting"
 goto = "call_cassandra_direct"
 
 [philosophy_game]
+ambience = "neon"
 text = """
 You sit. Accept the absinthe. Play the game.
 
@@ -445,6 +452,7 @@ text = "Cassandra wants you to panic - think, don't react"
 goto = "stay_calm_sarah"
 
 [resist_nightshade]
+ambience = "dream"
 transition = "fade"
 fx = "dizzy"
 text = """
@@ -482,6 +490,7 @@ text = "The drug is affecting you - get medical help first"
 goto = "medical_help"
 
 [storm_ouroboros]
+ambience = "drone"
 text = """
 You storm Ouroboros with every cop loyal to you. Warrants be damned. Dr. Marsh tries to stop you. Security tries to intervene. You go through them like they're made of paper.
 
@@ -508,6 +517,7 @@ text = "Cassandra has the antidote - make her give it up"
 goto = "demand_antidote"
 
 [shoot_cassandra_save_sarah]
+sound = "gunshot"
 mood = "danger"
 fx = "shake"
 text = """

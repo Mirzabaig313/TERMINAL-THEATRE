@@ -4,6 +4,7 @@
 [opening]
 image = "images/opening.svg"
 mood = "mystery"
+sound = "siren"
 transition = "fade"
 text = """
 The neon sign outside your window stutters on and off like a bad heart - MALONE INVESTIGATIONS, then nothing, then MALONE INVESTIGATIONS again, painting the office the colour of a fresh wound. It's 2 AM. The rain has been coming down for three days, and it slides down the glass in long grey ropes, as if the whole city is trying to wash its hands.
@@ -182,6 +183,7 @@ goto = "leave_town"
 
 [call_eddie]
 mood = "calm"
+sound = "phone"
 text = """
 You dial Eddie's number with a finger that won't quite stay still. Three rings. Four.
 
@@ -236,6 +238,7 @@ any_items = ["Ritz Ticket"]
 [run_away]
 image = "images/run_away.svg"
 mood = "danger"
+ambience = "storm"
 transition = "sweep"
 fx = "lightning"
 text = """
@@ -278,7 +281,7 @@ art = """
 ╚═══════════════════════════════════════════════════════════════════╝
         """
 dialogue = [
-  { who = "tony_the_fist", line = "Going somewhere, Malone?", mood = "smirk" },
+  { who = "tony_the_fist", line = "Going somewhere, Malone?", mood = "smirk", sound = "footsteps" },
   { who = "jack_malone", line = "Just out for a smoke, Tony.", mood = "smirk" },
   { who = "tony", line = "Mr. Castellano wants to see you. Says you got something belongs to him.", mood = "angry" },
 ]

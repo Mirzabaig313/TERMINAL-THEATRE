@@ -100,8 +100,10 @@ pub struct Settings {
     pub cinematics: bool,
     pub text_speed: TextSpeed,
     pub typewriter: bool,
-    /// reserved for audio; nothing plays yet
+    /// sound effects, background ambience and menu sounds
     pub sound: bool,
+    /// loudness in percent (0..=100)
+    pub volume: u8,
     pub effects: Effects,
     /// skip mode also skips text never read before
     pub skip_unread: bool,
@@ -119,6 +121,7 @@ impl Default for Settings {
             text_speed: TextSpeed::Normal,
             typewriter: true,
             sound: false,
+            volume: 70,
             effects: Effects::Full,
             skip_unread: false,
             images: true,
@@ -162,6 +165,20 @@ impl Settings {
             .unwrap_or(0);
         self.text_speed = TextSpeed::ALL[(i + 1) % TextSpeed::ALL.len()];
         self.typewriter = self.text_speed != TextSpeed::Instant;
+    }
+
+    /// Volume as a 0..1 gain, 0 when sound is off.
+    pub fn gain(&self) -> f32 {
+        if self.sound {
+            self.volume.min(100) as f32 / 100.0
+        } else {
+            0.0
+        }
+    }
+
+    /// Louder by `step` percent (or quieter when negative), within 0..=100.
+    pub fn change_volume(&mut self, step: i32) {
+        self.volume = (self.volume as i32 + step).clamp(0, 100) as u8;
     }
 
     pub fn toggle_typewriter(&mut self) {

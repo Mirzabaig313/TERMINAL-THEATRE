@@ -24,6 +24,7 @@
 # ─────────────────────────────────────────────────────────────
 
 [exhume_tolliver]
+ambience = "rain"
 mood = "mystery"
 fx = "chill"
 add = { cards = 1 }
@@ -61,6 +62,7 @@ goto = "pier_nineteen"
 # ─────────────────────────────────────────────────────────────
 
 [threat_cassandra]
+ambience = "wind"
 mood = "danger"
 text = """
 'I'm coming for you, Cassandra.' The words come out low and flat, the way they do when you mean them.
@@ -142,6 +144,7 @@ add = { lines_crossed = 1 }
 # ─────────────────────────────────────────────────────────────
 
 [stake_out_shop]
+ambience = "rain"
 mood = "noir"
 text = """
 'She ordered one more card,' Madame Zora admits, lighting a clove cigarette off a church candle. 'Pickup tonight. I don't ask why.'
@@ -166,6 +169,7 @@ text = "Zora's receipt book lists a warehouse delivery address - check it"
 goto = "warehouse_district_early"
 
 [warehouse_district_early]
+sound = "footsteps"
 mood = "danger"
 text = """
 The warehouse district at this hour is a graveyard for industry. Rusted cranes. Loading docks with their mouths hanging open. Sodium lights that buzz and stutter like they're trying to remember how to work. Behind it all, chained and fenced, the dead hulk of the old Prometheus plant squats against the sky.
@@ -242,6 +246,7 @@ text = "Skip ahead - be waiting for her at Prometheus"
 goto = "prometheus_facility"
 
 [search_crimson_hour]
+ambience = "neon"
 mood = "mystery"
 fx = "chill"
 text = """
@@ -268,6 +273,7 @@ text = "Follow Cassandra out through the service tunnel"
 goto = "follow_cassandra_from_club"
 
 [follow_cassandra_from_club]
+ambience = "wind"
 mood = "noir"
 text = """
 Cassandra isn't a woman people forget. The valet remembers her: no car, no umbrella, walking east like the rain was a courtesy. The kid selling umbrellas at the corner remembers her too. She paid him fifty dollars for nothing and told him to go home.
@@ -278,7 +284,7 @@ Wind pushes out of the tunnel. A train is coming. And on the opposite platform, 
 
 The train screams between you. When it's gone, so is she."""
 dialogue = [
-  { who = "kane", line = "Cassandra!", mood = "angry", fx = "shake" },
+  { who = "kane", line = "Cassandra!", mood = "angry", fx = "shake", sound = "whoosh" },
   { who = "kane_thinking", line = "She mouthed two words before the train hit. Not yet.", mood = "shocked" },
   { who = "kane_thinking", line = "Quintus. The fifth. Ouroboros at nine. She isn't hiding where she's going. She's inviting me to watch." },
 ]
@@ -291,6 +297,7 @@ goto = "call_sarah"
 add = { sarah_trust = 1 }
 
 [call_backup_club]
+ambience = "neon"
 mood = "alert"
 text = """
 You key your radio without taking your eyes off Selene. 'Ten-thirteen, officer needs assistance, the Crimson Hour, meat-packing district. Red door.'
@@ -302,7 +309,7 @@ Nobody moves. The beautiful people just smile, the way you smile at a dog barkin
 Six minutes later you're walking Selene out into the rain between two patrol cars. In the back seat, cuffed, wet, she finally drops the smile."""
 set_flags = ["selene_turned"]
 dialogue = [
-  { who = "selene", line = "You could have just asked me to leave with you, Detective. It would have been less dramatic.", mood = "smirk" },
+  { who = "selene", line = "You could have just asked me to leave with you, Detective. It would have been less dramatic.", mood = "smirk", sound = "siren" },
   { who = "kane", line = "You told me my badge means nothing in there." },
   { who = "selene", line = "In there it doesn't. Out here, in the rain, it might. I was a chemist at Prometheus. I tested Nightshade on myself when they ran out of volunteers. My pupils haven't contracted in six years.", mood = "sad" },
   { who = "selene", line = "Elias has decided Cassandra is a liability. Here. Her private number. She'll answer for you. And Helena Marsh at Ouroboros is the fifth card. Tonight." },
@@ -315,6 +322,7 @@ text = "Call Cassandra yourself on Selene's number"
 goto = "call_cassandra_direct"
 
 [retreat_from_club]
+ambience = "rain"
 mood = "noir"
 text = """
 You holster your weapon and back toward the door, slow, the way you'd leave a room with a sleeping animal in it. Nobody follows. Nobody has to. The laughter follows you out instead.
@@ -353,8 +361,8 @@ Something punches you in the shoulder. Hot, then cold. You're behind the bar on 
 
 A hand finds your wrist. Selene, crouched beside you in the broken glass, her green eyes very calm."""
 dialogue = [
-  { who = "kane", line = "Gun! Everybody down!", mood = "angry", fx = "lightning" },
-  { who = "elias", line = "Finish him. Quietly, please. This is a place of contemplation.", mood = "angry" },
+  { who = "kane", line = "Gun! Everybody down!", mood = "angry", fx = "lightning", sound = "gunshot" },
+  { who = "elias", line = "Finish him. Quietly, please. This is a place of contemplation.", mood = "angry", sound = "glass" },
   { who = "kane", line = "Through the shoulder. Clean. I've had worse. I just can't remember when.", mood = "pained", fx = "blood" },
   { who = "selene", line = "This way, Detective. Now. Unless you'd rather die beautifully on a velvet floor.", mood = "afraid" },
 ]
@@ -366,6 +374,7 @@ text = "Take Selene's hand and go"
 goto = "selene_rescue"
 
 [velvet_ending]
+sound = "gunshot"
 mood = "danger"
 fx = "blackout"
 text = """
@@ -383,6 +392,7 @@ ENDING: BLOOD ON VELVET"""
 ending = true
 
 [selene_rescue]
+ambience = "neon"
 mood = "noir"
 text = """
 A door behind the bar. A corridor that smells of bleach. A storeroom full of crated absinthe. Selene sits you on a crate, cuts away your sleeve with a pair of bar shears, and stitches your shoulder with a curved needle and steady hands.
@@ -442,6 +452,7 @@ text = "Go to the Crimson Hour - find the man who gave the order"
 goto = "crimson_hour_club"
 
 [flee_office]
+sound = "footsteps"
 mood = "danger"
 text = """
 You hurl Cross's desk chair at her and run. On the way past the computer you rip out the thumb drive still blinking in its port. The label reads WESTMORE in Cross's careful hand.
@@ -468,6 +479,8 @@ text = "Get the drive to Captain Reeves"
 goto = "precinct_return"
 
 [safe_house]
+ambience = "neon"
+sound = "knock"
 mood = "calm"
 text = """
 Your bolt-hole is a rented room over a noodle shop in Chinatown, paid six months ahead in cash. Pink neon bleeds through the blinds. The radiator knocks like someone trying to get in. You plug Cross's files into a laptop that has never touched the internet, and you read until the words swim.
@@ -495,6 +508,7 @@ text = "Go to the Prometheus plant - where Lethe was born"
 goto = "prometheus_facility"
 
 [precinct_return]
+sound = "phone"
 mood = "alert"
 text = """
 The precinct at four in the morning is fluorescent purgatory. You drop the drive on Captain Reeves's desk. Riley Chen plugs it into a quarantined terminal and the two of you watch Reeves read.
@@ -634,6 +648,7 @@ goto = "prometheus_facility"
 add = { lines_crossed = 1 }
 
 [dark_hunt]
+sound = "footsteps"
 mood = "danger"
 text = """
 You kill your breathing down to nothing and move. Heel, toe. Heel, toe. The house is a black lung, and you are something small inside it.
@@ -662,6 +677,7 @@ add = { sarah_trust = 1 }
 # ─────────────────────────────────────────────────────────────
 
 [track_cassandra]
+ambience = "dream"
 mood = "mystery"
 text = """
 The streets are wrong. Neon drips upward. Rain falls in slow, separate beads you could count if you wanted to. Every shop sign is whispering your name. You keep your eyes on one thing: the black coat, three blocks ahead, walking without hurry.
@@ -689,6 +705,7 @@ text = "Your hands won't stop shaking - find a doctor first"
 goto = "medical_help"
 
 [medical_help]
+ambience = "dream"
 mood = "calm"
 text = """
 You call the one person in this city who knows what's in your blood. Riley Chen picks you up in a coroner's van and drives with the windows down so the cold air keeps you talking.
@@ -765,6 +782,7 @@ text = "Arrest Elias - he just told you he's using you"
 goto = "arrest_elias"
 
 [infiltrate_cult]
+ambience = "neon"
 mood = "mystery"
 text = """
 'Let me join her,' you say. Elias's smile is the slow, warm smile of a man watching a fish take the hook.
@@ -822,6 +840,7 @@ goto = "call_cassandra_direct"
 # ─────────────────────────────────────────────────────────────
 
 [call_cassandra_direct]
+sound = "phone"
 mood = "noir"
 text = """
 You dial. She answers before the first ring is finished, as if she's been sitting with the phone in her lap all night. Maybe she has.
@@ -860,7 +879,7 @@ Every card you've handled smelled faintly of diesel and salt. The silver ink nev
 
 You call Riley. She calls you back in eleven minutes."""
 dialogue = [
-  { who = "riley", line = "The silver ink is marine enamel. Boatyards use it to letter names on hulls. It's made to survive salt water for twenty years." },
+  { who = "riley", line = "The silver ink is marine enamel. Boatyards use it to letter names on hulls. It's made to survive salt water for twenty years.", sound = "phone" },
   { who = "kane", line = "Westmore's yacht was moored at Bellweather Marina. Who owns his slip now?" },
   { who = "riley", line = "Slip Seven. Sold two years ago to a shell company. Same registered agent as Ouroboros. And the power bill's been paid every month since.", mood = "shocked" },
   { who = "kane_thinking", line = "Slip Seven. The last place Alexander Westmore stood alive. Of course that's where she lives.", mood = "sad" },
@@ -873,6 +892,7 @@ text = "Stick to the invitation - Prometheus at midnight"
 goto = "prometheus_facility"
 
 [final_location]
+ambience = "wind"
 mood = "mystery"
 text = """
 Bellweather Marina. Slip Seven. The boathouse sits on pilings over black water, its windows painted over from the inside. The door gives to the brass key, or to your shoulder, whichever you brought.
@@ -956,6 +976,7 @@ goto = "marsh_bait"
 add = { lines_crossed = 1 }
 
 [protective_custody]
+sound = "knock"
 mood = "alert"
 text = """
 Reeves arranges it fast. The Harbor View Hotel, fourteenth floor. Two uniformed officers on the door, you in the adjoining room with the connecting door cracked an inch. Marsh sits on the bed in her expensive suit, fully dressed, not even pretending she'll sleep.
@@ -1021,6 +1042,7 @@ text = "Follow her into the rain - don't let her set the stage"
 goto = "final_confrontation"
 
 [marsh_bait]
+sound = "chime"
 mood = "danger"
 text = """
 The Ouroboros penthouse is lit like an aquarium. Marsh sits at her desk where anyone with a rifle scope could see her. You crouch in the dark conference room next door with your gun in your lap and the city glittering beneath you like spilled jewelry.
@@ -1075,6 +1097,7 @@ goto = "the_pattern_revealed"
 any_items = ["Tolliver Sample", "Cross's Files", "Damien's Tape", "Marsh Ledger", "Marsh Confession", "Yacht Photograph", "Lethe Archive"]
 
 [the_pattern_revealed]
+ambience = "drone"
 mood = "mystery"
 fx = "reveal"
 text = """
@@ -1132,6 +1155,7 @@ goto = "shoot_cassandra"
 # ─────────────────────────────────────────────────────────────
 
 [back_to_back_ending]
+ambience = "rain"
 mood = "alert"
 text = """
 Two taps on the radio clipped to your collar. The old signal from the old nights: I've got the light, you've got the shot.
@@ -1150,6 +1174,7 @@ ENDING: BACK TO BACK"""
 ending = true
 
 [seventh_card_ending]
+sound = "gunshot"
 mood = "danger"
 fx = "blood"
 text = """

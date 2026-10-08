@@ -15,6 +15,7 @@ use std::path::PathBuf;
 
 use super::backlog::{Backlog, Entry};
 use super::{Action, Ctx, Go};
+use crate::audio::{Cue, Loop, menu_sound};
 use crate::render::effects::{self, Running};
 use crate::render::fx::{self, Particles};
 use crate::render::image::{SceneImage, is_graphics};
@@ -33,6 +34,7 @@ use theatre_engine::runner::{Phase, Runner, revealed};
 use theatre_engine::save::{AUTOSAVE_SLOT, MAX_SLOT, Metadata, QUICKSAVE_SLOT, format_playtime};
 use theatre_engine::scene::{LineFx, Mood, Transition};
 use theatre_engine::settings::Effects;
+use theatre_engine::sound::{Sfx, SoundRef, sound_for};
 use theatre_engine::sprite::Actor;
 use theatre_engine::state::State;
 use theatre_engine::{Rng, StoryPack};
@@ -89,6 +91,8 @@ pub struct Play {
     transition_for: Option<u64>,
     /// the scene start whose own `fx` has been played
     scene_fx_for: Option<u64>,
+    /// sounds to play at the next tick
+    sounds: Vec<SoundRef>,
     glitch_until: u64,
     toast: Option<Toast>,
     rng: Rng,
@@ -135,6 +139,7 @@ impl Play {
             transition: None,
             transition_for: None,
             scene_fx_for: None,
+            sounds: Vec::new(),
             glitch_until: 0,
             toast: None,
             rng,
@@ -203,10 +208,14 @@ impl Play {
             && self.scene_fx_for != Some(start)
         {
             self.scene_fx_for = Some(start);
-            if let Some(kind) = self.runner.scene().fx {
+            let scene = self.runner.scene();
+            let (fx, sound) = (scene.fx, sound_for(scene.sound.as_ref(), scene.fx));
+            if let Some(kind) = fx {
                 self.start_fx(kind, now);
             }
+            self.sounds.extend(sound);
         }
+        self.sync_sound(ctx);
         // dangerous scenes flicker on their own now and then (full effects only)
         if ctx.settings.effects == Effects::Full
             && self.runner.mood() == Mood::Danger
@@ -218,6 +227,12 @@ impl Play {
     }
 
     pub fn key(&mut self, k: KeyEvent, ctx: &Ctx, now: u64) -> Action {
+        // menus inside a story (choices, pause menu, saving) click like the others
+        let in_menu = !matches!(self.overlay, Overlay::None | Overlay::Intro { .. })
+            || self.runner.phase() == Phase::Choose;
+        if in_menu && let Some(ui) = menu_sound(k.code) {
+            ctx.audio.play(Cue::Ui(ui));
+        }
         if let Some(action) = self.overlay_key(k, ctx, now) {
             return action;
         }
@@ -279,6 +294,23 @@ impl Play {
         }
     }
 
+    /// Play waiting sounds (not while skipping: they'd pile up) and keep the
+    /// scene's background loop going.
+    fn sync_sound(&mut self, ctx: &Ctx) {
+        let pack = &self.runner.pack;
+        for s in self.sounds.drain(..) {
+            if self.mode != Mode::Skip
+                && let Some(cue) = Cue::of(&s, pack)
+            {
+                ctx.audio.play(cue);
+            }
+        }
+        let want = pack
+            .ambience_of(self.runner.scene_id())
+            .and_then(|a| Loop::of(a, pack));
+        ctx.audio.set_ambience(want);
+    }
+
     /// Play a screen effect from now: shake and glitch are drawn by hand, the
     /// rest are built at the next draw, when the scene's colors are known.
     fn start_fx(&mut self, kind: LineFx, now: u64) {
@@ -291,9 +323,13 @@ impl Play {
     /// Bring the right character on stage when the story moves on.
     fn on_phase(&mut self, phase: Phase, now: u64) {
         if let Phase::Line(_) = phase
-            && let Some(kind) = self.runner.line().and_then(|l| l.fx)
+            && let Some(line) = self.runner.line()
         {
-            self.start_fx(kind, now);
+            let (fx, sound) = (line.fx, sound_for(line.sound.as_ref(), line.fx));
+            if let Some(kind) = fx {
+                self.start_fx(kind, now);
+            }
+            self.sounds.extend(sound);
         }
         let pack = &self.runner.pack;
         let wanted = match phase {
@@ -405,5 +441,8 @@ impl Play {
             .unwrap_or(false);
         let found = ctx.store.endings(&id).len();
         self.ending = Some((new, found, self.runner.pack.ending_ids().len()));
+        if new {
+            ctx.audio.play(Cue::Builtin(Sfx::Chime));
+        }
     }
 }

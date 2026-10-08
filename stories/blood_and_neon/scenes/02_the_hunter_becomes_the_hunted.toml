@@ -24,6 +24,8 @@ text = "Run - get out before she doses you"
 goto = "flee_office"
 
 [escape_office]
+ambience = "rain"
+sound = "footsteps"
 mood = "calm"
 text = """
 You grab Dr. Cross's research and bolt. Behind you, footsteps. Cassandra or her people. You don't stop to check.
@@ -45,6 +47,7 @@ text = "Go straight to Captain Reeves - need backup"
 goto = "precinct_return"
 
 [pier_nineteen_with_sarah]
+ambience = "wind"
 text = """
 Together, you and Sarah approach the pier. The scene is as horrific as you feared. Dr. Cross's body. The ritual positioning. The card.
 

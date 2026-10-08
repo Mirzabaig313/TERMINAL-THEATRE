@@ -4,6 +4,7 @@
 [warehouse]
 image = "images/warehouse.svg"
 mood = "mystery"
+ambience = "wind"
 transition = "sweep"
 fx = "lightning"
 text = """
@@ -96,6 +97,7 @@ any_flags = ["went_to_rodriguez"]
 
 [warehouse_sneak]
 mood = "mystery"
+ambience = "storm"
 text = """
 The fire ladder on the north wall is rusted half through, and it complains with every rung like an old man climbing stairs. On the roof the rain comes at you sideways off the harbour. You crawl across the tar paper on your belly to the skylight and lie with your cheek against the cold wet glass.
 
@@ -121,6 +123,8 @@ goto = "warehouse_retreat"
 
 [warehouse_front]
 mood = "alert"
+ambience = "wind"
+sound = "knock"
 fx = "heartbeat"
 text = """
 You straighten your hat, button your coat, and walk up the middle of the pier like you're delivering the morning milk. The two guards watch you come with the dull disbelief of men who've just seen a cow walk into a church.
@@ -147,6 +151,8 @@ goto = "warehouse_combat"
 
 [warehouse_wait]
 mood = "alert"
+ambience = "wind"
+sound = "footsteps"
 text = """
 Patience is a virtue in your line of work. Most nights it's the only one you've got.
 
@@ -194,6 +200,7 @@ goto = "warehouse_evidence"
 
 [velvet_room_with_eddie]
 mood = "mystery"
+ambience = "neon"
 text = """
 The Velvet Room is packed tonight - furs and diamonds and men who own racehorses, all of them laughing a little too loud, the way people do when they're standing on a trapdoor and know it. A singer in silver lamé is doing something sad to a Gershwin tune.
 
@@ -221,6 +228,7 @@ goto = "warehouse_front"
 
 [warehouse_skylight_attack]
 mood = "danger"
+sound = "glass"
 transition = "cut"
 fx = "shake"
 text = """
@@ -298,6 +306,7 @@ if = "evidence >= 4"
 
 [warehouse_combat]
 mood = "danger"
+sound = "gunshot"
 text = """
 It goes bad fast, the way these things always do. One second it's talk; the next it's furniture and gunfire.
 
@@ -307,7 +316,7 @@ You fight down the canyon of crates like a one-man army, firing, reloading, movi
 
 By the time you reach the table, you're running on adrenaline and fury and not much else. Your left leg is wet and doesn't want to work. Castellano and Morrison turn to face you, and in their eyes you see the same thing: they never once believed you'd get this far. Behind them, in the dark past the lamp, a third man doesn't bother turning at all."""
 dialogue = [
-  { who = "jack_malone", line = "It ends tonight.", mood = "angry", fx = "shake" },
+  { who = "jack_malone", line = "It ends tonight.", mood = "angry", fx = "shake", sound = "gunshot" },
   { who = "malone_thinking", line = "Two rounds left. Three of them. Make it count - or make it talk.", mood = "pained" },
 ]
 [[warehouse_combat.choices]]
@@ -321,6 +330,7 @@ goto = "warehouse_wounded_entry"
 
 [street_confrontation]
 mood = "alert"
+sound = "footsteps"
 text = """
 You let him reach the dark stretch between two streetlamps, where the river fog comes up through the drains. Then you step out of a doorway with your gun already pointing at his third shirt button.
 
@@ -389,6 +399,7 @@ goto = "take_briefcase"
 
 [follow_morrison]
 mood = "alert"
+ambience = "city"
 text = """
 Morrison leads you through the wet streets to Union Station, its great clock face glowing like a moon behind the rain. The concourse is nearly empty at this hour - a sailor asleep on a bench, a janitor pushing a mop in long slow arcs, a newsboy stacking tomorrow's headlines.
 
@@ -427,7 +438,7 @@ He turns up his collar and walks away into the rain without looking back. His fo
 add_items = ["Morrison's Briefcase"]
 add = { evidence = 1 }
 dialogue = [
-  { who = "jack_malone", line = "Even bad men get tired of being bad. Sometimes.", mood = "sad" },
+  { who = "jack_malone", line = "Even bad men get tired of being bad. Sometimes.", mood = "sad", sound = "footsteps" },
 ]
 [[take_briefcase.choices]]
 text = "Use the evidence - every newspaper, every honest judge"
@@ -486,6 +497,7 @@ goto = "ending_dark_justice"
 
 [escape_with_evidence]
 mood = "calm"
+ambience = "city"
 text = """
 You and Eddie vanish into the night with the ledger buttoned inside your coat, out through the kitchen, past a dishwasher who doesn't look up, into an alley full of steam and broken crates. Eddie's car is where he left it, engine still warm. Neither of you says anything until you're across the river.
 
@@ -512,6 +524,7 @@ goto = "ending_evidence_victory"
 
 [warehouse_injured]
 mood = "danger"
+ambience = "wind"
 fx = "dizzy"
 text = """
 You stagger the last block to Pier 9 with one hand pressed against your side and the other against any wall that'll hold you up. You're leaving a trail behind you, black on the wet planks under the sodium lights. The harbour wind goes through your coat like it isn't there.
@@ -607,6 +620,7 @@ goto = "final_confrontation_wounded"
 
 [final_confrontation_wounded]
 mood = "danger"
+sound = "gunshot"
 text = """
 Blackwood steps out of the dark and into the light, and the room seems to shrink around him. He's taller than he looked from the window. Grey greatcoat. A Luger in his gloved hand that looks like a toy in his grip.
 
@@ -630,6 +644,7 @@ goto = "ending_pyrrhic_victory"
 
 [warehouse_shootout_eddie]
 mood = "danger"
+sound = "gunshot"
 text = """
 You drop through the skylight in a burst of glass and rain, gun already talking. At the same instant, the back door bangs open off its hinges and Eddie comes through it low and fast, the old .45 bucking in his fist.
 
@@ -722,6 +737,7 @@ goto = "ending_fbi_victory"
 
 [rodriguez_raid]
 mood = "danger"
+sound = "siren"
 fx = "blood"
 text = """
 The red flare goes up over Pier 9 and hangs there, hissing, turning the rain into a curtain of falling blood. Thirty seconds later the sirens start.
@@ -745,6 +761,7 @@ goto = "ending_by_the_book"
 
 [solo_warehouse_attack]
 mood = "danger"
+sound = "gunshot"
 text = """
 You walk into Warehouse 47 like it's your office. Front door, middle of the floor, hat on, coat open. Nobody expects that. That's the whole trick.
 

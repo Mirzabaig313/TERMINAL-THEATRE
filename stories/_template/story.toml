@@ -18,6 +18,14 @@ default_mood = "noir"
 # dissolve (default) | fade | sweep | rise | coalesce | cut
 transition = "dissolve"
 
+# Background sound for every scene (scenes can choose their own with `ambience`):
+# rain | storm | city | neon | wind | drone | dream | silence, or an audio file
+# in this folder (.ogg, .wav, .mp3, .flac), e.g. "sounds/club.ogg"
+ambience = "rain"
+# ...or by mood: scenes of that mood use it unless they choose their own
+[ambience_moods]
+danger = "drone"
+
 # Recolor any mood for this story. Keys: bg panel border text dim accent mote
 [themes.noir]
 accent = "#d4af37"

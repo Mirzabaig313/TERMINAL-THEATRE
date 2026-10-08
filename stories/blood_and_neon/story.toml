@@ -15,6 +15,12 @@ player = "kane"
 # character shown on the story-select screen
 cover = "cassandra"
 cover_mood = "mystery"
+# background loop: the city hum by default; scenes pick rain, wind, neon, dream...
+ambience = "city"
+
+[ambience_moods]
+danger = "drone"
+alert = "city"
 
 [themes.noir]
 accent = "#ff2a6d"

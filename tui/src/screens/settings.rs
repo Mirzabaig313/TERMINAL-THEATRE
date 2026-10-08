@@ -1,4 +1,5 @@
-//! Settings: color mode, cinematic intro, text speed, typewriter, sound.
+//! Settings: color mode, cinematic intro, text speed, typewriter, effects,
+//! skip mode, scene images, sound and volume.
 //! Every change is saved immediately.
 
 use ratatui::Frame;
@@ -9,10 +10,12 @@ use ratatui::text::Line;
 use ratatui::widgets::{Block, Paragraph};
 
 use super::{Action, Ctx, Go};
+use crate::audio::{Cue, Status, Ui};
 use crate::render::ui::{Toast, centered, modal, option_line};
 use crate::render::{Theme, rgb};
+use theatre_engine::sound::Sfx;
 
-const ROWS: [&str; 9] = [
+const ROWS: [&str; 10] = [
     "Color Mode",
     "Cinematic Intro",
     "Text Speed",
@@ -20,7 +23,8 @@ const ROWS: [&str; 9] = [
     "Screen Effects",
     "Skip Mode",
     "Scene Images",
-    "Sound Effects",
+    "Sound",
+    "Volume",
     "Back",
 ];
 
@@ -64,7 +68,20 @@ impl SettingsScreen {
                 "Off (ASCII art)"
             }
             .into(),
-            7 => "Coming Soon".into(),
+            7 => match (s.sound, ctx.audio.status()) {
+                (false, _) => "Off".into(),
+                (true, Status::Unavailable(why)) => format!("On, but silent: {why}"),
+                (true, _) => "On (effects, ambience, menus)".into(),
+            },
+            8 => {
+                let filled = (s.volume as usize + 5) / 10;
+                format!(
+                    "{}{} {}%",
+                    "█".repeat(filled),
+                    "░".repeat(10 - filled),
+                    s.volume
+                )
+            }
             _ => "Return".into(),
         }
     }
@@ -87,14 +104,33 @@ impl SettingsScreen {
                     6 => s.images = !s.images,
                     7 => {
                         s.sound = !s.sound;
-                        self.toast = Some(Toast {
-                            life_ms: 4000,
-                            ..Toast::new(
-                                "Soundscapes are in composition! Thunder, jazz and the crackle of neon are coming. For now, imagine the soundtrack...",
-                                (0, 255, 255),
-                                now,
-                            )
-                        });
+                        if s.sound {
+                            // start the audio now, so a missing device shows at once
+                            ctx.audio.set_gain(s.gain());
+                            ctx.audio.play(Cue::Builtin(Sfx::Sting));
+                            if let Status::Unavailable(why) = ctx.audio.status() {
+                                self.toast = Some(Toast {
+                                    life_ms: 4000,
+                                    ..Toast::new(
+                                        format!("No sound here: {why}. The game stays silent."),
+                                        (255, 176, 0),
+                                        now,
+                                    )
+                                });
+                            }
+                        }
+                    }
+                    8 => {
+                        let step = match k.code {
+                            KeyCode::Left => -10,
+                            KeyCode::Right => 10,
+                            // Enter/Space go round: louder, then back to quiet
+                            _ if s.volume >= 100 => -100 + 10,
+                            _ => 10,
+                        };
+                        s.change_volume(step);
+                        ctx.audio.set_gain(s.gain());
+                        ctx.audio.play(Cue::Ui(Ui::Select));
                     }
                     _ => return Go::MainMenu.into(),
                 }
