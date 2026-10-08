@@ -36,7 +36,7 @@ The thing in front of you is not a monster that killed that warrior. It IS that 
 
 Behind the burning eyes, something flickers. Not hunger. Something older and much more tired. Its raised arm hangs in the air, and for the first time since it emerged, the Guardian does not advance."""
 dialogue = [
-  { who = "your_thoughts", line = "It's you. The warrior from the memory. You never stopped fighting...", mood = "pained", fx = "flash" },
+  { who = "your_thoughts", line = "It's you. The warrior from the memory. You never stopped fighting...", mood = "pained", fx = "static" },
   { who = "the_spell", line = "Anomaly detected. The Guardian's oath is... wavering.", mood = "focus", fx = "glitch" },
 ]
 [[guardian_recognition.choices]]
@@ -86,6 +86,7 @@ text = "Break and run"
 goto = "flight_from_guardian"
 
 [flight_from_guardian]
+transition = "cut"
 text = """
 You run.
 
@@ -142,6 +143,8 @@ text = "Stay hidden and wait for the Dream Realm to forget you"
 goto = "coward_ending"
 
 [stampede]
+transition = "sweep"
+fx = "shake"
 text = """
 You remember the herd - the way the beasts gave the heart of the city a wide berth, the way they shied from whatever lived there. So you run toward them.
 
@@ -198,7 +201,7 @@ The Guardian staggers under the swarm. You could finish it. You could finish eve
 add = { corruption = 1 }
 dialogue = [
   { who = "unknown_voice", line = "Yes. Let go. You were always meant to be ours." },
-  { who = "your_thoughts", line = "It's... pulling me in. I can't feel my hands...", mood = "pained", fx = "glitch" },
+  { who = "your_thoughts", line = "It's... pulling me in. I can't feel my hands...", mood = "pained", fx = "dizzy" },
   { who = "the_spell", line = "Warning. Aspirant identity unstable.", mood = "wrath" },
   { who = "the_spell", line = "Shadow saturation {corruption}. Threshold exceeded. Recovery improbable.", mood = "wrath", fx = "glitch", if = "corruption >= 5" },
   { who = "your_thoughts", line = "No. I know this feeling. I've pushed it down before.", mood = "angry", if = "corruption <= 4" },
@@ -266,6 +269,7 @@ dialogue = [
 ]
 
 [consumed_by_shadow]
+transition = "fade"
 image = "images/consumed_by_shadow.svg"
 ending = true
 text = """
@@ -298,11 +302,12 @@ They make room for it.""" },
 ]
 dialogue = [
   { who = "the_spell", line = "Final shadow saturation: {corruption}.", mood = "wrath", if = "corruption >= 5" },
-  { who = "the_spell", line = "Aspirant signal lost. Entity reclassified: Nightmare Creature.", mood = "wrath", fx = "glitch" },
+  { who = "the_spell", line = "Aspirant signal lost. Entity reclassified: Nightmare Creature.", mood = "wrath", fx = "static" },
   { who = "the_spell", line = "Your First Nightmare has ended. You have not.", mood = "wrath" },
 ]
 
 [bound_in_their_place]
+fx = "chill"
 ending = true
 text = """
 You know the low quarter. You know the stairway. Down there it's narrow and twisting - the Guardian will never follow you down there.
@@ -337,6 +342,7 @@ dialogue = [
 ]
 
 [fallen_aspirant]
+fx = "blood"
 ending = true
 text = """
 You have no weapon. You have no plan. You have only the stubborn, stupid refusal to die on your knees.
@@ -357,6 +363,7 @@ dialogue = [
 ]
 
 [unbroken_stand]
+fx = "heartbeat"
 text = """
 You don't reach for a weapon. You don't look for an exit. You plant your feet on the cracked basalt of the dead plaza, and you say your name - out loud, to the Guardian, to the Spell, to the whole bleeding sky.
 

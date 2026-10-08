@@ -17,4 +17,5 @@ image = { version = "0.25.10", default-features = false, features = ["png", "jpe
 ratatui.workspace = true
 ratatui-image = { version = "11.1.0", default-features = false, features = ["crossterm"] }
 resvg = { version = "0.48.1", default-features = false, features = ["text", "system-fonts", "memmap-fonts"] }
+tachyonfx = { version = "0.25.2", default-features = false, features = ["std"] }
 theatre-engine.workspace = true

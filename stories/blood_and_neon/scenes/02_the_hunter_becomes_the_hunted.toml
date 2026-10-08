@@ -1,5 +1,6 @@
 [office_ambush]
 mood = "danger"
+transition = "cut"
 text = """
 The office door opens. You spin, hand on your weapon.
 
@@ -8,7 +9,7 @@ Cassandra Westmore stands in the doorway. She's exactly as you imagined from the
 'Detective Kane. Dr. Cross spoke highly of you. Said you were the one who'd figure it out. She was right. She usually was.'"""
 dialogue = [
   { who = "kane", line = "Cassandra Westmore. You're under arrest for—", mood = "angry" },
-  { who = "cassandra", line = "For what? Killing people who deserved to die? For seeking justice when the system failed? Your gun is empty, Detective. I know because I was here two hours ago. I removed the firing pin.", mood = "smirk", fx = "flash" },
+  { who = "cassandra", line = "For what? Killing people who deserved to die? For seeking justice when the system failed? Your gun is empty, Detective. I know because I was here two hours ago. I removed the firing pin.", mood = "smirk", fx = "heartbeat" },
   { who = "kane", line = "What's in the syringe?", mood = "afraid" },
   { who = "cassandra", line = "Nightshade. Refined. Purified. Weaponized. One dose rewrites memory. Two doses create permanent psychosis. Three doses... well. Dr. Cross found out what three doses do.", mood = "smirk" },
 ]

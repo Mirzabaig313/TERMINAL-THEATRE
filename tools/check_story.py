@@ -12,7 +12,8 @@ import os
 import sys
 import tomllib
 
-FX = {"shake", "glitch", "flash"}
+FX = {"shake", "glitch", "flash", "blood", "blackout", "lightning", "heartbeat", "dizzy", "chill", "static", "reveal"}
+TRANSITIONS = {"dissolve", "fade", "sweep", "rise", "coalesce", "cut"}
 MOODS = {"noir", "danger", "alert", "calm", "mystery"}
 
 
@@ -48,6 +49,10 @@ def main(folder):
                 errors.append(f"{sid}: image '{scene['image']}' must be .png, .jpg or .svg")
         if "mood" in scene and scene["mood"] not in MOODS:
             errors.append(f"{sid}: scene mood '{scene['mood']}' not in {sorted(MOODS)}")
+        if scene.get("fx") and scene["fx"] not in FX:
+            errors.append(f"{sid}: scene fx '{scene['fx']}' not in {sorted(FX)}")
+        if scene.get("transition") and scene["transition"] not in TRANSITIONS:
+            errors.append(f"{sid}: transition '{scene['transition']}' not in {sorted(TRANSITIONS)}")
         for line in scene.get("dialogue", []):
             who = line["who"]
             if who not in speakers:

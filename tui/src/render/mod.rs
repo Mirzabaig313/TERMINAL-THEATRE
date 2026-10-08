@@ -1,5 +1,6 @@
 //! Terminal drawing building blocks; screens compose these.
 
+pub mod effects;
 pub mod fx;
 pub mod image;
 pub mod sprite;

@@ -3,6 +3,7 @@
 
 [ending_killed_by_castellano]
 mood = "danger"
+transition = "cut"
 text = """
 You make your move. It's a good move - fast, clean, the kind of thing that would have worked ten years and ten thousand cigarettes ago.
 
@@ -16,12 +17,13 @@ You think of the dame on your carpet, two floors and a whole night away. You thi
 
 ENDING: KILLED BY CASTELLANO"""
 dialogue = [
-  { who = "castellano", line = "Shame, Malone. We could've helped each other. Instead, you die stupid.", mood = "smirk", fx = "shake" },
+  { who = "castellano", line = "Shame, Malone. We could've helped each other. Instead, you die stupid.", mood = "smirk", fx = "blood" },
 ]
 ending = true
 
 [ending_evidence_victory]
 mood = "mystery"
+transition = "fade"
 text = """
 Rodriguez listens to all of it in his office with the blinds down, chain-smoking, his face getting greyer with every name. When it's over he sits very still for a long time. Then he picks up the phone and starts calling judges.
 
@@ -78,6 +80,7 @@ ending = true
 
 [ending_guilty_conscience]
 mood = "noir"
+transition = "fade"
 text = """
 You call Rodriguez from the box office phone, with her blood still on your cuffs, and you tell him everything. Every word. You don't leave out the part where you fired first.
 
@@ -96,6 +99,7 @@ ending = true
 
 [ending_exile]
 mood = "noir"
+transition = "sweep"
 text = """
 You run. You leave her in the aisle of the Ritz with the green exit light on her face, and you never stop running after that.
 
@@ -113,6 +117,7 @@ ending = true
 
 [ending_fbi_victory]
 mood = "calm"
+fx = "flash"
 text = """
 Chen drops her hand, and the night comes apart.
 
@@ -167,6 +172,7 @@ ending = true
 
 [ending_lone_wolf_victory]
 mood = "noir"
+transition = "fade"
 text = """
 You wake up in a hospital bed with the sun on your face, which feels like the first time in a year.
 
@@ -239,7 +245,7 @@ Some would call it stupid. Others would call it heroic. You'd call it Tuesday.
 
 ENDING: DIED WITH HONOR"""
 dialogue = [
-  { who = "castellano", line = "Shame. We could've done great things together.", mood = "sad", fx = "flash" },
+  { who = "castellano", line = "Shame. We could've done great things together.", mood = "sad", fx = "lightning" },
 ]
 ending = true
 
@@ -309,6 +315,7 @@ ending = true
 
 [ending_dark_justice]
 mood = "mystery"
+transition = "cut"
 text = """
 You pull the trigger.
 
@@ -324,7 +331,7 @@ You've become what you fought against. The rain, at least, doesn't judge.
 
 ENDING: DARK JUSTICE"""
 dialogue = [
-  { who = "eddie", line = "Jack... he was surrendering...", mood = "shocked" },
+  { who = "eddie", line = "Jack... he was surrendering...", mood = "shocked", fx = "chill" },
   { who = "jack_malone", line = "He killed that dame. He killed dozens. He was never going to see the inside of a prison. You know it. I know it.", mood = "angry" },
   { who = "eddie", line = "Maybe. But that was murder.", mood = "sad" },
 ]
@@ -388,7 +395,7 @@ They never find enough of you to bury. The papers say you skipped town after mur
 
 ENDING: BAD BLUFF"""
 dialogue = [
-  { who = "jack_malone", line = "Worth a shot...", mood = "afraid", fx = "flash" },
+  { who = "jack_malone", line = "Worth a shot...", mood = "afraid", fx = "blackout" },
   { who = "malone_thinking", line = "{evidence} real pieces in my coat, and I bet my life on a bluff. Stupid, Jack. Stupid.", mood = "sad", if = "evidence >= 3" },
 ]
 ending = true
@@ -467,6 +474,7 @@ ending = true
 
 [ending_pyrrhic_victory]
 mood = "noir"
+transition = "fade"
 text = """
 You crawl. It takes about a year. The concrete is cold and wet and slick with things you don't look at, and every foot of it costs you something you're not going to get back.
 
@@ -526,6 +534,7 @@ ending = true
 
 [leave_town]
 mood = "noir"
+transition = "fade"
 text = """
 You pack a bag. One suitcase, one gun, and all the cash you can carry from the coffee can behind the filing cabinet. You leave the lights on and the neon buzzing and the dame on the carpet, and you don't look at her on your way out. That's the part you'll remember.
 

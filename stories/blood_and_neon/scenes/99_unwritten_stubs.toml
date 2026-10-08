@@ -25,6 +25,7 @@
 
 [exhume_tolliver]
 mood = "mystery"
+fx = "chill"
 add = { cards = 1 }
 text = """
 Getting a dead man out of the ground at four in the morning takes either a judge's signature or a groundskeeper who likes cash more than sleep. Judges are dying in this city. You go with the groundskeeper.
@@ -242,6 +243,7 @@ goto = "prometheus_facility"
 
 [search_crimson_hour]
 mood = "mystery"
+fx = "chill"
 text = """
 You leave Selene among the candles and push through the velvet curtains. Kitchens. Dressing rooms. A staircase that goes down further than any staircase should.
 
@@ -341,6 +343,7 @@ add = { sarah_trust = 1 }
 
 [shootout_club]
 mood = "danger"
+transition = "cut"
 text = """
 You draw. Somewhere in the crowd, a doorman's hand goes into his jacket. You don't wait to find out what for.
 
@@ -350,9 +353,9 @@ Something punches you in the shoulder. Hot, then cold. You're behind the bar on 
 
 A hand finds your wrist. Selene, crouched beside you in the broken glass, her green eyes very calm."""
 dialogue = [
-  { who = "kane", line = "Gun! Everybody down!", mood = "angry", fx = "flash" },
+  { who = "kane", line = "Gun! Everybody down!", mood = "angry", fx = "lightning" },
   { who = "elias", line = "Finish him. Quietly, please. This is a place of contemplation.", mood = "angry" },
-  { who = "kane", line = "Through the shoulder. Clean. I've had worse. I just can't remember when.", mood = "pained", fx = "shake" },
+  { who = "kane", line = "Through the shoulder. Clean. I've had worse. I just can't remember when.", mood = "pained", fx = "blood" },
   { who = "selene", line = "This way, Detective. Now. Unless you'd rather die beautifully on a velvet floor.", mood = "afraid" },
 ]
 [[shootout_club.choices]]
@@ -364,6 +367,7 @@ goto = "selene_rescue"
 
 [velvet_ending]
 mood = "danger"
+fx = "blackout"
 text = """
 You come up over the bar with the gun in your good hand and empty it at the balcony.
 
@@ -522,6 +526,7 @@ goto = "buried_again_ending"
 
 [buried_again_ending]
 mood = "noir"
+transition = "fade"
 text = """
 You log the drive into evidence. Item 4471-B. Chain of custody signed in triplicate. It feels clean. It feels right.
 
@@ -597,6 +602,7 @@ goto = "prometheus_facility"
 
 [flashlight_confrontation]
 mood = "danger"
+fx = "flash"
 text = """
 White light slashes the dark. The beam catches her at the top of the stairs like a moth pinned to a board.
 
@@ -668,7 +674,7 @@ The Devil. Sextus ex septem."""
 set_flags = ["saw_the_devil"]
 add = { cards = 1 }
 dialogue = [
-  { who = "kane_thinking", line = "The streetlights are breathing. Focus. Follow the coat. Follow the coat.", mood = "pained", fx = "glitch" },
+  { who = "kane_thinking", line = "The streetlights are breathing. Focus. Follow the coat. Follow the coat.", mood = "pained", fx = "dizzy" },
   { who = "elias", line = "And the detective?" },
   { who = "cassandra", line = "Dreaming of me, I expect. Shall we go in, Colonel? I've built something in your honor.", mood = "smirk" },
   { who = "elias", line = "In my honor. You always did have a sense of occasion.", mood = "smirk" },
@@ -788,6 +794,7 @@ goto = "final_location"
 
 [stay_calm_sarah]
 mood = "alert"
+fx = "static"
 text = """
 You sit in Sarah's car with the door open and the rain coming in and you make yourself breathe. Four counts in. Four counts out. Cassandra wants you to panic. Panic is predictable.
 
@@ -972,6 +979,7 @@ add = { lines_crossed = 2 }
 
 [custody_ending]
 mood = "noir"
+fx = "chill"
 text = """
 You step aside. The law is the law, and you're a cop. That has to mean something. Marsh doesn't scream. She just looks at you as they lead her out, and that's worse.
 
@@ -1024,7 +1032,7 @@ Then the lights die. In the green glow of the exit signs, something moves behind
 Cassandra was already in the building. She was always already in the building."""
 dialogue = [
   { who = "kane", line = "Police! Drop the weapons!", mood = "angry", fx = "flash" },
-  { who = "cassandra", line = "You baited a trap for me, Marcus. Look what crawled in instead.", mood = "smirk", fx = "shake" },
+  { who = "cassandra", line = "You baited a trap for me, Marcus. Look what crawled in instead.", mood = "smirk" },
   { who = "dr_marsh", line = "Those are Vane's men! He's cleaning house! He's cleaning all of us!", mood = "afraid" },
   { who = "kane_thinking", line = "Two shooters left. One killer beside me with a needle. For the next sixty seconds, she's the only one in this room not trying to kill me." },
 ]
@@ -1043,6 +1051,7 @@ goto = "hide_marsh"
 [prometheus_facility]
 image = "images/prometheus_facility.svg"
 mood = "danger"
+transition = "sweep"
 text = """
 The old Prometheus Industries plant rises out of the rain like a tombstone for an idea. Twelve stories of black glass and rust. Over the gate, the company logo still hangs: a titan holding a torch, half its neon tubes dead, so he seems to be burning. At the curb, a black town car idles with its driver's door open and nobody inside.
 
@@ -1067,6 +1076,7 @@ any_items = ["Tolliver Sample", "Cross's Files", "Damien's Tape", "Marsh Ledger"
 
 [the_pattern_revealed]
 mood = "mystery"
+fx = "reveal"
 text = """
 She's waiting at the center of the laboratory, surrounded by a hundred amber vials glowing like votive candles. The Fool is in her hand. She opens her mouth to begin.
 
@@ -1141,6 +1151,7 @@ ending = true
 
 [seventh_card_ending]
 mood = "danger"
+fx = "blood"
 text = """
 You leave her standing over the evidence and walk across the hall. The decontamination door hisses open. Inside, the hooded man lifts his head at the sound of your footsteps.
 

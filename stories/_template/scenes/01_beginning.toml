@@ -21,7 +21,9 @@ mood = "mystery"
 set_flags = ["heard_knock"]
 dialogue = [
   { who = "hero_thinking", line = "Who knocks at this hour?" },
-  # mood = an expression of the speaker's sprite; fx = shake | glitch | flash
+  # mood = an expression of the speaker's sprite
+  # fx = a screen effect when the line starts: shake | glitch | flash | blood |
+  #      blackout | lightning | heartbeat | dizzy | chill | static | reveal
   { who = "stranger", line = "Let me in. Please.", mood = "afraid", fx = "shake" },
 ]
 
@@ -39,6 +41,11 @@ add = { caution = 1 }
 
 [door_open]
 text = "The stranger stumbles inside, soaked and shaking."
+# how the scene comes on screen: dissolve | fade | sweep | rise | coalesce | cut
+# (the story's `transition` when missing)
+transition = "sweep"
+# a screen effect once the scene is on screen (same names as a line's fx)
+fx = "lightning"
 # SVG pictures work too: drawn sharp at any size
 image = "images/doorway.svg"
 add_items = ["Wet Letter"]
@@ -65,8 +72,9 @@ any_items = ["Wet Letter"]
 
 [silence]
 text = "The knocking stops. Footsteps fade into the rain."
+transition = "fade"
 dialogue = [
-  { who = "narrator_voice", line = "Some doors should stay closed." },
+  { who = "narrator_voice", line = "Some doors should stay closed.", fx = "chill" },
 ]
 
 [[silence.choices]]

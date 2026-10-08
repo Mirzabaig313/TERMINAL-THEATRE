@@ -8,7 +8,7 @@ use serde::Deserialize;
 
 use crate::color::{Rgb, parse_hex};
 use crate::logic;
-use crate::scene::{Mood, Scene};
+use crate::scene::{Mood, Scene, Transition};
 use crate::sprite::Sprite;
 
 /// Contents of `story.toml`.
@@ -36,6 +36,9 @@ pub struct Meta {
     /// mood for scenes that neither set one nor match a keyword
     #[serde(default = "default_mood")]
     pub default_mood: Mood,
+    /// how scenes come on screen when they don't say (dissolve, fade, sweep…)
+    #[serde(default)]
+    pub transition: Transition,
     #[serde(default)]
     pub speakers: BTreeMap<String, Speaker>,
     /// per-mood color overrides: `[themes.danger] accent = "#ff2a6d"`
@@ -273,6 +276,12 @@ impl StoryPack {
         self.scenes[scene_id]
             .mood
             .unwrap_or_else(|| Mood::guess(scene_id, self.meta.default_mood))
+    }
+
+    pub fn transition_of(&self, scene_id: &str) -> Transition {
+        self.scenes[scene_id]
+            .transition
+            .unwrap_or(self.meta.transition)
     }
 
     /// Scenes no path from the start can reach (useful when writing).

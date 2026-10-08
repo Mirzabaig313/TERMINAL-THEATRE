@@ -15,6 +15,7 @@ use std::path::PathBuf;
 
 use super::backlog::{Backlog, Entry};
 use super::{Action, Ctx, Go};
+use crate::render::effects::{self, Running};
 use crate::render::fx::{self, Particles};
 use crate::render::image::{SceneImage, is_graphics};
 use crate::render::text::{continue_hint, pretty, shimmer, typed, wrapped_height};
@@ -30,7 +31,7 @@ use theatre_engine::color::{lerp, parse_hex, scale};
 use theatre_engine::progress::{NARRATION, Seen};
 use theatre_engine::runner::{Phase, Runner, revealed};
 use theatre_engine::save::{AUTOSAVE_SLOT, MAX_SLOT, Metadata, QUICKSAVE_SLOT, format_playtime};
-use theatre_engine::scene::{LineFx, Mood};
+use theatre_engine::scene::{LineFx, Mood, Transition};
 use theatre_engine::settings::Effects;
 use theatre_engine::sprite::Actor;
 use theatre_engine::state::State;
@@ -79,6 +80,15 @@ pub struct Play {
     actor_since: u64,
     fx_kind: Option<LineFx>,
     fx_start: u64,
+    /// an effect asked for but not built yet (it needs the scene's colors)
+    fx_pending: Option<LineFx>,
+    /// the line or scene effect playing now
+    screen_fx: Option<Running>,
+    /// the transition bringing the current scene on, and the scene start it's for
+    transition: Option<Running>,
+    transition_for: Option<u64>,
+    /// the scene start whose own `fx` has been played
+    scene_fx_for: Option<u64>,
     glitch_until: u64,
     toast: Option<Toast>,
     rng: Rng,
@@ -120,6 +130,11 @@ impl Play {
             actor_since: now,
             fx_kind: None,
             fx_start: 0,
+            fx_pending: None,
+            screen_fx: None,
+            transition: None,
+            transition_for: None,
+            scene_fx_for: None,
             glitch_until: 0,
             toast: None,
             rng,
@@ -150,6 +165,9 @@ impl Play {
             || recent(self.runner.phase_start(), 800)
             || recent(self.actor_since, 600)
             || recent(self.fx_start, 600)
+            || self.fx_pending.is_some()
+            || self.screen_fx.as_ref().is_some_and(Running::running)
+            || self.transition.as_ref().is_some_and(Running::running)
             || self.mode != Mode::Normal
     }
 
@@ -173,6 +191,21 @@ impl Play {
         }
         if matches!(self.overlay, Overlay::None) {
             self.run_mode(ctx, now);
+        }
+        // a scene's own effect plays once its transition is over
+        let start = self.runner.scene_start();
+        let settled = match self.runner.pack.transition_of(self.runner.scene_id()) {
+            Transition::Cut => true,
+            _ => now >= start + effects::TRANSITION_MS,
+        };
+        if settled
+            && !matches!(self.overlay, Overlay::Intro { .. })
+            && self.scene_fx_for != Some(start)
+        {
+            self.scene_fx_for = Some(start);
+            if let Some(kind) = self.runner.scene().fx {
+                self.start_fx(kind, now);
+            }
         }
         // dangerous scenes flicker on their own now and then (full effects only)
         if ctx.settings.effects == Effects::Full
@@ -246,14 +279,26 @@ impl Play {
         }
     }
 
+    /// Play a screen effect from now: shake and glitch are drawn by hand, the
+    /// rest are built at the next draw, when the scene's colors are known.
+    fn start_fx(&mut self, kind: LineFx, now: u64) {
+        self.fx_kind = Some(kind);
+        self.fx_start = now;
+        self.fx_pending = Some(kind);
+        self.screen_fx = None;
+    }
+
     /// Bring the right character on stage when the story moves on.
     fn on_phase(&mut self, phase: Phase, now: u64) {
+        if let Phase::Line(_) = phase
+            && let Some(kind) = self.runner.line().and_then(|l| l.fx)
+        {
+            self.start_fx(kind, now);
+        }
         let pack = &self.runner.pack;
         let wanted = match phase {
             Phase::Line(_) => {
                 let line = self.runner.line().expect("line phase has a line");
-                self.fx_kind = line.fx;
-                self.fx_start = now;
                 let sprite = pack.speaker(&line.who).and_then(|s| s.sprite.clone());
                 sprite.map(|s| (s, line.mood.clone().unwrap_or_else(|| "neutral".into())))
             }

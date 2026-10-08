@@ -5,6 +5,8 @@
 
 [alley_fight]
 mood = "danger"
+transition = "cut"
+fx = "blood"
 text = """
 You don't wait for the invitation. You throw the first punch, and it's a good one - all shoulder, all three days of rain behind it. Tony's nose goes with a crunch like stepping on a matchbox.
 
@@ -316,6 +318,7 @@ goto = "ending_double_cross"
 
 [refuse_castellano]
 mood = "danger"
+fx = "heartbeat"
 text = """
 'I don't work with killers.'
 
@@ -474,6 +477,7 @@ any_flags = ["name_cleared"]
 [theater]
 image = "images/theater.svg"
 mood = "mystery"
+transition = "sweep"
 text = """
 The Ritz Theater is dark except for the green exit signs, glowing like cat's eyes in a cellar. Rain finds its way through the roof somewhere high above the balcony and falls in a single thin thread into the orchestra pit, ticking on the timpani like a clock.
 
@@ -486,7 +490,7 @@ add_items = ["Nightfall Papers"]
 add = { evidence = 1 }
 dialogue = [
   { who = "jack_malone", line = "The dame wasn't running from Castellano. She was running from everyone. This is enough to burn the whole city down.", mood = "shocked" },
-  { who = "voice_from_darkness", line = "That's exactly right, Mr. Malone.", fx = "shake" },
+  { who = "voice_from_darkness", line = "That's exactly right, Mr. Malone.", fx = "heartbeat" },
 ]
 [[theater.choices]]
 text = "Spin and draw your gun"
@@ -497,6 +501,8 @@ goto = "theater_reveal"
 
 [theater_fight]
 mood = "danger"
+transition = "cut"
+fx = "lightning"
 text = """
 You spin and fire in one motion, the way they taught you, the way you've done in your nightmares a hundred times. The shot is enormous in the empty theater - it slaps off the gilded ceiling and comes back at you from every side.
 
@@ -522,7 +528,7 @@ art = """
         """
 dialogue = [
   { who = "dying_woman", line = "Idiot... I was here... to help you... FBI... investigating... Project Nightfall...", mood = "pained" },
-  { who = "jack_malone", line = "Jesus... I didn't know...", mood = "shocked" },
+  { who = "jack_malone", line = "Jesus... I didn't know...", mood = "shocked", fx = "chill" },
   { who = "dying_woman", line = "The papers... get them... to Chen...", mood = "afraid" },
   { who = "dying_woman", line = "They'll come... for you... run...", mood = "sad" },
 ]

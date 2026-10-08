@@ -14,6 +14,9 @@ cover_mood = "noir"
 # mood for scenes that do not set one (scene ids containing words like
 # "fight", "dream" or "secret" also pick a mood automatically)
 default_mood = "noir"
+# how scenes come on screen unless they say otherwise:
+# dissolve (default) | fade | sweep | rise | coalesce | cut
+transition = "dissolve"
 
 # Recolor any mood for this story. Keys: bg panel border text dim accent mote
 [themes.noir]

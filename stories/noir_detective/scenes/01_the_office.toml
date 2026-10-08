@@ -4,6 +4,7 @@
 [opening]
 image = "images/opening.svg"
 mood = "mystery"
+transition = "fade"
 text = """
 The neon sign outside your window stutters on and off like a bad heart - MALONE INVESTIGATIONS, then nothing, then MALONE INVESTIGATIONS again, painting the office the colour of a fresh wound. It's 2 AM. The rain has been coming down for three days, and it slides down the glass in long grey ropes, as if the whole city is trying to wash its hands.
 
@@ -44,7 +45,7 @@ art = """
 ╚════════════════════════════════════════════════════════════════╝
         """
 dialogue = [
-  { who = "jack_malone", line = "Think, Jack. Think... What happened?", mood = "pained", fx = "glitch" },
+  { who = "jack_malone", line = "Think, Jack. Think... What happened?", mood = "pained", fx = "static" },
   { who = "jack_malone", line = "The dame said she was being followed. Said she had proof that would bring down the Castellano family. Then... nothing.", mood = "sad" },
   { who = "malone_thinking", line = "That siren's not going anywhere else. Ten minutes, maybe less.", mood = "afraid" },
 ]
@@ -89,6 +90,7 @@ goto = "rodriguez"
 
 [check_gun]
 mood = "alert"
+fx = "chill"
 text = """
 You thumb the latch and the cylinder swings out with a sound like a cocked eyebrow.
 
@@ -234,6 +236,8 @@ any_items = ["Ritz Ticket"]
 [run_away]
 image = "images/run_away.svg"
 mood = "danger"
+transition = "sweep"
+fx = "lightning"
 text = """
 You grab your coat and hat and leave her there. It's the worst thing you've done in years, and you do it in four seconds flat.
 

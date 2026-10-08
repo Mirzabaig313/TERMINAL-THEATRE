@@ -1,4 +1,5 @@
 [first_awakening]
+transition = "coalesce"
 image = "images/first_awakening.svg"
 text = """
 ⚠ REALITY SHIFTS ⚠
@@ -143,6 +144,7 @@ text = "Ignore it and keep searching"
 goto = "find_weapon"
 
 [dark_archway]
+transition = "sweep"
 image = "images/dark_archway.svg"
 text = """
 ⛧ TEMPLE OF THE FORGOTTEN ⛧
@@ -277,7 +279,7 @@ They're not aggressive, you realize. Just... present. Existing in this twisted r
 Then the largest one lifts its head and holds it there. Too long. Its eyeless face turns, slowly, in your direction."""
 set_flags = ["observed_beasts"]
 dialogue = [
-  { who = "your_thoughts", line = "Don't move. Don't even breathe.", mood = "afraid" },
+  { who = "your_thoughts", line = "Don't move. Don't even breathe.", mood = "afraid", fx = "heartbeat" },
 ]
 [[observe_creatures.choices]]
 text = "Stay perfectly still"
@@ -308,6 +310,7 @@ goto = "stealth_success"
 any_flags = ["listened_first"]
 
 [mysterious_whispers]
+fx = "chill"
 text = """
 You follow the whispers deeper into the ruins, down a stairway slick with something that isn't water.
 
@@ -388,6 +391,8 @@ text = "Follow the whispers after all"
 goto = "mysterious_whispers"
 
 [first_memory]
+transition = "coalesce"
+fx = "static"
 image = "images/first_memory.svg"
 text = """
 ≋ MEMORY ABSORBED ≋
@@ -508,7 +513,7 @@ dialogue = [
   { who = "the_spell", line = "You have consumed Shadow Essence.", mood = "focus", fx = "glitch" },
   { who = "the_spell", line = "Attribute granted: Shadow Affinity (Dormant)", mood = "focus" },
   { who = "the_spell", line = "Shadow saturation: {corruption}. Monitor it, Aspirant.", mood = "wrath", if = "corruption >= 3" },
-  { who = "your_thoughts", line = "What have I done to myself?", mood = "pained" },
+  { who = "your_thoughts", line = "What have I done to myself?", mood = "pained", fx = "dizzy" },
   { who = "your_thoughts", line = "No. I said my name to the dark once. I can say it to this.", mood = "angry", if = "resolve >= 2" },
 ]
 [[drink_essence.choices]]
@@ -577,6 +582,8 @@ text = "Stay hidden and study them a while longer"
 goto = "observe_creatures"
 
 [alert_creatures]
+transition = "cut"
+fx = "heartbeat"
 text = """
 The shadow beasts' heads snap up as one. They've seen you.
 
@@ -682,7 +689,7 @@ Somewhere around the twentieth step you notice your shadow is a little longer th
 set_flags = ["abandoned_ghosts"]
 add = { corruption = 1, mercy = -1 }
 dialogue = [
-  { who = "ghost", line = "You will come back to us... everyone does...", mood = "angry" },
+  { who = "ghost", line = "You will come back to us... everyone does...", mood = "angry", fx = "chill" },
   { who = "your_thoughts", line = "I'm sorry. But I have to survive.", mood = "pained" },
   { who = "your_thoughts", line = "It's easier the second time. That's the worst part.", mood = "pained", if = "mercy <= -2" },
 ]
@@ -980,7 +987,7 @@ art = """
         """
 dialogue = [
   { who = "your_thoughts", line = "At least it was me who stood here. Not something wearing me.", mood = "pained", if = "resolve >= 3" },
-  { who = "the_spell", line = "You have perished in the Dream Realm.", mood = "wrath", fx = "shake" },
+  { who = "the_spell", line = "You have perished in the Dream Realm.", mood = "wrath", fx = "blackout" },
 ]
 
 [narrow_escape]
@@ -1002,6 +1009,7 @@ text = "Wait until the herd is gone, then explore the ruins again"
 goto = "first_awakening"
 
 [final_battle]
+fx = "blood"
 ending = true
 text = """
 You charge the Guardian with a battle cry.
@@ -1249,11 +1257,12 @@ dialogue = [
   { who = "the_spell", line = "Additional Attribute granted: [Shadow Legion] (Dormant)", mood = "focus" },
   { who = "your_thoughts", line = "I have power now. Incredible power. But I can feel it... changing me.", mood = "smirk" },
   { who = "your_thoughts", line = "Was it worth it? ...I hope so.", mood = "pained" },
-  { who = "your_thoughts", line = "My fingertips are still black. They're not fading. ...They're not fading.", mood = "afraid", if = "corruption >= 4" },
+  { who = "your_thoughts", line = "My fingertips are still black. They're not fading. ...They're not fading.", mood = "afraid", fx = "dizzy", if = "corruption >= 4" },
   { who = "your_thoughts", line = "My hands are my own. I checked. I'll keep checking.", mood = "smirk", if = "corruption <= 3" },
 ]
 
 [coward_ending]
+transition = "fade"
 ending = true
 text = """
 You turn and run from the Guardian.
@@ -1296,6 +1305,7 @@ dialogue = [
 ]
 
 [read_the_ruins]
+transition = "rise"
 text = """
 You climb until the wind tugs at your clothes, then you stop, cling to cold stone, and look.
 

@@ -10,7 +10,8 @@ Written in Rust. One binary, nothing else to install.
 
 - **Living Characters**: Pixel-art portraits that blink, breathe and move their lips as they speak, with eight expressions each (happy, smirk, angry, afraid, sad, pained, shocked, neutral)
 - **Cinematic Presentation**: Animated neon title sequence, a skippable pre-show cinematic, scene dissolves and typewriter text
-- **Screen Effects**: Screen shake for gunshots, glitches for drugs and static, white flashes for shocking reveals, drifting ash and neon in the background
+- **Screen Effects**: Eleven effects built on [tachyonfx](https://github.com/ratatui/tachyonfx): shake, glitch, flash, blood, blackout, lightning, heartbeat, dizzy, chill, static and reveal, plus drifting ash and neon in the background
+- **Scene Transitions**: Scenes dissolve, fade from black, sweep or rise into view, gather out of scattered cells, or cut straight in
 - **Scene Pictures**: Real images in Kitty, iTerm2, WezTerm and Sixel terminals, drawn in character cells everywhere else, with ASCII art as the fallback
 - **Mood Lighting**: Every scene is colored by its mood (noir, danger, alert, calm, mystery), and each story can recolor them
 - **Branching Narratives**: Flags, items and counters (evidence, heat, trust, corruption…) change which choices, lines and endings you see
@@ -18,7 +19,7 @@ Written in Rust. One binary, nothing else to install.
 - **Save System**: Autosave at every scene, 9 named slots per story, quick save/load, Continue, Load Game, export/import
 - **Reading Comfort**: History of everything read, auto-advance, and skip that races through text you've already read
 - **Endings Gallery**: See which endings you've found in each story, and how many are left
-- **Accessibility**: Screen effects can be reduced or turned off (flash, shake, glitch)
+- **Accessibility**: Screen effects can be made gentler or turned off
 - **Settings That Stick**: Color or monochrome, text speed, typewriter, cinematic intro, screen effects, skip mode, all remembered
 - **Story Folders**: Every story is a self-contained folder; drop one in and it appears in the menu
 
@@ -193,6 +194,30 @@ Give a line an expression and an effect right in the dialogue:
 { who = "tony", line = "Get in the car!", mood = "angry", fx = "shake" }
 ```
 
+| Effect | For |
+|---|---|
+| `shake` | gunshots, blows, slammed doors |
+| `glitch` | static, drugs, broken implants |
+| `flash` | shocks and revelations |
+| `blood` | wounds and violence: a red wash that drains away |
+| `blackout` | knocked out, lights cut: black, then the scene slowly returns |
+| `lightning` | two quick white flashes |
+| `heartbeat` | fear: the screen throbs dark twice |
+| `dizzy` | drugs, poison, vertigo: the colors swim |
+| `chill` | dread, the supernatural: the colors drain cold |
+| `static` | the screen breaks apart and pulls itself back together |
+| `reveal` | the screen is uncovered left to right |
+
+Scenes can play an effect too, once they're on screen, and choose how they arrive:
+
+```toml
+[warehouse]
+transition = "sweep"     # dissolve (default) | fade | sweep | rise | coalesce | cut
+fx = "lightning"
+```
+
+Set `transition = "fade"` in `story.toml` to change the default for a whole story. The Screen Effects setting makes every effect gentler (Reduced) or turns them off.
+
 A broken story never crashes the game: it shows up on the menu with its error.
 
 ## 🏗️ Architecture
@@ -228,7 +253,8 @@ A broken story never crashes the game: it shows up on the menu with its error.
 | `screens/play/` | Playing a story: `mod.rs` (state, keys, story flow), `stage.rs` (drawing the scene), `overlays.rs` (intro, pause menu, save dialog, history), `modes.rs` (auto, skip, quick save/load) |
 | `screens/backlog` | The history of everything read |
 | `screens/load`, `settings`, `credits` | The other menu screens |
-| `render/*` | Sprite drawing, scene pictures, effects, color themes, text helpers |
+| `render/effects` | Screen effects and scene transitions (tachyonfx), scaled by the Screen Effects setting |
+| `render/*` | Sprite drawing, scene pictures, hand-drawn effects (shake, glitch), color themes, text helpers |
 
 The engine never names a story or a character, so adding a story never touches code.
 
@@ -237,8 +263,8 @@ The engine never names a story or a character, so adding a story never touches c
 Tests live in their own folders, separate from the code:
 
 ```
-engine/tests/   stories, runner, saves, progress, logic, images, scene_state, sprite, store_settings
-tui/tests/      flow (the whole game driven by key presses), comfort, images, performance, screens
+engine/tests/   stories, runner, saves, progress, logic, effects, images, scene_state, sprite, store_settings
+tui/tests/      flow (the whole game driven by key presses), comfort, effects, images, performance, screens
 ```
 
 ```bash
@@ -257,7 +283,7 @@ Every bundled story is checked on each run: it must load, every scene must be re
 - **Animated Characters**: 27, with 8 expressions each (hand-made sprites have their own sets)
 - **Scene Pictures**: 31 hand-drawn SVG illustrations (10 The Last Case, 10 Blood and Neon, 11 Shadow Slave)
 - **Lines of Dialogue**: 680
-- **Tests**: 78
+- **Tests**: 86
 
 
 ## 🔮 Future Plans

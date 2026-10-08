@@ -3,7 +3,6 @@
 
 use super::*;
 
-const SCENE_FADE_MS: u64 = 700;
 const PORTRAIT_ENTER_MS: u64 = 350;
 const PORTRAIT_W: u16 = 34;
 const BOTTOM_H: u16 = 20;
@@ -35,39 +34,41 @@ impl Play {
         }
         self.draw_bottom(f, bottom, &th, now);
 
-        // line effects, scaled by the Screen Effects setting
+        // line and scene effects, scaled by the Screen Effects setting
         let since = now.saturating_sub(self.fx_start);
-        match self.fx_kind {
-            Some(LineFx::Glitch) if since < 450 && strength > 0.0 => {
-                let k = (1.0 - since as f32 / 450.0) * strength;
-                fx::glitch(f.buffer_mut(), full, &mut self.rng, k, th.accent);
-            }
-            Some(LineFx::Flash) if since < 500 && strength > 0.0 => {
-                let k = (1.0 - since as f32 / 500.0) * strength;
-                fx::flash(f.buffer_mut(), full, (255, 255, 255), k);
-            }
-            _ => {}
+        if self.fx_kind == Some(LineFx::Glitch) && since < 450 && strength > 0.0 {
+            let k = (1.0 - since as f32 / 450.0) * strength;
+            fx::glitch(f.buffer_mut(), full, &mut self.rng, k, th.accent);
+        }
+        if let Some(kind) = self.fx_pending.take() {
+            self.screen_fx =
+                effects::screen_effect(kind, &th, strength).map(|e| Running::new(e, self.fx_start));
+        }
+        if let Some(effect) = &mut self.screen_fx
+            && !effect.apply(f.buffer_mut(), full, now)
+        {
+            self.screen_fx = None;
         }
         if now < self.glitch_until && strength >= 1.0 {
             fx::glitch(f.buffer_mut(), full, &mut self.rng, 0.5, th.accent);
         }
         // scene entrance
-        let since_scene = now.saturating_sub(self.runner.scene_start());
-        if since_scene < SCENE_FADE_MS {
-            let k = since_scene as f32 / SCENE_FADE_MS as f32;
-            fx::dissolve(
-                f.buffer_mut(),
-                full,
-                k * 1.2,
-                th.bg,
-                self.runner.scene_start(),
-            );
-            fx::fade(f.buffer_mut(), full, 0.3 + 0.7 * k);
+        let start = self.runner.scene_start();
+        if self.transition_for != Some(start) {
+            self.transition_for = Some(start);
+            let kind = self.runner.pack.transition_of(self.runner.scene_id());
+            // timed from the scene's start, so a late first draw catches up
+            self.transition = effects::transition(kind, &th).map(|e| Running::new(e, start));
+        }
+        if let Some(effect) = &mut self.transition
+            && !effect.apply(f.buffer_mut(), full, now)
+        {
+            self.transition = None;
         }
         // real images go on top of everything, unshaken and outside the effects,
         // and only once the scene has settled: every redraw resends the image
         if graphics
-            && since_scene >= SCENE_FADE_MS
+            && self.transition.is_none()
             && matches!(self.overlay, Overlay::None)
             && let Some(img) = &mut self.image
         {

@@ -66,6 +66,7 @@ text = "Keep fighting despite the pain"
 goto = "forced_entry"
 
 [forced_entry]
+transition = "cut"
 text = """
 The pain becomes unbearable. Your consciousness fractures under the strain, splintering into a hundred bright, useless pieces.
 
@@ -206,6 +207,7 @@ text = "Keep your eyes shut and listen first"
 goto = "listen_before_waking"
 
 [dream_realm_entry_rough]
+transition = "fade"
 text = """
 You crash into consciousness like a drowning man breaching water.
 

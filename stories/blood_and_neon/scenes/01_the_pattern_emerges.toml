@@ -1,5 +1,6 @@
 [prologue]
 image = "images/prologue.svg"
+transition = "fade"
 text = """
 Rain hammers the windows of your apartment like bullets seeking flesh. Three AM. The phone screams. You already know what it means.
 
@@ -48,6 +49,8 @@ goto = "review_files"
 
 [pier_nineteen]
 image = "images/pier_nineteen.svg"
+transition = "sweep"
+fx = "chill"
 text = """
 The pier stretches into darkness like a dead man's finger pointing at eternity. Police lights strobe the scene in arterial reds and blues. The rain mixes with seawater, washing away evidence, washing away truth.
 

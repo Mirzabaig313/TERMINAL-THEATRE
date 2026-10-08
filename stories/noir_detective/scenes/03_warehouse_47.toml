@@ -4,6 +4,8 @@
 [warehouse]
 image = "images/warehouse.svg"
 mood = "mystery"
+transition = "sweep"
+fx = "lightning"
 text = """
 Warehouse 47 sits at the end of Pier 9 like a rotting tooth in a black gum. Corrugated iron streaked with rust, windows soaped over, a loading door big enough to swallow a truck. The harbour slaps at the pilings underneath with a sound like somebody being patiently, rhythmically slapped awake.
 
@@ -119,6 +121,7 @@ goto = "warehouse_retreat"
 
 [warehouse_front]
 mood = "alert"
+fx = "heartbeat"
 text = """
 You straighten your hat, button your coat, and walk up the middle of the pier like you're delivering the morning milk. The two guards watch you come with the dull disbelief of men who've just seen a cow walk into a church.
 
@@ -166,6 +169,7 @@ goto = "follow_morrison"
 
 [warehouse_with_eddie]
 mood = "danger"
+fx = "reveal"
 text = """
 You and Eddie approach Warehouse 47 like the old days, before his badge and your licence and everything in between. No words needed. A tilt of the head: you take the roof, he takes the back door. Twelve years of working together, and the choreography comes back like a song you forgot you knew.
 
@@ -217,6 +221,8 @@ goto = "warehouse_front"
 
 [warehouse_skylight_attack]
 mood = "danger"
+transition = "cut"
+fx = "shake"
 text = """
 You count to three and don't bother with three.
 
@@ -506,6 +512,7 @@ goto = "ending_evidence_victory"
 
 [warehouse_injured]
 mood = "danger"
+fx = "dizzy"
 text = """
 You stagger the last block to Pier 9 with one hand pressed against your side and the other against any wall that'll hold you up. You're leaving a trail behind you, black on the wet planks under the sodium lights. The harbour wind goes through your coat like it isn't there.
 
@@ -542,7 +549,7 @@ The cigarette in the dark goes bright, then dim. And Tony, standing by the door 
 dialogue = [
   { who = "castellano", line = "You got guts, Malone. I'll give you that much. Talk. You got thirty seconds before I finish what somebody started.", mood = "smirk" },
   { who = "jack_malone", line = "General Marcus Blackwood. He's using you. He killed the dame, framed me, and when this goes south, you're next.", mood = "pained" },
-  { who = "blackwood_emerging", line = "That's enough, Mr. Malone.", mood = "smirk", fx = "shake" },
+  { who = "blackwood_emerging", line = "That's enough, Mr. Malone.", mood = "smirk", fx = "chill" },
 ]
 [[warehouse_wounded_entry.choices]]
 text = "'There he is. The man behind the curtain.'"
@@ -715,6 +722,7 @@ goto = "ending_fbi_victory"
 
 [rodriguez_raid]
 mood = "danger"
+fx = "blood"
 text = """
 The red flare goes up over Pier 9 and hangs there, hissing, turning the rain into a curtain of falling blood. Thirty seconds later the sirens start.
 
@@ -748,7 +756,7 @@ You keep pulling the trigger until it's quiet. When the smoke clears you're stil
 
 Blackwood is gone - slipped out in the chaos. Your knees fold up under you like a cheap card table."""
 dialogue = [
-  { who = "jack_malone", line = "Blackwood... he's getting away...", mood = "pained", fx = "shake" },
+  { who = "jack_malone", line = "Blackwood... he's getting away...", mood = "pained", fx = "dizzy" },
 ]
 [[solo_warehouse_attack.choices]]
 text = "Let the dark take you"

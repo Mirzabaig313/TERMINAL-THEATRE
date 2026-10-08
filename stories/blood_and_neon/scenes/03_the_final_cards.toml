@@ -23,6 +23,7 @@ add = { sarah_trust = 1 }
 
 [bait_trap]
 mood = "danger"
+fx = "blackout"
 text = """
 You convince Damien Cross to help set the trap. He's terrified but agrees. Everyone wants revenge when death comes calling.
 
@@ -36,7 +37,7 @@ In the darkness, you hear it: footsteps. Soft. Measured. Coming closer."""
 dialogue = [
   { who = "sarah_radio", line = "Marcus. Movement on the second floor. She's inside.", mood = "afraid" },
   { who = "kane_radio", line = "Hold position. Let her get to Damien. Then we close the trap." },
-  { who = "cassandra_from_darkness", line = "Oh, Detective. Did you really think I wouldn't know? I've been watching you. Since the beginning. I know how you think. How you move. How you hunt. Because we're the same, you and I.", fx = "shake" },
+  { who = "cassandra_from_darkness", line = "Oh, Detective. Did you really think I wouldn't know? I've been watching you. Since the beginning. I know how you think. How you move. How you hunt. Because we're the same, you and I.", fx = "heartbeat" },
 ]
 [[bait_trap.choices]]
 text = "Turn on your flashlight - force the confrontation"
@@ -46,6 +47,7 @@ text = "Stay silent - hunt her in the dark"
 goto = "dark_hunt"
 
 [tackle_cassandra]
+fx = "dizzy"
 text = """
 You rush her. Fast. Professional. The tackle is perfect.
 
@@ -124,6 +126,8 @@ goto = "negotiate_ending"
 [shoot_cassandra]
 image = "images/shoot_cassandra.svg"
 mood = "danger"
+transition = "cut"
+fx = "blood"
 variants = [
   { if = "lines_crossed >= 4", text = """
 You pull the trigger. It's easy. That's the part that frightens you later. Every line you stepped over this week was a rehearsal for this one.
@@ -178,6 +182,7 @@ ENDING: THE TRUTH IN DARKNESS"""
 ending = true
 
 [walk_away_ending]
+transition = "fade"
 text = """
 You holster your weapon. You turn. You walk away.
 
@@ -213,6 +218,8 @@ ENDING: THE DEVIL'S BARGAIN"""
 ending = true
 
 [nightshade_ending]
+transition = "fade"
+fx = "static"
 text = """
 The Nightshade takes you. You wake in a white room. Clean. Sterile. Sarah is there. She explains: you were under for three days. The dose was massive. You should be dead. Instead, you're... changed.
 
@@ -232,6 +239,7 @@ ending = true
 [partner_sacrifice_ending]
 image = "images/partner_sacrifice_ending.svg"
 mood = "calm"
+transition = "fade"
 text = """
 Sarah takes the bullet meant for you. Falls in slow motion. Like angels descending. Like everything good leaving the world.
 
@@ -369,6 +377,7 @@ text = "Go to the Prometheus facility - that's where it started"
 goto = "prometheus_facility"
 
 [cassandra_journal]
+transition = "coalesce"
 text = """
 The journal is meticulous. Detailed. Beautiful handwriting that would look at home in a medieval manuscript. You read:
 
@@ -436,6 +445,8 @@ text = "Cassandra wants you to panic - think, don't react"
 goto = "stay_calm_sarah"
 
 [resist_nightshade]
+transition = "fade"
+fx = "dizzy"
 text = """
 The drug hits like a freight train made of nightmares. But you fight it. Years of discipline. Training. Sheer stubborn refusal to give up.
 
@@ -445,7 +456,7 @@ You claw back to consciousness. Hours later? Days? Time has no meaning when real
 
 And you remember where Cassandra said she'd be. The final location. Where the seventh sacrifice completes the cycle."""
 dialogue = [
-  { who = "kane_thinking", line = "She underestimated me. Thought the drug would break me. Make me compliant. Instead, it just pissed me off. I'm coming for you, Cassandra. And nothing - not your drugs, not your philosophy, not your pattern - will stop me.", mood = "angry", fx = "glitch" },
+  { who = "kane_thinking", line = "She underestimated me. Thought the drug would break me. Make me compliant. Instead, it just pissed me off. I'm coming for you, Cassandra. And nothing - not your drugs, not your philosophy, not your pattern - will stop me.", mood = "angry", fx = "heartbeat" },
 ]
 [[resist_nightshade.choices]]
 text = "Go to the final location - end this"
@@ -484,7 +495,7 @@ Cassandra stands beside her. Serene. Like a priest at an altar.
 dialogue = [
   { who = "kane", line = "Let her go, Cassandra. She's not part of this.", mood = "angry" },
   { who = "cassandra", line = "Everyone is part of this. The whole world is part of the pattern. She got too close. Saw too much. She had to be... refined.", mood = "smirk" },
-  { who = "sarah_through_the_drug", line = "Marcus... kill me... please... I can see... everything... it's too much... too much...", mood = "pained", fx = "glitch" },
+  { who = "sarah_through_the_drug", line = "Marcus... kill me... please... I can see... everything... it's too much... too much...", mood = "pained", fx = "dizzy" },
 ]
 [[storm_ouroboros.choices]]
 text = "Shoot Cassandra - save Sarah no matter what"
@@ -498,6 +509,7 @@ goto = "demand_antidote"
 
 [shoot_cassandra_save_sarah]
 mood = "danger"
+fx = "shake"
 text = """
 You shoot. Center mass. Professional. Fatal.
 
@@ -561,6 +573,7 @@ ending = true
 
 [true_ending]
 image = "images/true_ending.svg"
+transition = "rise"
 text = """
 In the final confrontation at the old Prometheus facility, you realize the truth. The terrible truth that Cassandra has been guiding you toward.
 
