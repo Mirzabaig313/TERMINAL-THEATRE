@@ -24,6 +24,16 @@ Written in Rust. One binary, nothing else to install.
 - **Settings That Stick**: Color or monochrome, text speed, typewriter, cinematic intro, screen effects, skip mode, sound and volume, all remembered
 - **Story Folders**: Every story is a self-contained folder; drop one in and it appears in the menu
 
+## 📚 Documentation
+
+| Guide | For |
+|---|---|
+| [Quickstart](docs/QUICKSTART.md) | installing, first run, controls, troubleshooting |
+| [Writing Guide](docs/WRITING_GUIDE.md) | writing your own stories: scenes, choices, characters, effects, sound, testing |
+| [Contributing](CONTRIBUTING.md) | reporting bugs, development setup, checks, pull requests |
+| [Security](SECURITY.md) | reporting vulnerabilities, what the game can and can't do |
+| [Publishing](docs/PUBLISHING.md) | releasing: GitHub Releases, Homebrew, itch.io, crates.io |
+
 ## 📖 Current Stories
 
 ### The Last Case (Noir Detective)
@@ -138,7 +148,7 @@ Stories can recolor any mood. *Blood and Neon* turns noir into hot pink and cyan
 
 ## ✍️ Create Your Own Story
 
-No programming needed. A story is a folder of text files:
+No programming needed. A story is a folder of text files. The [Writing Guide](docs/WRITING_GUIDE.md) covers everything; here's the short version:
 
 ```
 stories/my_story/
@@ -345,7 +355,7 @@ Every bundled story is checked on each run: it must load, every scene must be re
 - **Animated Characters**: 27, with 8 expressions each (hand-made sprites have their own sets)
 - **Scene Pictures**: 31 hand-drawn SVG illustrations (10 The Last Case, 10 Blood and Neon, 11 Shadow Slave)
 - **Lines of Dialogue**: 680
-- **Tests**: 110
+- **Tests**: 111
 
 
 ## 🔮 Future Plans

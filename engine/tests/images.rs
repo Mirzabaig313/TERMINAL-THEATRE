@@ -55,3 +55,24 @@ fn only_png_and_jpeg_are_accepted() {
     assert!(full.contains(".png, .jpg or .svg"), "{full}");
     std::fs::remove_dir_all(dir).ok();
 }
+
+#[test]
+fn pictures_must_stay_inside_the_story_folder() {
+    // a real picture, but reached by leaving the story folder
+    let escape = format!("image = \"../{}/images/rain.png\"", "_template");
+    let absolute = format!(
+        "image = {:?}",
+        stories()
+            .join("_template/images/rain.png")
+            .canonicalize()
+            .unwrap()
+            .display()
+            .to_string()
+    );
+    for (name, line) in [("img-escape", escape), ("img-absolute", absolute)] {
+        let dir = template_with_image(name, &line);
+        let err = format!("{:#}", StoryPack::load(&dir).err().expect("should fail"));
+        assert!(err.contains("inside the story folder"), "{name}: {err}");
+        std::fs::remove_dir_all(dir).ok();
+    }
+}

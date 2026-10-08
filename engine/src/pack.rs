@@ -53,6 +53,23 @@ pub struct Meta {
     pub themes: BTreeMap<Mood, ThemeOverride>,
 }
 
+/// A file named in a story must be a relative path that stays inside the
+/// story's folder: a story can't make the game read other files.
+fn inside_story(file: &str) -> Result<()> {
+    use std::path::Component;
+    let path = Path::new(file);
+    let escapes = path.components().any(|c| {
+        matches!(
+            c,
+            Component::ParentDir | Component::RootDir | Component::Prefix(_)
+        )
+    });
+    if escapes || path.is_absolute() {
+        bail!("must be a path inside the story folder, like \"images/rain.png\"");
+    }
+    Ok(())
+}
+
 fn default_mood() -> Mood {
     Mood::Noir
 }
@@ -189,6 +206,7 @@ impl StoryPack {
         }
         // audio files must exist and be a kind the game can play
         let audio_file = |what: &str, file: &str| -> Result<()> {
+            inside_story(file).with_context(|| format!("{what}: sound '{file}'"))?;
             let path = self.dir.join(file);
             if !path.is_file() {
                 bail!("{what}: sound '{file}' not found at {}", path.display());
@@ -227,6 +245,7 @@ impl StoryPack {
                 }
             }
             if let Some(img) = &scene.image {
+                inside_story(img).with_context(|| format!("scene '{id}': image '{img}'"))?;
                 let path = self.dir.join(img);
                 if !path.is_file() {
                     bail!(

@@ -26,6 +26,7 @@ USAGE:
     theatre                         title sequence and main menu
     theatre <story-id>              start a story straight away
     theatre --skip-intro            go straight to the main menu
+    theatre --version               the installed version
     theatre stories                 list installed stories
     theatre saves                   list saved games
     theatre graphics                how this terminal can show scene pictures
@@ -68,6 +69,10 @@ fn main() -> Result<()> {
         .as_slice()
     {
         [] => Start::Opening,
+        ["-V" | "--version" | "version"] => {
+            println!("theatre {}", env!("CARGO_PKG_VERSION"));
+            return Ok(());
+        }
         ["-h" | "--help" | "help"] => {
             println!("{HELP}");
             return Ok(());
@@ -263,9 +268,9 @@ fn sound_demo(ctx: &Ctx) -> Result<()> {
 }
 
 /// Words `theatre` understands as its first argument, besides story ids.
-const COMMANDS: [&str; 12] = [
-    "stories", "saves", "graphics", "sound", "check", "route", "map", "new", "rehearse", "export",
-    "import", "help",
+const COMMANDS: [&str; 13] = [
+    "version", "stories", "saves", "graphics", "sound", "check", "route", "map", "new", "rehearse",
+    "export", "import", "help",
 ];
 
 /// A story to start straight away, or a helpful error (a typo shouldn't

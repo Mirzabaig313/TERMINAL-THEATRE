@@ -127,5 +127,14 @@ fn audio_files_must_exist_and_be_playable() {
     .unwrap();
     let err = format!("{:#}", StoryPack::load(&dir).err().expect("should fail"));
     assert!(err.contains(".ogg"), "{err}");
+
+    // and stay inside the story folder
+    std::fs::write(
+        &scenes,
+        text.replace("sounds/knock.ogg", "../sounds/knock.ogg"),
+    )
+    .unwrap();
+    let err = format!("{:#}", StoryPack::load(&dir).err().expect("should fail"));
+    assert!(err.contains("inside the story folder"), "{err}");
     std::fs::remove_dir_all(dir).ok();
 }
