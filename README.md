@@ -1,5 +1,10 @@
 # 🎬 TERMINAL THEATRE
 
+[![crates.io](https://img.shields.io/crates/v/terminal-theatre.svg)](https://crates.io/crates/terminal-theatre)
+[![Release](https://img.shields.io/github/v/release/Mirzabaig313/TERMINAL-THEATRE)](https://github.com/Mirzabaig313/TERMINAL-THEATRE/releases/latest)
+[![CI](https://github.com/Mirzabaig313/TERMINAL-THEATRE/actions/workflows/ci.yml/badge.svg)](https://github.com/Mirzabaig313/TERMINAL-THEATRE/actions/workflows/ci.yml)
+[![License: AGPL v3](https://img.shields.io/badge/license-AGPL--3.0-blue.svg)](LICENSE)
+
 An interactive movie game for your terminal. Animated pixel-art characters act
 out branching stories with typewriter dialogue, screen effects and multiple
 endings, and every choice you make changes where the story goes.
@@ -32,7 +37,6 @@ Written in Rust. One binary, nothing else to install.
 | [Writing Guide](docs/WRITING_GUIDE.md) | writing your own stories: scenes, choices, characters, effects, sound, testing |
 | [Contributing](CONTRIBUTING.md) | reporting bugs, development setup, checks, pull requests |
 | [Security](SECURITY.md) | reporting vulnerabilities, what the game can and can't do |
-| [Publishing](docs/PUBLISHING.md) | releasing: GitHub Releases, Homebrew, itch.io, crates.io |
 
 ## 📖 Current Stories
 
@@ -83,6 +87,24 @@ curl -fsSL https://raw.githubusercontent.com/Mirzabaig313/TERMINAL-THEATRE/main/
 ```powershell
 irm https://raw.githubusercontent.com/Mirzabaig313/TERMINAL-THEATRE/main/install.ps1 | iex
 ```
+
+**Homebrew** (macOS / Linux)
+
+```sh
+brew install mirzabaig313/tap/terminal-theatre
+```
+
+**Cargo** (Rust users, from [crates.io](https://crates.io/crates/terminal-theatre))
+
+```sh
+cargo install terminal-theatre
+```
+
+| Channel | Link | Update with |
+|---|---|---|
+| GitHub Releases | [releases](https://github.com/Mirzabaig313/TERMINAL-THEATRE/releases/latest) | run the install command again |
+| Homebrew | [mirzabaig313/homebrew-tap](https://github.com/Mirzabaig313/homebrew-tap) | `brew upgrade terminal-theatre` |
+| crates.io | [terminal-theatre](https://crates.io/crates/terminal-theatre) (game), [theatre-engine](https://crates.io/crates/theatre-engine) (story engine) | `cargo install terminal-theatre` |
 
 Then run `theatre`. The installer picks the build for your system from [GitHub Releases](https://github.com/Mirzabaig313/TERMINAL-THEATRE/releases), checks its SHA-256 checksum, and puts `theatre` in `~/.local/bin` (on Windows, `%LOCALAPPDATA%\Programs\TerminalTheatre`). It's one file with the stories built in: on first run they're unpacked into `~/.terminal_theatre/stories/`, and you can add your own story folders there. On Linux without the ALSA sound library, the installer picks the silent build. You can also download a build from the releases page and unpack it yourself.
 
@@ -297,7 +319,18 @@ A broken story never crashes the game: it shows up on the menu with its error.
 1. Set the version in `Cargo.toml` (`[workspace.package] version = "0.2.0"`) and commit.
 2. `git tag v0.2.0 && git push origin v0.2.0`
 
-GitHub Actions builds for macOS (Apple Silicon and Intel), Linux (x86_64 and ARM, each with and without sound) and Windows, then publishes the release with checksums and the install scripts. The tag has to match the version in `Cargo.toml`. The stories are built into the binary (`tui/build.rs`). Homebrew, itch.io and crates.io are set up as described in [docs/PUBLISHING.md](docs/PUBLISHING.md).
+GitHub Actions builds for macOS (Apple Silicon and Intel), Linux (x86_64 and ARM, each with and without sound) and Windows, then publishes the release with checksums and the install scripts. The tag has to match the version in `Cargo.toml`. The stories are built into the binary (`tui/build.rs`).
+
+After the release, the workflow also updates:
+- **Homebrew:** the formula in [mirzabaig313/homebrew-tap](https://github.com/Mirzabaig313/homebrew-tap). This needs the `HOMEBREW_TAP_TOKEN` secret.
+- **itch.io:** when the `BUTLER_API_KEY` secret and the `ITCH_GAME` variable are set.
+
+[crates.io](https://crates.io/crates/terminal-theatre) is published by hand, because a published version can never be removed:
+
+```sh
+cargo publish --workspace --dry-run
+cargo publish --workspace
+```
 
 | Engine module | What it does |
 |---|---|
@@ -364,6 +397,8 @@ Every bundled story is checked on each run: it must load, every scene must be re
 - [ ] Achievements
 - [ ] Timed choices
 - [ ] Portraits for the remaining minor characters
+- [ ] An itch.io page
+- [ ] Signed and notarized macOS builds
 
 ## 📝 License
 

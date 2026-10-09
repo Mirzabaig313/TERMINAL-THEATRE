@@ -2,7 +2,7 @@
 # game for every system and publishes a GitHub Release with the downloads,
 # their SHA-256 checksums and the install scripts.
 #
-# Optional channels, each skipped until it's set up (see docs/PUBLISHING.md):
+# Optional channels, each skipped until it's set up (see the Releasing section of the README):
 #   Homebrew tap: secret HOMEBREW_TAP_TOKEN (and variable HOMEBREW_TAP, default <owner>/homebrew-tap)
 #   itch.io:      secret BUTLER_API_KEY and variable ITCH_GAME (like mirzabaig313/terminal-theatre)
 name: Release
@@ -89,23 +89,56 @@ jobs:
         env:
           GH_TOKEN: ${{ github.token }}
         run: |
+          repo="${{ github.repository }}"
+          owner="${{ github.repository_owner }}"
+          owner="${owner,,}"   # brew taps are written in lowercase
           cat > notes.md <<EOF
-          ## Install
+          **Terminal Theatre** is an interactive movie for your terminal: animated pixel-art
+          characters, branching stories, screen effects and sound.
+
+          ## 📦 Install
 
           **macOS / Linux**
           \`\`\`sh
-          curl -fsSL https://raw.githubusercontent.com/${{ github.repository }}/main/install.sh | sh
+          curl -fsSL https://raw.githubusercontent.com/$repo/main/install.sh | sh
+          \`\`\`
+
+          **Homebrew**
+          \`\`\`sh
+          brew install $owner/tap/terminal-theatre
           \`\`\`
 
           **Windows** (PowerShell)
           \`\`\`powershell
-          irm https://raw.githubusercontent.com/${{ github.repository }}/main/install.ps1 | iex
+          irm https://raw.githubusercontent.com/$repo/main/install.ps1 | iex
           \`\`\`
 
-          Or download the file for your system below, unpack it, and run \`theatre\`.
-          Linux \`-silent\` builds work without the ALSA sound library.
+          Already installed? Run the same command again, or \`brew upgrade terminal-theatre\`.
+
+          ## 📥 Or download a file
+
+          | Your computer | File |
+          |---|---|
+          | Mac with Apple Silicon (M1–M4) | \`theatre-aarch64-apple-darwin.tar.gz\` |
+          | Intel Mac | \`theatre-x86_64-apple-darwin.tar.gz\` |
+          | Linux PC | \`theatre-x86_64-unknown-linux-gnu.tar.gz\` |
+          | Linux ARM (Raspberry Pi 4/5) | \`theatre-aarch64-unknown-linux-gnu.tar.gz\` |
+          | Windows | \`theatre-x86_64-pc-windows-msvc.zip\` |
+
+          Linux \`-silent\` builds run without the ALSA sound library. Each file has a \`.sha256\` checksum next to it.
+
+          ## ▶️ Getting started
+
+          Run \`theatre\` in a big window (about 120×48) in a modern terminal. Sound is off at first: Settings → Sound.
+
+          📖 [Quickstart](https://github.com/$repo/blob/main/docs/QUICKSTART.md) ·
+          ✍️ [Write your own story](https://github.com/$repo/blob/main/docs/WRITING_GUIDE.md) ·
+          🐛 [Report a bug](https://github.com/$repo/issues)
+
           EOF
+          # GitHub adds "What's Changed" (commits and pull requests since the last release) after these notes
           gh release create "$GITHUB_REF_NAME" artifacts/* install.sh install.ps1 \
+            --generate-notes \
             --title "Terminal Theatre $GITHUB_REF_NAME" --notes-file notes.md --verify-tag
 
   homebrew:
@@ -117,7 +150,7 @@ jobs:
     steps:
       - name: Homebrew tap not set up
         if: env.TAP_TOKEN == ''
-        run: echo "No HOMEBREW_TAP_TOKEN secret, so Homebrew is skipped (see docs/PUBLISHING.md)."
+        run: echo "No HOMEBREW_TAP_TOKEN secret, so Homebrew is skipped (see the Releasing section of the README)."
       - uses: actions/download-artifact@v4
         if: env.TAP_TOKEN != ''
         with:
@@ -186,7 +219,7 @@ jobs:
     steps:
       - name: itch.io not set up
         if: env.BUTLER_API_KEY == '' || env.ITCH_GAME == ''
-        run: echo "No BUTLER_API_KEY secret or ITCH_GAME variable, so itch.io is skipped (see docs/PUBLISHING.md)."
+        run: echo "No BUTLER_API_KEY secret or ITCH_GAME variable, so itch.io is skipped (see the Releasing section of the README)."
       - uses: actions/download-artifact@v4
         if: env.BUTLER_API_KEY != '' && env.ITCH_GAME != ''
         with:
